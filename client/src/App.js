@@ -4,7 +4,7 @@ import './App.css';
 // Pages
 import Root from './routes/Root';
 import PageAbout from './routes/PageAbout';
-
+import Page404 from './routes/Page404';
 
 import {
   BrowserRouter as Router,
@@ -18,7 +18,7 @@ const App = () => (
     <Switch>
       <Route exact path="/" component={Root}/>
       <Route path="/about" component={PageAbout}/>
-      <Route component={Root}/>
+      <Route component={Page404}/>
     </Switch>
   </Router>
 )
