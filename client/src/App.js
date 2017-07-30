@@ -4,13 +4,35 @@ import './App.css';
 
 class App extends Component {
 
-  componentDidMount() {
-    window.fetch('api/questions')
-      .then(response => response.json())
-      .then(json => console.log(json))
-      .catch(error => console.log(error))
+  constructor() {
+    super();
+    this.state = {};
+    this.getQuestions = this.getQuestions.bind(this);
   }
 
+  componentDidMount() {
+    this.getQuestions();
+  }
+
+  componentDidUpdate() {
+    console.log(this.state);
+  }
+
+  fetch(endpoint) {
+    return new Promise((resolve, reject) => {
+      window.fetch(endpoint)
+        .then(response => response.json())
+        .then(json => resolve(json))
+        .catch(error => reject(error));
+    });
+  }
+
+  getQuestions() {
+    this.fetch('api/questions')
+      .then(questions => {
+        this.setState({"questions": questions});
+      });
+  }
 
   render() {
     return (

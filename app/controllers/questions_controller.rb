@@ -1,4 +1,8 @@
-class QuestionsController < InheritedResources::Base
+class QuestionsController < ApplicationController
+
+  def index
+    render json: Question.all.to_json
+  end
 
   private
 
@@ -6,4 +10,3 @@ class QuestionsController < InheritedResources::Base
       params.require(:question).permit(:text)
     end
 end
-
