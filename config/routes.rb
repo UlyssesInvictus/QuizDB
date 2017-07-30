@@ -8,4 +8,9 @@ Rails.application.routes.draw do
     resources :questions
   end
 
+  # When serving in production, have unmatched routes be handled by our client app
+  get '*path', to: "application#fallback_index_html", constraints: ->(request) do
+    !request.xhr? && request.format.html?
+  end
+
 end
