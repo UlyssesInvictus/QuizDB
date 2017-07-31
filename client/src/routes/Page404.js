@@ -6,7 +6,7 @@ class Page404 extends React.Component {
     const adminPattern = /^\/admin/;
     if (process.env.NODE_ENV !== "development" &&
         adminPattern.test(window.location.pathname)) {
-      window.location.reload(true);
+      // window.location.reload(true);
     }
   }
 
