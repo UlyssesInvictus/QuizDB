@@ -1,6 +1,8 @@
 import React from 'react';
 import {Grid, Dropdown, Label, Segment} from 'semantic-ui-react';
 
+import PropTypes from 'prop-types';
+
 class SearchDropDown extends React.Component {
 
   render() {
@@ -14,12 +16,16 @@ class SearchDropDown extends React.Component {
 
     return <Grid.Column>
       <Segment>
-        <Label attached='top'>Test</Label>
+        <Label attached='top'>{this.props.name}</Label>
         <Dropdown placeholder='Subject'
           multiple search fluid
           selection options={testOptions}/>
       </Segment>
     </Grid.Column>
   }
+}
+
+SearchDropDown.propTypes = {
+  name: PropTypes.string.isRequired,
 }
 export default SearchDropDown;

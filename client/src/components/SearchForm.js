@@ -1,5 +1,11 @@
 import React from 'react';
-import {Grid, Form, Input,
+import { connect } from 'react-redux';
+
+import {
+  updateSearch,
+} from '../actions/actions';
+
+import { Grid, Form, Input,
   Button, Divider, Container,
 } from 'semantic-ui-react';
 
@@ -14,7 +20,9 @@ class SearchForm extends React.Component {
         {/* Search input */}
         <Grid.Column width={11}>
           <Form.Field>
-            <Input fluid placeholder={"Search for questions here!"} size='huge'/>
+            <Input fluid size='huge'
+              placeholder={"Search for questions here!"}
+              onChange={(e, data) => this.props.dispatch(updateSearch(data.value))}/>
           </Form.Field>
         </Grid.Column>
         {/* Search buttons */}
@@ -30,17 +38,27 @@ class SearchForm extends React.Component {
 
       <Grid stackable doubling columns='equal' textAlign='center'>
         <Grid.Row>
-          <SearchDropDown/>
-          <SearchDropDown/>
-          <SearchDropDown/>
+          <SearchDropDown name={this.props.search.value}/>
+          <SearchDropDown name='Test 2'/>
+          <SearchDropDown name='Test 3'/>
         </Grid.Row>
         <Grid.Row>
-          <SearchDropDown/>
-          <SearchDropDown/>
-          <SearchDropDown/>
+          <SearchDropDown name='Test 4'/>
+          <SearchDropDown name='Test 5'/>
+          <SearchDropDown name='Test 6'/>
         </Grid.Row>
       </Grid>
     </Container></div>
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    search: state.search
+  }
+}
+SearchForm = connect(
+  mapStateToProps
+)(SearchForm)
+
 export default SearchForm;

@@ -4,8 +4,22 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-// Use semantic ui styles
-import 'semantic-ui-css/semantic.css'
+// redux stuff
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import quizdb from './reducers/reducers.js';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+// Use semantic ui styles
+import 'semantic-ui-css/semantic.css';
+
+let store = createStore(
+  quizdb,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() // link to browser log
+);
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+document.getElementById('root'));
 registerServiceWorker();
