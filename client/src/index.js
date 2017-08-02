@@ -6,15 +6,26 @@ import registerServiceWorker from './registerServiceWorker';
 
 // redux stuff
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
+import thunkMiddleware from 'redux-thunk'
+
 import quizdb from './reducers/reducers.js';
 
 // Use semantic ui styles
 import 'semantic-ui-css/semantic.css';
 
+const composeEnhancers =
+  process.env.NODE_ENV !== 'production' &&
+  typeof window === 'object' &&
+  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+      // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
+    }) : compose;
 let store = createStore(
   quizdb,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() // link to browser log
+  composeEnhancers(
+    applyMiddleware(thunkMiddleware)
+  )
 );
 
 ReactDOM.render(

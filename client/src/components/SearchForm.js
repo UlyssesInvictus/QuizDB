@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import {
   updateSearch,
+  fetchQuestions,
 } from '../actions/actions';
 
 import { Grid, Form, Input,
@@ -12,6 +13,16 @@ import { Grid, Form, Input,
 import SearchDropDown from './SearchDropDown';
 
 class SearchForm extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.triggerSearch = this.triggerSearch.bind(this);
+  }
+
+  triggerSearch() {
+    let p = this.props;
+    p.dispatch(fetchQuestions(p.search.value, p.search.filters));
+  }
 
   render() {
     return <div className="search"><Container>
@@ -28,7 +39,8 @@ class SearchForm extends React.Component {
         {/* Search buttons */}
         <Grid.Column width={5}>
           <Button.Group size='huge' compact>
-            <Button attached='left' icon='search' content='Search' />
+            <Button attached='left' icon='search' content='Search'
+                    onClick={this.triggerSearch}/>
             <Button attached='right' icon='random' content='Random' />
           </Button.Group>
         </Grid.Column>
@@ -38,14 +50,20 @@ class SearchForm extends React.Component {
 
       <Grid stackable doubling columns='equal' textAlign='center'>
         <Grid.Row>
-          <SearchDropDown name={this.props.search.value}/>
-          <SearchDropDown name='Test 2'/>
-          <SearchDropDown name='Test 3'/>
+          <SearchDropDown name='Test 1'
+                          filter='questions'/>
+          <SearchDropDown name='Test 2'
+                          filter='questions'/>
+          <SearchDropDown name='Test 3'
+                          filter='questions'/>
         </Grid.Row>
         <Grid.Row>
-          <SearchDropDown name='Test 4'/>
-          <SearchDropDown name='Test 5'/>
-          <SearchDropDown name='Test 6'/>
+          <SearchDropDown name='Test 4'
+                          filter='questions'/>
+          <SearchDropDown name='Test 5'
+                          filter='questions'/>
+          <SearchDropDown name='Test 6'
+                          filter='questions'/>
         </Grid.Row>
       </Grid>
     </Container></div>

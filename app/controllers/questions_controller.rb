@@ -1,7 +1,15 @@
 class QuestionsController < ApplicationController
 
   def index
-    render json: Question.all.to_json
+    render json: Question.all
+  end
+
+  def search
+    render json: {
+      data: {
+        questions: Question.all
+      }
+    }
   end
 
   private

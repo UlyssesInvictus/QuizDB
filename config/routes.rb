@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   scope 'api' do
     resources :questions
+    get 'search', to: 'questions#search'
   end
 
   # When serving in production, have unmatched routes be handled by our client app
