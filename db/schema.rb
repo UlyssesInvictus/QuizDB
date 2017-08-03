@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170803032535) do
+ActiveRecord::Schema.define(version: 20170803034010) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,8 +63,8 @@ ActiveRecord::Schema.define(version: 20170803032535) do
   end
 
   create_table "tossups", force: :cascade do |t|
-    t.text     "text"
-    t.text     "answer"
+    t.text     "text",           null: false
+    t.text     "answer",         null: false
     t.integer  "number"
     t.integer  "tournament_id",  null: false
     t.integer  "category_id",    null: false
