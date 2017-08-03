@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  year: 1
+  name: MyString
+  difficulty: 1
+  address: MyString
+  type: 
+
+two:
+  year: 1
+  name: MyString
+  difficulty: 1
+  address: MyString
+  type: 

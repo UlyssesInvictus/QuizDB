@@ -59,20 +59,20 @@ class SearchForm extends React.Component {
 
       <Grid stackable doubling columns='equal' textAlign='center'>
         <Grid.Row>
-          <SearchDropDown name='Test 1'
-                          filter='questions'/>
-          <SearchDropDown name='Test 2'
-                          filter='questions'/>
-          <SearchDropDown name='Test 3'
-                          filter='questions'/>
+          <SearchDropDown name='Category'
+                          filter='category'/>
+          <SearchDropDown name='Search Type'
+                          filter='search_type'/>
+          <SearchDropDown name='Difficulty'
+                          filter='difficulty'/>
         </Grid.Row>
         <Grid.Row>
-          <SearchDropDown name='Test 4'
-                          filter='questions'/>
-          <SearchDropDown name='Test 5'
-                          filter='questions'/>
-          <SearchDropDown name='Test 6'
-                          filter='questions'/>
+          <SearchDropDown name='Subcategory'
+                          filter='subcategory'/>
+          <SearchDropDown name='Question Type'
+                          filter='question_type'/>
+          <SearchDropDown name='Tournament'
+                          filter='tournament'/>
         </Grid.Row>
       </Grid>
     </Container></div>

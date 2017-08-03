@@ -23,7 +23,7 @@ class SearchDropDown extends React.Component {
     return <Grid.Column>
       <Segment>
         <Label attached='top'>{this.props.name}</Label>
-        <Dropdown placeholder='Subject'
+        <Dropdown placeholder='All'
           multiple search fluid
           onChange={(e, data) =>
             this.props.dispatch(

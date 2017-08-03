@@ -34,7 +34,7 @@ function receiveQuestions(json) {
 export function fetchQuestions(searchValue, searchFilters) {
   return function (dispatch) {
     dispatch(searchQuestions());
-    return window.fetch('api/search', {
+    return window.fetch(`api/search?q=${searchValue}`, {
         body: searchFilters
       })
       .then(
