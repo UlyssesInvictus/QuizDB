@@ -8,12 +8,15 @@ import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk'
+// track responsive states
+import { responsiveStoreEnhancer } from 'redux-responsive'
 
 import quizdb from './reducers/reducers.js';
 
 // Use semantic ui styles
 import 'semantic-ui-css/semantic.css';
 
+// Build our store, compose with enhancers and middleware, etc.
 const composeEnhancers =
   process.env.NODE_ENV !== 'production' &&
   typeof window === 'object' &&
@@ -24,10 +27,19 @@ const composeEnhancers =
 let store = createStore(
   quizdb,
   composeEnhancers(
+    /* Default responsive breakpoints
+    const defaultBreakpoints = {
+        extraSmall: 480,
+        small: 768,
+        medium: 992,
+        large: 1200,
+    } */
+    responsiveStoreEnhancer,
     applyMiddleware(thunkMiddleware)
   )
 );
 
+// Build the app!
 ReactDOM.render(
   <Provider store={store}>
     <App />

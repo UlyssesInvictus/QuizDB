@@ -25,11 +25,20 @@ class SearchForm extends React.Component {
   }
 
   render() {
+    let isStacked = this.props.browser.lessThan.medium;
+    let buttonGroupProps = {
+      size: 'huge',
+      compact: true
+    };
+    if (!isStacked) {
+      buttonGroupProps.floated = 'right';
+    }
+
     return <div className="search"><Container>
       <Grid stackable columns={2} textAlign={"center"}
             verticalAlign='middle'>
         {/* Search input */}
-        <Grid.Column width={11}>
+        <Grid.Column width={9}>
           <Form.Field>
             <Input fluid size='huge'
               placeholder={"Search for questions here!"}
@@ -37,8 +46,8 @@ class SearchForm extends React.Component {
           </Form.Field>
         </Grid.Column>
         {/* Search buttons */}
-        <Grid.Column width={5}>
-          <Button.Group size='huge' compact>
+        <Grid.Column width={7} floated='right'>
+          <Button.Group {...buttonGroupProps}>
             <Button attached='left' icon='search' content='Search'
                     onClick={this.triggerSearch}/>
             <Button attached='right' icon='random' content='Random' />
@@ -72,7 +81,8 @@ class SearchForm extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    search: state.search
+    search: state.search,
+    browser: state.browser
   }
 }
 SearchForm = connect(

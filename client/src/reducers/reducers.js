@@ -1,6 +1,8 @@
 // While app is simple, keep everything in one reducer module :)
 
 import { combineReducers } from 'redux';
+// responsive state tracker
+import { responsiveStateReducer } from 'redux-responsive';
 
 import {
   // search actions
@@ -57,6 +59,7 @@ function questions(state = initialQuestionsState, action) {
 const quizdb = combineReducers({
   search,
   questions,
+  browser: responsiveStateReducer
 })
 
 export default quizdb
