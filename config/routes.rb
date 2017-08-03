@@ -1,15 +1,15 @@
 Rails.application.routes.draw do
-  resources :subcategories
-  resources :categories
-  resources :tournaments
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
   scope 'api' do
-    resources :questions
-    get 'search', to: 'questions#search'
+    resources :subcategories
+    resources :categories
+    resources :tournaments
+    resources :tossups
+    get 'search', to: 'tossups#search'
   end
 
   # When serving in production, have unmatched routes be handled by our client app

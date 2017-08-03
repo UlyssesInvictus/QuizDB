@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Tossups</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Text</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tossups.each do |tossup| %>
+      <tr>
+        <td><%= tossup.text %></td>
+        <td><%= link_to 'Show', tossup %></td>
+        <td><%= link_to 'Edit', edit_tossup_path(tossup) %></td>
+        <td><%= link_to 'Destroy', tossup, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Tossup', new_tossup_path %>

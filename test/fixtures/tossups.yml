@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  text: MyText
+  answer: MyText
+  number: 1
+  tournament: one
+  category: one
+  subcategory: one
+  round: MyString
+
+two:
+  text: MyText
+  answer: MyText
+  number: 1
+  tournament: two
+  category: two
+  subcategory: two
+  round: MyString

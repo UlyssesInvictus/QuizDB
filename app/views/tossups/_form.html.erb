@@ -1,10 +1,10 @@
-<%= form_for(question) do |f| %>
-  <% if question.errors.any? %>
+<%= form_for(tossup) do |f| %>
+  <% if tossup.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(question.errors.count, "error") %> prohibited this question from being saved:</h2>
+      <h2><%= pluralize(tossup.errors.count, "error") %> prohibited this tossup from being saved:</h2>
 
       <ul>
-      <% question.errors.full_messages.each do |message| %>
+      <% tossup.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
