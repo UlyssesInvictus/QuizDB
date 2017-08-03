@@ -21,7 +21,7 @@ class SearchForm extends React.Component {
 
   triggerSearch() {
     let p = this.props;
-    p.dispatch(fetchQuestions(p.search.value, p.search.filters));
+    p.dispatch(fetchQuestions(p.search.query, p.search.filters));
   }
 
   render() {

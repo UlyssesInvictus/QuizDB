@@ -14,14 +14,14 @@ import {
 } from '../actions/actions';
 
 const initialSearchState = {
-  value: "",
+  query: "",
   filters: {}
 }
 function search(state = initialSearchState, action) {
   switch(action.type) {
     case UPDATE_SEARCH:
       return Object.assign({}, state, {
-        value: action.value
+        query: action.query
       });
     case UPDATE_SEARCH_FILTER:
       return Object.assign({}, state, {

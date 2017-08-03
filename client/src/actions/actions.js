@@ -1,3 +1,5 @@
+import * as qs from 'qs';
+
 // While app is simple, keep everything in one action module :)
 
 /*
@@ -14,8 +16,8 @@ export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
  * action creators
  */
 
-export function updateSearch(value) {
-  return { type: UPDATE_SEARCH, value }
+export function updateSearch(query) {
+  return { type: UPDATE_SEARCH, query }
 }
 export function updateSearchFilter(filter, values) {
   return { type: UPDATE_SEARCH_FILTER, filter, values }
@@ -31,10 +33,22 @@ function receiveQuestions(json) {
     receivedAt: Date.now()
   }
 }
-export function fetchQuestions(searchValue, searchFilters) {
+export function fetchQuestions(searchQuery, searchFilters) {
   return function (dispatch) {
     dispatch(searchQuestions());
-    return window.fetch(`api/search?q=${searchValue}`, {
+    let searchParamsObject = {
+      search: {
+        query: searchQuery,
+        filters: {
+          category: [1],
+          tournament: [1]
+        }
+      }
+    }
+    let searchQueryString = qs.stringify(searchParamsObject, {
+      arrayFormat: 'brackets'
+    });
+    return window.fetch(`api/search?${searchQueryString}`, {
         body: searchFilters
       })
       .then(
