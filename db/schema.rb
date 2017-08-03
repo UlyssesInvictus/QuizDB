@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170803031101) do
+ActiveRecord::Schema.define(version: 20170803032535) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,19 +55,20 @@ ActiveRecord::Schema.define(version: 20170803031101) do
 
   create_table "subcategories", force: :cascade do |t|
     t.string   "name"
-    t.integer  "category_id"
+    t.integer  "category_id", null: false
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.index ["category_id"], name: "index_subcategories_on_category_id", using: :btree
+    t.index ["name"], name: "index_subcategories_on_name", unique: true, using: :btree
   end
 
   create_table "tossups", force: :cascade do |t|
     t.text     "text"
     t.text     "answer"
     t.integer  "number"
-    t.integer  "tournament_id"
-    t.integer  "category_id"
-    t.integer  "subcategory_id"
+    t.integer  "tournament_id",  null: false
+    t.integer  "category_id",    null: false
+    t.integer  "subcategory_id", null: false
     t.string   "round"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
