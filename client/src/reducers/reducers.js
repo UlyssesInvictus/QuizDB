@@ -36,7 +36,8 @@ function search(state = initialSearchState, action) {
 
 const initialQuestionsState = {
   isFetching: false,
-  data: []
+  tossups: [],
+  bonuses: []
 }
 function questions(state = initialQuestionsState, action) {
   switch (action.type) {
@@ -47,7 +48,8 @@ function questions(state = initialQuestionsState, action) {
     case RECEIVE_QUESTIONS:
       return Object.assign({}, state, {
         isFetching: false,
-        data: action.questions,
+        tossups: action.tossups,
+        bonuses: action.bonuses,
         lastUpdated: action.receivedAt
       });
     default:

@@ -29,7 +29,8 @@ function searchQuestions() {
 function receiveQuestions(json) {
   return {
     type: RECEIVE_QUESTIONS,
-    questions: json.data.questions,
+    tossups: json.data.tossups,
+    bonuses: [],
     receivedAt: Date.now()
   }
 }
@@ -39,10 +40,7 @@ export function fetchQuestions(searchQuery, searchFilters) {
     let searchParamsObject = {
       search: {
         query: searchQuery,
-        filters: {
-          category: [1],
-          tournament: [1]
-        }
+        filters: searchFilters
       }
     }
     let searchQueryString = qs.stringify(searchParamsObject, {
