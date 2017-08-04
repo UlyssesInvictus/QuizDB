@@ -1,6 +1,8 @@
 class TossupsController < ApplicationController
   before_action :set_tossup, only: [:show, :update, :destroy]
 
+  QUESTION_SEARCH_LIMT = 15
+
   def search
     tossups = Tossup.all
     if search_params[:filters] && search_params[:filters][:search_type]
@@ -15,7 +17,10 @@ class TossupsController < ApplicationController
 
     render json: {
       data: {
-        tossups: tossups
+        tossups: tossups.limit(QUESTION_SEARCH_LIMT),
+        tossups_found: tossups.count,
+        bonuses: [],
+        bonuses_found: 0,
       }
     }
   end

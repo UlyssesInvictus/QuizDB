@@ -1,6 +1,6 @@
 import React from 'react';
 // Components
-import QuestionListView from '../components/QuestionListView';
+import QuestionsContainer from '../components/QuestionsContainer';
 import SearchForm from '../components/SearchForm';
 import Navbar from '../components/Navbar';
 import RootCredits from '../components/RootCredits';
@@ -17,7 +17,8 @@ class Root extends React.Component {
       <SearchForm/>
       <Divider section/>
         <RootCredits/>
-      <QuestionListView/>
+      <Divider section/>
+      <QuestionsContainer/>
     </Container></div>
 
   }
