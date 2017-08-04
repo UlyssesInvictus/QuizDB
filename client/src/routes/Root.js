@@ -3,6 +3,7 @@ import React from 'react';
 import QuestionListView from '../components/QuestionListView';
 import SearchForm from '../components/SearchForm';
 import Navbar from '../components/Navbar';
+import RootCredits from '../components/RootCredits';
 
 import {
   Container,
@@ -15,6 +16,7 @@ class Root extends React.Component {
       <Navbar/>
       <SearchForm/>
       <Divider section/>
+        <RootCredits/>
       <QuestionListView/>
     </Container></div>
 

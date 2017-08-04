@@ -57,23 +57,19 @@ class SearchForm extends React.Component {
 
       <Divider section/>
 
-      <Grid stackable doubling columns='equal' textAlign='center'>
-        <Grid.Row>
-          <SearchDropDown name='Category'
-                          filter='category'/>
-          <SearchDropDown name='Search Type'
-                          filter='search_type'/>
-          <SearchDropDown name='Difficulty'
-                          filter='difficulty'/>
-        </Grid.Row>
-        <Grid.Row>
-          <SearchDropDown name='Subcategory'
-                          filter='subcategory'/>
-          <SearchDropDown name='Question Type'
-                          filter='question_type'/>
-          <SearchDropDown name='Tournament'
-                          filter='tournament'/>
-        </Grid.Row>
+      <Grid columns='equal' textAlign='center'>
+        <SearchDropDown name='Category'
+                        filter='category'/>
+        <SearchDropDown name='Search Type'
+                        filter='search_type'/>
+        <SearchDropDown name='Difficulty'
+                        filter='difficulty'/>
+        <SearchDropDown name='Subcategory'
+                        filter='subcategory'/>
+        <SearchDropDown name='Question Type'
+                        filter='question_type'/>
+        <SearchDropDown name='Tournament'
+                        filter='tournament'/>
       </Grid>
     </Container></div>
   }

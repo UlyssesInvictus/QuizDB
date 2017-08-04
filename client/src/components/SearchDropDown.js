@@ -20,7 +20,7 @@ class SearchDropDown extends React.Component {
       {text: 'Five', value: 'Five'},
     ]
 
-    return <Grid.Column>
+    return <Grid.Column mobile={8} tablet={5} computer={5}>
       <Segment>
         <Label attached='top'>{this.props.name}</Label>
         <Dropdown placeholder='All'
