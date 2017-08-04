@@ -3,6 +3,8 @@ class Tossup < ApplicationRecord
   belongs_to :category
   belongs_to :subcategory
 
+  ## SCOPES ##
+
   scope :text_contains, -> (query) { where("text LIKE ?", "%#{query}%") }
   scope :answer_contains, -> (query) { where("answer LIKE ?", "%#{query}%") }
   scope :text_and_answer_contains, -> (query) {
@@ -33,6 +35,12 @@ class Tossup < ApplicationRecord
     else
       all
     end
+  end
+
+  ## HELPER ACCESSORS ##
+
+  def formatted_text
+    self[:formatted_text] ? self[:formatted_text] : text
   end
 
 

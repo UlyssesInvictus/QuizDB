@@ -18,7 +18,7 @@ class TossupsController < ApplicationController
     render json: {
       data: {
         tossups: tossups.limit(QUESTION_SEARCH_LIMT),
-        tossups_found: tossups.count,
+        tossups_found: tossups.size,
         bonuses: [],
         bonuses_found: 0,
       }
