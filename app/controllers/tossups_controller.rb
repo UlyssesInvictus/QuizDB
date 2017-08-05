@@ -14,14 +14,10 @@ class TossupsController < ApplicationController
       tossups = tossups.contains(search_params[:query])
     end
     tossups = tossups.by_filters(search_params[:filters])
+    tossups = tossups.includes(:tournament, :category, :subcategory)
 
-    render json: {
-      data: {
-        tossups: tossups.limit(QUESTION_SEARCH_LIMT),
-        tossups_found: tossups.size,
-        bonuses: [],
-        bonuses_found: 0,
-      }
+    render "search.json.jbuilder", locals: {
+      tossups: tossups
     }
   end
 

@@ -2,10 +2,11 @@ import React from 'react';
 
 import { connect } from 'react-redux';
 
-import { Grid, Form, Input,
-  Button, Divider, Container,
+import { Container,
+  Loader
 } from 'semantic-ui-react';
 
+import QuestionComponent from './QuestionComponent';
 
 class QuestionsContainer extends React.Component {
 
@@ -18,7 +19,8 @@ class QuestionsContainer extends React.Component {
   }
 
   renderFetching() {
-    return <div></div>
+    return <Loader active inline='centered' size='huge'
+      content='Loading Questions'/>
   }
 
   renderQuestionsSection(questionsObject, questionType = 'tossup') {
@@ -26,13 +28,13 @@ class QuestionsContainer extends React.Component {
     let questions = questionsObject[questionTypePlural];
     if (questions.length > 0) {
       return <div className={`${questionType}-container`}>
-        {questions.length <= 15 ?
+        {questions.length <= 15 || questions.length === questionsObject[`num_${questionTypePlural}_found`] ?
           `${questions.length} ${questionTypePlural} found` :
           `15 ${questionTypePlural} loaded of ${questions.length} found`
           // TODO turn this into a component that has message and load more button
         }
         {questions.map((q) => {
-          return <p key={q.id}>I represent one {questionType}</p>;
+          return <QuestionComponent key={q.id} question={q}/>;
         })}
       </div>
     } else {
@@ -44,9 +46,7 @@ class QuestionsContainer extends React.Component {
     // should never happen, but whatever
     if (typeof(questions) === undefined ||
         questions === null) {
-      questions = {
-        tossups: [], bonuses: []
-      };
+      questions = {};
     }
     return <div>
       {this.renderQuestionsSection(questions)}
@@ -58,6 +58,7 @@ class QuestionsContainer extends React.Component {
     let q = this.props.questions;
     let view;
     if (q.isFetching) {
+      console.log('fetchin');
       view = this.renderFetching();
     } else {
       view = this.renderQuestions(q);

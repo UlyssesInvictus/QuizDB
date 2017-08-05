@@ -37,7 +37,9 @@ function search(state = initialSearchState, action) {
 const initialQuestionsState = {
   isFetching: false,
   tossups: [],
-  bonuses: []
+  bonuses: [],
+  num_tossups_found: 0,
+  num_bonuses_found: 0
 }
 function questions(state = initialQuestionsState, action) {
   switch (action.type) {
@@ -50,6 +52,8 @@ function questions(state = initialQuestionsState, action) {
         isFetching: false,
         tossups: action.tossups,
         bonuses: action.bonuses,
+        num_tossups_found: action.num_tossups_found,
+        num_bonuses_found: action.num_bonuses_found,
         lastUpdated: action.receivedAt
       });
     default:

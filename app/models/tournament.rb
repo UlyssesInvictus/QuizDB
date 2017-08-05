@@ -5,10 +5,10 @@ class Tournament < ApplicationRecord
     easy_high_school: 2,
     regular_high_school: 3,
     hard_high_school: 4,
-    nationals_high_school: 5,
+    national_high_school: 5,
     easy_college: 6,
     regular_college: 7,
-    nationals_college: 8,
+    national_college: 8,
     open: 9
   }
 

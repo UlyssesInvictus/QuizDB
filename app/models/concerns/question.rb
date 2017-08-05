@@ -2,11 +2,11 @@ module Question
   module Searchable
     extend ActiveSupport::Concern
     included do
-      scope :text_contains, -> (query) { where("text LIKE ?", "%#{query}%") }
-      scope :answer_contains, -> (query) { where("answer LIKE ?", "%#{query}%") }
+      scope :text_contains, -> (query) { where("text ILIKE ?", "%#{query}%") }
+      scope :answer_contains, -> (query) { where("answer ILIKE ?", "%#{query}%") }
       scope :text_and_answer_contains, -> (query) {
-        where("answer LIKE ?", "%#{query}%")
-        .where("text LIKE ?", "%#{query}%")
+        where("answer ILIKE ?", "%#{query}%")
+        .where("text ILIKE ?", "%#{query}%")
       }
       scope :contains, -> (query) {
         text_contains(query)
