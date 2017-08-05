@@ -15,6 +15,7 @@ class Tossup:
         self.round = round
         self.quinterest_id = quinterest_id
         self.difficulty = difficulty
+        self.year = year
 
     def to_json(self):
         question_dict = vars(self)
@@ -36,6 +37,7 @@ class Bonus:
         self.round = round
         self.quinterest_id = quinterest_id
         self.difficulty = difficulty
+        self.year = year
 
     def to_json(self):
         question_dict = vars(self)

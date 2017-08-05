@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170805044107) do
+ActiveRecord::Schema.define(version: 20170805063136) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20170805044107) do
     t.text     "formatted_answer"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.integer  "number",           null: false
     t.index ["answer"], name: "index_bonus_parts_on_answer", using: :btree
     t.index ["bonus_id"], name: "index_bonus_parts_on_bonus_id", using: :btree
     t.index ["text"], name: "index_bonus_parts_on_text", using: :btree
@@ -95,9 +96,9 @@ ActiveRecord::Schema.define(version: 20170805044107) do
     t.text     "text",           null: false
     t.text     "answer",         null: false
     t.integer  "number"
-    t.integer  "tournament_id",  null: false
-    t.integer  "category_id",    null: false
-    t.integer  "subcategory_id", null: false
+    t.integer  "tournament_id"
+    t.integer  "category_id"
+    t.integer  "subcategory_id"
     t.string   "round"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
