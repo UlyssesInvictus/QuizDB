@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  number: 1
+  round: MyString
+  category: one
+  subcategory: one
+  quinterest_id: 1
+  tournament: one
+  leadin: MyText
+
+two:
+  number: 1
+  round: MyString
+  category: two
+  subcategory: two
+  quinterest_id: 1
+  tournament: two
+  leadin: MyText

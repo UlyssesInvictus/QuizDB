@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :categories
     resources :tournaments
     resources :tossups
+    resources :bonus
     get 'search', to: 'tossups#search'
   end
 

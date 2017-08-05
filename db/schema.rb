@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170804050034) do
+ActiveRecord::Schema.define(version: 20170805044107) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,35 @@ ActiveRecord::Schema.define(version: 20170804050034) do
     t.datetime "updated_at",                          null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
+  end
+
+  create_table "bonus_parts", force: :cascade do |t|
+    t.integer  "bonus_id"
+    t.text     "text"
+    t.text     "answer"
+    t.text     "formatted_text"
+    t.text     "formatted_answer"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["answer"], name: "index_bonus_parts_on_answer", using: :btree
+    t.index ["bonus_id"], name: "index_bonus_parts_on_bonus_id", using: :btree
+    t.index ["text"], name: "index_bonus_parts_on_text", using: :btree
+  end
+
+  create_table "bonuses", force: :cascade do |t|
+    t.integer  "number"
+    t.string   "round"
+    t.integer  "category_id"
+    t.integer  "subcategory_id"
+    t.integer  "quinterest_id"
+    t.integer  "tournament_id"
+    t.text     "leadin"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["category_id"], name: "index_bonuses_on_category_id", using: :btree
+    t.index ["leadin"], name: "index_bonuses_on_leadin", using: :btree
+    t.index ["subcategory_id"], name: "index_bonuses_on_subcategory_id", using: :btree
+    t.index ["tournament_id"], name: "index_bonuses_on_tournament_id", using: :btree
   end
 
   create_table "categories", force: :cascade do |t|
@@ -96,6 +125,10 @@ ActiveRecord::Schema.define(version: 20170804050034) do
     t.index ["name"], name: "index_tournaments_on_name", unique: true, using: :btree
   end
 
+  add_foreign_key "bonus_parts", "bonuses", column: "bonus_id"
+  add_foreign_key "bonuses", "categories"
+  add_foreign_key "bonuses", "subcategories"
+  add_foreign_key "bonuses", "tournaments"
   add_foreign_key "subcategories", "categories"
   add_foreign_key "tossups", "categories"
   add_foreign_key "tossups", "subcategories"
