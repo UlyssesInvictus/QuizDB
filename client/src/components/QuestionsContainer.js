@@ -60,9 +60,20 @@ class QuestionsContainer extends React.Component {
         size='huge'
         content={`No questions found. Try loosening your filters?`}/>;
     } else {
+      // there's probably a cleaner way to implement this...
+      let searchedForTossups;
+      let searchedForBonuses;
+      const question_type = this.props.search.filters.question_type;
+      if (!question_type) {
+        searchedForTossups = true;
+        searchedForBonuses = true;
+      } else {
+        searchedForTossups = question_type.includes("Tossup") || questions.tossups.length > 0;
+        searchedForBonuses = question_type.includes("Bonus") || questions.bonuses.length > 0;
+      }
       view = <div>
-        {this.renderQuestionsSection(questions)}
-        {this.renderQuestionsSection(questions, 'bonus')}
+        {searchedForTossups ? this.renderQuestionsSection(questions) : null}
+        {searchedForBonuses ? this.renderQuestionsSection(questions, 'bonus') : null}
       </div>
     }
 
@@ -89,7 +100,8 @@ class QuestionsContainer extends React.Component {
 const mapStateToProps = state => {
   return {
     questions: state.questions,
-    browser: state.browser
+    browser: state.browser,
+    search: state.search
   }
 }
 QuestionsContainer = connect(

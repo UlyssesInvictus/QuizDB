@@ -41,3 +41,7 @@
   box-shadow: none;
   border: none;
   border-top: 1px solid rgba(34, 36, 38, 0.15); }
+
+.ui.segments .question-content .segment {
+  font-size: 1.2rem;
+  line-height: 1.8rem; }
