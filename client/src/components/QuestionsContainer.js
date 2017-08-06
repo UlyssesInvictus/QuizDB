@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { Container,
-  Loader
+  Loader,
 } from 'semantic-ui-react';
 
 import QuestionComponent from './QuestionComponent';
@@ -33,9 +33,9 @@ class QuestionsContainer extends React.Component {
           `15 ${questionTypePlural} loaded of ${questions.length} found`
           // TODO turn this into a component that has message and load more button
         }
-        {questions.map((q) => {
-          return <QuestionComponent key={q.id} question={q}/>;
-        })}
+      {questions.map((q, index) => {
+        return <QuestionComponent key={q.id} index={index + 1} question={q}/>;
+      })}
       </div>
     } else {
       return null;
@@ -58,7 +58,6 @@ class QuestionsContainer extends React.Component {
     let q = this.props.questions;
     let view;
     if (q.isFetching) {
-      console.log('fetchin');
       view = this.renderFetching();
     } else {
       view = this.renderQuestions(q);

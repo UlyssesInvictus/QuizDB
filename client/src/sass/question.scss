@@ -1,27 +1,35 @@
 .question {
   margin-top: 1.5rem;
-  margin-bottom: 1.5rem; }
+  margin-bottom: 1.5rem;
+}
 
 .question-info {
   display: flex;
   flex-flow: wrap;
   justify-content: center;
-  align-items: center; }
+  align-items: center;
+}
 
 .ui.segment:first-child.question-info-segment {
-  margin: 0.5rem 0.5rem; }
+  margin: 0.5rem 0.5rem;
+}
 
 .ui.segment.question-info {
-  padding: 0.5rem; }
+  padding: 0.5rem;
+}
 
 .ui.segment.question-info-segment {
   padding: 0;
-  margin: 0.5rem 0.5rem; }
+  margin: 0.5rem 0.5rem;
+
+}
 
 .ui.label.question-info-label {
   position: relative !important;
-  padding: 0.5rem 0.5rem !important; }
+  padding: 0.5rem 0.5rem !important;
+}
 
+// Add a bunch of selectors to override SemanticUI's precedence
 .ui.top.attached.label:first-child + .question-info-text:not(.attached) {
   margin: 0 !important;
   max-width: 10rem;
@@ -29,4 +37,5 @@
   overflow: hidden;
   text-overflow: ellipsis;
   padding: 0.5rem;
-  text-align: center; }
+  text-align: center;
+}
