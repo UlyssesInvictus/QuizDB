@@ -39,3 +39,17 @@
   padding: 0.5rem;
   text-align: center;
 }
+
+// just copying Semantic's segment group/segment rule
+// because otherwise the middle div interferes
+.ui.segments > .question-content > .segment {
+  top: 0px;
+  bottom: 0px;
+  border-radius: 0px;
+  margin: 0em;
+  width: auto;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border: none;
+  border-top: 1px solid rgba(34, 36, 38, 0.15);
+}

@@ -37,7 +37,7 @@ class TossupsController < ApplicationController
     if search_params[:filters]
       if search_params[:filters][:question_type]
         question_type_filter = search_params[:filters][:question_type]
-        if (question_type_filter - ["Tossup", "Bonus"]).empty?
+        if (["Tossup", "Bonus"] - question_type_filter).empty?
           tossups = Tossup.filter_by_defaults({}, query)
           bonuses = Bonus.filter_by_defaults({}, query)
         elsif question_type_filter.include?("Tossup")

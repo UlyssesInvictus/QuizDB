@@ -35,7 +35,10 @@ class QuestionsContainer extends React.Component {
           // TODO turn this into a component that has message and load more button
         }
       {questions.map((q, index) => {
-        return <QuestionComponent key={q.id} index={index + 1} question={q}/>;
+        return <QuestionComponent key={q.id}
+          index={index + 1}
+          question={q}
+          questionType={questionType}/>;
       })}
       </div>
     } else {

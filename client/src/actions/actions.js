@@ -57,7 +57,7 @@ function receiveQuestions(json) {
     type: RECEIVE_QUESTIONS,
     tossups: json.data.tossups,
     num_tossups_found: json.data.num_tossups_found,
-    bonuses: [],
+    bonuses: json.data.bonuses,
     num_bonuses_found: json.data.num_bonuses_found,
     receivedAt: Date.now()
   }
