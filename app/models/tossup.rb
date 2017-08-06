@@ -8,7 +8,6 @@ class Tossup < ApplicationRecord
   include Question::Searchable
   include Question::Filterable
 
-
   ## HELPER ACCESSORS ##
 
   def formatted_text

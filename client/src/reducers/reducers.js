@@ -48,6 +48,7 @@ function search(state = initialSearchState, action) {
 }
 
 const initialQuestionsState = {
+  hasSearchedEver: false,
   isFetching: false,
   tossups: [],
   bonuses: [],
@@ -58,7 +59,8 @@ function questions(state = initialQuestionsState, action) {
   switch (action.type) {
     case SEARCH_QUESTIONS:
       return Object.assign({}, state, {
-        isFetching: true
+        isFetching: true,
+        hasSearchedEver: true
       });
     case RECEIVE_QUESTIONS:
       return Object.assign({}, state, {

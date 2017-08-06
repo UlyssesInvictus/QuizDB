@@ -32,20 +32,36 @@ class TossupsController < ApplicationController
   end
 
   def search
-    tossups = Tossup.all
-    if search_params[:filters] && search_params[:filters][:search_type]
-      tossups = search_params[:filters][:search_type].include?("Question") ?
-        tossups.or(text_contains(search_params[:query])) : tossups
-      tossups = search_params[:filters][:search_type].include?("Answer") ?
-        tossups.or(answer_contains(search_params[:query])) : tossups
+    query = search_params[:query]
+
+    if search_params[:filters]
+      if search_params[:filters][:question_type]
+        question_type_filter = search_params[:filters][:question_type]
+        if (question_type_filter - ["Tossup", "Bonus"]).empty?
+          tossups = Tossup.filter_by_defaults({}, query)
+          bonuses = Bonus.filter_by_defaults({}, query)
+        elsif question_type_filter.include?("Tossup")
+          tossups = Tossup.filter_by_defaults({}, query)
+          bonuses = Bonus.none
+        else
+          tossups = Tossup.none
+          bonuses = Bonus.filter_by_defaults({}, query)
+        end
+      else
+        tossups = Tossup.filter_by_defaults(search_params[:filters], query)
+        bonuses = Bonus.filter_by_defaults(search_params[:filters], query)
+      end
     else
-      tossups = tossups.contains(search_params[:query])
+      tossups = Tossup.filter_by_defaults({}, query)
+      bonuses = Bonus.filter_by_defaults({}, query)
     end
-    tossups = tossups.by_filters(search_params[:filters])
+
     tossups = tossups.includes(:tournament, :category, :subcategory)
+    bonuses = bonuses.includes(:tournament, :category, :subcategory)
 
     render "search.json.jbuilder", locals: {
-      tossups: tossups
+      tossups: tossups,
+      bonuses: bonuses
     }
   end
 

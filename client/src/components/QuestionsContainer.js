@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import { Container,
   Loader,
+  Header
 } from 'semantic-ui-react';
 
 import QuestionComponent from './QuestionComponent';
@@ -38,7 +39,9 @@ class QuestionsContainer extends React.Component {
       })}
       </div>
     } else {
-      return null;
+      return <Header textAlign="center"
+        size='large'
+        content={`No ${questionTypePlural} found. Try loosening your filters?`}/>;
     }
   }
 
@@ -46,18 +49,30 @@ class QuestionsContainer extends React.Component {
     // should never happen, but whatever
     if (typeof(questions) === undefined ||
         questions === null) {
-      questions = {};
+      questions = {tossups: [], bonuses: []};
     }
-    return <div>
-      {this.renderQuestionsSection(questions)}
-      {this.renderQuestionsSection(questions, 'bonus')}
-    </div>
+    let view;
+    if (questions.tossups.length === 0 && questions.bonuses.length === 0) {
+      view = <Header textAlign="center"
+        size='huge'
+        content={`No questions found. Try loosening your filters?`}/>;
+    } else {
+      view = <div>
+        {this.renderQuestionsSection(questions)}
+        {this.renderQuestionsSection(questions, 'bonus')}
+      </div>
+    }
+
+    return view;
   }
 
   render() {
     let q = this.props.questions;
     let view;
-    if (q.isFetching) {
+    if (!q.hasSearchedEver) {
+      view = null;
+    }
+    else if (q.isFetching) {
       view = this.renderFetching();
     } else {
       view = this.renderQuestions(q);

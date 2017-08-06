@@ -29,18 +29,43 @@ module Question
         end
       end
 
-      def by_filters(filters)
+      def filter_by_defaults(filters, query)
+        results = all
         if filters.present?
           # annoyingly hardcoded, but effectively acts as
           # a whitelist on the filters allowed as well
-          filter_by_key(filters, :category)
+          results = results.filter_by_key(filters, :category)
           .filter_by_key(filters, :subcategory)
           .filter_by_key(filters, :tournament)
-          .filter_by_key(filters, :difficulty)
+          .filter_by_difficulty(filters[:difficulty])
+          .filter_by_search_type(filters[:search_type], query)
+        else
+          results = results.filter_by_search_type({}, query)
+        end
+        results
+      end
+
+      def filter_by_search_type(filter, query)
+        query = query.present? ? query : ""
+        if filter.blank? || (["Question", "Answer"] - filter).empty?
+          contains(query)
+        elsif filter.include?("Question")
+          text_contains(query)
+        else
+          answer_contains(query)
+        end
+      end
+
+      def filter_by_difficulty(filter)
+        if filter.present?
+          # JOINS creates direct SQL query, so need the actual ints
+          diffs = Tournament.difficulties_to_int(filter)
+          joins(:tournament).where(tournaments: { difficulty: diffs })
         else
           all
         end
       end
+
     end
   end
 

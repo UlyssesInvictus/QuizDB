@@ -25,6 +25,10 @@ class Tournament < ApplicationRecord
   has_many :bonuses
   has_many :bonus_parts, through: :bonuses
 
+  def self.difficulties_to_int(diffs)
+    diffs.map {|d| difficulties[d]}
+  end
+
   def self.difficulties_titleized
     d_t = {}
     difficulties.each do |k, v|
