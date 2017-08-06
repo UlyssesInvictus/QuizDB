@@ -8,7 +8,7 @@ class Tournament < ApplicationRecord
     national_high_school: 5,
     easy_college: 6,
     regular_college: 7,
-    national_college: 8,
+    hard_college: 8,
     open: 9
   }
 
@@ -21,8 +21,16 @@ class Tournament < ApplicationRecord
   # possible subtypes
   # TrashTournament, GuerillaTournament, etc.?
 
-  # TODO associations
-  # has_many :tossups
-  # has_many :bonuses
+  has_many :tossups
+  has_many :bonuses
+  has_many :bonus_parts, through: :bonuses
+
+  def self.difficulties_titleized
+    d_t = {}
+    difficulties.each do |k, v|
+      d_t[k.titleize] = v
+    end
+    d_t
+  end
 
 end

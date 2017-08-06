@@ -12,14 +12,6 @@ import PropTypes from 'prop-types';
 class SearchDropDown extends React.Component {
 
   render() {
-    const testOptions = [
-      {text: 'One', value: 'One'},
-      {text: 'Two', value: 'Two'},
-      {text: 'Three', value: 'Three'},
-      {text: 'Four', value: 'Four'},
-      {text: 'Five', value: 'Five'},
-    ]
-
     return <Grid.Column mobile={8} tablet={5} computer={5}>
       <Segment>
         <Label attached='top'>{this.props.name}</Label>
@@ -28,7 +20,8 @@ class SearchDropDown extends React.Component {
           onChange={(e, data) =>
             this.props.dispatch(
               updateSearchFilter(this.props.filter, data.value))}
-          selection options={testOptions}/>
+          selection
+          options={this.props.options}/>
       </Segment>
     </Grid.Column>
   }
@@ -36,7 +29,8 @@ class SearchDropDown extends React.Component {
 
 SearchDropDown.propTypes = {
   name: PropTypes.string.isRequired,
-  filter: PropTypes.string.isRequired
+  filter: PropTypes.string.isRequired,
+  options: PropTypes.array.isRequired
 }
 
 const mapStateToProps = state => {

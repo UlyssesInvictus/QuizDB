@@ -6,6 +6,8 @@ import { responsiveStateReducer } from 'redux-responsive';
 
 import {
   // search actions
+  GET_FILTER_OPTIONS,
+  RECEIVE_FILTER_OPTIONS,
   UPDATE_SEARCH,
   UPDATE_SEARCH_FILTER,
   // questions actions
@@ -15,7 +17,9 @@ import {
 
 const initialSearchState = {
   query: "",
-  filters: {}
+  filters: {},
+  filterOptions: false,
+  isFetchingFilterOptions: false
 }
 function search(state = initialSearchState, action) {
   switch(action.type) {
@@ -29,6 +33,15 @@ function search(state = initialSearchState, action) {
           [action.filter]: action.values
         })
       })
+    case GET_FILTER_OPTIONS:
+      return Object.assign({}, state, {
+        isFetchingFilterOptions: true
+      });
+    case RECEIVE_FILTER_OPTIONS:
+      return Object.assign({}, state, {
+        isFetchingFilterOptions: false,
+        filterOptions: action.filter_options
+      });
     default:
       return state;
   }

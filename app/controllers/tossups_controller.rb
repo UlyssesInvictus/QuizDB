@@ -3,12 +3,40 @@ class TossupsController < ApplicationController
 
   QUESTION_SEARCH_LIMT = 15
 
+  def filter_options
+    render json: {
+      search_type: ["Question", "Answer"],
+      question_type: ["Tossup", "Bonus"],
+      # pluck to speed up query a little, instead of accessing each record
+      category: Category.all.pluck(:name, :id).map { |c| {
+        name: c[0],
+        id: c[1]
+        } },
+      subcategory: Subcategory.all.pluck(:name, :id).map { |c| {
+        name: c[0],
+        id: c[1]
+        } },
+      tournament: Tournament.all.order(year: :desc, name: :asc).pluck(:name, :id, :difficulty, :quality, :year).map { |c| {
+        name: c[0],
+        id: c[1],
+        difficulty: c[2].titleize,
+        quality: c[3],
+        year: c[4]
+        } },
+      difficulty: Tournament.difficulties.map { |k,v | {
+        number: v,
+        name: k,
+        title: k.titleize
+        } }
+    }
+  end
+
   def search
     tossups = Tossup.all
     if search_params[:filters] && search_params[:filters][:search_type]
-      tossups = search_params[:filters][:search_type].include?("text") ?
+      tossups = search_params[:filters][:search_type].include?("Question") ?
         tossups.or(text_contains(search_params[:query])) : tossups
-      tossups = search_params[:filters][:search_type].include?("answer") ?
+      tossups = search_params[:filters][:search_type].include?("Answer") ?
         tossups.or(answer_contains(search_params[:query])) : tossups
     else
       tossups = tossups.contains(search_params[:query])
