@@ -7,7 +7,7 @@ import {
   fetchQuestions,
 } from '../actions/actions';
 
-import { Grid, Form, Input,
+import { Grid, Input,
   Button, Divider, Container,
   Loader
 } from 'semantic-ui-react';
@@ -20,6 +20,7 @@ class SearchForm extends React.Component {
     super(props);
     this.triggerSearch = this.triggerSearch.bind(this);
     this.renderSearchOptions = this.renderSearchOptions.bind(this);
+    this.handleInputKeyPress = this.handleInputKeyPress.bind(this);
   }
 
   componentWillMount() {
@@ -66,6 +67,12 @@ class SearchForm extends React.Component {
     </Grid>;
   }
 
+  handleInputKeyPress(e) {
+    if (e.key === "Enter") {
+      this.triggerSearch();
+    }
+  }
+
   triggerSearch() {
     const p = this.props;
     p.dispatch(fetchQuestions(p.search.query, p.search.filters));
@@ -86,18 +93,19 @@ class SearchForm extends React.Component {
             verticalAlign='middle'>
         {/* Search input */}
         <Grid.Column width={9}>
-          <Form.Field>
-            <Input fluid size='huge'
-              placeholder={"Search for questions here!"}
-              onChange={(e, data) => this.props.dispatch(updateSearch(data.value))}
-              width={9}/>
-          </Form.Field>
+          <Input fluid size='huge' width={9}
+            placeholder={"Search for questions here!"}
+            onChange={(e, data) => this.props.dispatch(updateSearch(data.value))}
+            onKeyPress={(e) => this.handleInputKeyPress(e)}
+          />
         </Grid.Column>
         {/* Search buttons */}
         <Grid.Column width={7} floated='right'>
           <Button.Group {...buttonGroupProps}>
             <Button attached='left' icon='search' content='Search'
-                    onClick={this.triggerSearch}/>
+                    onClick={this.triggerSearch}
+                    onSubmit={this.triggerSearch}
+            />
             <Button attached='right' icon='random' content='Random' />
           </Button.Group>
         </Grid.Column>

@@ -69,7 +69,7 @@ class QuestionsContainer extends React.Component {
           <Grid.Column width={12}><Header textAlign='center'>
             {`${questions.length} ${questionTypePlural} loaded of ${numQuestionsFound} found`}
           </Header></Grid.Column>
-          <Grid.Column width={4} onClick={this.stuff} textAlign='center'>
+          <Grid.Column width={4} textAlign='center'>
             <Button onClick={this.loadAllQuestions}>Load All</Button>
           </Grid.Column>
         </Grid></Segment>
