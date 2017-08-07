@@ -90,7 +90,7 @@ class QuestionsContainer extends React.Component {
       return <div className={`${questionType}-section`}>
         {this.renderQuestionsSectionHeader(questionsObject, questionType)}
         {questions.map((q, index) => {
-          return <QuestionComponent key={q.id}
+          return <QuestionComponent key={`${questionType}-${q.id}`}
             index={index + 1}
             question={q}
             questionType={questionType}/>;

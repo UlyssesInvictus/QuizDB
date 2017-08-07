@@ -58,9 +58,6 @@ class TossupsController < ApplicationController
       bonuses = Bonus.filter_by_defaults({}, query)
     end
 
-    tossups = tossups.includes(:tournament, :category, :subcategory)
-    bonuses = bonuses.includes(:tournament, :category, :subcategory)
-
     render "search.json.jbuilder", locals: {
       tossups: limit ? tossups.limit(QUESTION_SEARCH_LIMT) : tossups,
       num_tossups_found: tossups.size,
