@@ -53,14 +53,19 @@ const initialQuestionsState = {
   tossups: [],
   bonuses: [],
   num_tossups_found: 0,
-  num_bonuses_found: 0
+  num_bonuses_found: 0,
+  lastUpdated: null,
+  lastSearchOptions: {
+    query: "",
+    filters: {}
+  }
 }
 function questions(state = initialQuestionsState, action) {
   switch (action.type) {
     case SEARCH_QUESTIONS:
       return Object.assign({}, state, {
         isFetching: true,
-        hasSearchedEver: true
+        hasSearchedEver: true,
       });
     case RECEIVE_QUESTIONS:
       return Object.assign({}, state, {
@@ -69,7 +74,8 @@ function questions(state = initialQuestionsState, action) {
         bonuses: action.bonuses,
         num_tossups_found: action.num_tossups_found,
         num_bonuses_found: action.num_bonuses_found,
-        lastUpdated: action.receivedAt
+        lastUpdated: action.receivedAt,
+        lastSearchOptions: action.lastSearchOptions
       });
     default:
       return state;

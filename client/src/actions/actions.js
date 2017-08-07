@@ -52,14 +52,15 @@ export function fetchFilterOptions() {
 function searchQuestions() {
   return { type: SEARCH_QUESTIONS };
 }
-function receiveQuestions(json) {
+function receiveQuestions(json, lastSearchOptions) {
   return {
     type: RECEIVE_QUESTIONS,
     tossups: json.data.tossups,
     num_tossups_found: json.data.num_tossups_found,
     bonuses: json.data.bonuses,
     num_bonuses_found: json.data.num_bonuses_found,
-    receivedAt: Date.now()
+    receivedAt: Date.now(),
+    lastSearchOptions: lastSearchOptions
   }
 }
 export function fetchQuestions(searchQuery, searchFilters) {
@@ -81,7 +82,7 @@ export function fetchQuestions(searchQuery, searchFilters) {
         response => response.json(),
         error => console.log('QuizDB: an error occurred.', error)
       ).then(
-        json => dispatch(receiveQuestions(json))
+        json => dispatch(receiveQuestions(json, searchParamsObject.search))
       )
       // TODO: add dedicated success/error actions and states
   }

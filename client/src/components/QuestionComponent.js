@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 
@@ -8,7 +9,6 @@ import {
   Label
 } from 'semantic-ui-react';
 
-import PropTypes from 'prop-types';
 
 class QuestionsComponent extends React.Component {
 
@@ -42,9 +42,6 @@ class QuestionsComponent extends React.Component {
     return <div className="question-content">
       <Segment className="question-bonus-leadin">
         <strong>Question: </strong>{q.leadin}
-      </Segment>
-      <Segment className="question-bonus-part">
-        <strong>[10] </strong>{q.answer}
       </Segment>
       {[0, 1, 2].map(index => {
         return <Segment className="question-bonus-part" key={`question-bonus-part-${index}`}>

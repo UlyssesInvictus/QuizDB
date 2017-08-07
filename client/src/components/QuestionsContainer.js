@@ -1,10 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 
 import { Container,
   Loader,
-  Header
+  Header,
+  Segment,
+  Menu,
+  Grid
 } from 'semantic-ui-react';
 
 import QuestionComponent from './QuestionComponent';
@@ -16,7 +20,8 @@ class QuestionsContainer extends React.Component {
     this.renderFetching = this.renderFetching.bind(this);
     this.renderQuestions = this.renderQuestions.bind(this);
     this.renderQuestionsSection = this.renderQuestionsSection.bind(this);
-
+    this.renderQuestionsSectionHeader = this.renderQuestionsSectionHeader.bind(this);
+    this.stuff = this.stuff.bind(this);
   }
 
   renderFetching() {
@@ -24,22 +29,60 @@ class QuestionsContainer extends React.Component {
       content='Loading Questions'/>
   }
 
+  stuff() {
+    console.log('test');
+  }
+
+  renderQuestionsSectionHeader(questionsObject, questionType) {
+    const questionTypePlural = (questionType === 'tossup') ? 'tossups' : 'bonuses';
+    const questions = questionsObject[questionTypePlural];
+    const numQuestionsFound = questionsObject[`num_${questionTypePlural}_found`];
+
+    let questionExportSection = <Menu attached='bottom' widths={4}>
+      <Menu.Item header>Export as...</Menu.Item>
+      <Menu.Item content="Text File" onClick={this.stuff}/>
+      <Menu.Item content="JSON" onClick={this.stuff}/>
+      <Menu.Item content="CSV" onClick={this.stuff}/>
+    </Menu>;
+
+    let numQuestionsSection;
+    if (questions.length === numQuestionsFound) {
+      numQuestionsSection = <div>
+        <Header textAlign='center' attached='top' size='huge'>
+            {`${questions.length} ${questionTypePlural} found`}
+        </Header>
+        {questionExportSection}
+      </div>
+    } else {
+      numQuestionsSection = <div>
+        <Segment attached='top'><Grid columns={2} divided>
+          <Grid.Column width={12}><Header textAlign='center'>
+            {`${questions.length} ${questionTypePlural} loaded of ${numQuestionsFound} found`}
+          </Header></Grid.Column>
+          <Grid.Column width={4} onClick={this.stuff} textAlign='center'>Load All</Grid.Column>
+        </Grid></Segment>
+        {questionExportSection}
+      </div>
+    }
+
+
+    return <div className={`${questionType}-section-header`}>
+      {numQuestionsSection}
+    </div>
+  }
+
   renderQuestionsSection(questionsObject, questionType = 'tossup') {
     let questionTypePlural = (questionType === 'tossup') ? 'tossups' : 'bonuses';
     let questions = questionsObject[questionTypePlural];
     if (questions.length > 0) {
-      return <div className={`${questionType}-container`}>
-        {questions.length <= 15 || questions.length === questionsObject[`num_${questionTypePlural}_found`] ?
-          `${questions.length} ${questionTypePlural} found` :
-          `15 ${questionTypePlural} loaded of ${questions.length} found`
-          // TODO turn this into a component that has message and load more button
-        }
-      {questions.map((q, index) => {
-        return <QuestionComponent key={q.id}
-          index={index + 1}
-          question={q}
-          questionType={questionType}/>;
-      })}
+      return <div className={`${questionType}-section`}>
+        {this.renderQuestionsSectionHeader(questionsObject, questionType)}
+        {questions.map((q, index) => {
+          return <QuestionComponent key={q.id}
+            index={index + 1}
+            question={q}
+            questionType={questionType}/>;
+        })}
       </div>
     } else {
       return <Header textAlign="center"
@@ -60,17 +103,11 @@ class QuestionsContainer extends React.Component {
         size='huge'
         content={`No questions found. Try loosening your filters?`}/>;
     } else {
-      // there's probably a cleaner way to implement this...
-      let searchedForTossups;
-      let searchedForBonuses;
-      const question_type = this.props.search.filters.question_type;
-      if (!question_type) {
-        searchedForTossups = true;
-        searchedForBonuses = true;
-      } else {
-        searchedForTossups = question_type.includes("Tossup") || questions.tossups.length > 0;
-        searchedForBonuses = question_type.includes("Bonus") || questions.bonuses.length > 0;
-      }
+      // Don't show the "No {questions} found" if they didn't search for that type
+      const questionType = this.props.questions.lastSearchOptions.filters.question_type;
+      const qTypeEmpty = !questionType || questionType.length === 0;
+      let searchedForTossups = qTypeEmpty || questionType.includes("Tossup");
+      let searchedForBonuses = qTypeEmpty || questionType.includes("Bonus");
       view = <div>
         {searchedForTossups ? this.renderQuestionsSection(questions) : null}
         {searchedForBonuses ? this.renderQuestionsSection(questions, 'bonus') : null}
@@ -95,6 +132,10 @@ class QuestionsContainer extends React.Component {
       {view}
     </Container></div>
   }
+}
+
+QuestionsContainer.propTypes = {
+  lastSearch: PropTypes.object,
 }
 
 const mapStateToProps = state => {

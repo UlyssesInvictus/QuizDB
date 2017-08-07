@@ -8,20 +8,21 @@ class TossupsController < ApplicationController
       search_type: ["Question", "Answer"],
       question_type: ["Tossup", "Bonus"],
       # pluck to speed up query a little, instead of accessing each record
-      category: Category.all.pluck(:name, :id).map { |c| {
+      category: Category.order(:name).pluck(:name, :id).map { |c| {
         name: c[0],
         id: c[1]
         } },
-      subcategory: Subcategory.all.pluck(:name, :id).map { |c| {
+      subcategory: Subcategory.order(:name).pluck(:name, :id).map { |c| {
         name: c[0],
         id: c[1]
         } },
-      tournament: Tournament.all.order(year: :desc, name: :asc).pluck(:name, :id, :difficulty, :quality, :year).map { |c| {
-        name: c[0],
-        id: c[1],
-        difficulty: c[2].titleize,
-        quality: c[3],
-        year: c[4]
+      tournament: Tournament.all.order(year: :desc, name: :asc)
+        .pluck(:name, :id, :difficulty, :quality, :year).map { |c| {
+          name: c[0],
+          id: c[1],
+          difficulty: c[2].titleize,
+          quality: c[3],
+          year: c[4]
         } },
       difficulty: Tournament.difficulties.map { |k,v | {
         number: v,
@@ -60,8 +61,10 @@ class TossupsController < ApplicationController
     bonuses = bonuses.includes(:tournament, :category, :subcategory)
 
     render "search.json.jbuilder", locals: {
-      tossups: tossups,
-      bonuses: bonuses
+      tossups: tossups.limit(QUESTION_SEARCH_LIMT),
+      num_tossups_found: tossups.size,
+      bonuses: bonuses.limit(QUESTION_SEARCH_LIMT),
+      num_bonuses_found: bonuses.size
     }
   end
 

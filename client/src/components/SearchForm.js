@@ -89,7 +89,8 @@ class SearchForm extends React.Component {
           <Form.Field>
             <Input fluid size='huge'
               placeholder={"Search for questions here!"}
-              onChange={(e, data) => this.props.dispatch(updateSearch(data.value))}/>
+              onChange={(e, data) => this.props.dispatch(updateSearch(data.value))}
+              width={9}/>
           </Form.Field>
         </Grid.Column>
         {/* Search buttons */}
