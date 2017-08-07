@@ -2,13 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
+import {
+  fetchQuestions,
+} from '../actions/actions';
 
 import { Container,
   Loader,
   Header,
   Segment,
   Menu,
-  Grid
+  Grid,
+  Button
 } from 'semantic-ui-react';
 
 import QuestionComponent from './QuestionComponent';
@@ -21,6 +25,7 @@ class QuestionsContainer extends React.Component {
     this.renderQuestions = this.renderQuestions.bind(this);
     this.renderQuestionsSection = this.renderQuestionsSection.bind(this);
     this.renderQuestionsSectionHeader = this.renderQuestionsSectionHeader.bind(this);
+    this.loadAllQuestions = this.loadAllQuestions.bind(this);
     this.stuff = this.stuff.bind(this);
   }
 
@@ -31,6 +36,11 @@ class QuestionsContainer extends React.Component {
 
   stuff() {
     console.log('test');
+  }
+
+  loadAllQuestions() {
+    const p = this.props;
+    p.dispatch(fetchQuestions(p.search.query, p.search.filters, false))
   }
 
   renderQuestionsSectionHeader(questionsObject, questionType) {
@@ -55,11 +65,13 @@ class QuestionsContainer extends React.Component {
       </div>
     } else {
       numQuestionsSection = <div>
-        <Segment attached='top'><Grid columns={2} divided>
+        <Segment attached='top'><Grid columns={2} verticalAlign="middle">
           <Grid.Column width={12}><Header textAlign='center'>
             {`${questions.length} ${questionTypePlural} loaded of ${numQuestionsFound} found`}
           </Header></Grid.Column>
-          <Grid.Column width={4} onClick={this.stuff} textAlign='center'>Load All</Grid.Column>
+          <Grid.Column width={4} onClick={this.stuff} textAlign='center'>
+            <Button onClick={this.loadAllQuestions}>Load All</Button>
+          </Grid.Column>
         </Grid></Segment>
         {questionExportSection}
       </div>

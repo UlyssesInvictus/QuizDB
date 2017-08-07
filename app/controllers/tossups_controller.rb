@@ -34,6 +34,7 @@ class TossupsController < ApplicationController
 
   def search
     query = search_params[:query]
+    limit = search_params[:limit].blank? || search_params[:limit] != 'false'
 
     if search_params[:filters]
       if search_params[:filters][:question_type]
@@ -61,9 +62,9 @@ class TossupsController < ApplicationController
     bonuses = bonuses.includes(:tournament, :category, :subcategory)
 
     render "search.json.jbuilder", locals: {
-      tossups: tossups.limit(QUESTION_SEARCH_LIMT),
+      tossups: limit ? tossups.limit(QUESTION_SEARCH_LIMT) : tossups,
       num_tossups_found: tossups.size,
-      bonuses: bonuses.limit(QUESTION_SEARCH_LIMT),
+      bonuses: limit ? bonuses.limit(QUESTION_SEARCH_LIMT) : bonuses,
       num_bonuses_found: bonuses.size
     }
   end
@@ -114,7 +115,7 @@ class TossupsController < ApplicationController
     end
 
     def search_params
-      params.require(:search).permit(:query, [
+      params.require(:search).permit(:query, :limit, [
                                       filters: [
                                         difficulty: [], search_type: [],
                                         subcategory: [], question_type: [],

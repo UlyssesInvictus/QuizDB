@@ -63,13 +63,14 @@ function receiveQuestions(json, lastSearchOptions) {
     lastSearchOptions: lastSearchOptions
   }
 }
-export function fetchQuestions(searchQuery, searchFilters) {
+export function fetchQuestions(searchQuery, searchFilters, limit=true) {
   return function (dispatch) {
     dispatch(searchQuestions());
     let searchParamsObject = {
       search: {
         query: searchQuery,
-        filters: searchFilters
+        filters: searchFilters,
+        limit: limit
       }
     }
     let searchQueryString = qs.stringify(searchParamsObject, {
