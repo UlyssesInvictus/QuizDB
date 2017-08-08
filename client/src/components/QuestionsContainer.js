@@ -50,9 +50,9 @@ class QuestionsContainer extends React.Component {
 
     let questionExportSection = <Menu attached='bottom' widths={4}>
       <Menu.Item header>Export as...</Menu.Item>
-      <Menu.Item content="Text File" onClick={this.stuff}/>
-      <Menu.Item content="JSON" onClick={this.stuff}/>
-      <Menu.Item content="CSV" onClick={this.stuff}/>
+      <Menu.Item content="Text File [WIP]" onClick={this.stuff}/>
+      <Menu.Item content="JSON [WIP]" onClick={this.stuff}/>
+      <Menu.Item content="CSV [WIP]" onClick={this.stuff}/>
     </Menu>;
 
     let numQuestionsSection;

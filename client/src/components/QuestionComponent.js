@@ -8,7 +8,7 @@ import {
   Segment,
   Label
 } from 'semantic-ui-react';
-
+import ReactTooltip from 'react-tooltip';
 
 class QuestionsComponent extends React.Component {
 
@@ -20,10 +20,16 @@ class QuestionsComponent extends React.Component {
 
   }
 
-  renderInfoColumn(name, value, unknownText="Unknown") {
+  renderInfoColumn(questionId, name, value, unknownText="Unknown") {
+    const infoText = (value && value.trim !== "" ? value : unknownText);
     return <Segment className="question-info-segment">
       <Label attached="top" className="question-info-label">{name}</Label>
-      <div className='question-info-text'>{value && value.trim !== "" ? value : unknownText}</div>
+      <div className='question-info-text' data-tip data-for={`${questionId}-${name}`}>
+        {infoText}
+      </div>
+      <ReactTooltip effect='solid' type='info' id={`${questionId}-${name}`}>
+        {infoText}
+      </ReactTooltip>
     </Segment>
   }
 
@@ -57,14 +63,14 @@ class QuestionsComponent extends React.Component {
     const q = this.props.question;
     return <div className='question'><Segment.Group>
         <Segment className="question-info">
-          {p.index ? this.renderInfoColumn("Result #", p.index) : null}
-          {this.renderInfoColumn("ID", q.id)}
-          {this.renderInfoColumn("Tournament", q.tournament.name)}
-          {this.renderInfoColumn("Round", q.round)}
-          {this.renderInfoColumn("#", q.number)}
-          {this.renderInfoColumn("Category", q.category.name)}
-          {this.renderInfoColumn("Subcategory", q.subcategory.name, "None")}
-          <Button content='Submit errors'/>
+          {p.index ? this.renderInfoColumn(q.id, "Result #", p.index) : null}
+          {this.renderInfoColumn(q.id, "ID", q.id)}
+          {this.renderInfoColumn(q.id, "Tournament", q.tournament.name)}
+          {this.renderInfoColumn(q.id, "Round", q.round)}
+          {this.renderInfoColumn(q.id, "#", q.number)}
+          {this.renderInfoColumn(q.id, "Category", q.category.name)}
+          {this.renderInfoColumn(q.id, "Subcategory", q.subcategory.name, "None")}
+          <Button content='Submit errors [WIP]'/>
         </Segment>
         {p.questionType === "tossup" ? this.renderTossup(q) : this.renderBonus(q)}
     </Segment.Group></div>
