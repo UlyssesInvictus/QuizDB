@@ -1,4 +1,35 @@
 module Question
+  module SearchAndFilter
+    def self.search_and_filter(query, filters)
+      if filters
+        if filters[:question_type]
+          question_type_filter = filters[:question_type]
+          if (["Tossup", "Bonus"] - question_type_filter).empty?
+            tossups = Tossup.filter_by_defaults(filters, query)
+            bonuses = Bonus.filter_by_defaults(filters, query)
+          elsif question_type_filter.include?("Tossup")
+            tossups = Tossup.filter_by_defaults(filters, query)
+            bonuses = Bonus.none
+          else
+            tossups = Tossup.none
+            bonuses = Bonus.filter_by_defaults(filters, query)
+          end
+        else
+          tossups = Tossup.filter_by_defaults(filters, query)
+          bonuses = Bonus.filter_by_defaults(filters, query)
+        end
+      else
+        tossups = Tossup.filter_by_defaults({}, query)
+        bonuses = Bonus.filter_by_defaults({}, query)
+      end
+      {
+        tossups: tossups,
+        bonuses: bonuses
+      }
+    end
+  end
+
+
   module Searchable
     extend ActiveSupport::Concern
     included do

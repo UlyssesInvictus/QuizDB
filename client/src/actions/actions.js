@@ -63,7 +63,7 @@ function receiveQuestions(json, lastSearchOptions) {
     lastSearchOptions: lastSearchOptions
   }
 }
-export function fetchQuestions(searchQuery, searchFilters, limit=true) {
+export function fetchQuestions(searchQuery, searchFilters, limit=true, random=null) {
   return function (dispatch) {
     dispatch(searchQuestions());
     let searchParamsObject = {
@@ -73,10 +73,15 @@ export function fetchQuestions(searchQuery, searchFilters, limit=true) {
         limit: limit
       }
     }
+    let searchEndpoint = 'search';
+    if (Number.isInteger(random)) {
+      searchParamsObject.search.random = random;
+      searchEndpoint = 'random';
+    }
     let searchQueryString = qs.stringify(searchParamsObject, {
       arrayFormat: 'brackets'
     });
-    return window.fetch(`api/search?${searchQueryString}`, {
+    return window.fetch(`api/${searchEndpoint}?${searchQueryString}`, {
         body: searchFilters
       })
       .then(

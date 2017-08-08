@@ -32,31 +32,36 @@ class TossupsController < ApplicationController
     }
   end
 
+  def random
+    # pretty much identical to search
+    query = search_params[:query]
+    filters = search_params[:filters]
+    # except we ignore the limit param
+    # limit = search_params[:limit].blank? || search_params[:limit] != 'false'
+
+    questions = Question::SearchAndFilter.search_and_filter(query, filters)
+    # and define our own limit here
+    random_limit = search_params[:random]&.to_i || 10
+    # note that the RANDOM() is postgres specific
+    tossups = questions[:tossups].order("RANDOM()").limit(random_limit)
+    bonuses = questions[:bonuses].order("RANDOM()").limit(random_limit)
+
+    render "search.json.jbuilder", locals: {
+      tossups: tossups,
+      num_tossups_found: tossups.size,
+      bonuses: bonuses,
+      num_bonuses_found: bonuses.size
+    }
+  end
+
   def search
     query = search_params[:query]
+    filters = search_params[:filters]
     limit = search_params[:limit].blank? || search_params[:limit] != 'false'
 
-    if search_params[:filters]
-      if search_params[:filters][:question_type]
-        question_type_filter = search_params[:filters][:question_type]
-        if (["Tossup", "Bonus"] - question_type_filter).empty?
-          tossups = Tossup.filter_by_defaults(search_params[:filters], query)
-          bonuses = Bonus.filter_by_defaults(search_params[:filters], query)
-        elsif question_type_filter.include?("Tossup")
-          tossups = Tossup.filter_by_defaults(search_params[:filters], query)
-          bonuses = Bonus.none
-        else
-          tossups = Tossup.none
-          bonuses = Bonus.filter_by_defaults(search_params[:filters], query)
-        end
-      else
-        tossups = Tossup.filter_by_defaults(search_params[:filters], query)
-        bonuses = Bonus.filter_by_defaults(search_params[:filters], query)
-      end
-    else
-      tossups = Tossup.filter_by_defaults({}, query)
-      bonuses = Bonus.filter_by_defaults({}, query)
-    end
+    questions = Question::SearchAndFilter.search_and_filter(query, filters)
+    tossups = questions[:tossups]
+    bonuses = questions[:bonuses]
 
     render "search.json.jbuilder", locals: {
       tossups: limit ? tossups.limit(QUESTION_SEARCH_LIMT) : tossups,
@@ -112,7 +117,8 @@ class TossupsController < ApplicationController
     end
 
     def search_params
-      params.require(:search).permit(:query, :limit, [
+      params.require(:search).permit(:query, :limit, :random,
+                                    [
                                       filters: [
                                         difficulty: [], search_type: [],
                                         subcategory: [], question_type: [],

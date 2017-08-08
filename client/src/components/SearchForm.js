@@ -77,8 +77,11 @@ class SearchForm extends React.Component {
     }
   }
 
-  handleRandomDropdownChange(e) {
-    console.log(e);
+  handleRandomDropdownChange(e, data) {
+    const p = this.props;
+    // we could switch to named parameters, but this is currently easier
+    // since limit (3rd arg) is totally ignored when random (4th) is passed
+    p.dispatch(fetchQuestions(p.search.query, p.search.filters, null, data.value));
   }
 
   triggerSearch() {
@@ -87,19 +90,19 @@ class SearchForm extends React.Component {
   }
 
   render() {
-    let testOptions = [
-      {text: '5 Questions', value: 5},
-      {text: '10 Questions', value: 10},
-      {text: '25 Questions', value: 25},
-      {text: '50 Questions', value: 50},
-      {text: '100 QUESTIONS!!', value: 100},
+    const randomOptions = [
+      {text: '5 Questions', value: 5, onClick: this.handleRandomDropdownChange},
+      {text: '10 Questions', value: 10, onClick: this.handleRandomDropdownChange},
+      {text: '25 Questions', value: 25, onClick: this.handleRandomDropdownChange},
+      {text: '50 Questions', value: 50, onClick: this.handleRandomDropdownChange},
+      {text: '100 QUESTIONS!!', value: 100, onClick: this.handleRandomDropdownChange},
     ]
 
     return <div className="search"><Container>
       <Grid stackable columns={2} textAlign={"center"}
             verticalAlign='middle'>
         {/* Search input */}
-        <Grid.Column width={9}>
+        <Grid.Column width={10}>
           <Input fluid size='huge' width={9}
             placeholder={"Search for questions here!"}
             onChange={(e, data) => this.props.dispatch(updateSearch(data.value))}
@@ -107,7 +110,7 @@ class SearchForm extends React.Component {
           />
         </Grid.Column>
         {/* Search buttons */}
-        <Grid.Column width={7} floated='right'>
+        <Grid.Column width={6} floated='right'>
           {/* <Button.Group {...buttonGroupProps} >
             <Button attached='left' icon='search' content='Search'
                     onClick={this.triggerSearch}
@@ -122,11 +125,10 @@ class SearchForm extends React.Component {
                   size='huge'
           />
           <Dropdown className='search-random_button'
-                    options={testOptions}
+                    options={randomOptions}
                     text='Random'
                     selection
                     closeOnChange={false}
-                    onChange={this.handleRandomDropdownChange}
           />
         </Grid.Column>
       </Grid>
