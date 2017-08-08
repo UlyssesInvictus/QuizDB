@@ -66,10 +66,10 @@ class QuestionsContainer extends React.Component {
     } else {
       numQuestionsSection = <div>
         <Segment attached='top'><Grid columns={2} verticalAlign="middle">
-          <Grid.Column width={12}><Header textAlign='center'>
+          <Grid.Column desktop={12} tablet={12} mobile={10}><Header textAlign='center'>
             {`${questions.length} ${questionTypePlural} loaded of ${numQuestionsFound} found`}
           </Header></Grid.Column>
-          <Grid.Column width={4} textAlign='center'>
+          <Grid.Column desktop={12} tablet={4} mobile={6} textAlign='center'>
             <Button onClick={this.loadAllQuestions}>Load All</Button>
           </Grid.Column>
         </Grid></Segment>

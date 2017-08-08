@@ -45,3 +45,29 @@
 .ui.segments .question-content .segment {
   font-size: 1.2rem;
   line-height: 1.8rem; }
+
+.ui.button.search-search_button {
+  line-height: 1.21428571em;
+  padding: 0.67857143em 1em;
+  border-right: rgba(34, 36, 38, 0.15);
+  border-right-style: solid;
+  border-right-width: 1px; }
+
+.ui.selection.dropdown.search-random_button {
+  font-size: 1.42857143rem;
+  padding: 0.75em 1em 0.678571em 0.75em;
+  min-height: 1em;
+  line-height: 1.21428571em;
+  min-width: 6.4em;
+  border-radius: 0em 0.28571429rem 0.28571429rem 0em;
+  border: none;
+  border-left: none;
+  text-align: left;
+  font-weight: bold;
+  background: #E0E1E2 none; }
+  .ui.selection.dropdown.search-random_button:hover {
+    background-color: #CACBCD; }
+    .ui.selection.dropdown.search-random_button:hover > .text {
+      color: rgba(0, 0, 0, 0.8) !important; }
+  .ui.selection.dropdown.search-random_button > .text {
+    color: rgba(0, 0, 0, 0.6) !important; }

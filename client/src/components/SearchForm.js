@@ -8,8 +8,11 @@ import {
 } from '../actions/actions';
 
 import { Grid, Input,
-  Button, Divider, Container,
-  Loader
+  Button,
+  Divider,
+  Container,
+  Loader,
+  Dropdown
 } from 'semantic-ui-react';
 
 import SearchDropDown from './SearchDropDown';
@@ -21,6 +24,7 @@ class SearchForm extends React.Component {
     this.triggerSearch = this.triggerSearch.bind(this);
     this.renderSearchOptions = this.renderSearchOptions.bind(this);
     this.handleInputKeyPress = this.handleInputKeyPress.bind(this);
+    this.handleRandomDropdownChange = this.handleRandomDropdownChange.bind(this);
   }
 
   componentWillMount() {
@@ -73,20 +77,23 @@ class SearchForm extends React.Component {
     }
   }
 
+  handleRandomDropdownChange(e) {
+    console.log(e);
+  }
+
   triggerSearch() {
     const p = this.props;
     p.dispatch(fetchQuestions(p.search.query, p.search.filters));
   }
 
   render() {
-    let isStacked = this.props.browser.lessThan.medium;
-    let buttonGroupProps = {
-      size: 'huge',
-      compact: true
-    };
-    if (!isStacked) {
-      buttonGroupProps.floated = 'right';
-    }
+    let testOptions = [
+      {text: '5 Questions', value: 5},
+      {text: '10 Questions', value: 10},
+      {text: '25 Questions', value: 25},
+      {text: '50 Questions', value: 50},
+      {text: '100 QUESTIONS!!', value: 100},
+    ]
 
     return <div className="search"><Container>
       <Grid stackable columns={2} textAlign={"center"}
@@ -101,13 +108,26 @@ class SearchForm extends React.Component {
         </Grid.Column>
         {/* Search buttons */}
         <Grid.Column width={7} floated='right'>
-          <Button.Group {...buttonGroupProps}>
+          {/* <Button.Group {...buttonGroupProps} >
             <Button attached='left' icon='search' content='Search'
                     onClick={this.triggerSearch}
                     onSubmit={this.triggerSearch}
             />
-            <Button attached='right' icon='random' content='Random' />
-          </Button.Group>
+            <Button attached='right' icon='random' content='Random'/>
+          </Button.Group> */}
+          <Button className='search-search_button'
+                  attached='left' icon='search' content='Search'
+                  onClick={this.triggerSearch}
+                  onSubmit={this.triggerSearch}
+                  size='huge'
+          />
+          <Dropdown className='search-random_button'
+                    options={testOptions}
+                    text='Random'
+                    selection
+                    closeOnChange={false}
+                    onChange={this.handleRandomDropdownChange}
+          />
         </Grid.Column>
       </Grid>
 
