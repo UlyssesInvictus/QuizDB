@@ -15,6 +15,10 @@ export const UPDATE_SEARCH_FILTER = 'UPDATE_SEARCH_FILTER';
 export const SEARCH_QUESTIONS = 'SEARCH_QUESTIONS';
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
 
+export const TOGGLE_ERROR_MODAL = 'TOGGLE_ERROR_MODAL';
+export const SUBMIT_ERROR = 'SUBMIT_ERROR';
+export const RECEIVE_ERROR_STATUS = 'RECEIVE_ERROR_STATUS';
+
 /*
  * action creators
  */
@@ -91,5 +95,46 @@ export function fetchQuestions(searchQuery, searchFilters, limit=true, random=nu
         json => dispatch(receiveQuestions(json, searchParamsObject.search))
       )
       // TODO: add dedicated success/error actions and states
+  }
+}
+
+
+export function toggleErrorModal(questionId) {
+  return { type: TOGGLE_ERROR_MODAL, questionId: questionId}
+}
+function submitErrorAction() {
+  return { type: SUBMIT_ERROR };
+}
+function receiveErrorStatus(errorStatus, json) {
+  return {
+    type: RECEIVE_ERROR_STATUS,
+    success: errorStatus,
+    error: json
+  }
+}
+export function submitError({
+  errorableId = null,
+  errorableType = null,
+  errorType = null,
+  description = null
+}) {
+  if (errorType === null || description === null) {
+    throw Error("missing required error info");
+  }
+  return function (dispatch) {
+    dispatch(submitErrorAction());
+    let errorParamsObject = {
+      error: {
+        errorable_id: errorableId,
+        errorable_type: errorableType,
+        error_type: errorType,
+        description: description
+      }
+    }
+    return window.fetch(`api/errors`, {
+        method: 'POST',
+        body: errorParamsObject
+      })
+      .then(response => dispatch(receiveErrorStatus(response.ok, response.json)))
   }
 }

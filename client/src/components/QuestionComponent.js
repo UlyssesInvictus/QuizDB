@@ -2,6 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
+import {
+  toggleErrorModal,
+} from '../actions/actions';
 
 import {
   Button,
@@ -11,6 +14,8 @@ import {
   Icon
 } from 'semantic-ui-react';
 import ReactTooltip from 'react-tooltip';
+
+import ErrorModal from './ErrorModal';
 
 class QuestionsComponent extends React.Component {
 
@@ -106,10 +111,17 @@ class QuestionsComponent extends React.Component {
           {this.renderInfoColumn(q.id, "#", q.number)}
           {this.renderInfoColumn(q.id, "Category", q.category.name)}
           {this.renderInfoColumn(q.id, "Subcategory", q.subcategory.name, "None")}
-          <Button content='Submit errors [WIP]'/>
+          <Button content='Submit errors [WIP]'
+                  onClick={() => p.dispatch(toggleErrorModal(q.id))}/>
         </Segment>
         {p.questionType === "tossup" ? this.renderTossup(q) : this.renderBonus(q)}
-    </Segment.Group></div>
+    </Segment.Group>
+    <ErrorModal
+      errorableType={p.questionType}
+      errorableId={q.id}
+      open={!!p.errors[q.id] && !!p.errors[q.id].modalOpen}
+    />
+    </div>
   }
 }
 
@@ -122,7 +134,8 @@ QuestionsComponent.propTypes = {
 
 const mapStateToProps = state => {
   return {
-    browser: state.browser
+    browser: state.browser,
+    errors: state.errors
   }
 }
 

@@ -12,7 +12,11 @@ import {
   UPDATE_SEARCH_FILTER,
   // questions actions
   SEARCH_QUESTIONS,
-  RECEIVE_QUESTIONS
+  RECEIVE_QUESTIONS,
+  // error actions
+  TOGGLE_ERROR_MODAL,
+  SUBMIT_ERROR,
+  RECEIVE_ERROR_STATUS
 } from '../actions/actions';
 
 const initialSearchState = {
@@ -82,10 +86,31 @@ function questions(state = initialQuestionsState, action) {
   }
 }
 
+const initialErrorsState = {
+  errors: {
+    // questionId: {
+    //   modalOpen: true,
+    //   errorStatus:
+    // }
+  }
+}
+function errors(state = initialErrorsState, action) {
+  switch (action.type) {
+    case TOGGLE_ERROR_MODAL:
+      return Object.assign({}, state, {
+        [action.questionId]: {
+          modalOpen: !state[action.questionId] || !state[action.questionId].modalOpen
+        }
+      });
+    default:
+      return state;
+  }
+}
 
 const quizdb = combineReducers({
   search,
   questions,
+  errors,
   browser: responsiveStateReducer
 })
 
