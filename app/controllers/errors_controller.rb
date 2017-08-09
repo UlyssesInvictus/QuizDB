@@ -24,17 +24,17 @@ class ErrorsController < ApplicationController
   # POST /errors
   # POST /errors.json
   def create
-    # @error = Error.new(error_params)
-    #
-    # respond_to do |format|
-    #   if @error.save
-    #     format.html { redirect_to @error, notice: 'Error was successfully created.' }
-    #     format.json { render :show, status: :created, location: @error }
-    #   else
-    #     format.html { render :new }
-    #     format.json { render json: @error.errors, status: :unprocessable_entity }
-    #   end
-    # end
+    @error = Error.new(error_params)
+
+    respond_to do |format|
+      if @error.save
+        format.html { redirect_to @error, notice: 'Error was successfully created.' }
+        format.json { render :show, status: :created, location: @error }
+      else
+        format.html { render :new }
+        format.json { render json: @error.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # PATCH/PUT /errors/1
@@ -69,6 +69,7 @@ class ErrorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def error_params
-      params.require(:error).permit(:description, :error_type, :resolved, :errorable_id)
+      params.require(:error).permit(:description, :error_type, :resolved,
+                                    :errorable_id, :errorable_type)
     end
 end
