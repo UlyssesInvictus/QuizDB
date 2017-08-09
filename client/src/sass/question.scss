@@ -60,3 +60,10 @@
     line-height: 1.8rem;
   }
 }
+
+.icon-clickable {
+  cursor: pointer;
+  &:hover {
+    color: #2185d0;
+  }
+}

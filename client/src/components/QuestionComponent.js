@@ -6,7 +6,9 @@ import { connect } from 'react-redux';
 import {
   Button,
   Segment,
-  Label
+  Label,
+  Grid,
+  Icon
 } from 'semantic-ui-react';
 import ReactTooltip from 'react-tooltip';
 
@@ -17,7 +19,12 @@ class QuestionsComponent extends React.Component {
     this.renderInfoColumn = this.renderInfoColumn.bind(this);
     this.renderTossup = this.renderTossup.bind(this);
     this.renderBonus = this.renderBonus.bind(this);
+    this.handleIconClick = this.handleIconClick.bind(this);
+  }
 
+  handleIconClick(prefix, query) {
+    const encodedQuery = encodeURI(query);
+    window.open(`${prefix}${encodedQuery}`, '_blank');
   }
 
   renderInfoColumn(questionId, name, value, unknownText="Unknown") {
@@ -34,17 +41,38 @@ class QuestionsComponent extends React.Component {
   }
 
   renderTossup(q) {
+    const googlePrefix = 'https://google.com/search?q=';
+    const wikiPrefix = 'https://en.wikipedia.org/w/index.php?search=';
+    const googleImagesPrefix = 'https://google.com/search?tbm=isch&q=';
+
     return <div className="question-content">
       <Segment className="question-tossup-text">
         <strong>Question: </strong>{q.text}
       </Segment>
       <Segment className="question-tossup-answer">
-        <strong>ANSWER: </strong>{q.answer}
+        <Grid columns='16'>
+          <Grid.Column computer='14' tablet='14' mobile='16' >
+            <strong>ANSWER: </strong>{q.answer}
+          </Grid.Column>
+          <Grid.Column computer='2' tablet='2' mobile='16'
+                       verticalAlign='middle' textAlign='center'>
+            <Icon name='google' className='icon-clickable'
+                  onClick={() => this.handleIconClick(googlePrefix, q.answer)}/>
+            <Icon corner name='image' className='icon-clickable'
+                  onClick={() => this.handleIconClick(googleImagesPrefix, q.answer)}/>
+            <Icon name='wikipedia' className='icon-clickable'
+                  onClick={() => this.handleIconClick(wikiPrefix, q.answer)}/>
+          </Grid.Column>
+        </Grid>
       </Segment>
     </div>
   }
 
   renderBonus(q) {
+    const googlePrefix = 'https://google.com/search?q=';
+    const wikiPrefix = 'https://en.wikipedia.org/w/index.php?search=';
+    const googleImagesPrefix = 'https://google.com/search?tbm=isch&q=';
+
     return <div className="question-content">
       <Segment className="question-bonus-leadin">
         <strong>Question: </strong>{q.leadin}
@@ -52,7 +80,22 @@ class QuestionsComponent extends React.Component {
       {[0, 1, 2].map(index => {
         return <Segment className="question-bonus-part" key={`question-bonus-part-${index}`}>
           <p><strong>[10] </strong>{q.texts[index]}</p>
-          <p><strong>ANSWER: </strong>{q.answers[index]}</p>
+          <Grid columns='16'>
+            <Grid.Column computer='14' tablet='14' mobile='16' >
+              <strong>ANSWER: </strong>{q.answers[index]}
+            </Grid.Column>
+            <Grid.Column computer='2' tablet='2' mobile='16'
+                         verticalAlign='middle' textAlign='center'>
+              <Icon name='google' className='icon-clickable'
+                    onClick={() => this.handleIconClick(googlePrefix, q.answer)}/>
+              <Icon corner name='image' className='icon-clickable'
+                    onClick={() => this.handleIconClick(googleImagesPrefix, q.answer)}/>
+              <Icon name='wikipedia' className='icon-clickable'
+                    onClick={() => this.handleIconClick(wikiPrefix, q.answer)}/>
+            </Grid.Column>
+          </Grid>
+
+          {/* <p><strong>ANSWER: </strong>{q.answers[index]}</p> */}
         </Segment>
       })}
     </div>

@@ -46,6 +46,11 @@
   font-size: 1.2rem;
   line-height: 1.8rem; }
 
+.icon-clickable {
+  cursor: pointer; }
+  .icon-clickable:hover {
+    color: #2185d0; }
+
 .ui.button.search-search_button {
   line-height: 1.21428571em;
   padding: 0.67857143em 1em;
