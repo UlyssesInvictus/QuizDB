@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170805063136) do
+ActiveRecord::Schema.define(version: 20170809040416) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,6 +81,17 @@ ActiveRecord::Schema.define(version: 20170805063136) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_categories_on_name", unique: true, using: :btree
+  end
+
+  create_table "errors", force: :cascade do |t|
+    t.string   "description",                    null: false
+    t.integer  "error_type",                     null: false
+    t.boolean  "resolved",       default: false
+    t.string   "errorable_type"
+    t.integer  "errorable_id"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.index ["errorable_type", "errorable_id"], name: "index_errors_on_errorable_type_and_errorable_id", using: :btree
   end
 
   create_table "subcategories", force: :cascade do |t|

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :tournaments
     resources :tossups
     resources :bonus
+    resources :errors
 
     get 'filter_options', to: 'tossups#filter_options'
     get 'search', to: 'tossups#search'

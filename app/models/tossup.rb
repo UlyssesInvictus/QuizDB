@@ -3,6 +3,8 @@ class Tossup < ApplicationRecord
   belongs_to :category, optional: true
   belongs_to :subcategory, optional: true
 
+  has_many :question_errors, as: :errorable, class_name: "Error"
+
   ## SCOPES ##
 
   include Question::Searchable

@@ -20,11 +20,29 @@ class QuestionsComponent extends React.Component {
     this.renderTossup = this.renderTossup.bind(this);
     this.renderBonus = this.renderBonus.bind(this);
     this.handleIconClick = this.handleIconClick.bind(this);
+    this.renderThirdPartyIcons = this.renderThirdPartyIcons.bind(this);
   }
 
   handleIconClick(prefix, query) {
     const encodedQuery = encodeURI(query);
     window.open(`${prefix}${encodedQuery}`, '_blank');
+  }
+
+  renderThirdPartyIcons(query) {
+    const googlePrefix = 'https://google.com/search?q=';
+    const wikiPrefix = 'https://en.wikipedia.org/w/index.php?search=';
+    const googleImagesPrefix = 'https://google.com/search?tbm=isch&q=';
+
+    return <Grid.Column computer='2' tablet='2' mobile='16'
+                        verticalAlign='middle' textAlign='center'>
+      <Icon name='google' className='icon-clickable'
+            onClick={() => this.handleIconClick(googlePrefix, query)}/>
+      <Icon corner name='image' className='icon-clickable'
+            onClick={() => this.handleIconClick(googleImagesPrefix, query)}/>
+      <Icon name='wikipedia' className='icon-clickable'
+            onClick={() => this.handleIconClick(wikiPrefix, query)}/>
+    </Grid.Column>
+
   }
 
   renderInfoColumn(questionId, name, value, unknownText="Unknown") {
@@ -41,9 +59,6 @@ class QuestionsComponent extends React.Component {
   }
 
   renderTossup(q) {
-    const googlePrefix = 'https://google.com/search?q=';
-    const wikiPrefix = 'https://en.wikipedia.org/w/index.php?search=';
-    const googleImagesPrefix = 'https://google.com/search?tbm=isch&q=';
 
     return <div className="question-content">
       <Segment className="question-tossup-text">
@@ -54,25 +69,13 @@ class QuestionsComponent extends React.Component {
           <Grid.Column computer='14' tablet='14' mobile='16' >
             <strong>ANSWER: </strong>{q.answer}
           </Grid.Column>
-          <Grid.Column computer='2' tablet='2' mobile='16'
-                       verticalAlign='middle' textAlign='center'>
-            <Icon name='google' className='icon-clickable'
-                  onClick={() => this.handleIconClick(googlePrefix, q.answer)}/>
-            <Icon corner name='image' className='icon-clickable'
-                  onClick={() => this.handleIconClick(googleImagesPrefix, q.answer)}/>
-            <Icon name='wikipedia' className='icon-clickable'
-                  onClick={() => this.handleIconClick(wikiPrefix, q.answer)}/>
-          </Grid.Column>
+          {this.renderThirdPartyIcons(q.answer)}
         </Grid>
       </Segment>
     </div>
   }
 
   renderBonus(q) {
-    const googlePrefix = 'https://google.com/search?q=';
-    const wikiPrefix = 'https://en.wikipedia.org/w/index.php?search=';
-    const googleImagesPrefix = 'https://google.com/search?tbm=isch&q=';
-
     return <div className="question-content">
       <Segment className="question-bonus-leadin">
         <strong>Question: </strong>{q.leadin}
@@ -84,18 +87,8 @@ class QuestionsComponent extends React.Component {
             <Grid.Column computer='14' tablet='14' mobile='16' >
               <strong>ANSWER: </strong>{q.answers[index]}
             </Grid.Column>
-            <Grid.Column computer='2' tablet='2' mobile='16'
-                         verticalAlign='middle' textAlign='center'>
-              <Icon name='google' className='icon-clickable'
-                    onClick={() => this.handleIconClick(googlePrefix, q.answer)}/>
-              <Icon corner name='image' className='icon-clickable'
-                    onClick={() => this.handleIconClick(googleImagesPrefix, q.answer)}/>
-              <Icon name='wikipedia' className='icon-clickable'
-                    onClick={() => this.handleIconClick(wikiPrefix, q.answer)}/>
-            </Grid.Column>
+            {this.renderThirdPartyIcons(q.answer)}
           </Grid>
-
-          {/* <p><strong>ANSWER: </strong>{q.answers[index]}</p> */}
         </Segment>
       })}
     </div>

@@ -5,6 +5,8 @@ class Bonus < ApplicationRecord
 
   has_many :bonus_parts, dependent: :destroy
 
+  has_many :question_errors, as: :errorable, class_name: "Error"
+
   validate :has_three_bonus_parts, on: :create
 
   include Question::Filterable
