@@ -22,7 +22,7 @@ class Tournament < ApplicationRecord
   # TrashTournament, GuerillaTournament, etc.?
 
   has_many :tossups
-  has_many :bonuses
+  has_many :bonuses, class_name: Bonus
   has_many :bonus_parts, through: :bonuses
 
   def self.difficulties_to_int(diffs)
