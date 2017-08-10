@@ -134,8 +134,8 @@ function errors(state = initialErrorsState, action) {
         [action.errorableId]: Object.assign({}, state[action.errorableId], {
           errorSubmitting: false,
           // basically, leave open for another submission attempt if failure
-          // and close if 's all, goodman
-          modalOpen: !action.success
+          // and close if 's all, goodman (but only if it was already open)
+          modalOpen: !!state[action.errorableId].modalOpen && !action.success
         })
       });
     default:

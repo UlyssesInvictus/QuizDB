@@ -3,14 +3,12 @@ import './App.css';
 
 // Pages
 import Root from './routes/Root';
-import PageAbout from './routes/PageAbout';
-import Page404 from './routes/Page404';
 
 import {
   BrowserRouter as Router,
   Route,
   Switch
-} from 'react-router-dom'
+} from 'react-router-dom';
 
 class PageRefresh extends React.Component {
   render() {
@@ -30,10 +28,8 @@ class PageRefresh extends React.Component {
 const App = () => (
   <Router>
     <Switch>
-      <Route exact path="/" component={Root}/>
-      <Route path="/about" component={PageAbout}/>
       <Route path="/admin*" component={PageRefresh}/>
-      <Route component={Page404}/>
+      <Route path="/" component={Root}/>
     </Switch>
   </Router>
 )
