@@ -76,3 +76,19 @@
       color: rgba(0, 0, 0, 0.8) !important; }
   .ui.selection.dropdown.search-random_button > .text {
     color: rgba(0, 0, 0, 0.6) !important; }
+
+.modal.error-modal .close.icon {
+  font-size: 2em;
+  color: gray; }
+  .modal.error-modal .close.icon:hover {
+    color: black; }
+
+.modal.error-modal .row.error-type-choice {
+  padding: 0.5rem 0rem; }
+
+.modal.error-modal .error-modal-description {
+  width: 100%; }
+
+.ui.button.error-modal-trigger {
+  max-width: 5rem;
+  padding: 0.6em; }

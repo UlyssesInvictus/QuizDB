@@ -15,6 +15,8 @@ export const UPDATE_SEARCH_FILTER = 'UPDATE_SEARCH_FILTER';
 export const SEARCH_QUESTIONS = 'SEARCH_QUESTIONS';
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
 
+export const GET_ERROR_TYPES = 'GET_ERROR_TYPES';
+export const RECEIVE_ERROR_TYPES = 'RECEIVE_ERROR_TYPES';
 export const TOGGLE_ERROR_MODAL = 'TOGGLE_ERROR_MODAL';
 export const SUBMIT_ERROR = 'SUBMIT_ERROR';
 export const RECEIVE_ERROR_STATUS = 'RECEIVE_ERROR_STATUS';
@@ -99,17 +101,40 @@ export function fetchQuestions(searchQuery, searchFilters, limit=true, random=nu
 }
 
 
+function getErrorTypes() {
+  return { type: GET_ERROR_TYPES };
+}
+function receiveErrorTypes(json) {
+  return {
+    type: RECEIVE_ERROR_TYPES,
+    error_types: json
+  }
+}
+export function fetchErrorTypes() {
+  return function (dispatch) {
+    dispatch(getErrorTypes());
+    return window.fetch(`api/error_types`)
+      .then(
+        response => response.json(),
+        error => console.log('QuizDB: an error occurred.', error)
+      ).then(
+        json => dispatch(receiveErrorTypes(json))
+      )
+      // TODO: add dedicated success/error actions and states
+  }
+}
+
 export function toggleErrorModal(questionId) {
   return { type: TOGGLE_ERROR_MODAL, questionId: questionId}
 }
-function submitErrorAction() {
-  return { type: SUBMIT_ERROR };
+function submitErrorAction(errorableId) {
+  return { type: SUBMIT_ERROR, errorableId: errorableId };
 }
-function receiveErrorStatus(errorStatus, json) {
+function receiveErrorStatus(errorStatus, errorableId) {
   return {
     type: RECEIVE_ERROR_STATUS,
+    errorableId: errorableId,
     success: errorStatus,
-    error: json
   }
 }
 export function submitError({
@@ -122,7 +147,7 @@ export function submitError({
     throw Error("missing required error info");
   }
   return function (dispatch) {
-    dispatch(submitErrorAction());
+    dispatch(submitErrorAction(errorableId));
     let errorParamsObject = {
       error: {
         errorable_id: errorableId,
@@ -130,11 +155,15 @@ export function submitError({
         error_type: errorType,
         description: description
       }
-    }
+    };
     return window.fetch(`api/errors`, {
         method: 'POST',
-        body: errorParamsObject
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(errorParamsObject)
       })
-      .then(response => dispatch(receiveErrorStatus(response.ok, response.json)))
+      .then(response => dispatch(receiveErrorStatus(response.ok, errorableId)))
   }
 }

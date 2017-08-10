@@ -14,9 +14,11 @@ import {
   SEARCH_QUESTIONS,
   RECEIVE_QUESTIONS,
   // error actions
+  GET_ERROR_TYPES,
+  RECEIVE_ERROR_TYPES,
   TOGGLE_ERROR_MODAL,
   SUBMIT_ERROR,
-  RECEIVE_ERROR_STATUS
+  RECEIVE_ERROR_STATUS,
 } from '../actions/actions';
 
 const initialSearchState = {
@@ -87,6 +89,15 @@ function questions(state = initialQuestionsState, action) {
 }
 
 const initialErrorsState = {
+  isFetchingErrorTypes: false,
+  errorTypes: [
+    // should be empty for init load to work right
+    // but once loaded, looks like this
+    // {
+    //   errorType: 0,
+    //   errorDescription: ""
+    // }
+  ],
   errors: {
     // questionId: {
     //   modalOpen: true,
@@ -101,6 +112,31 @@ function errors(state = initialErrorsState, action) {
         [action.questionId]: {
           modalOpen: !state[action.questionId] || !state[action.questionId].modalOpen
         }
+      });
+    case GET_ERROR_TYPES:
+      return Object.assign({}, state, {
+        isFetchingErrorTypes: true
+      });
+    case RECEIVE_ERROR_TYPES:
+      return Object.assign({}, state, {
+        errorTypes: action.error_types,
+        isFetchingErrorTypes: false
+      });
+    case SUBMIT_ERROR:
+      return Object.assign({}, state, {
+        [action.errorableId]: Object.assign({}, state[action.errorableId], {
+          errorSubmitting: true
+        })
+      });
+    case RECEIVE_ERROR_STATUS:
+      console.log(action.success);
+      return Object.assign({}, state, {
+        [action.errorableId]: Object.assign({}, state[action.errorableId], {
+          errorSubmitting: false,
+          // basically, leave open for another submission attempt if failure
+          // and close if 's all, goodman
+          modalOpen: !action.success
+        })
       });
     default:
       return state;

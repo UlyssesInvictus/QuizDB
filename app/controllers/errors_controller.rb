@@ -1,6 +1,16 @@
 class ErrorsController < ApplicationController
   before_action :set_error, only: [:show, :edit, :update, :destroy]
 
+  def error_types
+    error_types = Error.error_types.map do |k, v|
+      {
+        error_type: v,
+        error_description: Error.error_type_description(k.to_sym)
+      }
+    end
+    render json: error_types
+  end
+
   # GET /errors
   # GET /errors.json
   def index
@@ -24,7 +34,9 @@ class ErrorsController < ApplicationController
   # POST /errors
   # POST /errors.json
   def create
-    @error = Error.new(error_params)
+    render status: 500 and return
+    errorable_type = error_params['errorable_type'].titleize
+    @error = Error.new(error_params.merge({errorable_type: errorable_type}))
 
     respond_to do |format|
       if @error.save

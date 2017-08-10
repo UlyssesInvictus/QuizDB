@@ -1,0 +1,22 @@
+.modal.error-modal {
+  & .close.icon {
+    font-size: 2em;
+    color: gray;
+    &:hover {
+      color: black;
+    }
+  }
+
+  & .row.error-type-choice {
+    padding: 0.5rem 0rem;
+  }
+
+  & .error-modal-description {
+    width: 100%;
+  }
+}
+
+.ui.button.error-modal-trigger {
+  max-width: 5rem;
+  padding: 0.6em;
+}

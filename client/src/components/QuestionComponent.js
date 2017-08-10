@@ -111,7 +111,8 @@ class QuestionsComponent extends React.Component {
           {this.renderInfoColumn(q.id, "#", q.number)}
           {this.renderInfoColumn(q.id, "Category", q.category.name)}
           {this.renderInfoColumn(q.id, "Subcategory", q.subcategory.name, "None")}
-          <Button content='Submit errors [WIP]'
+          <Button content='Report error or fix'
+                  className='error-modal-trigger'
                   onClick={() => p.dispatch(toggleErrorModal(q.id))}/>
         </Segment>
         {p.questionType === "tossup" ? this.renderTossup(q) : this.renderBonus(q)}
