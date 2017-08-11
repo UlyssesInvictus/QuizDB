@@ -65,10 +65,6 @@ class TossupsController < ApplicationController
     tossups = questions[:tossups]
     bonuses = questions[:bonuses]
 
-
-    # may be a way to DRY up the repeat render, but having issues
-    # with view_context.render vs regular render
-    # TODO is to clean this up...
     if params[:download]
       json_file = view_context.render file: "tossups/search.json.jbuilder", locals: {
         tossups: limit ? tossups.limit(QUESTION_SEARCH_LIMT) : tossups,
@@ -78,9 +74,15 @@ class TossupsController < ApplicationController
       }
       # turn the string back into a json object with the files we want
       # then prettify it
-      send_data JSON.pretty_generate(JSON.parse(json_file)),
-        filename: "quizdb-#{DateTime.now.to_s(:number)}.json",
-        type: 'application/json'
+      # send_data JSON.pretty_generate(JSON.parse(json_file)),
+      #   filename: "quizdb-#{DateTime.now.to_s(:number)}.json",
+      #   type: 'application/json'
+      render file: "tossups/search.txt.erb", locals: {
+        tossups: limit ? tossups.limit(QUESTION_SEARCH_LIMT) : tossups,
+        num_tossups_found: tossups.size,
+        bonuses: limit ? bonuses.limit(QUESTION_SEARCH_LIMT) : bonuses,
+        num_bonuses_found: bonuses.size
+      }
     else
       render file: "tossups/search.json.jbuilder", locals: {
         tossups: limit ? tossups.limit(QUESTION_SEARCH_LIMT) : tossups,
