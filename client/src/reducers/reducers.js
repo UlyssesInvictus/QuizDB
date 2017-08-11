@@ -12,6 +12,7 @@ import {
   RECEIVE_FILTER_OPTIONS,
   UPDATE_SEARCH,
   UPDATE_SEARCH_FILTER,
+  SET_SEARCH_FILTERS,
   // questions actions
   SEARCH_QUESTIONS,
   RECEIVE_QUESTIONS,
@@ -40,6 +41,10 @@ function search(state = initialSearchState, action) {
         filters: Object.assign({}, state.filters, {
           [action.filter]: action.values
         })
+      })
+    case SET_SEARCH_FILTERS:
+      return Object.assign({}, state, {
+        filters: action.filters
       })
     case GET_FILTER_OPTIONS:
       return Object.assign({}, state, {

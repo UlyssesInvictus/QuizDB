@@ -4,6 +4,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {
   toggleErrorModal,
+  updateSearch,
+  setSearchFilters,
+  fetchQuestions,
 } from '../actions/actions';
 
 import {
@@ -25,12 +28,28 @@ class QuestionsComponent extends React.Component {
     this.renderTossup = this.renderTossup.bind(this);
     this.renderBonus = this.renderBonus.bind(this);
     this.handleIconClick = this.handleIconClick.bind(this);
+    this.handleSearchIconClick = this.handleSearchIconClick.bind(this);
     this.renderThirdPartyIcons = this.renderThirdPartyIcons.bind(this);
   }
 
   handleIconClick(prefix, query) {
     const encodedQuery = encodeURI(query);
     window.open(`${prefix}${encodedQuery}`, '_blank');
+  }
+
+  handleSearchIconClick(query, reset = true) {
+    this.props.dispatch(updateSearch(query));
+    if (reset) {
+      // theoretically this is a race condition, but it basically never matters
+      // since we manually pass in an empty filter anyway
+      this.props.dispatch(setSearchFilters({}));
+      this.props.dispatch(fetchQuestions(query, {}));
+    } else {
+      // same
+      let lastFilters = this.props.questions.lastSearchOptions.filters;
+      this.props.dispatch(setSearchFilters(lastFilters));
+      this.props.dispatch(fetchQuestions(query, lastFilters));
+    }
   }
 
   renderThirdPartyIcons(query) {
@@ -46,6 +65,20 @@ class QuestionsComponent extends React.Component {
             onClick={() => this.handleIconClick(googleImagesPrefix, query)}/>
       <Icon name='wikipedia' className='icon-clickable'
             onClick={() => this.handleIconClick(wikiPrefix, query)}/>
+      <Icon name='repeat' corner className='icon-clickable'
+            data-tip data-for={`${this.props.question.id}-repeat`}
+            onClick={() => this.handleSearchIconClick(query)}/>
+      <Icon name='refresh' className='icon-clickable'
+            data-tip data-for={`${this.props.question.id}-refresh`}
+            onClick={() => this.handleSearchIconClick(query, false)}/>
+
+      <ReactTooltip effect='solid' type='info' id={`${this.props.question.id}-repeat`}>
+        Search for this answerline, with no filters
+      </ReactTooltip>
+      <ReactTooltip effect='solid' type='info' id={`${this.props.question.id}-refresh`}>
+        Search for this answerline, with the same filters
+      </ReactTooltip>
+
     </Grid.Column>
 
   }
@@ -92,7 +125,7 @@ class QuestionsComponent extends React.Component {
             <Grid.Column computer='14' tablet='14' mobile='16' >
               <strong>ANSWER: </strong>{q.answers[index]}
             </Grid.Column>
-            {this.renderThirdPartyIcons(q.answer)}
+            {this.renderThirdPartyIcons(q.answers[index])}
           </Grid>
         </Segment>
       })}
@@ -136,7 +169,9 @@ QuestionsComponent.propTypes = {
 const mapStateToProps = state => {
   return {
     browser: state.browser,
-    errors: state.errors
+    errors: state.errors,
+    search: state.search,
+    questions: state.questions
   }
 }
 

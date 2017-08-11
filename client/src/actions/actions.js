@@ -13,6 +13,7 @@ export const RECEIVE_FILTER_OPTIONS = 'RECEIVE_FILTER_OPTIONS';
 
 export const UPDATE_SEARCH = 'UPDATE_SEARCH';
 export const UPDATE_SEARCH_FILTER = 'UPDATE_SEARCH_FILTER';
+export const SET_SEARCH_FILTERS = 'SET_SEARCH_FILTERS';
 
 export const SEARCH_QUESTIONS = 'SEARCH_QUESTIONS';
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
@@ -32,6 +33,9 @@ export function updateSearch(query) {
 }
 export function updateSearchFilter(filter, values) {
   return { type: UPDATE_SEARCH_FILTER, filter, values }
+}
+export function setSearchFilters(filters) {
+  return { type: SET_SEARCH_FILTERS, filters: filters }
 }
 
 function getFilterOptions() {

@@ -12,16 +12,18 @@ import PropTypes from 'prop-types';
 class SearchDropDown extends React.Component {
 
   render() {
+    const p = this.props;
     return <Grid.Column mobile={8} tablet={5} computer={5}>
       <Segment>
-        <Label attached='top'>{this.props.name}</Label>
+        <Label attached='top'>{p.name}</Label>
         <Dropdown placeholder='All'
           multiple search fluid
+          value={p.search.filters[p.filter] || []}
           onChange={(e, data) =>
-            this.props.dispatch(
-              updateSearchFilter(this.props.filter, data.value))}
+            p.dispatch(
+              updateSearchFilter(p.filter, data.value))}
           selection
-          options={this.props.options}/>
+          options={p.options}/>
       </Segment>
     </Grid.Column>
   }
