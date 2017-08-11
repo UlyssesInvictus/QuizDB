@@ -8,6 +8,7 @@ import {
   fetchErrorTypes,
   submitError
 } from '../actions/actions';
+import Notifications from 'react-notification-system-redux';
 
 import {
   Modal,
@@ -46,11 +47,22 @@ class ErrorModal extends React.Component {
   handleSubmitClick() {
     // don't accidentally turn 0 for errorType into true...
     if (this.state.errorType === undefined || this.state.errorType === null) {
-      // TODO show notice that error type must be selected
+      this.props.dispatch(Notifications.error({
+        autoDismiss: 0,
+        title: "Error Type Must Be Selected",
+        message: "Please select a type for the error. " +
+          "If you're not sure, just pick 'Other,' but please be specific in your description."
+      }));
+      return;
     }
 
-    if (!this.state.description) {
-      // TODO show notice that description must be given
+    if (!this.state.description || this.state.description.trim() === "") {
+      this.props.dispatch(Notifications.error({
+        autoDismiss: 0,
+        title: "Error Description Must Be Provided",
+        message: "Please provide a description for the error. The more specific, the more helpful!"
+      }));
+      return;
     }
 
     const p = this.props;

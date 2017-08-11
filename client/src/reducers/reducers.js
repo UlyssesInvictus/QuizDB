@@ -131,7 +131,6 @@ function errors(state = initialErrorsState, action) {
         })
       });
     case RECEIVE_ERROR_STATUS:
-      console.log(action.success);
       return Object.assign({}, state, {
         [action.errorableId]: Object.assign({}, state[action.errorableId], {
           errorSubmitting: false,

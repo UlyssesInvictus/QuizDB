@@ -1,4 +1,6 @@
 import * as qs from 'qs';
+import Notifications from 'react-notification-system-redux';
+
 
 // While app is simple, keep everything in one action module :)
 
@@ -137,13 +139,35 @@ function receiveErrorStatus(errorStatus, errorableId) {
     success: errorStatus,
   }
 }
+function displayErrorStatusNotification(dispatch, errorReported) {
+  const opts = {
+    position: 'tr',
+    autoDismiss: 0,
+  };
+  const failOpts = Object.assign({}, opts, {
+    title: "Error Report Failed",
+    message: "There was a problem reporting your error. Please try again. " +
+      "If the problem persists, contact the system admins."
+  })
+  const successOpts = Object.assign({}, opts, {
+    title: "Error Report Succeeded!",
+    message: "Your report succeeded! Thanks for helping maintain QuizDB. " +
+      "If you see other issues, you can make another report."
+  })
+  if (errorReported) {
+    dispatch(Notifications.success(successOpts));
+  } else {
+    dispatch(Notifications.error(failOpts));
+  }
+}
+
 export function submitError({
   errorableId = null,
   errorableType = null,
   errorType = null,
   description = null
 }) {
-  if (errorType === null || description === null) {
+  if (errorType === null || description === null || description.trim() === "") {
     throw Error("missing required error info");
   }
   return function (dispatch) {
@@ -164,6 +188,9 @@ export function submitError({
         },
         body: JSON.stringify(errorParamsObject)
       })
-      .then(response => dispatch(receiveErrorStatus(response.ok, errorableId)))
+      .then(response => {
+        displayErrorStatusNotification(dispatch, response.ok);
+        dispatch(receiveErrorStatus(response.ok, errorableId))
+      })
   }
 }

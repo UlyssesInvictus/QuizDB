@@ -34,7 +34,6 @@ class ErrorsController < ApplicationController
   # POST /errors
   # POST /errors.json
   def create
-    head 200 and return
     errorable_type = error_params['errorable_type'].titleize
     @error = Error.new(error_params.merge({errorable_type: errorable_type}))
 

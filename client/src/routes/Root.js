@@ -22,7 +22,6 @@ import {
 class Root extends React.Component {
 
   render() {
-    console.log(this.props.notifications);
     return <div className="quizdb"><Container>
       <Navbar/>
       <Notifications
