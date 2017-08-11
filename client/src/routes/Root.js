@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 // Routes
 
@@ -11,7 +12,7 @@ import PageAbout from './PageAbout';
 import Page404 from './Page404';
 
 // Components
-import NotificationSystem from 'react-notification-system';
+import Notifications from 'react-notification-system-redux';
 import Navbar from '../components/Navbar';
 
 import {
@@ -19,19 +20,36 @@ import {
 } from 'semantic-ui-react';
 
 class Root extends React.Component {
+
   render() {
-    return  <div className="quizdb"><Container>
+    console.log(this.props.notifications);
+    return <div className="quizdb"><Container>
       <Navbar/>
+      <Notifications
+        notifications={this.props.notifications}
+      />
+      <Switch>
+        <Route exact path="/" component={PageSearch}/>
+        <Route exact path="/about" component={PageAbout}/>
+        <Route component={Page404}/>
+      </Switch>
 
-    <Switch>
-      <Route exact path="/" component={PageSearch}/>
-      <Route exact path="/about" component={PageAbout}/>
-      <Route component={Page404}/>
-    </Switch>
-
-  </Container></div>
+      </Container></div>
 
 
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    notifications: state.notifications,
+    browser: state.browser
+  }
+}
+
+Root = connect(
+  mapStateToProps
+)(Root)
+
+
 export default Root;

@@ -16,6 +16,8 @@ import { Container,
 } from 'semantic-ui-react';
 
 import QuestionComponent from './QuestionComponent';
+import Notifications from 'react-notification-system-redux';
+
 
 class QuestionsContainer extends React.Component {
 
@@ -35,7 +37,21 @@ class QuestionsContainer extends React.Component {
   }
 
   stuff() {
+    const opts = {
+      // uid: 'once-please', // you can specify your own uid if required
+      title: 'Hey, it\'s good to see you!',
+      message: 'Now you can see how easy it is to use notifications in React!',
+      position: 'tr',
+      autoDismiss: 0,
+      action: {
+        label: 'Click me!!',
+        callback: () => alert('clicked!')
+      }
+    };
+
     console.log('test');
+    this.props.dispatch(Notifications.success(opts));
+
   }
 
   loadAllQuestions() {

@@ -7,10 +7,10 @@ import registerServiceWorker from './registerServiceWorker';
 // redux stuff
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
-import thunkMiddleware from 'redux-thunk'
+import thunkMiddleware from 'redux-thunk';
 // track responsive states
-import { responsiveStoreEnhancer } from 'redux-responsive'
-
+import { responsiveStoreEnhancer } from 'redux-responsive';
+// our stuff!
 import quizdb from './reducers/reducers.js';
 
 // Use semantic ui styles
