@@ -1,5 +1,9 @@
 class Tournament < ApplicationRecord
 
+  has_many :tossups
+  has_many :bonuses, class_name: Bonus
+  has_many :bonus_parts, through: :bonuses
+
   enum difficulty: {
     middle_school: 1,
     easy_high_school: 2,
@@ -13,17 +17,15 @@ class Tournament < ApplicationRecord
   }
 
   enum quality: {
-    regular: 1,
-    good: 2,
-    great: 3
+    terrible: -2,
+    poor: -1,
+    average: 0,
+    good: 1,
+    amazing: 2
   }
 
   # possible subtypes
   # TrashTournament, GuerillaTournament, etc.?
-
-  has_many :tossups
-  has_many :bonuses, class_name: Bonus
-  has_many :bonus_parts, through: :bonuses
 
   def self.difficulties_to_int(diffs)
     diffs.map {|d| difficulties[d]}
@@ -36,5 +38,16 @@ class Tournament < ApplicationRecord
     end
     d_t
   end
+
+  def self.quality_description(q)
+    {
+      terrible: "Exceptionally bad, either for reasons of age, on purpose, or just plain bad question writing.",
+      poor: "Worse than average, due to talent or experience of writing team, or just typical procrastination.",
+      average: "The average question set.",
+      good: "Better than average, thanks to talent or experience of writing team, as well as a good writing schedule.",
+      amazing: "Exceptionally good questions. Very high merit as study material or just fun to play."
+    }[q]
+  end
+
 
 end
