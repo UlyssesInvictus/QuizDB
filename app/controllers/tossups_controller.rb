@@ -58,17 +58,38 @@ class TossupsController < ApplicationController
     query = search_params[:query]
     filters = search_params[:filters]
     limit = search_params[:limit].blank? || search_params[:limit] != 'false'
+    # default to downloading all, but can potentially use limit as well
+    limit = false if params[:download]
 
     questions = Question::SearchAndFilter.search_and_filter(query, filters)
     tossups = questions[:tossups]
     bonuses = questions[:bonuses]
 
-    render "search.json.jbuilder", locals: {
-      tossups: limit ? tossups.limit(QUESTION_SEARCH_LIMT) : tossups,
-      num_tossups_found: tossups.size,
-      bonuses: limit ? bonuses.limit(QUESTION_SEARCH_LIMT) : bonuses,
-      num_bonuses_found: bonuses.size
-    }
+
+    # may be a way to DRY up the repeat render, but having issues
+    # with view_context.render vs regular render
+    # TODO is to clean this up...
+    if params[:download]
+      json_file = view_context.render file: "tossups/search.json.jbuilder", locals: {
+        tossups: limit ? tossups.limit(QUESTION_SEARCH_LIMT) : tossups,
+        num_tossups_found: tossups.size,
+        bonuses: limit ? bonuses.limit(QUESTION_SEARCH_LIMT) : bonuses,
+        num_bonuses_found: bonuses.size
+      }
+      # turn the string back into a json object with the files we want
+      # then prettify it
+      send_data JSON.pretty_generate(JSON.parse(json_file)),
+        filename: "quizdb-#{DateTime.now.to_s(:number)}.json",
+        type: 'application/json'
+    else
+      render file: "tossups/search.json.jbuilder", locals: {
+        tossups: limit ? tossups.limit(QUESTION_SEARCH_LIMT) : tossups,
+        num_tossups_found: tossups.size,
+        bonuses: limit ? bonuses.limit(QUESTION_SEARCH_LIMT) : bonuses,
+        num_bonuses_found: bonuses.size
+      }
+    end
+
   end
 
   # GET /tossups

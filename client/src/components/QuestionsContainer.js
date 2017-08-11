@@ -17,6 +17,7 @@ import { Container,
 
 import QuestionComponent from './QuestionComponent';
 
+import * as qs from 'qs';
 
 class QuestionsContainer extends React.Component {
 
@@ -27,7 +28,7 @@ class QuestionsContainer extends React.Component {
     this.renderQuestionsSection = this.renderQuestionsSection.bind(this);
     this.renderQuestionsSectionHeader = this.renderQuestionsSectionHeader.bind(this);
     this.loadAllQuestions = this.loadAllQuestions.bind(this);
-    this.stuff = this.stuff.bind(this);
+    this.handleFileDownload = this.handleFileDownload.bind(this);
   }
 
   renderFetching() {
@@ -35,8 +36,22 @@ class QuestionsContainer extends React.Component {
       content='Loading Questions'/>
   }
 
-  stuff() {
-    console.log('test');
+  handleFileDownload(type) {
+    const lastSearchOptions = this.props.questions.lastSearchOptions;
+    let searchParamsObject = {
+      search: {
+        query: lastSearchOptions.query,
+        filters: lastSearchOptions.filters,
+        limit: false // ignored in BE for download anyway
+      }
+    }
+    let searchQueryString = qs.stringify(searchParamsObject, {
+      arrayFormat: 'brackets'
+    });
+    let domain = (process.env.NODE_ENV === 'development') ?
+      "http://localhost:3000" : ""
+
+    window.open(`${domain}/api/download_questions?${searchQueryString}`);
   }
 
   loadAllQuestions() {
@@ -51,9 +66,9 @@ class QuestionsContainer extends React.Component {
 
     let questionExportSection = <Menu attached='bottom' widths={4}>
       <Menu.Item header>Export as...</Menu.Item>
-      <Menu.Item content="Text File [WIP]" onClick={this.stuff}/>
-      <Menu.Item content="JSON [WIP]" onClick={this.stuff}/>
-      <Menu.Item content="CSV [WIP]" onClick={this.stuff}/>
+      <Menu.Item content="Text File [WIP]" onClick={this.handleFileDownload}/>
+      <Menu.Item content="JSON" onClick={this.handleFileDownload}/>
+      <Menu.Item content="CSV [WIP]" onClick={this.handleFileDownload}/>
     </Menu>;
 
     let numQuestionsSection;

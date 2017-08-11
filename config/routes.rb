@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
-  scope 'api' do
+  scope 'api', defaults: {format: 'json'} do
     resources :subcategories
     resources :categories
     resources :tournaments
@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     get 'error_types', to: 'errors#error_types'
     get 'filter_options', to: 'tossups#filter_options'
     get 'search', to: 'tossups#search'
+    get 'download_questions', to: 'tossups#search', download: true
     get 'random', to: 'tossups#random'
   end
 
