@@ -19,7 +19,7 @@ class Tournament < ApplicationRecord
   enum quality: {
     terrible: -2,
     poor: -1,
-    average: 0,
+    okay: 0,
     good: 1,
     amazing: 2
   }
@@ -43,7 +43,7 @@ class Tournament < ApplicationRecord
     {
       terrible: "Exceptionally bad, either for reasons of age, on purpose, or just plain bad question writing.",
       poor: "Worse than average, due to talent or experience of writing team, or just typical procrastination.",
-      average: "The average question set.",
+      okay: "The average question set.",
       good: "Better than average, thanks to talent or experience of writing team, as well as a good writing schedule.",
       amazing: "Exceptionally good questions. Very high merit as study material or just fun to play."
     }[q]
