@@ -12,7 +12,8 @@ import { Container,
   Segment,
   Menu,
   Grid,
-  Button
+  Button,
+  Divider
 } from 'semantic-ui-react';
 import ReactTooltip from 'react-tooltip';
 
@@ -162,6 +163,7 @@ class QuestionsContainer extends React.Component {
       let searchedForBonuses = qTypeEmpty || questionType.includes("Bonus");
       view = <div>
         {searchedForTossups ? this.renderQuestionsSection(questions) : null}
+        <Divider section/>
         {searchedForBonuses ? this.renderQuestionsSection(questions, 'bonus') : null}
       </div>
     }

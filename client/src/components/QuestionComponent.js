@@ -24,6 +24,7 @@ class QuestionsComponent extends React.Component {
 
   constructor(props) {
     super(props);
+    this.renderInfo = this.renderInfo.bind(this);
     this.renderInfoColumn = this.renderInfoColumn.bind(this);
     this.renderTossup = this.renderTossup.bind(this);
     this.renderBonus = this.renderBonus.bind(this);
@@ -57,7 +58,7 @@ class QuestionsComponent extends React.Component {
     const wikiPrefix = 'https://en.wikipedia.org/w/index.php?search=';
     const googleImagesPrefix = 'https://google.com/search?tbm=isch&q=';
 
-    return <Grid.Column computer='2' tablet='2' mobile='16'
+    return <Grid.Column largeScreen='3' computer='2' tablet='16' mobile='16'
                         verticalAlign='middle' textAlign='center'>
       <Icon name='google' className='icon-clickable'
             onClick={() => this.handleIconClick(googlePrefix, query)}/>
@@ -80,7 +81,24 @@ class QuestionsComponent extends React.Component {
       </ReactTooltip>
 
     </Grid.Column>
+  }
 
+  renderInfo() {
+    const p = this.props;
+    const q = p.question;
+
+    return  <Segment className="question-info">
+      {p.index ? this.renderInfoColumn(q.id, "Result #", p.index) : null}
+      {this.renderInfoColumn(q.id, "ID", q.id)}
+      {this.renderInfoColumn(q.id, "Tournament", q.tournament.name)}
+      {this.renderInfoColumn(q.id, "Round", q.round)}
+      {this.renderInfoColumn(q.id, "#", q.number)}
+      {this.renderInfoColumn(q.id, "Category", q.category.name)}
+      {this.renderInfoColumn(q.id, "Subcategory", q.subcategory.name, "None")}
+      <Button content='Report error or fix'
+              className='error-modal-trigger'
+              onClick={() => p.dispatch(toggleErrorModal(q.id))}/>
+    </Segment>
   }
 
   renderInfoColumn(questionId, name, value, unknownText="Unknown") {
@@ -104,7 +122,7 @@ class QuestionsComponent extends React.Component {
       </Segment>
       <Segment className="question-tossup-answer">
         <Grid columns='16'>
-          <Grid.Column computer='14' tablet='14' mobile='16' >
+          <Grid.Column largeScreen='13' computer='14' tablet='14' mobile='16' >
             <strong>ANSWER: </strong>{q.answer}
           </Grid.Column>
           {this.renderThirdPartyIcons(q.answer)}
@@ -122,7 +140,7 @@ class QuestionsComponent extends React.Component {
         return <Segment className="question-bonus-part" key={`question-bonus-part-${index}`}>
           <p><strong>[10] </strong>{q.texts[index]}</p>
           <Grid columns='16'>
-            <Grid.Column computer='14' tablet='14' mobile='16' >
+            <Grid.Column largeScreen='13' computer='14' tablet='14' mobile='16' >
               <strong>ANSWER: </strong>{q.answers[index]}
             </Grid.Column>
             {this.renderThirdPartyIcons(q.answers[index])}
@@ -136,18 +154,7 @@ class QuestionsComponent extends React.Component {
     const p = this.props;
     const q = this.props.question;
     return <div className='question'><Segment.Group>
-        <Segment className="question-info">
-          {p.index ? this.renderInfoColumn(q.id, "Result #", p.index) : null}
-          {this.renderInfoColumn(q.id, "ID", q.id)}
-          {this.renderInfoColumn(q.id, "Tournament", q.tournament.name)}
-          {this.renderInfoColumn(q.id, "Round", q.round)}
-          {this.renderInfoColumn(q.id, "#", q.number)}
-          {this.renderInfoColumn(q.id, "Category", q.category.name)}
-          {this.renderInfoColumn(q.id, "Subcategory", q.subcategory.name, "None")}
-          <Button content='Report error or fix'
-                  className='error-modal-trigger'
-                  onClick={() => p.dispatch(toggleErrorModal(q.id))}/>
-        </Segment>
+        {this.renderInfo()}
         {p.questionType === "tossup" ? this.renderTossup(q) : this.renderBonus(q)}
     </Segment.Group>
     <ErrorModal
