@@ -14,6 +14,7 @@ import { Container,
   Grid,
   Button
 } from 'semantic-ui-react';
+import ReactTooltip from 'react-tooltip';
 
 import QuestionComponent from './QuestionComponent';
 
@@ -43,7 +44,8 @@ class QuestionsContainer extends React.Component {
         query: lastSearchOptions.query,
         filters: lastSearchOptions.filters,
         limit: false // ignored in BE for download anyway
-      }
+      },
+      download: type
     }
     let searchQueryString = qs.stringify(searchParamsObject, {
       arrayFormat: 'brackets'
@@ -51,7 +53,7 @@ class QuestionsContainer extends React.Component {
     let domain = (process.env.NODE_ENV === 'development') ?
       "http://localhost:3000" : ""
 
-    window.open(`${domain}/api/download_questions?${searchQueryString}`);
+    window.open(`${domain}/api/search?${searchQueryString}`);
   }
 
   loadAllQuestions() {
@@ -66,9 +68,31 @@ class QuestionsContainer extends React.Component {
 
     let questionExportSection = <Menu attached='bottom' widths={4}>
       <Menu.Item header>Export as...</Menu.Item>
-      <Menu.Item content="Text File [WIP]" onClick={this.handleFileDownload}/>
-      <Menu.Item content="JSON" onClick={this.handleFileDownload}/>
-      <Menu.Item content="CSV [WIP]" onClick={this.handleFileDownload}/>
+      <Menu.Item content="Text File"
+                 data-tip data-for='questions-download-text'
+                 onClick={() => this.handleFileDownload('text')}/>
+      <Menu.Item content="JSON"
+                 data-tip data-for='questions-download-json'
+                 onClick={() => this.handleFileDownload('json')}/>
+      <Menu.Item content="CSV [WIP]"
+                 data-tip data-for='questions-download-csv'
+                 onClick={() => {}}/>
+      <ReactTooltip effect='solid' type='info' id='questions-download-text' multiline={true}>
+        Download questions as text file. <br/>
+        Easily human readable and useful <br/>
+        for memory cards.
+      </ReactTooltip>
+      <ReactTooltip effect='solid' type='info' id='questions-download-json' multiline={true}>
+        Download questions as json file. <br/>
+        Semi-human readable and useful for <br/>
+        data analysis.
+      </ReactTooltip>
+      <ReactTooltip effect='solid' type='info' id='questions-download-csv' multiline={true}>
+        Download questions as csv. <br/>
+        Useful for data analysis or visualization. <br/>
+        Currently a TODO work-in-progress.
+      </ReactTooltip>
+
     </Menu>;
 
     let numQuestionsSection;

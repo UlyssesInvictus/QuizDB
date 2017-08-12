@@ -65,31 +65,28 @@ class TossupsController < ApplicationController
     tossups = questions[:tossups]
     bonuses = questions[:bonuses]
 
-    if params[:download]
-      json_file = view_context.render file: "tossups/search.json.jbuilder", locals: {
-        tossups: limit ? tossups.limit(QUESTION_SEARCH_LIMT) : tossups,
-        num_tossups_found: tossups.size,
-        bonuses: limit ? bonuses.limit(QUESTION_SEARCH_LIMT) : bonuses,
-        num_bonuses_found: bonuses.size
-      }
+    locals = {
+      tossups: limit ? tossups.limit(QUESTION_SEARCH_LIMT) : tossups,
+      num_tossups_found: tossups.size,
+      bonuses: limit ? bonuses.limit(QUESTION_SEARCH_LIMT) : bonuses,
+      num_bonuses_found: bonuses.size
+    }
+
+    if params[:download] == 'json'
+      json_file = view_context.render file: "tossups/search.json.jbuilder", locals: locals
       # turn the string back into a json object with the files we want
       # then prettify it
-      # send_data JSON.pretty_generate(JSON.parse(json_file)),
-      #   filename: "quizdb-#{DateTime.now.to_s(:number)}.json",
-      #   type: 'application/json'
-      render file: "tossups/search.txt.erb", locals: {
-        tossups: limit ? tossups.limit(QUESTION_SEARCH_LIMT) : tossups,
-        num_tossups_found: tossups.size,
-        bonuses: limit ? bonuses.limit(QUESTION_SEARCH_LIMT) : bonuses,
-        num_bonuses_found: bonuses.size
-      }
+      send_data JSON.pretty_generate(JSON.parse(json_file)),
+        filename: "quizdb-#{DateTime.now.to_s(:number)}.json",
+        type: 'application/json'
+    elsif params[:download] == 'text'
+      text_file = view_context.render file: "tossups/search.txt.erb", locals: locals
+      send_data text_file,
+        filename: "quizdb-#{DateTime.now.to_s(:number)}.txt",
+        type: 'text/plain'
+
     else
-      render file: "tossups/search.json.jbuilder", locals: {
-        tossups: limit ? tossups.limit(QUESTION_SEARCH_LIMT) : tossups,
-        num_tossups_found: tossups.size,
-        bonuses: limit ? bonuses.limit(QUESTION_SEARCH_LIMT) : bonuses,
-        num_bonuses_found: bonuses.size
-      }
+      render file: "tossups/search.json.jbuilder", locals: locals
     end
 
   end
