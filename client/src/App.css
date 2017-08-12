@@ -1,3 +1,35 @@
+@font-face {
+  font-family: IkarosRegular;
+  src: url("/fonts/Ikaros-Sans/Ikaros-Regular.otf"); }
+
+.navbar {
+  position: fixed;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.95);
+  width: 100%;
+  padding: 2rem 0rem;
+  font-family: 'IkarosRegular';
+  font-size: 6rem;
+  font-weight: bold;
+  display: flex;
+  align-items: baseline; }
+  .navbar.shrink {
+    padding: 1.5rem 0rem;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+    font-size: 3rem;
+    font-weight: normal;
+    transition: all .1s linear; }
+    .navbar.shrink img {
+      transition: all .1s linear;
+      width: 40px;
+      height: 30px; }
+  .navbar img {
+    width: 75px;
+    height: 60px; }
+
+.quizdb-page {
+  padding-top: 9rem; }
+
 .question {
   margin-top: 1.5rem;
   margin-bottom: 1.5rem; }
@@ -55,6 +87,9 @@
   cursor: pointer; }
   .icon-clickable:hover {
     color: #2185d0; }
+
+.ui.segment.search-dropdown {
+  padding: 8px; }
 
 .ui.button.search-search_button {
   line-height: 1.21428571em;

@@ -22,16 +22,17 @@ import {
 class Root extends React.Component {
 
   render() {
-    return <div className="quizdb"><Container>
-      <Navbar/>
+    return <div className="quizdb">
       <Notifications
         notifications={this.props.notifications}
       />
-      <Switch>
+      <Navbar/>
+      <Container>
+      <div className='quizdb-page'><Switch>
         <Route exact path="/" component={PageSearch}/>
         <Route exact path="/about" component={PageAbout}/>
         <Route component={Page404}/>
-      </Switch>
+      </Switch></div>
 
       </Container></div>
 

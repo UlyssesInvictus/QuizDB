@@ -14,7 +14,7 @@ class SearchDropDown extends React.Component {
   render() {
     const p = this.props;
     return <Grid.Column mobile={8} tablet={5} computer={5}>
-      <Segment>
+      <Segment className='search-dropdown'>
         <Label attached='top'>{p.name}</Label>
         <Dropdown placeholder='All'
           multiple search fluid
