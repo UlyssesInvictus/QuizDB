@@ -24,6 +24,8 @@ class QuestionsComponent extends React.Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {showInfo: true};
     this.renderInfo = this.renderInfo.bind(this);
     this.renderInfoColumn = this.renderInfoColumn.bind(this);
     this.renderTossup = this.renderTossup.bind(this);
@@ -31,6 +33,12 @@ class QuestionsComponent extends React.Component {
     this.handleIconClick = this.handleIconClick.bind(this);
     this.handleSearchIconClick = this.handleSearchIconClick.bind(this);
     this.renderThirdPartyIcons = this.renderThirdPartyIcons.bind(this);
+  }
+
+  componentWillMount() {
+    if (this.props.browser.lessThan.medium) {
+      this.setState({showInfo: false});
+    }
   }
 
   handleIconClick(prefix, query) {
@@ -87,23 +95,41 @@ class QuestionsComponent extends React.Component {
     const p = this.props;
     const q = p.question;
 
-    return  <Segment className="question-info">
-      {p.index ? this.renderInfoColumn(q.id, "Result #", p.index) : null}
-      {this.renderInfoColumn(q.id, "ID", q.id)}
-      {this.renderInfoColumn(q.id, "Tournament", q.tournament.name)}
-      {this.renderInfoColumn(q.id, "Round", q.round)}
-      {this.renderInfoColumn(q.id, "#", q.number)}
-      {this.renderInfoColumn(q.id, "Category", q.category.name)}
-      {this.renderInfoColumn(q.id, "Subcategory", q.subcategory.name, "None")}
-      <Button content='Report error or fix'
-              className='error-modal-trigger'
-              onClick={() => p.dispatch(toggleErrorModal(q.id))}/>
-    </Segment>
+    let infoDiv;
+    if (this.state.showInfo) {
+      infoDiv =  <div className="question-info-show">
+        {this.renderInfoColumn(q.id, "ID", q.id)}
+        {this.renderInfoColumn(q.id, "Tournament", q.tournament.name)}
+        {this.renderInfoColumn(q.id, "Round", q.round)}
+        {this.renderInfoColumn(q.id, "#", q.number)}
+        {this.renderInfoColumn(q.id, "Category", q.category.name)}
+        {this.renderInfoColumn(q.id, "Subcategory", q.subcategory.name, "None")}
+        <Button content='Report error or fix'
+                className='error-modal-trigger'
+                onClick={() => p.dispatch(toggleErrorModal(q.id))}/>
+      </div>;
+    } else {
+      infoDiv = <div className="question-info-hide">
+      </div>;
+    }
+
+    let showInfo = !!this.state.showInfo;
+    return <Segment className="question-info">
+      <div>
+        {p.index ? <strong>{p.index}.</strong> : null }
+        <Icon name={'caret ' + (showInfo ? 'up' : 'down')} size='big'
+              className='question-info-toggle'
+              onClick={() => this.setState({showInfo: !this.state.showInfo})}
+        />
+      </div>
+      {infoDiv}
+    </Segment>;
+
   }
 
   renderInfoColumn(questionId, name, value, unknownText="Unknown") {
     const infoText = (value && value.trim !== "" ? value : unknownText);
-    return <Segment className="question-info-segment">
+    return <Segment compact className="question-info-segment">
       <Label attached="top" className="question-info-label">{name}</Label>
       <div className='question-info-text' data-tip data-for={`${questionId}-${name}`}>
         {infoText}

@@ -2,7 +2,12 @@
   margin-top: 1.5rem;
   margin-bottom: 1.5rem; }
 
-.question-info {
+.question-info-toggle {
+  cursor: pointer; }
+  .question-info-toggle:hover {
+    color: #2185d0; }
+
+.question-info-show, .question-info-hide {
   display: flex;
   flex-flow: wrap;
   justify-content: center;
