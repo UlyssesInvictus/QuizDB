@@ -9,7 +9,8 @@ import {
 
 import {
   Route,
-  Switch
+  Switch,
+  Link
 } from 'react-router-dom';
 import PageSearch from './PageSearch';
 import PageAbout from './PageAbout';
@@ -44,24 +45,22 @@ class Root extends React.Component {
                 onClick={() => this.props.dispatch(toggleSidebar())}/>
         </Menu.Item>
         <Menu.Item name='home'>
-          <Icon name='home' />
-          Home
+          <Link to='/'>
+            <Icon name='home' />
+            Home
+          </Link>
         </Menu.Item>
-        <Menu.Item name='gamepad'>
-          <Icon name='gamepad' />
-          Games
+        <Menu.Item name='about'>
+          <Link to='/about'>
+            <Icon name='info circle' />
+            About
+          </Link>
         </Menu.Item>
-        <Menu.Item name='camera'>
-          <Icon name='camera' />
-          Channels
-        </Menu.Item>
-        <Menu.Item name='camera'>
-          <Icon name='camera' />
-          Channels
-        </Menu.Item>
-        <Menu.Item name='camera'>
-          <Icon name='camera' />
-          Channels
+        <Menu.Item name='resources'>
+          <Link to='/about'>
+            <Icon name='bookmark' />
+            Resources
+          </Link>
         </Menu.Item>
 
       </Sidebar>

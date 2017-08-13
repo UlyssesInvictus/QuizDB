@@ -76,6 +76,10 @@
   cursor: pointer;
   color: #2185d0; }
 
+.quizdb-sidebar .item > a:hover {
+  cursor: pointer !important;
+  color: #2185d0 !important; }
+
 .question {
   margin-top: 1.5rem;
   margin-bottom: 1.5rem; }

@@ -131,4 +131,11 @@
       color: #2185d0;
     }
   }
+
+  & .item > a {
+    &:hover {
+      cursor: pointer !important;
+      color: #2185d0 !important;
+    }
+  }
 }
