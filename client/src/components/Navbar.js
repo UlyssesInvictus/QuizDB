@@ -46,7 +46,14 @@ class Navbar extends React.Component {
   }
 
   render() {
-    return <nav className={'navbar ' + (this.state.shrink ? 'shrink' : '')}>
+    let navClass = 'navbar ';
+    if (this.state.shrink) {
+      navClass += 'shrink ';
+    }
+    if (this.props.browser.lessThan.medium) {
+      navClass += 'mobile';
+    }
+    return <nav className={navClass}>
       <Container>
         <div className='navbar-brand' onClick={this.handleBrandClick}>
           <img src='/quizdb.png' alt='QuizDB - Logo'/>
@@ -54,9 +61,8 @@ class Navbar extends React.Component {
         </div>
         <div className='navbar-links'>
           <div className='navbar-link'>
-            <Icon name='content' onClick={this.handleBurgerClick}/>
+            <Icon name='content' size='large' onClick={this.handleBurgerClick}/>
           </div>
-
         </div>
       </Container>
     </nav>
@@ -65,7 +71,8 @@ class Navbar extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    appearance: state.appearance
+    appearance: state.appearance,
+    browser: state.browser
   }
 }
 

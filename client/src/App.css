@@ -12,9 +12,6 @@
     display: flex;
     justify-content: space-between;
     align-items: baseline; }
-  .navbar img {
-    width: 75px;
-    height: 60px; }
   .navbar-brand {
     font-family: 'IkarosRegular';
     font-size: 6rem;
@@ -22,28 +19,58 @@
     .navbar-brand:hover {
       cursor: pointer;
       color: #2185d0; }
+    .navbar-brand img {
+      width: 75px;
+      height: 60px; }
   .navbar-links {
     font-size: 3rem;
     font-weight: bold; }
     .navbar-links .navbar-link:hover {
       cursor: pointer;
       color: #2185d0; }
+    .navbar-links i.icon {
+      vertical-align: baseline !important; }
+  .navbar.mobile {
+    padding: 1.6rem 0rem 1.2rem 0rem; }
+    .navbar.mobile .navbar-brand {
+      font-family: 'IkarosRegular';
+      font-size: 2.5rem;
+      font-weight: bold; }
+      .navbar.mobile .navbar-brand img {
+        width: 30px;
+        height: 25px; }
+    .navbar.mobile .navbar-links i.icon {
+      font-size: 1em; }
+    .navbar.mobile.shrink {
+      padding: 0.8rem 0rem 0.4rem 0rem; }
+      .navbar.mobile.shrink .navbar-brand {
+        font-family: 'IkarosRegular';
+        font-size: 2.4rem;
+        font-weight: normal; }
+        .navbar.mobile.shrink .navbar-brand img {
+          width: 27px;
+          height: 23px; }
+      .navbar.mobile.shrink .navbar-links i.icon {
+        font-size: 0.7em; }
   .navbar.shrink {
-    padding: 1.3rem 0rem 0.4rem 0rem;
+    padding: 1.3rem 0rem 1rem 0rem;
     box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2); }
     .navbar.shrink .navbar-brand {
       font-size: 3rem;
       font-weight: normal;
       -webkit-transition: all .1s linear;
       transition: all .1s linear; }
-    .navbar.shrink img {
-      -webkit-transition: all .1s linear;
-      transition: all .1s linear;
-      width: 40px;
-      height: 30px; }
-
-.quizdb-page {
-  padding-top: 9.5rem; }
+      .navbar.shrink .navbar-brand img {
+        -webkit-transition: all .1s linear;
+        transition: all .1s linear;
+        width: 40px;
+        height: 30px; }
+    .navbar.shrink .navbar-links i.icon {
+      font-size: 1em; }
+  .navbar ~ * .quizdb-page {
+    padding-top: 9.5rem; }
+  .navbar.mobile ~ * .quizdb-page {
+    padding-top: 6.5rem; }
 
 .quizdb-sidebar-close:hover {
   cursor: pointer;

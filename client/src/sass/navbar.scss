@@ -12,12 +12,6 @@
     align-items: baseline;
   }
 
-
-  & img {
-    width: 75px;
-    height: 60px;
-  }
-
   &-brand {
     font-family: 'IkarosRegular';
     font-size: 6rem;
@@ -27,6 +21,12 @@
       cursor: pointer;
       color: #2185d0;
     }
+
+    & img {
+      width: 75px;
+      height: 60px;
+    }
+
   }
 
   &-links {
@@ -39,10 +39,56 @@
         color: #2185d0;
       }
     }
+
+    & i.icon {
+      vertical-align: baseline !important;
+    }
+  }
+
+  &.mobile {
+    padding: 1.6rem 0rem 1.2rem 0rem;
+
+    & .navbar-brand {
+      font-family: 'IkarosRegular';
+      font-size: 2.5rem;
+      font-weight: bold;
+
+      & img {
+        width: 30px;
+        height: 25px;
+      }
+    }
+
+    & .navbar-links {
+      & i.icon {
+        font-size: 1em;
+      }
+    }
+
+    &.shrink {
+      padding: 0.8rem 0rem 0.4rem 0rem;
+
+      & .navbar-brand {
+        font-family: 'IkarosRegular';
+        font-size: 2.4rem;
+        font-weight: normal;
+
+        & img {
+          width: 27px;
+          height: 23px;
+        }
+      }
+
+      & .navbar-links {
+        & i.icon {
+          font-size: 0.7em;
+        }
+      }
+    }
   }
 
   &.shrink {
-    padding: 1.3rem 0rem 0.4rem 0rem;
+    padding: 1.3rem 0rem 1rem 0rem;
 
     box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
 
@@ -52,20 +98,31 @@
       -webkit-transition: all .1s linear;
       transition: all .1s linear;
 
+      & img {
+        -webkit-transition: all .1s linear;
+        transition: all .1s linear;
+        width: 40px;
+        height: 30px;
+      }
     }
 
-    & img {
-      -webkit-transition: all .1s linear;
-      transition: all .1s linear;
-      width: 40px;
-      height: 30px;
+    & .navbar-links {
+      & i.icon {
+        font-size: 1em;
+      }
     }
   }
+
+  & ~ * .quizdb-page {
+    padding-top: 9.5rem;
+  }
+
+  &.mobile ~ * .quizdb-page {
+    padding-top: 6.5rem;
+  }
+
 }
 
-.quizdb-page {
-  padding-top: 9.5rem;
-}
 
 .quizdb-sidebar {
   &-close {
