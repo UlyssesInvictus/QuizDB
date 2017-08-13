@@ -41,7 +41,18 @@ class QuestionsComponent extends React.Component {
     }
   }
 
-  handleIconClick(prefix, query) {
+  handleIconClick(prefix, query, index=null) {
+    if (prefix === 'copy') {
+      let hiddenId = '#question-hidden-answer-'+this.props.question.id;
+      if (index !== null) {
+        hiddenId += '-' + index;
+      }
+      let answer = document.querySelector(hiddenId);
+      answer.select();
+      document.execCommand('copy');
+      return;
+    }
+
     const encodedQuery = encodeURI(query);
     window.open(`${prefix}${encodedQuery}`, '_blank');
   }
@@ -61,7 +72,7 @@ class QuestionsComponent extends React.Component {
     }
   }
 
-  renderThirdPartyIcons(query) {
+  renderThirdPartyIcons(query, index=null) {
     const googlePrefix = 'https://google.com/search?q=';
     const wikiPrefix = 'https://en.wikipedia.org/w/index.php?search=';
     const googleImagesPrefix = 'https://google.com/search?tbm=isch&q=';
@@ -75,6 +86,8 @@ class QuestionsComponent extends React.Component {
             onClick={() => this.handleIconClick(googleImagesPrefix, query)}/>
       <Icon name='wikipedia' className='icon-clickable'
             onClick={() => this.handleIconClick(wikiPrefix, query)}/>
+      <Icon name='clone' className='icon-clickable'
+            onClick={() => this.handleIconClick("copy", query, index)}/>
       <Icon name='repeat' corner className='icon-clickable'
             data-tip data-for={`${this.props.question.id}-repeat`}
             onClick={() => this.handleSearchIconClick(query)}/>
@@ -142,7 +155,6 @@ class QuestionsComponent extends React.Component {
   }
 
   renderTossup(q) {
-
     return <div className="question-content">
       <Segment className="question-tossup-text">
         <strong>Question: </strong>{q.text}
@@ -151,6 +163,9 @@ class QuestionsComponent extends React.Component {
         <Grid columns='16'>
           <Grid.Column largeScreen='13' computer='14' tablet='16' mobile='16'>
             <strong>ANSWER: </strong>{q.answer}
+            <input id={'question-hidden-answer-'+q.id}
+                   className='question-hidden-answer'
+                   value={q.answer} readOnly/>
           </Grid.Column>
           {this.renderThirdPartyIcons(q.answer)}
         </Grid>
@@ -169,8 +184,11 @@ class QuestionsComponent extends React.Component {
           <Grid columns='16'>
             <Grid.Column largeScreen='13' computer='14' tablet='16' mobile='16' >
               <strong>ANSWER: </strong>{q.answers[index]}
+              <input id={'question-hidden-answer-'+q.id+'-'+index}
+                     className='question-hidden-answer'
+                     value={q.answers[index]} readOnly/>
             </Grid.Column>
-            {this.renderThirdPartyIcons(q.answers[index])}
+            {this.renderThirdPartyIcons(q.answers[index], index)}
           </Grid>
         </Segment>
       })}

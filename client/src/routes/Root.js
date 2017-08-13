@@ -29,7 +29,6 @@ import {
 class Root extends React.Component {
 
   render() {
-    console.log(this.props.browser.lessThan.medium);
     const sidebarWidth = this.props.browser.lessThan.medium ? 'thin' : 'wide';
     return <div className="quizdb" id="quizdb-outer-container">
       <Notifications

@@ -102,6 +102,22 @@
   font-size: 1.2rem;
   line-height: 2rem; }
 
+.question-hidden-answer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 2em;
+  height: 2em;
+  padding: 0;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  background: transparent;
+  color: white; }
+  .question-hidden-answer:focus {
+    background: transparent;
+    color: white; }
+
 .ui.grid > .question-icons {
   padding: 0px 0px 10px 0px !important; }
 
