@@ -67,7 +67,8 @@ class QuestionsComponent extends React.Component {
     const googleImagesPrefix = 'https://google.com/search?tbm=isch&q=';
 
     return <Grid.Column largeScreen='3' computer='2' tablet='16' mobile='16'
-                        verticalAlign='middle' textAlign='center'>
+                        verticalAlign='middle' textAlign='center'
+                        className='question-icons'>
       <Icon name='google' className='icon-clickable'
             onClick={() => this.handleIconClick(googlePrefix, query)}/>
       <Icon corner name='image' className='icon-clickable'
@@ -148,7 +149,7 @@ class QuestionsComponent extends React.Component {
       </Segment>
       <Segment className="question-tossup-answer">
         <Grid columns='16'>
-          <Grid.Column largeScreen='13' computer='14' tablet='14' mobile='16' >
+          <Grid.Column largeScreen='13' computer='14' tablet='16' mobile='16'>
             <strong>ANSWER: </strong>{q.answer}
           </Grid.Column>
           {this.renderThirdPartyIcons(q.answer)}
@@ -166,7 +167,7 @@ class QuestionsComponent extends React.Component {
         return <Segment className="question-bonus-part" key={`question-bonus-part-${index}`}>
           <p><strong>[10] </strong>{q.texts[index]}</p>
           <Grid columns='16'>
-            <Grid.Column largeScreen='13' computer='14' tablet='14' mobile='16' >
+            <Grid.Column largeScreen='13' computer='14' tablet='16' mobile='16' >
               <strong>ANSWER: </strong>{q.answers[index]}
             </Grid.Column>
             {this.renderThirdPartyIcons(q.answers[index])}

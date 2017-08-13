@@ -68,6 +68,10 @@
   }
 }
 
+.ui.grid > .question-icons {
+  padding: 0px 0px 10px 0px !important;
+}
+
 .icon-clickable {
   cursor: pointer;
   &:hover {

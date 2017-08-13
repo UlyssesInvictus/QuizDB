@@ -102,6 +102,9 @@
   font-size: 1.2rem;
   line-height: 2rem; }
 
+.ui.grid > .question-icons {
+  padding: 0px 0px 10px 0px !important; }
+
 .icon-clickable {
   cursor: pointer; }
   .icon-clickable:hover {
