@@ -6,22 +6,6 @@
 
   padding: 2rem 0rem;
 
-  &.shrink {
-    padding: 1.5rem 0rem;
-
-    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
-
-    font-size: 3rem;
-    font-weight: normal;
-
-    transition: all .1s linear;
-
-    & img {
-      transition: all .1s linear;
-      width: 40px;
-      height: 30px;
-    }
-  }
 
   font-family: 'IkarosRegular';
   font-size: 6rem;
@@ -34,6 +18,32 @@
     width: 75px;
     height: 60px;
   }
+
+  &.shrink {
+    padding: 1.5rem 0rem;
+
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+
+    font-size: 3rem;
+    font-weight: normal;
+    -webkit-transition: all .1s linear;
+    transition: all .1s linear;
+
+    & img {
+      -webkit-transition: all .1s linear;
+      transition: all .1s linear;
+      width: 40px;
+      height: 30px;
+    }
+  }
+
+  &-brand {
+    &:hover {
+      cursor: pointer;
+      color: #2185d0;
+    }
+  }
+
 }
 
 .quizdb-page {

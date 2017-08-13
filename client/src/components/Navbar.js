@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 
 import {
   Container
@@ -10,6 +11,7 @@ class Navbar extends React.Component {
     super(props);
     this.state = {shrink: false};
     this.handleScroll = this.handleScroll.bind(this);
+    this.handleBrandClick = this.handleBrandClick.bind(this);
   }
 
   componentDidMount() {
@@ -28,13 +30,19 @@ class Navbar extends React.Component {
     }
   }
 
+  handleBrandClick() {
+    this.props.history.push("/");
+  }
+
   render() {
     return <nav className={'navbar ' + (this.state.shrink ? 'shrink' : '')}>
-      <Container><img src='/quizdb.png'
-           alt='QuizDB - Logo'/>
-      QuizDB
+      <Container>
+        <div className='navbar-brand' onClick={this.handleBrandClick}>
+          <img src='/quizdb.png' alt='QuizDB - Logo'/>
+          QuizDB
+        </div>
       </Container>
     </nav>
   }
 }
-export default Navbar;
+export default withRouter(Navbar);
