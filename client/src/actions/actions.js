@@ -24,6 +24,8 @@ export const TOGGLE_ERROR_MODAL = 'TOGGLE_ERROR_MODAL';
 export const SUBMIT_ERROR = 'SUBMIT_ERROR';
 export const RECEIVE_ERROR_STATUS = 'RECEIVE_ERROR_STATUS';
 
+export const TOGGLE_SIDEBAR = 'TOGGLE_SIDEBAR';
+
 /*
  * action creators
  */
@@ -104,6 +106,10 @@ export function fetchQuestions(searchQuery, searchFilters, limit=true, random=nu
       )
       // TODO: add dedicated success/error actions and states
   }
+}
+
+export function toggleSidebar() {
+  return { type: TOGGLE_SIDEBAR };
 }
 
 

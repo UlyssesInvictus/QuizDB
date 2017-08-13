@@ -4,36 +4,50 @@
 
 .navbar {
   position: fixed;
-  z-index: 1000;
+  z-index: 100;
   background: rgba(255, 255, 255, 0.95);
   width: 100%;
-  padding: 2rem 0rem;
-  font-family: 'IkarosRegular';
-  font-size: 6rem;
-  font-weight: bold;
-  display: flex;
-  align-items: baseline; }
+  padding: 2rem 0rem 1.4rem 0rem; }
+  .navbar > .ui.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline; }
   .navbar img {
     width: 75px;
     height: 60px; }
-  .navbar.shrink {
-    padding: 1.5rem 0rem;
-    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+  .navbar-brand {
+    font-family: 'IkarosRegular';
+    font-size: 6rem;
+    font-weight: bold; }
+    .navbar-brand:hover {
+      cursor: pointer;
+      color: #2185d0; }
+  .navbar-links {
     font-size: 3rem;
-    font-weight: normal;
-    -webkit-transition: all .1s linear;
-    transition: all .1s linear; }
+    font-weight: bold; }
+    .navbar-links .navbar-link:hover {
+      cursor: pointer;
+      color: #2185d0; }
+  .navbar.shrink {
+    padding: 1.3rem 0rem 0.4rem 0rem;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2); }
+    .navbar.shrink .navbar-brand {
+      font-size: 3rem;
+      font-weight: normal;
+      -webkit-transition: all .1s linear;
+      transition: all .1s linear; }
     .navbar.shrink img {
       -webkit-transition: all .1s linear;
       transition: all .1s linear;
       width: 40px;
       height: 30px; }
-  .navbar-brand:hover {
-    cursor: pointer;
-    color: #2185d0; }
 
 .quizdb-page {
-  padding-top: 9rem; }
+  padding-top: 9.5rem; }
+
+.quizdb-sidebar-close:hover {
+  cursor: pointer;
+  color: #2185d0; }
 
 .question {
   margin-top: 1.5rem;

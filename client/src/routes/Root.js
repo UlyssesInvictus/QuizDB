@@ -1,5 +1,9 @@
 import React from 'react';
+
 import { connect } from 'react-redux';
+import {
+  toggleSidebar,
+} from '../actions/actions';
 
 // Routes
 
@@ -16,25 +20,63 @@ import Notifications from 'react-notification-system-redux';
 import Navbar from '../components/Navbar';
 
 import {
-  Container
+  Container,
+  Sidebar,
+  Icon,
+  Menu
 } from 'semantic-ui-react';
 
 class Root extends React.Component {
 
   render() {
-    return <div className="quizdb">
+    console.log(this.props.browser.lessThan.medium);
+    const sidebarWidth = this.props.browser.lessThan.medium ? 'thin' : 'wide';
+    return <div className="quizdb" id="quizdb-outer-container">
       <Notifications
         notifications={this.props.notifications}
       />
-      <Navbar/>
-      <Container>
-      <div className='quizdb-page'><Switch>
-        <Route exact path="/" component={PageSearch}/>
-        <Route exact path="/about" component={PageAbout}/>
-        <Route component={Page404}/>
-      </Switch></div>
+      <Sidebar as={Menu} animation='overlay' width={sidebarWidth} direction='right'
+                         className='quizdb-sidebar'
+                         visible={this.props.appearance.showSidebar}
+                         icon='labeled' vertical inverted
+      >
+        <Menu.Item name='remove' position='right'>
+          <Icon name='remove' className='quizdb-sidebar-close'
+                onClick={() => this.props.dispatch(toggleSidebar())}/>
+        </Menu.Item>
+        <Menu.Item name='home'>
+          <Icon name='home' />
+          Home
+        </Menu.Item>
+        <Menu.Item name='gamepad'>
+          <Icon name='gamepad' />
+          Games
+        </Menu.Item>
+        <Menu.Item name='camera'>
+          <Icon name='camera' />
+          Channels
+        </Menu.Item>
+        <Menu.Item name='camera'>
+          <Icon name='camera' />
+          Channels
+        </Menu.Item>
+        <Menu.Item name='camera'>
+          <Icon name='camera' />
+          Channels
+        </Menu.Item>
 
-      </Container></div>
+      </Sidebar>
+      <Navbar/>
+      <Sidebar.Pusher>
+        <Container>
+          <main className='quizdb-page' id='quizdb-page'><Switch>
+            <Route exact path="/" component={PageSearch}/>
+            <Route exact path="/about" component={PageAbout}/>
+            <Route component={Page404}/>
+          </Switch></main>
+        </Container>
+      </Sidebar.Pusher>
+    </div>
 
 
   }
@@ -43,7 +85,8 @@ class Root extends React.Component {
 const mapStateToProps = state => {
   return {
     notifications: state.notifications,
-    browser: state.browser
+    browser: state.browser,
+    appearance: state.appearance
   }
 }
 

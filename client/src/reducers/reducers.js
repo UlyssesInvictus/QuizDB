@@ -22,6 +22,8 @@ import {
   TOGGLE_ERROR_MODAL,
   SUBMIT_ERROR,
   RECEIVE_ERROR_STATUS,
+  // appearance actions
+  TOGGLE_SIDEBAR,
 } from '../actions/actions';
 
 const initialSearchState = {
@@ -95,6 +97,20 @@ function questions(state = initialQuestionsState, action) {
   }
 }
 
+const initialAppearanceState = {
+  showSidebar: false
+}
+function appearance(state = initialAppearanceState, action) {
+  switch (action.type) {
+    case TOGGLE_SIDEBAR:
+      return Object.assign({}, state, {
+        showSidebar: !state.showSidebar,
+      });
+    default:
+      return state;
+  }
+}
+
 const initialErrorsState = {
   isFetchingErrorTypes: false,
   errorTypes: [
@@ -153,8 +169,9 @@ const quizdb = combineReducers({
   search,
   questions,
   errors,
+  appearance,
   browser: responsiveStateReducer,
-  notifications
+  notifications,
 })
 
 export default quizdb
