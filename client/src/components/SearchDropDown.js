@@ -13,7 +13,9 @@ class SearchDropDown extends React.Component {
 
   render() {
     const p = this.props;
-    return <Grid.Column mobile={8} tablet={5} computer={5}>
+    return <Grid.Column mobile={8} tablet={5} computer={5}
+            className='search-dropdown-column'
+           >
       <Segment className='search-dropdown'>
         <Label attached='top'>{p.name}</Label>
         <Dropdown placeholder='All'

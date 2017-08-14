@@ -81,9 +81,6 @@
   color: #2185d0 !important; }
 
 #root {
-  min-height: 100%; }
-
-#root {
   min-height: 100%;
   margin-bottom: -3em; }
 
@@ -180,6 +177,9 @@ footer.quizdb-footer {
   cursor: pointer; }
   .icon-clickable:hover {
     color: #2185d0; }
+
+.ui.grid .column.search-dropdown-column {
+  padding: 0.5rem !important; }
 
 .ui.segment.search-dropdown {
   padding: 8px; }

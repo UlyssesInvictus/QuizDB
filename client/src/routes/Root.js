@@ -29,7 +29,41 @@ import {
 
 class Root extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.handleOutOfSidebarClick = this.handleOutOfSidebarClick.bind(this);
+    this.handleInputKeyPress = this.handleInputKeyPress.bind(this);
+  }
+
+  componentDidMount() {
+    window.addEventListener('click', this.handleOutOfSidebarClick);
+    window.addEventListener('keydown', this.handleInputKeyPress);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('click', this.handleOutOfSidebarClick);
+    window.removeEventListener('keydown', this.handleInputKeyPress);
+  }
+
+  handleInputKeyPress(e) {
+    if (e.key === "Escape") {
+      if (this.props.appearance.showSidebar) {
+        this.props.dispatch(toggleSidebar());
+      }
+    }
+  }
+
+  handleOutOfSidebarClick(e) {
+    const sidebar = document.querySelector('.quizdb-sidebar');
+    if (!sidebar.contains(e.target) &&
+        !e.target.classList.contains('navbar-burger') &&
+        this.props.appearance.showSidebar) {
+      this.props.dispatch(toggleSidebar());
+    }
+  }
+
   render() {
+    const dispatch = this.props.dispatch;
     const sidebarWidth = this.props.browser.lessThan.medium ? 'thin' : 'wide';
     return <div className="quizdb">
       <Notifications
@@ -45,25 +79,25 @@ class Root extends React.Component {
                 onClick={() => this.props.dispatch(toggleSidebar())}/>
         </Menu.Item>
         <Menu.Item name='home'>
-          <Link to='/'>
+          <Link to='/' onClick={() => dispatch(toggleSidebar())}>
             <Icon name='home' />
             Home
           </Link>
         </Menu.Item>
         <Menu.Item name='about'>
-          <Link to='/about'>
+          <Link to='/about' onClick={() => dispatch(toggleSidebar())}>
             <Icon name='info circle' />
             About
           </Link>
         </Menu.Item>
         <Menu.Item name='help'>
-          <Link to='/about'>
+          <Link to='/about' onClick={() => dispatch(toggleSidebar())}>
             <Icon name='question circle' />
             Help
           </Link>
         </Menu.Item>
         <Menu.Item name='resources'>
-          <Link to='/about'>
+          <Link to='/about' onClick={() => dispatch(toggleSidebar())}>
             <Icon name='bookmark' />
             Resources
           </Link>

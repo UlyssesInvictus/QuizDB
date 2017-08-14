@@ -61,7 +61,9 @@ class Navbar extends React.Component {
         </div>
         <div className='navbar-links'>
           <div className='navbar-link'>
-            <Icon name='content' size='large' onClick={this.handleBurgerClick}/>
+            <Icon name='content' size='large'
+                  className='navbar-burger'
+                  onClick={this.handleBurgerClick}/>
           </div>
         </div>
       </Container>
