@@ -31,7 +31,7 @@ class Root extends React.Component {
 
   render() {
     const sidebarWidth = this.props.browser.lessThan.medium ? 'thin' : 'wide';
-    return <div className="quizdb" id="quizdb-outer-container">
+    return <div className="quizdb">
       <Notifications
         notifications={this.props.notifications}
       />
@@ -56,6 +56,12 @@ class Root extends React.Component {
             About
           </Link>
         </Menu.Item>
+        <Menu.Item name='help'>
+          <Link to='/about'>
+            <Icon name='question circle' />
+            Help
+          </Link>
+        </Menu.Item>
         <Menu.Item name='resources'>
           <Link to='/about'>
             <Icon name='bookmark' />
@@ -67,16 +73,16 @@ class Root extends React.Component {
       <Navbar/>
       <Sidebar.Pusher>
         <Container>
-          <main className='quizdb-page' id='quizdb-page'><Switch>
-            <Route exact path="/" component={PageSearch}/>
-            <Route exact path="/about" component={PageAbout}/>
-            <Route component={Page404}/>
-          </Switch></main>
+          <main className='quizdb-page' id='quizdb-page'>
+            <Switch>
+              <Route exact path="/" component={PageSearch}/>
+              <Route exact path="/about" component={PageAbout}/>
+              <Route component={Page404}/>
+            </Switch>
+          </main>
         </Container>
       </Sidebar.Pusher>
     </div>
-
-
   }
 }
 
