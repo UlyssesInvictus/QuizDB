@@ -52,15 +52,48 @@ Here are supplementary features I'd like to add over time, organized roughly by 
 - Improved appearance customization, with dark themes and font customization.
 - Who knows..?
 
+<!-- We put the div here instead of below because the navbar takes space... -->
+
+<div id='credits'>
+
 ### Monetization
 
-Unfortunately, the elephant in the room is
+Unfortunately, the elephant in the room is that this website requires time and money to run. I don't mind so much about the time, but the money for server and domain costs adds up over a year.
+
+I will almost definitely be adding ads for this reason. I will also add a PayPal donation button. I don't mind if you use an ad-blocker; but if you do, please consider donating a little if you use the site frequently.
+
+Any significant leftover money after paying for maintenance costs will be donated back into the QB community.
+
+I'm also chewing on an idea of "pro" user accounts, wherein some newer questions and features will be gated. I'll share the profits here with the authors of the questions being hidden. I'm still workshopping all the details so contact me with feedback.
+
+</div>
+
 
 ## Credits
 
+This site was first created in the summer of 2017 by Raynor Kuang.
+
+It was inspired by Rohit Lalchandani's Quinterest, Jerry Vinokurov's QBDB, and Aseem Keyal's aseemDB.
+
+Its question content was largely seeded by Quinterest and the work of its maintainers Jacob Reed and Nicholas Karas, and all the others who've helped upload questions to Quinterest.
+
+Much is owed to the users who in turn helped maintain this website.
+
 ## Tech Specs
 
+QuizDB is hosted on Heroku, using a Namecheap DNS. It uses React to compile its frontend client, which connects through a proxy to a Rails-powered backend API.
+
+Both the frontend and backend live in the following repository: https://github.com/UlyssesInvictus/QuizDB.
+
+The repo is open source. If you'd like to contribute, please fork the repo and make a pull request.
+
 ## Contact
+
+You can contact me at [kuang@raynor.me](mailto:kuang@raynor.me), or by PM at my QB forum account [here](http://hsquizbowl.org/forums/memberlist.php?mode=viewprofile&u=5867).
+
+You can use the Error Report system to report any errors on individual questions, or email me to report broader errors. Feel free to contact me about anything QB related, ranging from how to study to why I neg so much.
+
+## Endnotes
 
 [^1]: And the one word spelling is the one QuizDB adheres religiously to, so that's what we're going with here. Also, GIF is prounounced "jiff."
 

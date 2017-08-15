@@ -1,3 +1,16 @@
+.quizdb-md {
+  padding-bottom: 3em;
+  font-size: 1.2rem;
+  line-height: 1.5rem; }
+  .quizdb-md h1 {
+    font-size: 3rem; }
+  .quizdb-md h2 {
+    font-size: 2rem; }
+  .quizdb-md h3 {
+    font-size: 1.4rem; }
+  .quizdb-md li {
+    padding: 0.3rem 0rem; }
+
 @font-face {
   font-family: IkarosRegular;
   src: url("/fonts/Ikaros-Sans/Ikaros-Regular.otf"); }

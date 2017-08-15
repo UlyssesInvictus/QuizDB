@@ -14,6 +14,7 @@ import {
 } from 'react-router-dom';
 import PageSearch from './PageSearch';
 import PageAbout from './PageAbout';
+import PageResources from './PageResources';
 import Page404 from './Page404';
 
 // Components
@@ -97,7 +98,7 @@ class Root extends React.Component {
           </Link>
         </Menu.Item>
         <Menu.Item name='resources'>
-          <Link to='/about' onClick={() => dispatch(toggleSidebar())}>
+          <Link to='/resources' onClick={() => dispatch(toggleSidebar())}>
             <Icon name='bookmark' />
             Resources
           </Link>
@@ -111,6 +112,7 @@ class Root extends React.Component {
             <Switch>
               <Route exact path="/" component={PageSearch}/>
               <Route exact path="/about" component={PageAbout}/>
+              <Route exact path="/resources" component={PageResources}/>
               <Route component={Page404}/>
             </Switch>
           </main>
