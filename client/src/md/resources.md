@@ -28,7 +28,7 @@ tl;dr: You get out of quizbowl what you put into it.
 - **[QB Packets](http://quizbowlpackets.com)**: The packet archives. All publicly released question packets available here for download.
 - **[QB Resource Center](http://hsquizbowl.org/db/)**: The main QB hub. This sub-url in particular is handy for finding tournaments stats, finding tournaments near you, or posting details about your own upcoming tournaments.
 - **[HSQBRank](https://hsqbrank.com/)**: Fred Morlan's stats-driven rankings of the best teams in high school quizbowl. Fred spends a lot of time compiling these, and they're often great ammunition and funding-meetings: consider [donating](https://www.patreon.com/user?u=7187781).
-- **[QuizDB](http://quizdb.me)**: Well, of course I was going to pub my own website...
+- **[QuizDB](http://quizdb.org)**: Well, of course I was going to pub my own website...
 
 
 ## Communication
@@ -73,7 +73,7 @@ tl;dr: You get out of quizbowl what you put into it.
 - **[SQBS](http://ai.stanford.edu/~csewell/sqbs/)**: The oldest and most popular (though declining fast) way to track stats during tournaments. The process of individually entering stats from a single computer is laborious, and the software's age is showing, but the QB Resource Center's reliance on SQBS generated HTML pages means it continues to hold sway.
 - **[Neg5](https://neg5.org/)**: A fantastic site for live stats, both for entry across multiple moderator rooms and for viewing by players/audiences. Until it's servers are updated, it can be extremely slow--to an unusable point for large tournaments--but it's ability to allow live stats and even outputting QB Resource Center-compatible files makes it a necessary resource. Highly recommend.
 - **[Spreadsheet Template](https://docs.google.com/spreadsheets/d/14ILdWFvbtlOxLJcoRKMSWDkMu4CNtEBa-n1llEDtD1Y/edit#gid=1816381318)** (with Forum post [here](http://hsquizbowl.org/forums/viewtopic.php?f=123&t=16646)): The one downside of Neg5 is that user accounts are required. If anyone forgets a password, or people forget to make accounts ahead of time, the whole effort can be doomed. Copy-and-pasting, then sharing, the linked DIY template can work well for small tournaments, while still allowing live stats and even calculating your own stats.
-- **[https://abacusquizbowl.com/](Abacus)**: A web-based scorekeeper. Nothing fancy, but useful for practices.
+- **[Abacus](https://abacusquizbowl.com/)**: A web-based scorekeeper. Nothing fancy, but useful for practices.
 
 ## Misc
 
