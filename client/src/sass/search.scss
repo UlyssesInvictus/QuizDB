@@ -43,3 +43,17 @@
     color: rgba(0, 0, 0, 0.6) !important;
   }
 }
+
+.ui.dropdown .menu > .item.search-dropdown-header {
+  opacity: 1 !important;
+  cursor: text !important;
+  color: rgba(0, 0, 0, 0.95) !important;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 0.8em;
+  background: rgba(0, 0, 0, 0.2);
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.2);
+  }
+}

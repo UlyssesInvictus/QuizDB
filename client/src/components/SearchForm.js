@@ -40,10 +40,9 @@ class SearchForm extends React.Component {
     const f = this.props.search.filterOptions;
     let tourneyOptions = f.difficulty.map(c => {
       let opts = [{
-        text: `${c.title} (${c.number})`,
+        text: `${c.title}`,
         value: c.title,
-        difficultyHeader: true,
-        className: 'search-dropdown-diff_header'
+        className: 'search-dropdown-header'
       }];
       opts.push(f.tournament.filter(t => {
         return t.difficulty_num === c.number;
@@ -53,15 +52,17 @@ class SearchForm extends React.Component {
           value: t.id
         };
       }));
-      return [].concat(...opts);
+      opts = [].concat(...opts);
+      // don't bother showing header if it's not a header for anything
+      return opts.length > 1 ? opts : [];
     });
-    tourneyOptions.push({
+    // take care of unassigned tournaments
+    let unknownDiffOptions = [{
       text: 'Unknown',
       value: 'unknown',
-      difficultyHeader: true,
-      className: 'search-dropdown-diff_header'
-    })
-    tourneyOptions.push(f.tournament.filter(t => {
+      className: 'search-dropdown-header'
+    }];
+    unknownDiffOptions.push(f.tournament.filter(t => {
       return t.difficulty_num === null;
     }).map(t => {
       return {
@@ -69,8 +70,11 @@ class SearchForm extends React.Component {
         value: t.id
       };
     }));
+    unknownDiffOptions = [].concat(...unknownDiffOptions);
+    if (unknownDiffOptions.length > 1) {
+      tourneyOptions.push(unknownDiffOptions);
+    }
     tourneyOptions = [].concat(...tourneyOptions);
-    console.log(tourneyOptions);
     return <Grid columns='equal' textAlign='center'>
       <SearchDropDown name='Category'
                       filter='category'

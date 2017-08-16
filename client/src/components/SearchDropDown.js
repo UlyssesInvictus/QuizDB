@@ -26,20 +26,26 @@ class SearchDropDown extends React.Component {
     let regex = new RegExp(query, 'i');
 
     return opts.filter((opt) => {
+      let isDiffHeader = !!opt.className && opt.className.includes('search-dropdown-header');
       let matchesText = regex.test(opt.text);
-      let matchesDiff = regex.test(opt.difficulty);
-      return !opt.difficultyHeader && (matchesText || matchesDiff);
+      // TODO: handle for group matching
+      // let matchesDiff = regex.test(opt.difficulty);
+      // return isDiffHeader && (matchesText || matchesDiff);
+      return !isDiffHeader && matchesText;
     })
   }
 
   render() {
     const p = this.props;
 
-    let options = p.options;
-    // TODO: map so that stuff like difficulty header doesn't show up here
-    if (p.filter === 'tournament') {
-      options.push({text: 'test', value: '', disabled: true, className: 'test'});
-    }
+    let options = p.options.map(opt => {
+      let isDiffHeader = !!opt.className && opt.className.includes('search-dropdown-header');
+      // TODO: merge in false for 'selected' if diff header (or just change styling)
+      return {
+        ...opt,
+        disabled: isDiffHeader,
+      };
+    });
 
     let dropdown =  <Dropdown placeholder='All'
                               multiple fluid
