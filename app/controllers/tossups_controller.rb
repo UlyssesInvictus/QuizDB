@@ -21,6 +21,7 @@ class TossupsController < ApplicationController
           name: c[0],
           id: c[1],
           difficulty: c[2].titleize,
+          difficulty_num: Tournament.difficulties[c[2]],
           quality: c[3],
           year: c[4]
         } },

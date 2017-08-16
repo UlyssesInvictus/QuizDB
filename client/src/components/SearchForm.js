@@ -38,6 +38,39 @@ class SearchForm extends React.Component {
 
   renderSearchOptions() {
     const f = this.props.search.filterOptions;
+    let tourneyOptions = f.difficulty.map(c => {
+      let opts = [{
+        text: `${c.title} (${c.number})`,
+        value: c.title,
+        difficultyHeader: true,
+        className: 'search-dropdown-diff_header'
+      }];
+      opts.push(f.tournament.filter(t => {
+        return t.difficulty_num === c.number;
+      }).map(t => {
+        return {
+          text: t.name,
+          value: t.id
+        };
+      }));
+      return [].concat(...opts);
+    });
+    tourneyOptions.push({
+      text: 'Unknown',
+      value: 'unknown',
+      difficultyHeader: true,
+      className: 'search-dropdown-diff_header'
+    })
+    tourneyOptions.push(f.tournament.filter(t => {
+      return t.difficulty_num === null;
+    }).map(t => {
+      return {
+        text: t.name,
+        value: t.id
+      };
+    }));
+    tourneyOptions = [].concat(...tourneyOptions);
+    console.log(tourneyOptions);
     return <Grid columns='equal' textAlign='center'>
       <SearchDropDown name='Category'
                       filter='category'
@@ -66,9 +99,7 @@ class SearchForm extends React.Component {
                       }))}/>
       <SearchDropDown name='Tournament'
                       filter='tournament'
-                      options={f.tournament.map(c => ({
-                        text: c.name, value: c.id
-                      }))}/>
+                      options={tourneyOptions}/>
 
     </Grid>;
   }

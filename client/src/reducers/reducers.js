@@ -39,11 +39,12 @@ function search(state = initialSearchState, action) {
         query: action.query
       });
     case UPDATE_SEARCH_FILTER:
-      return Object.assign({}, state, {
+      let newState = Object.assign({}, state, {
         filters: Object.assign({}, state.filters, {
           [action.filter]: action.values
         })
-      })
+      });
+      return newState;
     case SET_SEARCH_FILTERS:
       return Object.assign({}, state, {
         filters: action.filters
