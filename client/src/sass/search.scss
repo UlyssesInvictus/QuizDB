@@ -44,7 +44,9 @@
   }
 }
 
-.ui.dropdown .menu > .item.search-dropdown-header {
+.ui.dropdown .menu > .item.search-dropdown-header,
+// headers can get selected--stupid semantic--so don't show styles for them!
+.ui.dropdown .menu > .item.search-dropdown-header.selected {
   opacity: 1 !important;
   cursor: text !important;
   color: rgba(0, 0, 0, 0.95) !important;

@@ -223,7 +223,8 @@ footer.quizdb-footer {
   .ui.selection.dropdown.search-random_button > .text {
     color: rgba(0, 0, 0, 0.6) !important; }
 
-.ui.dropdown .menu > .item.search-dropdown-header {
+.ui.dropdown .menu > .item.search-dropdown-header,
+.ui.dropdown .menu > .item.search-dropdown-header.selected {
   opacity: 1 !important;
   cursor: text !important;
   color: rgba(0, 0, 0, 0.95) !important;
@@ -231,7 +232,8 @@ footer.quizdb-footer {
   font-weight: bold;
   font-size: 0.8em;
   background: rgba(0, 0, 0, 0.2); }
-  .ui.dropdown .menu > .item.search-dropdown-header:hover {
+  .ui.dropdown .menu > .item.search-dropdown-header:hover,
+  .ui.dropdown .menu > .item.search-dropdown-header.selected:hover {
     background: rgba(0, 0, 0, 0.2); }
 
 .modal.error-modal .close.icon {

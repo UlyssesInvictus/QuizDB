@@ -75,6 +75,8 @@ class SearchForm extends React.Component {
       tourneyOptions.push(unknownDiffOptions);
     }
     tourneyOptions = [].concat(...tourneyOptions);
+
+    // actually render our filter dropdowns
     return <Grid columns='equal' textAlign='center'>
       <SearchDropDown name='Category'
                       filter='category'

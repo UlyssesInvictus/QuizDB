@@ -25,14 +25,25 @@ class SearchDropDown extends React.Component {
   handleFilterSearch(opts, query) {
     let regex = new RegExp(query, 'i');
 
-    return opts.filter((opt) => {
+    // first allow diff headers AND items that match
+    let firstPassOpts = opts.filter(opt => {
       let isDiffHeader = !!opt.className && opt.className.includes('search-dropdown-header');
       let matchesText = regex.test(opt.text);
-      // TODO: handle for group matching
-      // let matchesDiff = regex.test(opt.difficulty);
-      // return isDiffHeader && (matchesText || matchesDiff);
-      return !isDiffHeader && matchesText;
-    })
+      return isDiffHeader || matchesText;
+    });
+
+    // then remove diff headers that don't actually have sub-items
+    return firstPassOpts.filter((opt, index) => {
+      let isDiffHeader = !!opt.className && opt.className.includes('search-dropdown-header');
+      // if header's last item in opts, or it's immediately followed by another header
+      // then it has no subitems
+      let hasNoSubItems = (index + 1 >= firstPassOpts.length ||
+        (!!firstPassOpts[index + 1].className &&
+        firstPassOpts[index + 1].className.includes('search-dropdown-header'))
+      );
+
+      return !isDiffHeader || !hasNoSubItems;
+    });
   }
 
   render() {
