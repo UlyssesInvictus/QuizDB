@@ -52,10 +52,6 @@ Here are supplementary features I'd like to add over time, organized roughly by 
 - Improved appearance customization, with dark themes and font customization.
 - Who knows..?
 
-<!-- We put the div here instead of below because the navbar takes space... -->
-
-<div id='credits'>
-
 ### Monetization
 
 Unfortunately, the elephant in the room is that this website requires time and money to run. I don't mind so much about the time, but the money for server and domain costs adds up over a year.
@@ -66,8 +62,7 @@ Any significant leftover money after paying for maintenance costs will be donate
 
 I'm also chewing on an idea of "pro" user accounts, wherein some newer questions and features will be gated. I'll share the profits here with the authors of the questions being hidden. I'm still workshopping all the details so contact me with feedback.
 
-</div>
-
+<div id='credits' class='anchor'></div>
 
 ## Credits
 

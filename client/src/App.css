@@ -10,6 +10,9 @@
     font-size: 1.4rem; }
   .quizdb-md li {
     padding: 0.3rem 0rem; }
+  .quizdb-md .anchor {
+    margin-top: -4.5rem;
+    padding-bottom: 3rem; }
 
 @font-face {
   font-family: IkarosRegular;

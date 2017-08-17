@@ -7,17 +7,18 @@ tl;dr: You get out of quizbowl what you put into it.
 <!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:0 orderedList:0 -->
 
 **Table of Contents:**
-- [QB Resources](#qb-resources)
-	- [Essential](#essential)
-	- [Communication](#communication)
-	- [Study](#study)
-		- [Question DBs](#question-dbs)
-	- [Question Writing](#question-writing)
-	- [Tournament Direction](#tournament-direction)
-		- [Stats/Scoring](#statsscoring)
-	- [Misc](#misc)
+- [Essential](#essential)
+- [Communication](#communication)
+- [Study](#study)
+	- [Question DBs](#question-dbs)
+- [Question Writing](#question-writing)
+- [Tournament Direction](#tournament-direction)
+	- [Stats/Scoring](#statsscoring)
+- [Misc](#misc)
 
 <!-- /TOC -->
+
+<div id='essential' class='anchor'></div>
 
 ## Essential
 
@@ -30,6 +31,7 @@ tl;dr: You get out of quizbowl what you put into it.
 - **[HSQBRank](https://hsqbrank.com/)**: Fred Morlan's stats-driven rankings of the best teams in high school quizbowl. Fred spends a lot of time compiling these, and they're often great ammunition and funding-meetings: consider [donating](https://www.patreon.com/user?u=7187781).
 - **[QuizDB](http://quizdb.org)**: Well, of course I was going to pub my own website...
 
+<div id='communication' class='anchor'></div>
 
 ## Communication
 
@@ -37,12 +39,16 @@ tl;dr: You get out of quizbowl what you put into it.
 - **[Discord](https://discord.gg/at68qSX)** (with Forum guide [here](http://www.hsquizbowl.org/forums/viewtopic.php?f=9&t=19992)): A live message channel, or Slack _after_ Slack was a thing. Has a variety of subchannels, and its audio channel is often used to read/playtest packets.
 - **Your local FB group**: Yes, this counts, too! You should look for this on your own, but regional FB groups are often great places to discuss logistics, organize practices and tournaments, and generally find likeminded people.
 
+<div id='study' class='anchor'></div>
+
 ## Study
 
 - **[Wiki](https://www.qbwiki.com/wiki/Main_Page)**: the Wiki. A good collection of study guides along the oft-asked line of questioning "How do I get good at quizbowl?" Also has some nice articles on the history of QB.
 - **[Theory Subsection of Forums](http://hsquizbowl.org/forums/viewforum.php?f=117)**: The Theory subsection of the Forums isn't particularly well-organized (the closest anyone has gotten is collating it into the Best of the Best subforum), but if you pay attention some gems of discussion can appear.
 - **[Protobowl](http://protobowl.com/)**: A live question reader (i.e. questions appear word-by-word, allowing you to buzz from your keyboard.). Contains public and private channels, so you can compete at large or practice with your friends. Notoriously controversial, as many would argue (myself included) that it incentivizes shallow stock clue memorizing and reflex buzzing, leading some to call it "the literal cancer killing quizbowl," a title Protobowl seems to now wield as a badge of pride. One thing's for sure though: it sure is fun.
 - **[ReadIT](http://qbreadit.azurewebsites.net/)** (with Forum post [here](http://hsquizbowl.org/forums/viewtopic.php?f=123&t=18308)): An audio QB reader. Very few packets right now, but shows promise, especially if you record packets and send them to the site maintainer.
+
+<div id='question-dbs' class='anchor'></div>
 
 ### Question DBs
 
@@ -53,12 +59,16 @@ tl;dr: You get out of quizbowl what you put into it.
 - **[Google](https://google.com)**: Not to be facetious, but nothing beats deep research on Google and Wikipedia. More helpfully, a useful trick is to search using `site:quizbowlpackets.com [your search goes here]`, searching Google's cache of all the Packet Archives at once. This is effectively aseemDB's strategy, but more direct.
 - **NAQT & HSAPQ**: These aren't free or open-source, but NAQT and HSAPQ both sell their own questions and study material. This isn't a viable option for small teams or individual players, but if you can convince your activities treasury to shell out, these can be a great tool.
 
+<div id='question-writing' class='anchor'></div>
+
 ## Question Writing
 
 - **Google Sheets and Docs** (with the use of Cody Voight's [countformat tool](http://hsquizbowl.org/forums/viewtopic.php?f=123&t=16642)): You'd be surprised to learn it, but most independent question writing is done using Google Sheets and Docs. Cody Voight's tool can help you keep track of your writing progress.
 - **[QEMS2](https://github.com/grapesmoker/qems2)**: the open source tool written by Jerry Vinokurov and used by HSAPQ to write all their questions. It's a great tool, but is likely overkill for any small-to-moderate sized writing teams. If you have a lot of experience with server tools, it may be worth trying.
 - **NAQT's Ginseng**: Sadly, NAQT's incredible question writing and archival tool Ginseng is not open source. I only mention it here so you're not confused as to why NAQT isn't mentioned.
 - **[Jerry Vinokurov's Guide](https://acf-quizbowl.com/documents/question-writing-guidelines/)** (and don't forget the Best of the Best subforum!): The **Best of the Best** subforum again has countless articles on writing good questions, but many of the best tenets are encyclopedically listed on the ACF website.
+
+<div id='tournament-direction' class='anchor'></div>
 
 ## Tournament Direction
 
@@ -68,12 +78,16 @@ tl;dr: You get out of quizbowl what you put into it.
 - **[LaTeX Schedule Templates](https://github.com/jonahgreenthal/qbschedule)**: If you'd like pretty schedules, you can play academic for a day and use [LaTeX](https://www.latex-project.org/) templates.
 - **[Tournament Search by Team](http://hdwhite.org/qb/stats/)** (with Forum post [here](http://hsquizbowl.org/forums/viewtopic.php?f=123&t=14306)): Useful for a variety of reasons, but mainly when you want to seed teams for a potential round robin while scheduling your tournament. Also useful to brush up on how well your competition's doing.
 
+<div id='statsscoring' class='anchor'></div>
+
 ### Stats/Scoring
 
 - **[SQBS](http://ai.stanford.edu/~csewell/sqbs/)**: The oldest and most popular (though declining fast) way to track stats during tournaments. The process of individually entering stats from a single computer is laborious, and the software's age is showing, but the QB Resource Center's reliance on SQBS generated HTML pages means it continues to hold sway.
 - **[Neg5](https://neg5.org/)**: A fantastic site for live stats, both for entry across multiple moderator rooms and for viewing by players/audiences. Until it's servers are updated, it can be extremely slow--to an unusable point for large tournaments--but it's ability to allow live stats and even outputting QB Resource Center-compatible files makes it a valuable resource. Highly recommend.
 - **[Spreadsheet Template](https://docs.google.com/spreadsheets/d/14ILdWFvbtlOxLJcoRKMSWDkMu4CNtEBa-n1llEDtD1Y/edit#gid=1816381318)** (with Forum post [here](http://hsquizbowl.org/forums/viewtopic.php?f=123&t=16646)): The one downside of Neg5 is that user accounts are required. If anyone forgets a password, or people forget to make accounts ahead of time, the whole effort can be doomed. Copy-and-pasting, then sharing, the linked DIY template can work well for small tournaments, while still allowing live stats and even calculating your own stats.
 - **[Abacus](https://abacusquizbowl.com/)**: A web-based scorekeeper. Nothing fancy, but useful for practices.
+
+<div id='misc' class='anchor'></div>
 
 ## Misc
 
