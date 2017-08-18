@@ -1,4 +1,6 @@
 ActiveAdmin.register Tournament do
+  menu priority: 3
+
   permit_params :year, :name, :difficulty, :quality, :address, :link
 
   config.sort_order = 'year_desc'
@@ -28,6 +30,10 @@ ActiveAdmin.register Tournament do
     column :name
     column :difficulty
     column :quality
+    # TODO: combine this with Name and Bonuses in a single column
+    column "Tossups" do |t|
+      link_to "Tossups", admin_tournament_tossups_path(t)
+    end
     column :link
     column :created_at
     actions
@@ -40,18 +46,5 @@ ActiveAdmin.register Tournament do
   filter :quality, as: :check_boxes, collection: Tournament.qualities_titleized
   filter :created_at, label: 'Added to QuizDB On'
   filter :link
-
-  # filter :current_sign_in_at
-  # filter :sign_in_count
-  # filter :created_at
-
-  # form do |f|
-  #   f.inputs do
-  #     f.input :email
-  #     f.input :password
-  #     f.input :password_confirmation
-  #   end
-  #   f.actions
-  # end
 
 end
