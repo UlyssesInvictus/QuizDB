@@ -39,6 +39,14 @@ class Tournament < ApplicationRecord
     d_t
   end
 
+  def self.qualities_titleized
+    d_t = {}
+    qualities.each do |k, v|
+      d_t[k.titleize] = v
+    end
+    d_t
+  end
+
   def self.quality_description(q)
     {
       terrible: "Exceptionally bad, either for reasons of age, on purpose, or just plain bad question writing.",
