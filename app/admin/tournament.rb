@@ -28,11 +28,19 @@ ActiveAdmin.register Tournament do
     id_column
     column :year
     column :name
-    column :difficulty
-    column :quality
-    # TODO: combine this with Name and Bonuses in a single column
-    column "Tossups" do |t|
-      link_to "Tossups", admin_tournament_tossups_path(t)
+    column :difficulty, sortable: :difficulty do |t|
+      diff_num = t.difficulty ? "(#{Tournament.difficulties[t.difficulty]})" : ""
+      "#{t.difficulty&.titleize} #{diff_num}"
+    end
+    column :quality, sortable: :quality do |t|
+      qual_num = t.quality ? "(#{Tournament.qualities[t.quality]})" : ""
+      "#{t.quality&.titleize} #{qual_num}"
+    end
+    column "questions" do |t|
+      # link_to "TUs", admin_tournament_tossups_path(t)
+      a "TUs", href: admin_tournament_tossups_path(t)
+      text_node " / "
+      a "Bonuses", href: admin_tournament_bonuses_path(t)
     end
     column :link
     column :created_at

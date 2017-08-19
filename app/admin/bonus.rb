@@ -1,11 +1,12 @@
-ActiveAdmin.register Tossup do
-  menu priority: 2
+ActiveAdmin.register Bonus do
+  menu priority: 3, label: "Bonuses"
 
-  includes :tournament, :category, :subcategory
+  includes :tournament, :category, :subcategory, :bonus_parts
   belongs_to :tournament, optional: true
 
-  permit_params :text, :answer,
-    :tournament_id, :category_id, :subcategory_id
+  permit_params :leadin,
+    :tournament_id, :category_id, :subcategory_id,
+    bonus_parts: [:text, :answer]
 
   config.sort_order = 'id_asc'
   config.per_page = [10, 30, 50, 100]
@@ -13,8 +14,9 @@ ActiveAdmin.register Tossup do
   index do
     selectable_column
     id_column
-    column :text
-    column :answer
+    column :content do |b|
+      text_node simple_format b.content
+    end
     column :tournament, sortable: 'tournaments.name'
     column :category, sortable: 'categories.name'
     column :subcategory, sortable: 'subcategories.name'
@@ -22,8 +24,6 @@ ActiveAdmin.register Tossup do
   end
 
   filter :id
-  filter :text
-  filter :answer
   filter :category, as: :check_boxes
   filter :subcategory, as: :check_boxes
   filter :tournament, multiple: true

@@ -4,6 +4,7 @@ class Bonus < ApplicationRecord
   belongs_to :tournament, optional: true
 
   has_many :bonus_parts, dependent: :destroy
+  accepts_nested_attributes_for :bonus_parts
 
   has_many :question_errors, as: :errorable, class_name: "Error"
 
@@ -59,4 +60,17 @@ class Bonus < ApplicationRecord
     # will fill in if issue of accidentally not associating bonus parts
     # becomes actually problematic
   end
+
+  # *************
+  # INSTANCE METHODS
+  # *************
+  def content
+    s = "#{leadin}\n"
+    bonus_parts.each do |part|
+      s += "[10] #{part.text}\n"
+      s += "ANSWER: #{part.answer}\n"
+    end
+    s
+  end
+
 end
