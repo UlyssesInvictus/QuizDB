@@ -3,7 +3,6 @@ class Ability
 
   def initialize(user)
     # certain pages everybody can read
-    Rails.logger.error "#{user.inspect}"
     can :read, ActiveAdmin::Page, name: "Dashboard"
 
     if user.owner?
