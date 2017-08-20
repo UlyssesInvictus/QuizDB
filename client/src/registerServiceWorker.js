@@ -20,9 +20,10 @@ const isLocalhost = Boolean(
 
 export default function register() {
   if (process.env.NODE_ENV === 'production' &&
+      // don't register if admin portal
       !/^\/admin/.test(window.location.pathname) &&
       'serviceWorker' in navigator) {
-    console.log('testing service workers');
+    console.log(window.location);
     // The URL constructor is available in all browsers that support SW.
     const publicUrl = new URL(process.env.PUBLIC_URL, window.location);
     if (publicUrl.origin !== window.location.origin) {
