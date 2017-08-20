@@ -125,19 +125,14 @@ module Question
           q_record = Bonus.new(number: q["number"].to_i,
                               quinterest_id: q["quinterest_id"].to_i,
                               round: q["round"], leadin: q["leadin"])
-          (0..2).each do |i|
-            q_part = BonusPart.new(bonus_id: q_record.id, number: i + 1)
-            q_part.text = (q["texts"][i].present? ? q["texts"][i] : "")
-            q_part.answer = (q["answers"][i].present? ? q["answers"][i] : "")
-            q_part.save
-          end
         end
-        if !tournaments[q["tournament"]]
+        tourney_name = q["year"] + " " + q["tournament"]
+        if !tournaments[tourney_name]
           year = q["year"].present? ? q["year"].to_i : nil
-          tourney_id = Tournament.create(name: q["tournament"], year: year, difficulty: 5).id
-          tournaments[q["tournament"]] = tourney_id
+          tourney_id = Tournament.create(name: tourney_name, year: year, difficulty: 5).id
+          tournaments[tourney_name] = tourney_id
         else
-          tourney_id = tournaments[q["tournament"]]
+          tourney_id = tournaments[tourney_name]
         end
         if q["category"].blank?
           category_id = nil
@@ -159,6 +154,14 @@ module Question
         q_record.subcategory_id = subcategory_id
         q_record.category_id = category_id
         q_record.save!
+        if q["answers"]
+          (0..2).each do |i|
+            q_part = BonusPart.new(bonus_id: q_record.id, number: i + 1)
+            q_part.text = (q["texts"][i].present? ? q["texts"][i] : "")
+            q_part.answer = (q["answers"][i].present? ? q["answers"][i] : "")
+            q_part.save
+          end
+        end
 
         counter += 1
       end
