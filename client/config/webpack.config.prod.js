@@ -316,8 +316,10 @@ module.exports = {
       // Ignores URLs starting from /__ (useful for Firebase):
       // https://github.com/facebookincubator/create-react-app/issues/2237#issuecomment-302693219
       navigateFallbackWhitelist: [
-        /^(?!\/__).*/,
-        /^admin/
+        // remove Regex where everything that's non-Firebase passes
+        // /^(?!\/__).*/,
+        // but do whitelist everything that's not admin
+        /^(?!\/admin)/
       ],
       // Don't precache sourcemaps (they're large) and build asset manifest:
       staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],
