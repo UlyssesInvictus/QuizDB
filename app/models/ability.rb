@@ -43,7 +43,7 @@ class Ability
       can [:read, :create, :update], [
         ActiveAdmin::Comment
       ]
-      can :create, Error
+      can [:read, :create], Error
     end
     # Define abilities for the passed in user here. For example:
     #

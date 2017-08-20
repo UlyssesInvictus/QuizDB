@@ -19,10 +19,10 @@ Rails.application.routes.draw do
   end
 
   # When serving in production, have unmatched routes be handled by our client app
-  # if Rails.env.production?
-  #   get '*path', to: "application#fallback_index_html", constraints: ->(request) do
-  #     !request.xhr? && request.format.html?
-  #   end
-  # end
+  if Rails.env.production?
+    get '*path', to: "application#fallback_index_html", constraints: ->(request) do
+      !request.xhr? && request.format.html?
+    end
+  end
 
 end

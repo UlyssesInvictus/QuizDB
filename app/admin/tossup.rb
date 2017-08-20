@@ -18,6 +18,7 @@ ActiveAdmin.register Tossup do
     column :tournament, sortable: 'tournaments.name'
     column :category, sortable: 'categories.name'
     column :subcategory, sortable: 'subcategories.name'
+    column "# Errors", :errors_count, sortable: :errors_count
     actions
   end
 
@@ -29,6 +30,7 @@ ActiveAdmin.register Tossup do
   filter :tournament, multiple: true
   filter :round
   filter :number
+  filter :errors_count
   filter :created_at, label: 'Added to QuizDB On'
 
 end

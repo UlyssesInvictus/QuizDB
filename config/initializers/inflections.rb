@@ -8,8 +8,8 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
 #   inflect.singular /^(ox)en/i, '\1'
 #   inflect.irregular 'person', 'people'
 #   inflect.uncountable %w( fish sheep )
-  inflect.plural 'bonus', 'bonuses'
-  inflect.plural 'bonus_part', 'bonus_parts'
+  inflect.irregular 'bonus', 'bonuses'
+  inflect.irregular 'bonus_part', 'bonus_parts'
 end
 
 # These inflection rules are supported but not enabled by default:
