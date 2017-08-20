@@ -23,7 +23,6 @@ export default function register() {
       // don't register if admin portal
       !/^\/admin/.test(window.location.pathname) &&
       'serviceWorker' in navigator) {
-    console.log(window.location);
     // The URL constructor is available in all browsers that support SW.
     const publicUrl = new URL(process.env.PUBLIC_URL, window.location);
     if (publicUrl.origin !== window.location.origin) {
