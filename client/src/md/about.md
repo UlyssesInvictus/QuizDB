@@ -76,11 +76,11 @@ Much is owed to the users who in turn helped maintain this website.
 
 ## Tech Specs
 
-QuizDB is hosted on Heroku, using a Namecheap DNS. It uses React to compile its frontend client, which connects through a proxy to a Rails-powered backend API.
+QuizDB is hosted on Heroku, connected to a Namecheap DNS. It uses React to compile its frontend client, which connects through a proxy to a Rails-powered backend API.
 
-Both the frontend and backend live in the following repository: https://github.com/UlyssesInvictus/QuizDB.
+Both the frontend and backend live in the following repository: [https://github.com/UlyssesInvictus/QuizDB](https://github.com/UlyssesInvictus/QuizDB).
 
-The repo is open source. If you'd like to contribute, please fork the repo and make a pull request.
+The repo is open source. If you'd like to contribute, please fork the repo and make a pull request. You can find full tech specs and contribution guidelines in the README at the base of the repo.
 
 ## Contact
 

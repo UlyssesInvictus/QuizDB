@@ -30,6 +30,9 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 # Cache renders to partials from collections
 gem 'jbuilder_cache_multi'
+# authorization gem
+gem 'cancancan', '~> 2.0'
+
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'

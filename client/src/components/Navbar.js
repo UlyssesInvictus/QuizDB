@@ -30,7 +30,7 @@ class Navbar extends React.Component {
   }
 
   handleScroll() {
-    if (window.scrollY > 20) {
+    if (window.scrollY > 40) {
       this.setState({shrink: true});
     } else {
       this.setState({shrink: false});

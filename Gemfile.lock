@@ -72,6 +72,7 @@ GEM
     bindex (0.5.0)
     builder (3.2.3)
     byebug (9.0.6)
+    cancancan (2.0.0)
     coderay (1.1.1)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
@@ -242,6 +243,7 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin!
+  cancancan (~> 2.0)
   coffee-rails (~> 4.2)
   devise (> 4.x)
   foreman (~> 0.84.0)
