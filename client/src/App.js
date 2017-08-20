@@ -7,7 +7,7 @@ import Root from './routes/Root';
 import {
   BrowserRouter as Router,
   Route,
-  Switch
+  Switch,
 } from 'react-router-dom';
 
 class PageRefresh extends React.Component {

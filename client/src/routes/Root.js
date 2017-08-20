@@ -10,7 +10,8 @@ import {
 import {
   Route,
   Switch,
-  Link
+  Link,
+  Redirect
 } from 'react-router-dom';
 import PageSearch from './PageSearch';
 import PageAbout from './PageAbout';
@@ -66,6 +67,10 @@ class Root extends React.Component {
   render() {
     const dispatch = this.props.dispatch;
     const sidebarWidth = this.props.browser.lessThan.medium ? 'thin' : 'wide';
+
+    let rootUrl = (process.env.NODE_ENV === "production") ?
+      "https://quizdb.org/admin" : "http://localhost:3000/admin";
+
     return <div className="quizdb">
       <Notifications
         notifications={this.props.notifications}
@@ -110,6 +115,9 @@ class Root extends React.Component {
         <Container>
           <main className='quizdb-page' id='quizdb-page'>
             <Switch>
+              <Route exact path="/admin" component={() =>
+                <Redirect to={rootUrl}/>
+              }/>
               <Route exact path="/" component={PageSearch}/>
               <Route exact path="/about" component={PageAbout}/>
               <Route exact path="/resources" component={PageResources}/>
