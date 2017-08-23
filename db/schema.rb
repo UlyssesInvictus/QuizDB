@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170820202418) do
+ActiveRecord::Schema.define(version: 20170821035304) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,9 +69,10 @@ ActiveRecord::Schema.define(version: 20170820202418) do
     t.integer  "quinterest_id"
     t.integer  "tournament_id"
     t.text     "leadin"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.integer  "errors_count",   default: 0
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.integer  "errors_count",     default: 0
+    t.text     "formatted_leadin"
     t.index ["category_id"], name: "index_bonuses_on_category_id", using: :btree
     t.index ["leadin"], name: "index_bonuses_on_leadin", using: :btree
     t.index ["subcategory_id"], name: "index_bonuses_on_subcategory_id", using: :btree
@@ -106,18 +107,19 @@ ActiveRecord::Schema.define(version: 20170820202418) do
   end
 
   create_table "tossups", force: :cascade do |t|
-    t.text     "text",                       null: false
-    t.text     "answer",                     null: false
+    t.text     "text",                         null: false
+    t.text     "answer",                       null: false
     t.integer  "number"
     t.integer  "tournament_id"
     t.integer  "category_id"
     t.integer  "subcategory_id"
     t.string   "round"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.integer  "quinterest_id"
     t.text     "formatted_text"
-    t.integer  "errors_count",   default: 0
+    t.integer  "errors_count",     default: 0
+    t.text     "formatted_answer"
     t.index ["answer"], name: "index_tossups_on_answer", using: :btree
     t.index ["category_id"], name: "index_tossups_on_category_id", using: :btree
     t.index ["quinterest_id"], name: "index_tossups_on_quinterest_id", unique: true, using: :btree
