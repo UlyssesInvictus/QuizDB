@@ -11,6 +11,7 @@ ActiveAdmin.register Tossup do
 
   config.sort_order = 'id_asc'
   config.per_page = [10, 30, 50, 100]
+  config.create_another = true
 
   batch_action :bulk_edit,
     confirm: "Apply properties to all questions selected (blank inputs ignored)",
