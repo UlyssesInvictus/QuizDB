@@ -1,0 +1,43 @@
+# Provide questions as a (YAML) array
+# Lines with hash (#) signs in front are comments and will be ignored
+# Send me a help message if you need it
+
+- :
+  # Provide either "Tossup" or "Bonus" for the type
+  # If you don't provide it, the parser will try to guess based on
+  # how many answers you provide
+  # and default to "Tossup" if it can't figure out
+  - type: Tossup
+  # For the tournament, category, and subcategory, you can either supply the
+  # field name or an ID (viewable from the relevant QuizDB index)
+  # Either must be exact, and the parser will ignore this question if it
+  # can't find the right entry in the DB
+  # for tournaments, if the entry doesn't exist, you can just go create a new one
+  - tournament: ACF Nationals 2017
+  # if both name and ID supplied, the ID will be used
+  - tournament_id: 100
+  # categories and subcategories are locked to their seeded options
+  - category: History
+  - category_id: 1
+  # the subcategory must belong to the category: otherwise, failure
+  - subcategory: American History
+  - subcategory_id: 7
+  # try to keep your text in a single line, but you can try supplying
+  # multiline yaml values, as long as it's valid
+  - text: Kurwa kurwa kurwa kurwa kurwa kurwa. For 10 points, name this country that cannot into space.
+  # in tossups, the answer can be supplied directly or as a single entry array
+  # do NOT include the "ANSWER: " text
+  # DO include any answer or pronunciation guides
+  - answer: Republic of Poland [poe-lan-duh] (accept: Kurwa)
+  # this also works
+  - answers:
+    # note how we embed in quotes to fix the colon in 'accept:'
+    - "Republic of Poland [poe-lan-duh] (accept: Kurwa)"
+  # you can also supply the HTML formatted values to get bold/underlining to show up in QuizDB
+  - formatted_text: <b>Kurwa kurwa kurwa (*)</b> kurwa kurwa kurwa. For 10 points, name this country that cannot into space.
+  - formatted_answer: Republic of <b><u>Poland</u></b> [poe-lan-duh] (accept: <b><u>Kurwa</b></u>)
+  # you can (optional) give the round the question appears in
+  # please try to have this match the other values, since this value isn't restricted
+  - round: Harvard + Yale
+  # you can give the number the question appears in the packet
+  - number: 9
