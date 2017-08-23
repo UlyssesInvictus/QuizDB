@@ -39,5 +39,60 @@
   # you can (optional) give the round the question appears in
   # please try to have this match the other values, since this value isn't restricted
   - round: Harvard + Yale
-  # you can give the number the question appears in the packet
+  # you can (optional) give the number the question appears in the packet
   - number: 9
+# and an example of a bonus
+- :
+  - type: Bonus
+  - tournament_id: 100
+  - category_id: 2
+  - subcategory_id: 5
+  # DO include the "For 10 points" text, IF it's present in the original bonus.
+  - leadin: This lovable country cannot into space. For 10 points each:
+  # notice that it's "text(s)" and not just "text"
+  - texts:
+    # do NOT include the "[10]" text, or any other numbering before the actual bonus part
+    - Kurwa kurwa kurwa?
+    - Kurwa kurwa kurwa kurwa.
+    - Kurwa kurwa kurwa!!!
+  - answers:
+    # do NOT include the "ANSWER: " text
+    - Poland
+    - Poland again
+    - still Poland
+  - round: Harvard + Yale
+  - number: 9
+# and here are some more examples
+- :
+  - type: Tossup
+  - tournament_id: 100
+  - category: Science
+  - subcategory: Biology
+  - text: Also, calling someone a human or an ape? It's not one or the other, that's not how taxonomy works. They're both. A jackdaw is a jackdaw and a member of the crow family. But that's not what you said. You said a jackdaw is a (*) crow, which is not true unless you're okay with calling all members of the crow family crows, which means you'd call blue jays, ravens, and other birds crows, too. Which you said you don't. It's okay to just admit you're wrong, you know? For 10 points, name this bird.
+  - answer: crow
+  - formatted_text: <b>Also, calling someone a human or an ape? It's not one or the other, that's not how taxonomy works. They're both. A jackdaw is a jackdaw and a member of the crow family. But that's not what you said. You said a jackdaw is a (*)</b> crow, which is not true unless you're okay with calling all members of the crow family crows, which means you'd call blue jays, ravens, and other birds crows, too. Which you said you don't. It's okay to just admit you're wrong, you know? For 10 points, name this bird.
+  - formatted_answer: <b><u>crow</b></u>
+  - round: 10
+  - number: 2
+- :
+  - type: Bonus
+  - tournament: ACF Nationals 2017
+  - category_id: 4
+  - subcategory: Misc Literature
+  - leadin: So ur with honey. For 10 points each:
+  - texts:
+    - And yur making out when the phone rings
+    - U ansr it n the voice is "wut r u doing wit my dotter"
+    - U tell ur girl n she say "My dad is ded." THEN
+  - answers:
+    - WHO
+    - WAS
+    - PHONE??
+  - formatted_texts:
+    - And <i>yur</i> making out when the phone rings
+    - U ansr it n the voice is <b>wut r u doing wit my dotter</b>
+    - U tell ur girl n she say <u>My dad is ded.</u> THEN
+  - formatted_answers:
+    - <b><u><i>WHO</b></u></i>
+    - <b></u></i>WAS</b></u></i>
+    - <b></u></i>PHONE??</b></u></i>
