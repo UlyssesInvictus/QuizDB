@@ -24,6 +24,8 @@ class Tournament < ApplicationRecord
     amazing: 2
   }
 
+  default_scope { order(year: :desc, name: :asc) }
+
   # possible subtypes
   # TrashTournament, GuerillaTournament, etc.?
 

@@ -1,6 +1,40 @@
+<h3>Bulk Import Questions</h3>
+
+<ul>
+  <li>
+    You can give info in the bulk fields to apply them to all questions imported.
+    Any conflicting info in the actual import will override this umbrella info.
+  </li>
+  <li>
+    Your questions should be uploaded in
+    <a href="http://www.yaml.org/start.html" target="_blank">YAML</a> format.
+    See here (TODO) for an example, with all possible meta-fields and instructions
+    on how to format your YAML for QuizDB.
+  </li>
+  <li>
+    <strong>You must run the uploader twice</strong> to force an import.
+    The first run lets your preview the upload, and the second actually imports
+    the questions.
+  </li>
+  <li>
+    The uploader will parse questions one by one and ignore any with errors.
+    After a preview run, both incorrect and succesful parses will be shown.
+  </li>
+  <li>
+    If you prefer, you can also add individual tossups and bonuses from their subportals.
+  </li>
+</ul>
+
 <%= semantic_form_for :import, url: admin_import_force_path, method: :post do |f| %>
-  <%= f.inputs do %>
-    <%= f.input :test %>
+  <%= f.inputs name: "Bulk Input" do %>
+    <%= f.input :tournament_id, required: false, label: "Tournament", as: :select, collection: Tournament.all %>
+    <%= f.input :round, required: false %>
+    <%= f.input :category_id, required: false, label: "Category", as: :select, collection: Category.all %>
+    <%= f.input :subcategory, required: false, label: "Subcategory", as: :select, collection: Subcategory.all %>
+    <%= f.input :formatted, required: false, hint: "already HTML formatted", as: :boolean %>
+  <% end %>
+  <%= f.inputs name: "Your Questions" do %>
+    <%= f.input :questions, as: :text, hint: "Copy-paste your questions here! Remember, YAML format!" %>
   <% end %>
   <%= f.actions %>
 <% end %>

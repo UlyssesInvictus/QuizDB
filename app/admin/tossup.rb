@@ -7,7 +7,7 @@ ActiveAdmin.register Tossup do
 
   permit_params :text, :answer,
     :tournament_id, :category_id, :subcategory_id,
-    :round,
+    :round, :number
 
   config.sort_order = 'id_asc'
   config.per_page = [10, 30, 50, 100]

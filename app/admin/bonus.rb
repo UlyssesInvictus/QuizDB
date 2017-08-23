@@ -5,6 +5,7 @@ ActiveAdmin.register Bonus do
   belongs_to :tournament, optional: true
 
   permit_params :leadin,
+    :round, :number,
     :tournament_id, :category_id, :subcategory_id,
     bonus_parts: [:text, :answer]
 
@@ -57,9 +58,9 @@ ActiveAdmin.register Bonus do
   filter :leadin
   filter :bonus_parts_text, as: :string, label: "Text"
   filter :bonus_parts_answer, as: :string, label: "Answers"
-  filter :tournament, multiple: true, collection: -> { Tournament.order(year: :desc, name: :asc) }
-  filter :category, as: :check_boxes, collection: -> { Category.order(name: :asc) }
-  filter :subcategory, as: :check_boxes, collection: -> { Subcategory.order(name: :asc) }
+  filter :tournament, multiple: true
+  filter :category, as: :check_boxes
+  filter :subcategory, as: :check_boxes
   filter :round
   filter :number
   filter :errors_count
