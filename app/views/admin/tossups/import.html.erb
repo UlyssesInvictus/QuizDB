@@ -8,7 +8,8 @@
   <li>
     Your questions should be uploaded in
     <a href="http://www.yaml.org/start.html" target="_blank">YAML</a> format.
-    See here (TODO) for an example, with all possible meta-fields and instructions
+    See <a href="https://github.com/UlyssesInvictus/QuizDB/blob/master/db/data/import.example.yaml" target="_blank">here</a>
+    for an example, with all possible meta-fields and instructions
     on how to format your YAML for QuizDB.
   </li>
   <li>
@@ -34,7 +35,7 @@
     <%= f.input :formatted, required: false, hint: "already HTML formatted", as: :boolean %>
   <% end %>
   <%= f.inputs name: "Your Questions" do %>
-    <% if @parsed_questions.present? %>
+    <% if parsed_questions.present? %>
       <%= f.input :parsed_questions, as: :text,
           hint: "What QuizDB tried to parse your questions as",
           input_html: {
