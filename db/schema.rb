@@ -10,10 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170821035304) do
+ActiveRecord::Schema.define(version: 20170827220754) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "pg_trgm"
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -56,9 +57,9 @@ ActiveRecord::Schema.define(version: 20170821035304) do
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.integer  "number",           null: false
-    t.index ["answer"], name: "index_bonus_parts_on_answer", using: :btree
+    t.index "answer gin_trgm_ops", name: "index_bonus_parts_on_answer_gin_trgm_ops", using: :gin
+    t.index "text gin_trgm_ops", name: "index_bonus_parts_on_text_gin_trgm_ops", using: :gin
     t.index ["bonus_id"], name: "index_bonus_parts_on_bonus_id", using: :btree
-    t.index ["text"], name: "index_bonus_parts_on_text", using: :btree
   end
 
   create_table "bonuses", force: :cascade do |t|
@@ -73,8 +74,8 @@ ActiveRecord::Schema.define(version: 20170821035304) do
     t.datetime "updated_at",                   null: false
     t.integer  "errors_count",     default: 0
     t.text     "formatted_leadin"
+    t.index "leadin gin_trgm_ops", name: "index_bonuses_on_leadin_gin_trgm_ops", using: :gin
     t.index ["category_id"], name: "index_bonuses_on_category_id", using: :btree
-    t.index ["leadin"], name: "index_bonuses_on_leadin", using: :btree
     t.index ["subcategory_id"], name: "index_bonuses_on_subcategory_id", using: :btree
     t.index ["tournament_id"], name: "index_bonuses_on_tournament_id", using: :btree
   end
@@ -120,12 +121,11 @@ ActiveRecord::Schema.define(version: 20170821035304) do
     t.text     "formatted_text"
     t.integer  "errors_count",     default: 0
     t.text     "formatted_answer"
-    t.index ["answer"], name: "index_tossups_on_answer", using: :btree
+    t.index "answer gin_trgm_ops", name: "index_tossups_on_answer_gin_trgm_ops", using: :gin
+    t.index "text gin_trgm_ops", name: "index_tossups_on_text_gin_trgm_ops", using: :gin
     t.index ["category_id"], name: "index_tossups_on_category_id", using: :btree
     t.index ["quinterest_id"], name: "index_tossups_on_quinterest_id", unique: true, using: :btree
     t.index ["subcategory_id"], name: "index_tossups_on_subcategory_id", using: :btree
-    t.index ["text", "answer"], name: "index_tossups_on_text_and_answer", using: :btree
-    t.index ["text"], name: "index_tossups_on_text", using: :btree
     t.index ["tournament_id"], name: "index_tossups_on_tournament_id", using: :btree
   end
 

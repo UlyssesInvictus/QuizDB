@@ -32,6 +32,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'jbuilder_cache_multi'
 # authorization gem
 gem 'cancancan', '~> 2.0'
+# postgres full text search
+gem 'pg_search'
 
 
 # Use Redis adapter to run Action Cable in production
