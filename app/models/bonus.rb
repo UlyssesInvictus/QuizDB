@@ -11,6 +11,7 @@ class Bonus < ApplicationRecord
   validate :has_three_bonus_parts, on: :create
 
   include Question::Filterable
+  include ActionView::Helpers::TextHelper
 
   # **********
   # SCOPES
@@ -64,13 +65,13 @@ class Bonus < ApplicationRecord
   # *************
   # INSTANCE METHODS
   # *************
-  def content
-    s = "#{leadin}\n"
+  def html_content
+    s = "#{formatted_leadin}\n"
     bonus_parts.each do |part|
-      s += "[10] #{part.text}\n"
-      s += "ANSWER: #{part.answer}\n"
+      s += "[10] #{part.formatted_text}\n"
+      s += "ANSWER: #{part.formatted_answer}\n"
     end
-    s
+    simple_format(s)
   end
 
 end

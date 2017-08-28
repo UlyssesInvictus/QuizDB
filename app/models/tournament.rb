@@ -26,6 +26,8 @@ class Tournament < ApplicationRecord
 
   default_scope { order(year: :desc, name: :asc) }
 
+  scope :name_contains, -> (name) { where("name ILIKE ?", "%#{name}%") }
+
   # possible subtypes
   # TrashTournament, GuerillaTournament, etc.?
 

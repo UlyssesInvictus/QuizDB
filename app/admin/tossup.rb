@@ -39,8 +39,12 @@ ActiveAdmin.register Tossup do
   index do
     selectable_column
     id_column
-    column :text
-    column :answer
+    column :text, sortable: :text do |t|
+      text_node t.formatted_text.html_safe
+    end
+    column :answer, sortable: :answer do |t|
+      text_node t.formatted_answer.html_safe
+    end
     column :tournament, sortable: 'tournaments.name'
     column "Rd.", :round
     column "#", :number

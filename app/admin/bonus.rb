@@ -43,7 +43,7 @@ ActiveAdmin.register Bonus do
     selectable_column
     id_column
     column :content do |b|
-      text_node simple_format b.content
+      text_node b.html_content
     end
     column :tournament, sortable: 'tournaments.name'
     column "Rd.", :round

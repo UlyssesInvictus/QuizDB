@@ -1,5 +1,5 @@
 ActiveAdmin.register Error do
-  menu priority: 5
+  menu priority: 6
 
   permit_params :description, :error_type,
     :errorable_type, :errorable_id,
