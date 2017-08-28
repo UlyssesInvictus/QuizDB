@@ -35,18 +35,21 @@
     <%= f.input :formatted, required: false, hint: "already HTML formatted", as: :boolean %>
   <% end %>
   <%= f.inputs name: "Your Questions" do %>
-    <% if parsed_questions.present? %>
+    <% if parse_string.present? %>
       <%= f.input :parsed_questions, as: :text,
           hint: "What QuizDB tried to parse your questions as",
           input_html: {
             disabled: true,
-            value: parsed_questions
+            value: parse_string
           } %>
     <% end %>
     <%= f.input :questions, as: :text, hint: "Copy-paste your questions here! Remember, YAML format!" %>
   <% end %>
   <%= f.actions do %>
-    <%= f.action :submit %>
-    <%= f.action :submit, button_html: { formaction: admin_import_force_path + "?force=true" } %>
+    <%= f.action :submit, label: "Practie Parse" %>
+    <% if parse_string.present? %>
+      <%= f.action :submit, label: "Force Upload",
+          button_html: { formaction: admin_import_force_path + "?force=true" } %>
+    <% end %>
   <% end %>
 <% end %>
