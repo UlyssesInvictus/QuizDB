@@ -10,6 +10,28 @@ ActiveAdmin.register Category do
 
   includes :subcategories
 
+  show do
+    attributes_table do
+      row :name
+      row :subcategories do |c|
+        c.subcategories.map do |s|
+          link_to(s.name, s, target: "_blank")
+        end.join(", ").html_safe
+      end
+      row :num_tossups do |t|
+        text_node "#{t.tossups.size}"
+        a "(View)", href: admin_tournament_tossups_path(t), target: "_blank"
+      end
+      row :num_bonuses do |t|
+        text_node "#{t.bonuses.size}"
+        a "(View)", href: admin_tournament_bonuses_path(t), target: "_blank"
+      end
+      row :created_at
+      row :updated_at
+    end
+    active_admin_comments
+  end
+
   index do
     selectable_column
     id_column

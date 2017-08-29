@@ -61,5 +61,11 @@ class Tournament < ApplicationRecord
     }[q]
   end
 
+  def rounds
+    tossups_rounds = tossups.distinct.pluck(:round)
+    bonuses_rounds = bonuses.distinct.pluck(:round)
+    tossups_rounds | bonuses_rounds
+  end
+
 
 end

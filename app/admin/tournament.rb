@@ -22,6 +22,36 @@ ActiveAdmin.register Tournament do
     ])
   end
 
+  show do
+    attributes_table do
+      row :name
+      row :year
+      row :rounds do |t|
+        t.rounds.sort.join(", ")
+      end
+      row :difficulty do |t|
+        diff_num = t.difficulty ? "(#{Tournament.difficulties[t.difficulty]})" : ""
+        text_node "#{t.difficulty&.titleize} #{diff_num}"
+      end
+      row :quality do |t|
+        qual_num = t.quality ? "(#{Tournament.qualities[t.quality]})" : ""
+        text_node "#{t.quality&.titleize} #{qual_num}"
+      end
+      row :address
+      row :num_tossups do |t|
+        text_node "#{t.tossups.size}"
+        a "(View)", href: admin_tournament_tossups_path(t), target: "_blank"
+      end
+      row :num_bonuses do |t|
+        text_node "#{t.bonuses.size}"
+        a "(View)", href: admin_tournament_bonuses_path(t), target: "_blank"
+      end
+      row :link
+      row :created_at
+      row :updated_at
+    end
+    active_admin_comments
+  end
 
   index do
     selectable_column

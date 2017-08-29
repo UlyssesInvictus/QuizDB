@@ -10,6 +10,24 @@ ActiveAdmin.register Subcategory do
 
   belongs_to :category, optional: true
 
+  show do
+    attributes_table do
+      row :name
+      row :category
+      row :num_tossups do |t|
+        text_node "#{t.tossups.size}"
+        a "(View)", href: admin_tournament_tossups_path(t), target: "_blank"
+      end
+      row :num_bonuses do |t|
+        text_node "#{t.bonuses.size}"
+        a "(View)", href: admin_tournament_bonuses_path(t), target: "_blank"
+      end
+      row :created_at
+      row :updated_at
+    end
+    active_admin_comments
+  end
+
   index do
     selectable_column
     id_column
