@@ -3,9 +3,10 @@ ActiveAdmin.register Tossup do
   menu priority: 2
 
   includes :tournament, :category, :subcategory
-  belongs_to :tournament, optional: true
-  belongs_to :category, optional: true
-  belongs_to :subcategory, optional: true
+
+  controller do
+    belongs_to :tournament, :category, :subcategory, optional: true
+  end
 
   permit_params :text, :answer,
     :tournament_id, :category_id, :subcategory_id,

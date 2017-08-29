@@ -2,9 +2,10 @@ ActiveAdmin.register Bonus do
   menu priority: 3, label: "Bonuses"
 
   includes :tournament, :category, :subcategory, :bonus_parts
-  belongs_to :tournament, optional: true
-  belongs_to :category, optional: true
-  belongs_to :subcategory, optional: true
+
+  controller do
+    belongs_to :tournament, :category, :subcategory, optional: true
+  end
 
   permit_params :leadin, :formatted_leadin,
     :round, :number,
@@ -62,7 +63,6 @@ ActiveAdmin.register Bonus do
         end.join("\n"))
       end
 
-      # row :formatted_answer
       row :category
       row :subcategory
       row :tournament

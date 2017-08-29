@@ -3,6 +3,20 @@ Rails.application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
+  namespace :admin do
+    resources :tournaments do
+      resources :tossups
+      resources :bonuses
+    end
+    resources :categories do
+      resources :tossups
+      resources :bonuses
+    end
+    resources :subcategories do
+      resources :tossups
+      resources :bonuses
+    end
+  end
 
   scope 'api', defaults: {format: 'json'} do
     resources :subcategories
