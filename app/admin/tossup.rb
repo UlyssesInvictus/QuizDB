@@ -4,10 +4,12 @@ ActiveAdmin.register Tossup do
 
   includes :tournament, :category, :subcategory
   belongs_to :tournament, optional: true
+  belongs_to :category, optional: true
+  belongs_to :subcategory, optional: true
 
   permit_params :text, :answer,
     :tournament_id, :category_id, :subcategory_id,
-    :round, :number
+    :round, :number, :formatted_text, :formatted_answer
 
   config.sort_order = 'id_asc'
   config.per_page = [10, 30, 50, 100]
@@ -35,6 +37,22 @@ ActiveAdmin.register Tossup do
     redirect_to collection_path, notice: notice
   end
 
+  show do
+    attributes_table do
+      row :text
+      row :answer
+      row :formatted_text
+      row :formatted_answer
+      row :category
+      row :subcategory
+      row :tournament
+      row :round
+      row :number
+      row :created_at
+      row :updated_at
+    end
+    active_admin_comments
+  end
 
   index do
     selectable_column

@@ -3,11 +3,13 @@ ActiveAdmin.register Bonus do
 
   includes :tournament, :category, :subcategory, :bonus_parts
   belongs_to :tournament, optional: true
+  belongs_to :category, optional: true
+  belongs_to :subcategory, optional: true
 
-  permit_params :leadin,
+  permit_params :leadin, :formatted_leadin,
     :round, :number,
     :tournament_id, :category_id, :subcategory_id,
-    bonus_parts: [:text, :answer]
+    bonus_parts: [:text, :answer, :formatted_text, :formatted_answer]
 
   config.sort_order = 'id_asc'
   config.per_page = [10, 30, 50, 100]
@@ -37,6 +39,39 @@ ActiveAdmin.register Bonus do
     notice = "Tossups #{ids} updated:\n"
     notice += attr_hash.map {|k, v| "#{k}: #{v}"}.join(" ; ")
     redirect_to collection_path, notice: notice
+  end
+
+  show do
+    attributes_table do
+      row :leadin
+      row :texts do |bonus|
+        simple_format bonus.bonus_parts.pluck(:text).join("\n")
+      end
+      row :answers do |bonus|
+        simple_format bonus.bonus_parts.pluck(:answer).join("\n")
+      end
+      row :formatted_leadin
+      row :formatted_texts do |bonus|
+        simple_format (bonus.bonus_parts.pluck(:formatted_text).map do |p|
+          ERB::Util.html_escape(p)
+        end.join("\n"))
+      end
+      row :formatted_answers do |bonus|
+        simple_format (bonus.bonus_parts.pluck(:formatted_answer).map do |p|
+          ERB::Util.html_escape(p)
+        end.join("\n"))
+      end
+
+      # row :formatted_answer
+      row :category
+      row :subcategory
+      row :tournament
+      row :round
+      row :number
+      row :created_at
+      row :updated_at
+    end
+    active_admin_comments
   end
 
   index do
