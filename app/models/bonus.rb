@@ -4,7 +4,7 @@ class Bonus < ApplicationRecord
   belongs_to :tournament, optional: true
 
   has_many :bonus_parts, dependent: :destroy
-  accepts_nested_attributes_for :bonus_parts
+  accepts_nested_attributes_for :bonus_parts, allow_destroy: true
 
   has_many :question_errors, as: :errorable, class_name: "Error"
 
@@ -12,6 +12,7 @@ class Bonus < ApplicationRecord
 
   include Question::Filterable
   include ActionView::Helpers::TextHelper
+  include Question::Categorizable
 
   # **********
   # SCOPES

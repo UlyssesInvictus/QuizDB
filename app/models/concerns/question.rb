@@ -1,4 +1,19 @@
 module Question
+  module Categorizable
+    extend ActiveSupport::Concern
+
+    included do
+      validate :subcategory_matches_category
+      def subcategory_matches_category
+        if subcategory.present?
+          if category.blank? || subcategory.category != category
+            errors.add(:subcategory, "Subcategory must belong to category.")
+          end
+        end
+      end
+    end
+  end
+
   module SearchAndFilter
     def self.search_and_filter(query, filters)
       if filters

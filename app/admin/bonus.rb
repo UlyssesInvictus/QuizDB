@@ -10,7 +10,9 @@ ActiveAdmin.register Bonus do
   permit_params :leadin, :formatted_leadin,
     :round, :number,
     :tournament_id, :category_id, :subcategory_id,
-    bonus_parts: [:text, :answer, :formatted_text, :formatted_answer]
+    bonus_parts_attributes: [:id, :text, :answer,
+      :formatted_text, :formatted_answer,
+      :number, :_destroy]
 
   config.sort_order = 'id_asc'
   config.per_page = [10, 30, 50, 100]
@@ -74,6 +76,32 @@ ActiveAdmin.register Bonus do
     active_admin_comments
   end
 
+  form do |f|
+    f.semantic_errors
+    f.inputs do
+      f.input :category
+      f.input :subcategory
+      f.input :tournament
+      f.input :round
+      f.input :number
+      f.input :leadin, input_html: { rows: 2 }
+      f.input :formatted_leadin, input_html: { rows: 2 }
+    end
+    f.inputs do
+      f.has_many :bonus_parts,
+          heading: "Bonus Parts",
+          sortable: :number,
+          allow_destroy: true,
+          sortable_start: 1 do |p|
+        p.input :text, input_html: { rows: 2 }
+        p.input :answer, input_html: { rows: 2 }
+        p.input :formatted_text, input_html: { rows: 2 }
+        p.input :formatted_answer, input_html: { rows: 2 }
+      end
+    end
+    f.actions
+  end
+
   index do
     selectable_column
     id_column
@@ -86,6 +114,9 @@ ActiveAdmin.register Bonus do
     column "Cat.", :category, sortable: 'categories.name'
     column "Subcat.", :subcategory, sortable: 'subcategories.name'
     column "# Errors", :errors_count, sortable: :errors_count
+    column :created_at
+    column :updated_at
+
     actions
   end
 

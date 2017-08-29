@@ -70,6 +70,8 @@ ActiveAdmin.register Tossup do
     column "Cat.", :category, sortable: 'categories.name'
     column "Subcat.", :subcategory, sortable: 'subcategories.name'
     column "# Errors", :errors_count, sortable: :errors_count
+    column :created_at
+    column :updated_at
     actions
   end
 
