@@ -64,12 +64,14 @@ ActiveAdmin.register Bonus do
           ERB::Util.html_escape(p)
         end.join("\n"))
       end
-
       row :category
       row :subcategory
       row :tournament
       row :round
       row :number
+      row :question_errors do |q|
+        simple_format q.question_errors.join("\n")
+      end
       row :created_at
       row :updated_at
     end

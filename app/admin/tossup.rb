@@ -49,6 +49,9 @@ ActiveAdmin.register Tossup do
       row :tournament
       row :round
       row :number
+      row :question_errors do |q|
+        simple_format q.question_errors.join("\n")
+      end
       row :created_at
       row :updated_at
     end

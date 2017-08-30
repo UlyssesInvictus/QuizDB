@@ -22,6 +22,23 @@ ActiveAdmin.register Error do
     redirect_to admin_errors_path, notice: "Error resolved."
   end
 
+  form do |f|
+    h3 "Create Error (Work in Progress!!)"
+    f.semantic_errors
+    f.inputs do
+      f.input :error_type, label: "Error Category"
+      f.input :description, input_html: { rows: 4 }
+      f.input :errorable_type,
+              label: "Type of Question",
+              as: :select, collection: ["Tossup", "Bonus"],
+              hint: "Must be supplied!"
+      f.input :errorable_id, label: "ID of Question",
+              hint: "Must be supplied!"
+      f.input :resolved
+    end
+    f.actions
+  end
+
   index do
     selectable_column
     id_column
