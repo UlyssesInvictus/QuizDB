@@ -318,8 +318,10 @@ module.exports = {
       navigateFallbackWhitelist: [
         // remove Regex where everything that's non-Firebase passes
         // /^(?!\/__).*/,
-        // but do whitelist everything that's not admin
-        /^(?!\/admin)/
+        // but do whitelist everything that's not one of:
+        // - admin
+        // - api
+        /^(?!\/((admin)|(api))/
       ],
       // Don't precache sourcemaps (they're large) and build asset manifest:
       staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],

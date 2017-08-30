@@ -15,6 +15,7 @@ const App = () => (
   <Router>
     <Switch>
       <Route path="/admin*" component={PageRefresh}/>
+      <Route path="/api*" component={PageRefresh}/>
       <Route path="/" component={Root}/>
     </Switch>
   </Router>

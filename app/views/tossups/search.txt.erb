@@ -5,7 +5,7 @@ Number bonuses found: <%= num_bonuses_found %>
 
 <% tossups.includes(:tournament, :category, :subcategory).each_with_index do |t, i| %>
 <%= i + 1 %>.
-ID: <%= t.id %>  | Difficulty: <%= t.tournament.difficulty.titleize %> | Category: <%= t.category&.name || "None" %> | Subcategory: <%= t.subcategory&.name || "None" %>
+ID: <%= t.id %>  | Difficulty: <%= t.tournament&.difficulty&.titleize %> | Category: <%= t.category&.name || "None" %> | Subcategory: <%= t.subcategory&.name || "None" %>
 Tournament: <%= t.tournament&.name || "Unknown" %> | Round: <%= t.round %> | Number: <%= t.number %>
 TOSSUP: <%= t.text %>
 ANSWER: <%= t.answer %>
@@ -16,7 +16,7 @@ ANSWER: <%= t.answer %>
 
 <% bonuses.includes(:tournament, :category, :subcategory, :bonus_parts).each_with_index do |b, i| %>
 <%= i + 1 %>.
-ID: <% b.id %>  | Difficulty: <% b.tournament.difficulty.titleize %> | Category: <% b.category&.name || "None" %> | Subcategory: <% b.subcategory&.name || "None" %>
+ID: <% b.id %>  | Difficulty: <% b.tournament&.difficulty&.titleize %> | Category: <% b.category&.name || "None" %> | Subcategory: <% b.subcategory&.name || "None" %>
 Tournament: <% b.tournament&.name || "Unknown" %> | Round: <% b.round %> | Number: <% b.number %>
 BONUS: <% b.leadin %>
 <% b.bonus_parts.each do |part| %>

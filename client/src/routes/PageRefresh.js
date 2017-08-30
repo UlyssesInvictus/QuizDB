@@ -4,7 +4,7 @@ class PageRefresh extends React.Component {
   render() {
     return <h3>
       <p>
-        A bug in how client-side rendering works means that sometimes this app won't load
+        A bug in how web rendering works means that sometimes this app won't load
         server pages--like the one you're trying to access--properly.
       </p>
       <p>
