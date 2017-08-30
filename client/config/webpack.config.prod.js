@@ -321,7 +321,7 @@ module.exports = {
         // but do whitelist everything that's not one of:
         // - admin
         // - api
-        /^(?!\/((admin)|(api))/
+        /^(?!\/((admin)|(api)))/
       ],
       // Don't precache sourcemaps (they're large) and build asset manifest:
       staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],
