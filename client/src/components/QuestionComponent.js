@@ -198,16 +198,19 @@ class QuestionsComponent extends React.Component {
   render() {
     const p = this.props;
     const q = this.props.question;
-    return <div className='question'><Segment.Group>
-        {this.renderInfo()}
-        {p.questionType === "tossup" ? this.renderTossup(q) : this.renderBonus(q)}
-    </Segment.Group>
-    <ErrorModal
-      errorableType={p.questionType}
-      errorableId={q.id}
-      open={!!p.errors[q.id] && !!p.errors[q.id].modalOpen}
-    />
-    </div>
+    return (
+      <div className='question'>
+        <Segment.Group>
+          {this.renderInfo()}
+          {p.questionType === "tossup" ? this.renderTossup(q) : this.renderBonus(q)}
+        </Segment.Group>
+        <ErrorModal
+          errorableType={p.questionType}
+          errorableId={q.id}
+          open={!!p.errors[q.id] && !!p.errors[q.id].modalOpen}
+        />
+      </div>
+    );
   }
 }
 

@@ -153,13 +153,6 @@ class SearchForm extends React.Component {
         </Grid.Column>
         {/* Search buttons */}
         <Grid.Column width={6} floated='right'>
-          {/* <Button.Group {...buttonGroupProps} >
-            <Button attached='left' icon='search' content='Search'
-                    onClick={this.triggerSearch}
-                    onSubmit={this.triggerSearch}
-            />
-            <Button attached='right' icon='random' content='Random'/>
-          </Button.Group> */}
           <Button className='search-search_button'
                   attached='left' icon='search' content='Search'
                   onClick={this.triggerSearch}
