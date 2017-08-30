@@ -39,7 +39,9 @@
   # you can (optional) give the round the question appears in
   # please try to have this match the other values, since this value isn't restricted
   round: Harvard + Yale
-  # you can (optional) give the number the question appears in the packet
+  # you can (optionally) give the number the question appears in the packet
+  # if you don't supply a number, the parser will try and guess it based on the
+  # the position of the question in this list
   number: 9
 # and an example of a bonus
 -

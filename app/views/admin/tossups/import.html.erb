@@ -32,7 +32,6 @@
     <%= f.input :round, required: false %>
     <%= f.input :category_id, required: false, label: "Category", as: :select, collection: Category.all %>
     <%= f.input :subcategory, required: false, label: "Subcategory", as: :select, collection: Subcategory.all %>
-    <%= f.input :formatted, required: false, hint: "already HTML formatted", as: :boolean %>
   <% end %>
   <%= f.inputs name: "Your Questions" do %>
     <% if parse_string.present? %>

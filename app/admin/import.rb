@@ -6,7 +6,6 @@ ActiveAdmin.register_page "Import" do
     render file: "admin/tossups/import.html.erb", locals: {
       parse_string: nil
     }
-    # render file: "admin/tossups/import"
   end
 
   controller do
