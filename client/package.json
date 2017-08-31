@@ -38,6 +38,7 @@
     "react-dev-utils": "^3.0.2",
     "react-dom": "^15.6.1",
     "react-error-overlay": "^1.0.9",
+    "react-ga": "^2.2.0",
     "react-markdown": "^2.5.0",
     "react-notification-system": "^0.2.15",
     "react-notification-system-redux": "^1.1.4",

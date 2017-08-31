@@ -1,12 +1,12 @@
 import React from 'react';
 
+// Store
 import { connect } from 'react-redux';
 import {
   toggleSidebar,
 } from '../actions/actions';
 
 // Routes
-
 import {
   Route,
   Switch,
@@ -17,6 +17,8 @@ import PageAbout from './PageAbout';
 import PageResources from './PageResources';
 import Page404 from './Page404';
 import PageRefresh from './PageRefresh';
+
+import ReactGA from 'react-ga';
 
 // Components
 import Notifications from 'react-notification-system-redux';
@@ -29,6 +31,10 @@ import {
   Menu
 } from 'semantic-ui-react';
 
+ReactGA.initialize('UA-105674080-1', {
+  debug: process.env.NODE_ENV !== 'production',
+});
+
 class Root extends React.Component {
 
   constructor(props) {
@@ -38,7 +44,7 @@ class Root extends React.Component {
     this.hashLinkScroll = this.hashLinkScroll.bind(this);
 
     // Initial page load - only fired once
-    // this.sendPageChange(props.location.pathname, props.location.search)
+    this.sendPageChange(props.location.pathname, props.location.search)
   }
 
   componentDidMount() {
@@ -52,14 +58,14 @@ class Root extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(this.props);
-
     this.hashLinkScroll();
     // When props change, check if the URL has changed or not
-    // if (this.props.location.pathname !== nextProps.location.pathname
-    //     || this.props.location.search !== nextProps.location.search) {
-    //   this.sendPageChange(nextProps.location.pathname, nextProps.location.search)
-    // }
+    const currentLoc = this.props.location;
+    const nextLoc = nextProps.location;
+    if (currentLoc.pathname !== nextLoc.pathname ||
+        currentLoc.search !== currentLoc.search) {
+      this.sendPageChange(nextLoc.pathname, nextLoc.search)
+    }
   }
 
   // get hash links working with react router
@@ -76,11 +82,12 @@ class Root extends React.Component {
     }
   }
 
-  // sendPageChange(pathname, search='') {
-  //   const page = pathname + search
-  //   ReactGA.set({page});
-  //   ReactGA.pageview(page);
-  // }
+  sendPageChange(pathname, search='') {
+    const page = pathname + search
+    ReactGA.set({page});
+    ReactGA.pageview(page);
+    console.log(page);
+  }
 
   handleInputKeyPress(e) {
     if (e.key === "Escape") {
