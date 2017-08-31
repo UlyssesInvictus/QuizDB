@@ -35,6 +35,10 @@ class Root extends React.Component {
     super(props);
     this.handleOutOfSidebarClick = this.handleOutOfSidebarClick.bind(this);
     this.handleInputKeyPress = this.handleInputKeyPress.bind(this);
+    this.hashLinkScroll = this.hashLinkScroll.bind(this);
+
+    // Initial page load - only fired once
+    // this.sendPageChange(props.location.pathname, props.location.search)
   }
 
   componentDidMount() {
@@ -46,6 +50,37 @@ class Root extends React.Component {
     window.removeEventListener('click', this.handleOutOfSidebarClick);
     window.removeEventListener('keydown', this.handleInputKeyPress);
   }
+
+  componentWillReceiveProps(nextProps) {
+    console.log(this.props);
+
+    this.hashLinkScroll();
+    // When props change, check if the URL has changed or not
+    // if (this.props.location.pathname !== nextProps.location.pathname
+    //     || this.props.location.search !== nextProps.location.search) {
+    //   this.sendPageChange(nextProps.location.pathname, nextProps.location.search)
+    // }
+  }
+
+  // get hash links working with react router
+  // https://stackoverflow.com/a/40280486/4280391
+  // we put this on the root component as a shortcut for listening to the history
+  hashLinkScroll() {
+    const { hash } = window.location;
+    if (hash !== '') {
+      setTimeout(() => {
+        const id = hash.replace('#', '');
+        const element = document.getElementById(id);
+        if (element) element.scrollIntoView();
+      }, 0);
+    }
+  }
+
+  // sendPageChange(pathname, search='') {
+  //   const page = pathname + search
+  //   ReactGA.set({page});
+  //   ReactGA.pageview(page);
+  // }
 
   handleInputKeyPress(e) {
     if (e.key === "Escape") {
@@ -94,7 +129,7 @@ class Root extends React.Component {
           </Link>
         </Menu.Item>
         <Menu.Item name='help'>
-          <Link to='/about' onClick={() => dispatch(toggleSidebar())}>
+          <Link to='/about#contact' onClick={() => dispatch(toggleSidebar())}>
             <Icon name='question circle' />
             Help
           </Link>

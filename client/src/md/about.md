@@ -82,6 +82,8 @@ Both the frontend and backend live in the following repository: [https://github.
 
 The repo is open source. If you'd like to contribute, please fork the repo and make a pull request. You can find full tech specs and contribution guidelines in the README at the base of the repo.
 
+<div id='contact' class='anchor'></div>
+
 ## Contact
 
 You can contact me at [kuang@raynor.me](mailto:kuang@raynor.me), or by PM at my QB forum account [here](http://hsquizbowl.org/forums/memberlist.php?mode=viewprofile&u=5867).
