@@ -31,6 +31,12 @@ class Tournament < ApplicationRecord
   # possible subtypes
   # TrashTournament, GuerillaTournament, etc.?
 
+  ###
+  # VALIDATIONS
+  ###
+
+  validates :name, uniqueness: true
+
   def self.difficulties_to_int(diffs)
     diffs.map {|d| difficulties[d]}
   end

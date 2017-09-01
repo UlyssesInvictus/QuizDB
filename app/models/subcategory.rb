@@ -5,4 +5,7 @@ class Subcategory < ApplicationRecord
   has_many :bonus_parts, through: :bonuses
 
   default_scope { order(name: :asc) }
+
+  validates :name, uniqueness: true
+
 end

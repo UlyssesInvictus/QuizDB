@@ -58,7 +58,7 @@ class ErrorModal extends React.Component {
 
     if (!this.state.description || this.state.description.trim() === "") {
       this.props.dispatch(Notifications.error({
-        autoDismiss: 0,
+        // autoDismiss: 0,
         title: "Error Description Must Be Provided",
         message: "Please provide a description for the error. The more specific, the more helpful!"
       }));
