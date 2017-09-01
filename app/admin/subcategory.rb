@@ -10,6 +10,17 @@ ActiveAdmin.register Subcategory do
 
   belongs_to :category, optional: true
 
+  controller do
+    def destroy
+      destroy! do |success, failure|
+        failure.html do
+          flash[:error] = "The deletion failed because: " + resource.errors.full_messages.to_sentence
+          redirect_to admin_subcategories_path
+        end
+      end
+    end
+  end
+
   show do
     attributes_table do
       row :name

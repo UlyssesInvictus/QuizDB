@@ -6,6 +6,18 @@ class Subcategory < ApplicationRecord
 
   default_scope { order(name: :asc) }
 
+  ###
+  # VALIDATIONS
+  ###
+
   validates :name, uniqueness: true
+
+  before_destroy do
+    if tossups.present? || bonuses.present?
+      errors.add(:base, "This subcategory still has questions associated with" \
+                        " it. Delete or migrate those first!")
+      throw(:abort)
+    end
+  end
 
 end

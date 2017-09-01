@@ -22,6 +22,17 @@ ActiveAdmin.register Tournament do
     ])
   end
 
+  controller do
+    def destroy
+      destroy! do |success, failure|
+        failure.html do
+          flash[:error] = "The deletion failed because: " + resource.errors.full_messages.to_sentence
+          redirect_to admin_tournaments_path
+        end
+      end
+    end
+  end
+
   batch_action :bulk_edit,
     confirm: "Apply properties to all tournaments selected (blank inputs ignored)",
     form: {

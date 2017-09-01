@@ -37,6 +37,14 @@ class Tournament < ApplicationRecord
 
   validates :name, uniqueness: true
 
+  before_destroy do
+    if tossups.present? || bonuses.present?
+      errors.add(:base, "This tournament still has questions associated with" \
+                        " it. Delete or migrate those first!")
+      throw(:abort)
+    end
+  end
+
   def self.difficulties_to_int(diffs)
     diffs.map {|d| difficulties[d]}
   end
