@@ -92,6 +92,7 @@ module Question
       end
 
       def filter_by_search_type(filter, query)
+        filter = filter.present? ? filter : []
         query = query.present? ? query : ""
         if (["Question", "Answer"] - filter).empty?
           contains(query)
