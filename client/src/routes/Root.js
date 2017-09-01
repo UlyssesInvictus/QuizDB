@@ -86,7 +86,6 @@ class Root extends React.Component {
     const page = pathname + search
     ReactGA.set({page});
     ReactGA.pageview(page);
-    console.log(page);
   }
 
   handleInputKeyPress(e) {

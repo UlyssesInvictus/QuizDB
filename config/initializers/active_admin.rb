@@ -164,7 +164,7 @@ ActiveAdmin.setup do |config|
   # Add additional meta tags to the head element of active admin pages.
   #
   # Add tags to all pages logged in users see:
-  #   config.meta_tags = { author: 'My Company' }
+    # config.meta_tags = { author: 'My Company' }
 
   # By default, sign up/sign in/recover password pages are excluded
   # from showing up in search engine results by adding a robots meta
@@ -290,4 +290,43 @@ ActiveAdmin.setup do |config|
   # You can inherit it with own class and inject it for all resources
   #
   # config.order_clause = MyOrderClause
+
+  # override view factories
+
+  ActiveAdmin::Views::Pages::Base.class_eval do
+    def build_active_admin_head
+      within @head do
+        insert_tag Arbre::HTML::Title, [title, helpers.active_admin_namespace.site_title(self)].compact.join(" | ")
+
+        text_node stylesheet_link_tag('active_admin.css', media: 'screen').html_safe
+        text_node stylesheet_link_tag('active_admin/print.css', media: 'print').html_safe
+
+        active_admin_namespace.meta_tags.each do |name, content|
+          text_node(tag(:meta, name: name, content: content))
+        end
+
+        # the whole reason we had to override this stupid ass layout
+        raw_js = "
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+          console.log('test');
+          ga('create', 'UA-105674080-1', 'auto');
+          ga('send', 'pageview');
+        "
+        text_node(javascript_tag(raw_js))
+        # end injection into stupid ass layout
+
+        text_node(javascript_include_tag('active_admin.js'))
+
+        if active_admin_namespace.favicon
+          text_node(favicon_link_tag(active_admin_namespace.favicon))
+        end
+
+        text_node csrf_meta_tag
+      end
+    end
+  end
+
 end
