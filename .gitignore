@@ -18,3 +18,5 @@
 
 # Ignore DB dumps
 db/dump/*
+
+config/application.y*ml

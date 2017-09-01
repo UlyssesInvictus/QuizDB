@@ -34,6 +34,8 @@ gem 'jbuilder_cache_multi'
 gem 'cancancan', '~> 2.0'
 # postgres full text search
 gem 'pg_search'
+gem 'figaro'
+gem 'sendgrid-ruby'
 
 
 # Use Redis adapter to run Action Cable in production
@@ -65,5 +67,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # ActiveAdmin
 gem 'devise', '> 4.x'
-gem 'activeadmin', github: 'activeadmin'
-gem 'inherited_resources', git: 'https://github.com/activeadmin/inherited_resources'
+gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin'
+# gem 'inherited_resources', git: 'https://github.com/activeadmin/inherited_resources'
