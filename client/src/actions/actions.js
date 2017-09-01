@@ -152,7 +152,7 @@ function receiveErrorStatus(errorStatus, errorableId) {
 function displayErrorStatusNotification(dispatch, errorReported) {
   const opts = {
     position: 'tr',
-    autoDismiss: 0,
+    // autoDismiss: 0,
   };
   const failOpts = Object.assign({}, opts, {
     title: "Error Report Failed",
