@@ -89,7 +89,7 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     :user_name => ENV['SENDGRID_USERNAME'],
     :password => ENV['SENDGRID_PASSWORD'],
-    :domain => 'quizdb.org',
+    :domain => 'www.quizdb.org',
     :address => 'smtp.sendgrid.net',
     :port => 587,
     :authentication => :plain,
@@ -97,7 +97,8 @@ Rails.application.configure do
   }
 
   config.action_mailer.default_url_options = {
-    host: 'quizdb.org'
+    host: 'quizdb.org',
+    protocol: 'https'
   }
 
 end
