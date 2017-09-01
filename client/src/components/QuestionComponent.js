@@ -17,6 +17,7 @@ import {
   Icon
 } from 'semantic-ui-react';
 import ReactTooltip from 'react-tooltip';
+import sanitizeHtml from 'sanitize-html';
 
 import ErrorModal from './ErrorModal';
 
@@ -155,14 +156,23 @@ class QuestionsComponent extends React.Component {
   }
 
   renderTossup(q) {
+    let formattedText = sanitizeHtml(q.formatted_text, {
+      allowedTags: [ 'b', 'i', 'em', 'strong', 'u' ]
+    });
+    formattedText = <span dangerouslySetInnerHTML={{__html: formattedText}}/>;
+    let formattedAnswer = sanitizeHtml(q.formatted_answer, {
+      allowedTags: [ 'b', 'i', 'em', 'strong', 'u' ]
+    });
+    formattedAnswer = <span dangerouslySetInnerHTML={{__html: formattedAnswer}}/>;
+
     return <div className="question-content">
       <Segment className="question-tossup-text">
-        <strong>Question: </strong>{q.text}
+        <strong>Question: </strong>{formattedText}
       </Segment>
       <Segment className="question-tossup-answer">
         <Grid columns='16'>
           <Grid.Column largeScreen='13' computer='14' tablet='16' mobile='16'>
-            <strong>ANSWER: </strong>{q.answer}
+            <strong>ANSWER: </strong>{formattedAnswer}
             <input id={'question-hidden-answer-'+q.id}
                    className='question-hidden-answer'
                    value={q.answer} readOnly/>
@@ -179,11 +189,20 @@ class QuestionsComponent extends React.Component {
         <strong>Question: </strong>{q.leadin}
       </Segment>
       {[0, 1, 2].map(index => {
+        let formattedText = sanitizeHtml(q.formatted_texts[index], {
+          allowedTags: [ 'b', 'i', 'em', 'strong', 'u' ]
+        });
+        formattedText = <span dangerouslySetInnerHTML={{__html: formattedText}}/>;
+        let formattedAnswer = sanitizeHtml(q.formatted_answers[index], {
+          allowedTags: [ 'b', 'i', 'em', 'strong', 'u' ]
+        });
+        formattedAnswer = <span dangerouslySetInnerHTML={{__html: formattedAnswer}}/>;
+
         return <Segment className="question-bonus-part" key={`question-bonus-part-${index}`}>
-          <p><strong>[10] </strong>{q.texts[index]}</p>
+          <p><strong>[10] </strong>{formattedText}</p>
           <Grid columns='16'>
             <Grid.Column largeScreen='13' computer='14' tablet='16' mobile='16' >
-              <strong>ANSWER: </strong>{q.answers[index]}
+              <strong>ANSWER: </strong>{formattedAnswer}
               <input id={'question-hidden-answer-'+q.id+'-'+index}
                      className='question-hidden-answer'
                      value={q.answers[index]} readOnly/>

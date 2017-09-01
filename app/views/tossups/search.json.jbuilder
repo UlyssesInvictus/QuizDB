@@ -14,7 +14,7 @@ json.data do
     json.extract! tossup, :id, :text, :answer, :number,
       :tournament_id, :category_id, :subcategory_id,
       :round, :created_at, :updated_at, :quinterest_id,
-      :formatted_text
+      :formatted_text, :formatted_answer
     json.url tossup_url(tossup, format: :json)
 
     # these cause extra renders too
@@ -61,10 +61,17 @@ json.data do
   json.bonuses bonuses.includes(:tournament, :category, :subcategory, :bonus_parts) do |bonus|
     json.extract! bonus, :id, :number, :round, :category_id, :subcategory_id,
                          :quinterest_id, :tournament_id, :leadin,
-                         :created_at, :updated_at
-    bonus_parts = bonus.bonus_parts.pluck(:number, :text, :answer).sort_by {|b| b[0]}
+                         :created_at, :updated_at, :formatted_leadin
+    # plucking's much faster than actually loading the object
+    bonus_parts = bonus.bonus_parts.pluck(:number, :text, :answer,
+                                          :formatted_text,
+                                          :formatted_answer
+                                         )
+                                   .sort_by {|b| b[0]}
     json.texts bonus_parts.map {|b| b[1]}
     json.answers bonus_parts.map {|b| b[2]}
+    json.formatted_texts bonus_parts.map {|b| b[3]}
+    json.formatted_answers bonus_parts.map {|b| b[4]}
     json.url bonus_url(bonus, format: :json)
 
     # json.tournament bonus.tournament, partial: "tournaments/tournament", as: :tournament

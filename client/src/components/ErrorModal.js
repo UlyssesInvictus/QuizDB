@@ -48,7 +48,7 @@ class ErrorModal extends React.Component {
     // don't accidentally turn 0 for errorType into true...
     if (this.state.errorType === undefined || this.state.errorType === null) {
       this.props.dispatch(Notifications.error({
-        autoDismiss: 0,
+        // autoDismiss: 5, // default, change if desired
         title: "Error Type Must Be Selected",
         message: "Please select a type for the error. " +
           "If you're not sure, just pick 'Other,' but please be specific in your description."
