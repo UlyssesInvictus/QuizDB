@@ -58,7 +58,8 @@ class SearchDropDown extends React.Component {
       };
     });
 
-    let dropdown =  <Dropdown placeholder='All'
+    let placeholder = p.filter === "search_type" ? "Answer" : "All";
+    let dropdown =  <Dropdown placeholder={placeholder}
                               multiple fluid
                               value={p.search.filters[p.filter] || []}
                               onChange={(e, data) =>

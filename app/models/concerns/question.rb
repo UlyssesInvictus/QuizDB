@@ -93,10 +93,13 @@ module Question
 
       def filter_by_search_type(filter, query)
         query = query.present? ? query : ""
-        if filter.blank? || (["Question", "Answer"] - filter).empty?
+        if (["Question", "Answer"] - filter).empty?
           contains(query)
         elsif filter.include?("Question")
           text_contains(query)
+        # explicitly separate last two cases in case we add new ones
+        elsif filter.include?("Answer")
+          answer_contains(query)
         else
           answer_contains(query)
         end
