@@ -96,6 +96,11 @@
   cursor: pointer !important;
   color: #2185d0 !important; }
 
+.root-credits > div.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
 #root {
   min-height: 100%;
   margin-bottom: -3em; }
