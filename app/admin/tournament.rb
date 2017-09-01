@@ -22,6 +22,29 @@ ActiveAdmin.register Tournament do
     ])
   end
 
+  batch_action :bulk_edit,
+    confirm: "Apply properties to all tournaments selected (blank inputs ignored)",
+    form: {
+      difficulty: [["No change", nil]] + (Tournament.difficulties.keys.map do |d|
+        [d.titleize, Tournament.difficulties[d]]
+      end),
+      quality: [["No change", nil]] + (Tournament.qualities.keys.map do |d|
+        [d.titleize, Tournament.qualities[d]]
+      end),
+      year: :number
+    } do |ids, inputs|
+    attr_hash = {}
+    attr_hash[:difficulty] = inputs[:difficulty] if inputs[:difficulty].present?
+    attr_hash[:quality] = inputs[:quality] if inputs[:quality].present?
+    attr_hash[:year] = inputs[:year].to_i if inputs[:year].present?
+    attr_hash[:updated_at] = Time.zone.now
+
+    Tournament.where(id: ids).update_all(attr_hash)
+    notice = "Tournaments #{ids} updated:\n"
+    notice += attr_hash.map {|k, v| "#{k}: #{v}"}.join(" ; ")
+    redirect_to collection_path, notice: notice
+  end
+
   show do
     attributes_table do
       row :name
@@ -66,7 +89,7 @@ ActiveAdmin.register Tournament do
       qual_num = t.quality ? "(#{Tournament.qualities[t.quality]})" : ""
       "#{t.quality&.titleize} #{qual_num}"
     end
-    column "questions" do |t|
+    column "Questions" do |t|
       # link_to "TUs", admin_tournament_tossups_path(t)
       a "TUs", href: admin_tournament_tossups_path(t)
       text_node " / "
@@ -74,6 +97,7 @@ ActiveAdmin.register Tournament do
     end
     column :link
     column :created_at
+    column :updated_at
     actions
   end
 

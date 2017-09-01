@@ -8,7 +8,7 @@ ActiveAdmin.register Tossup do
     belongs_to :tournament, :category, :subcategory, optional: true
   end
 
-  permit_params :text, :answer,
+  permit_params :id, :text, :answer,
     :tournament_id, :category_id, :subcategory_id,
     :round, :number, :formatted_text, :formatted_answer
 
@@ -31,6 +31,7 @@ ActiveAdmin.register Tossup do
     attr_hash[:subcategory_id] = inputs[:subcategory].to_i if inputs[:subcategory].present?
     attr_hash[:round] = inputs[:round] if inputs[:round].present?
     attr_hash[:number] = inputs[:number].to_i if inputs[:number].present?
+    attr_hash[:updated_at] = Time.zone.now
 
     Tossup.where(id: ids).update_all(attr_hash)
     notice = "Tossups #{ids} updated:\n"
