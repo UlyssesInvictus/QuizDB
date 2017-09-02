@@ -134,16 +134,22 @@ class Root extends React.Component {
             About
           </Link>
         </Menu.Item>
-        <Menu.Item name='help'>
-          <Link to='/about#contact' onClick={() => dispatch(toggleSidebar())}>
-            <Icon name='question circle' />
-            Help
+        <Menu.Item name='admin'>
+          <Link to='/admin' onClick={() => dispatch(toggleSidebar())}>
+            <Icon name='dashboard' />
+            Admin
           </Link>
         </Menu.Item>
         <Menu.Item name='resources'>
           <Link to='/resources' onClick={() => dispatch(toggleSidebar())}>
             <Icon name='bookmark' />
             Resources
+          </Link>
+        </Menu.Item>
+        <Menu.Item name='help'>
+          <Link to='/about#contact' onClick={() => dispatch(toggleSidebar())}>
+            <Icon name='question circle' />
+            Help
           </Link>
         </Menu.Item>
 
