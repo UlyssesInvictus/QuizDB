@@ -40,12 +40,12 @@ namespace :questions do
         end
 
         t.bonus_parts.each do |b|
-          original_text = t.text
-          original_answer = t.answer
+          original_text = b.text
+          original_answer = b.answer
           text = original_text.gsub("\\", "").gsub("\r\n", "").gsub("\n", "")
-          formatted_text = t.formatted_text.gsub("\\", "").gsub("\r\n", "").gsub("\n", "")
+          formatted_text = b.formatted_text.gsub("\\", "").gsub("\r\n", "").gsub("\n", "")
           answer = original_answer.gsub("\\", "").gsub("\r\n", "").gsub("\n", "")
-          formatted_answer = t.formatted_answer.gsub("\\", "").gsub("\r\n", "").gsub("\n", "")
+          formatted_answer = b.formatted_answer.gsub("\\", "").gsub("\r\n", "").gsub("\n", "")
           attr_hash = {}
           if text != original_text
             attr_hash[:text] = text
