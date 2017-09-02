@@ -51,7 +51,9 @@ ActiveAdmin.register Tossup do
       row :round
       row :number
       row :question_errors do |q|
-        simple_format q.question_errors.join("\n")
+        simple_format (q.question_errors.map do |e|
+          "#{e.error_type}: #{e.description}"
+        end).join("\n")
       end
       row :created_at
       row :updated_at
