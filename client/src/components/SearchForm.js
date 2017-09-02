@@ -36,15 +36,14 @@ class SearchForm extends React.Component {
     }
   }
 
-  renderSearchOptions() {
-    const f = this.props.search.filterOptions;
-    let tourneyOptions = f.difficulty.map(c => {
+  buildTourneyOptions(difficulties, tournaments) {
+    let tourneyOptions = difficulties.map(c => {
       let opts = [{
         text: `${c.title}`,
         value: c.title,
         className: 'search-dropdown-header'
       }];
-      opts.push(f.tournament.filter(t => {
+      opts.push(tournaments.filter(t => {
         return t.difficulty_num === c.number;
       }).map(t => {
         return {
@@ -62,7 +61,7 @@ class SearchForm extends React.Component {
       value: 'unknown',
       className: 'search-dropdown-header'
     }];
-    unknownDiffOptions.push(f.tournament.filter(t => {
+    unknownDiffOptions.push(tournaments.filter(t => {
       return t.difficulty_num === null;
     }).map(t => {
       return {
@@ -75,6 +74,21 @@ class SearchForm extends React.Component {
       tourneyOptions.push(unknownDiffOptions);
     }
     tourneyOptions = [].concat(...tourneyOptions);
+    return tourneyOptions;
+  }
+
+  renderSearchOptions() {
+    const f = this.props.search.filterOptions;
+
+    const hasDiffsSelected = (this.props.search.filters.difficulty &&
+                          this.props.search.filters.difficulty.length > 0);
+    let selectedDiffs = f.difficulty;
+    if (hasDiffsSelected) {
+      selectedDiffs = selectedDiffs.filter((d) => {
+        return this.props.search.filters.difficulty.includes(d.name);
+      });
+    }
+    const tourneyOptions = this.buildTourneyOptions(selectedDiffs, f.tournament);
 
     // actually render our filter dropdowns
     return <Grid columns='equal' textAlign='center'>

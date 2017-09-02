@@ -32,6 +32,9 @@ const initialSearchState = {
   filterOptions: false,
   isFetchingFilterOptions: false
 }
+function findByKey(values, keyName, key) {
+  return values.find(v => v[keyName] === key);
+}
 function search(state = initialSearchState, action) {
   switch(action.type) {
     case UPDATE_SEARCH:
@@ -39,8 +42,25 @@ function search(state = initialSearchState, action) {
         query: action.query
       });
     case UPDATE_SEARCH_FILTER:
-      let newState = Object.assign({}, state, {
-        filters: Object.assign({}, state.filters, {
+      let newState = state;
+      // this entire block just for a tiny feature to not totally lose your
+      // selected tournaments when changing diff...should have just removed them :(
+      if (action.filter === "difficulty" && state.filters.tournament) {
+        newState = Object.assign({}, state, {
+          filters: Object.assign({}, state.filters, {
+            tournament: state.filters.tournament.filter((t) => {
+              let diffOptions = state.filterOptions.difficulty;
+              let tourneyOptions = state.filterOptions.tournament;
+              return action.values.map(d => {
+                return findByKey(diffOptions, "name", d).number;
+              }).includes(findByKey(tourneyOptions, "id", t).difficulty_num);
+            })
+          })
+        });
+      }
+
+      newState = Object.assign({}, newState, {
+        filters: Object.assign({}, newState.filters, {
           [action.filter]: action.values
         })
       });
