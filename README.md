@@ -1,24 +1,43 @@
-# README
+# QuizDB
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Welcome to QuizDB!
 
-Things you may want to cover:
+This guide will explain the technical aspects of QuizDB. If you'd like to learn more about QuizDB itself, please read the [About](https://www.quizdb.org/about) guide.
 
-* Ruby version
+## Information
 
-* System dependencies
+All releases of QuizDB are listed under the release tab. The current version is **1.0.0** (the beta!). I will try and use semver (if I remember...)
 
-* Configuration
+The backend runs on Rails, and the client runs on React. Deployment uses Heroku with a PostgresQL database.
 
-* Database creation
+The modern web interface for QuizDB lives at [https://www.quizdb.org](https://www.quizdb.org) and the admin portal lives at [https://www.quizdb.org/admin](https://www.quizdb.org/admin).
 
-* Database initialization
+After installing both the backend and frontend, you can run both simultaneously by running `rake start`, which launches the backend at `localhost:3000` and the frontend at `localhost:808`.
 
-* How to run the test suite
+## Backend
 
-* Services (job queues, cache servers, search engines, etc.)
+The backend acts as the public API for QuizDB, and additionally manages the Admin Portal. The root of this repo acts as the backend.
 
-* Deployment instructions
+You must have Ruby 2.4 and Rails 5.0 installed to run the application. Consult the Gemfile for a list of dependencies. It's assumed that you have experience installing Rails applications -- contact me for help if needed.
 
-* ...
+As mentioned above, you can run the backend by running `rake start`, but you can also run the backend individually with `rails s -p 3000`.
+
+## Frontend
+
+The frontend consists of the modern web client that pings the API to display questions. It also includes Moxon, an online question reader in active development. The frontend lives entirely in a subfolder in `/client`, so if you're not interested in backend work, you can entirely work in that folder.
+
+You must have Node 8 installed to run the application. I recommend using NVM. Consult the `package.json` for a list of dependencies. It's assumed that you have experience installing React applications -- contact me for help if needed.
+
+As mentioned above, you can run the frontend by running `rake start`, but you can also run the frontend individually with `npm start`. (These launch the app in development mode: you can also prefix `NODE_ENV=production` for production, or run `npm build` to build the application.)
+
+## Contribution
+
+To contribute, please fork the repository and initiate a pull request. All PRs should include the following information:
+
+- **Why**: What the PR is fixing/implementing
+- **What:** How the PR is implementing it
+- **Who**: If I've never seen you before, some background info on who you are / what your relationship to the QB community is, so I can have some level of trust in your code.
+
+I don't really care about tests or anything like that, but I will need to personally read over all PRs, so please keep your changes readable.
+
+I don't really expect that many people to contribute--I'll work harder on getting that done on the admin side--so anything is really appreciated!

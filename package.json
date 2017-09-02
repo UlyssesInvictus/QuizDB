@@ -1,5 +1,6 @@
 {
   "name": "QuizDB",
+  "version": "1.0.0",
   "engines": {
     "node": "6.3.1"
   },
