@@ -77,18 +77,44 @@ class SearchForm extends React.Component {
     return tourneyOptions;
   }
 
+  buildSubcategoryOptions(categories, subcategories) {
+    const catIds = subcategories.map(s => s.category_id);
+    const cats = categories.filter(c => catIds.includes(c.id));
+    return [].concat(...cats.map(c => {
+      let opts = [{
+        text: `${c.name}`,
+        value: c.name,
+        className: 'search-dropdown-header'
+      }];
+      opts.push(subcategories.filter(t => {
+        return t.category_id === c.id;
+      }).map(t => {
+        return {
+          text: t.name,
+          value: t.id
+        };
+      }));
+      opts = [].concat(...opts);
+      // don't bother showing header if it's not a header for anything
+      return opts.length > 1 ? opts : [];
+    }));
+  }
+
   renderSearchOptions() {
     const f = this.props.search.filterOptions;
+    const selected = this.props.search.filters;
 
-    const hasDiffsSelected = (this.props.search.filters.difficulty &&
-                          this.props.search.filters.difficulty.length > 0);
     let selectedDiffs = f.difficulty;
-    if (hasDiffsSelected) {
+    if (selected.difficulty && selected.difficulty.length > 0) {
       selectedDiffs = selectedDiffs.filter((d) => {
-        return this.props.search.filters.difficulty.includes(d.name);
+        return selected.difficulty.includes(d.name);
       });
     }
+    const selectedCats = (selected.category && selected.category.length > 0) ?
+      f.category.filter(c => selected.category.includes(c.id)) : f.category;
+
     const tourneyOptions = this.buildTourneyOptions(selectedDiffs, f.tournament);
+    const subcatOptions = this.buildSubcategoryOptions(selectedCats, f.subcategory);
 
     // actually render our filter dropdowns
     return <Grid columns='equal' textAlign='center'>
@@ -109,9 +135,7 @@ class SearchForm extends React.Component {
                       }))}/>
       <SearchDropDown name='Subcategory'
                       filter='subcategory'
-                      options={f.subcategory.map(c => ({
-                        text: c.name, value: c.id
-                      }))}/>
+                      options={subcatOptions}/>
       <SearchDropDown name='Question Type'
                       filter='question_type'
                       options={f.question_type.map(c => ({

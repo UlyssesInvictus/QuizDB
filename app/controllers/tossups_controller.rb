@@ -12,9 +12,10 @@ class TossupsController < ApplicationController
         name: c[0],
         id: c[1]
         } },
-      subcategory: Subcategory.order(:name).pluck(:name, :id).map { |c| {
+      subcategory: Subcategory.order(:name).pluck(:name, :id, :category_id).map { |c| {
         name: c[0],
-        id: c[1]
+        id: c[1],
+        category_id: c[2]
         } },
       tournament: Tournament.all.order(year: :desc, name: :asc)
         .pluck(:name, :id, :difficulty, :quality, :year).map { |c| {

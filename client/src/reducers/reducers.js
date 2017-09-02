@@ -6,6 +6,9 @@ import { responsiveStateReducer } from 'redux-responsive';
 // notification system
 import {reducer as notifications} from 'react-notification-system-redux';
 
+// utils
+import { findByKey } from '../utilities/Array';
+
 import {
   // search actions
   GET_FILTER_OPTIONS,
@@ -32,9 +35,6 @@ const initialSearchState = {
   filterOptions: false,
   isFetchingFilterOptions: false
 }
-function findByKey(values, keyName, key) {
-  return values.find(v => v[keyName] === key);
-}
 function search(state = initialSearchState, action) {
   switch(action.type) {
     case UPDATE_SEARCH:
@@ -45,15 +45,28 @@ function search(state = initialSearchState, action) {
       let newState = state;
       // this entire block just for a tiny feature to not totally lose your
       // selected tournaments when changing diff...should have just removed them :(
-      if (action.filter === "difficulty" && state.filters.tournament) {
-        newState = Object.assign({}, state, {
-          filters: Object.assign({}, state.filters, {
-            tournament: state.filters.tournament.filter((t) => {
-              let diffOptions = state.filterOptions.difficulty;
-              let tourneyOptions = state.filterOptions.tournament;
+      if (action.filter === "difficulty" && action.values.length > 0 &&
+          newState.filters.tournament) {
+        newState = Object.assign({}, newState, {
+          filters: Object.assign({}, newState.filters, {
+            tournament: newState.filters.tournament.filter((t) => {
+              let diffOptions = newState.filterOptions.difficulty;
+              let tourneyOptions = newState.filterOptions.tournament;
               return action.values.map(d => {
                 return findByKey(diffOptions, "name", d).number;
               }).includes(findByKey(tourneyOptions, "id", t).difficulty_num);
+            })
+          })
+        });
+      }
+      // and here >:(
+      if (action.filter === "category" && action.values.length > 0 &&
+          newState.filters.subcategory) {
+        newState = Object.assign({}, newState, {
+          filters: Object.assign({}, newState.filters, {
+            subcategory: newState.filters.subcategory.filter((s) => {
+              const catId = findByKey(newState.filterOptions.subcategory, "id", s).category_id;
+              return action.values.includes(catId);
             })
           })
         });

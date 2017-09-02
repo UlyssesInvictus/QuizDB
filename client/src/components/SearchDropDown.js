@@ -25,16 +25,16 @@ class SearchDropDown extends React.Component {
   handleFilterSearch(opts, query) {
     let regex = new RegExp(query, 'i');
 
-    // first allow diff headers AND items that match
+    // first allow headers AND items that match
     let firstPassOpts = opts.filter(opt => {
-      let isDiffHeader = !!opt.className && opt.className.includes('search-dropdown-header');
+      let isHeader = !!opt.className && opt.className.includes('search-dropdown-header');
       let matchesText = regex.test(opt.text);
-      return isDiffHeader || matchesText;
+      return isHeader || matchesText;
     });
 
-    // then remove diff headers that don't actually have sub-items
+    // then remove headers that don't actually have sub-items
     return firstPassOpts.filter((opt, index) => {
-      let isDiffHeader = !!opt.className && opt.className.includes('search-dropdown-header');
+      let isHeader = !!opt.className && opt.className.includes('search-dropdown-header');
       // if header's last item in opts, or it's immediately followed by another header
       // then it has no subitems
       let hasNoSubItems = (index + 1 >= firstPassOpts.length ||
@@ -42,7 +42,7 @@ class SearchDropDown extends React.Component {
         firstPassOpts[index + 1].className.includes('search-dropdown-header'))
       );
 
-      return !isDiffHeader || !hasNoSubItems;
+      return !isHeader || !hasNoSubItems;
     });
   }
 
@@ -50,11 +50,11 @@ class SearchDropDown extends React.Component {
     const p = this.props;
 
     let options = p.options.map(opt => {
-      let isDiffHeader = !!opt.className && opt.className.includes('search-dropdown-header');
+      let isHeader = !!opt.className && opt.className.includes('search-dropdown-header');
       // TODO: merge in false for 'selected' if diff header (or just change styling)
       return {
         ...opt,
-        disabled: isDiffHeader,
+        disabled: isHeader,
       };
     });
 
