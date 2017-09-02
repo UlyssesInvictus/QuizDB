@@ -13,11 +13,14 @@ class Tossup < ApplicationRecord
 
   ## VALIDATIONS ##
 
+  validates :round, :number, presence: true
+
   ## HELPER ACCESSORS ##
 
   def formatted_text
     self[:formatted_text] ? self[:formatted_text] : text
   end
+
 
 
 end

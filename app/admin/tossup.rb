@@ -16,6 +16,10 @@ ActiveAdmin.register Tossup do
   config.per_page = [10, 30, 50, 100]
   config.create_another = true
 
+  action_item :import, only: :index do
+    link_to 'Import Questions', admin_import_path
+  end
+
   batch_action :bulk_edit,
     confirm: "Apply properties to all questions selected (blank inputs ignored)",
     form: {

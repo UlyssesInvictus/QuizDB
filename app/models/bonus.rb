@@ -57,6 +57,8 @@ class Bonus < ApplicationRecord
   # VALIDATIONS
   # *************
 
+  validates :leadin, :formatted_leadin, :round, :number, presence: true
+
   def has_three_bonus_parts
     # placeholder
     # will fill in if issue of accidentally not associating bonus parts

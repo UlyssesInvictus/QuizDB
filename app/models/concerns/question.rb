@@ -61,6 +61,7 @@ module Question
       scope :text_or_answer_contains, -> (query) {
         text_or_answer_contains(query)
       }
+      validates :text, :answer, :formatted_text, :formatted_answer, presence: true
     end
   end
 
