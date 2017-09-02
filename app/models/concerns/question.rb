@@ -8,8 +8,10 @@ module Question
         if subcategory.present?
           if category.blank? || subcategory.category != category
             errors.add(:subcategory, "Subcategory must belong to category.")
+            return false
           end
         end
+        return true
       end
     end
   end

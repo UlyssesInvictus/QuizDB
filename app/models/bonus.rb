@@ -3,12 +3,10 @@ class Bonus < ApplicationRecord
   belongs_to :subcategory, optional: true
   belongs_to :tournament, optional: true
 
-  has_many :bonus_parts, dependent: :destroy
+  has_many :bonus_parts, dependent: :destroy, inverse_of: :bonus
   accepts_nested_attributes_for :bonus_parts, allow_destroy: true
 
   has_many :question_errors, as: :errorable, class_name: "Error"
-
-  validate :has_three_bonus_parts, on: :create
 
   include Question::Filterable
   include ActionView::Helpers::TextHelper
@@ -58,6 +56,7 @@ class Bonus < ApplicationRecord
   # *************
 
   validates :leadin, :formatted_leadin, :round, :number, presence: true
+  # validate :has_three_bonus_parts, on: :create
 
   def has_three_bonus_parts
     # placeholder

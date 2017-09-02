@@ -6,11 +6,12 @@ ActiveAdmin.register Bonus do
   controller do
     belongs_to :tournament, :category, :subcategory, optional: true
   end
-
+  
   permit_params :leadin, :formatted_leadin,
     :round, :number,
     :tournament_id, :category_id, :subcategory_id,
-    bonus_parts_attributes: [:id, :text, :answer,
+    bonus_parts_attributes: [:id, :bonus_id,
+      :text, :answer,
       :formatted_text, :formatted_answer,
       :number, :_destroy]
 
