@@ -1,3 +1,12 @@
+.question-loader {
+  // top padding should come from ::before element of actual loader
+  padding-bottom: 5rem;
+}
+
+.question-container {
+  padding: 4rem 0;
+}
+
 .question {
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;

@@ -122,6 +122,12 @@ footer.quizdb-footer {
   footer.quizdb-footer .footer-item {
     line-height: 2.5em; }
 
+.question-loader {
+  padding-bottom: 5rem; }
+
+.question-container {
+  padding: 4rem 0; }
+
 .question {
   margin-top: 1.5rem;
   margin-bottom: 1.5rem; }

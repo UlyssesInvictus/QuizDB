@@ -35,7 +35,8 @@ class QuestionsContainer extends React.Component {
 
   renderFetching() {
     return <Loader active inline='centered' size='huge'
-      content='Loading Questions'/>
+      content='Loading Questions'
+      className="question-loader"/>
   }
 
   handleFileDownload(type) {
