@@ -38,6 +38,8 @@
     .navbar-brand img {
       width: 75px;
       height: 60px; }
+    .navbar-brand-subtext {
+      font-size: 2rem; }
   .navbar-links {
     font-size: 3rem;
     font-weight: bold; }
