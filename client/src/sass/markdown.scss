@@ -1,5 +1,13 @@
+@import "variables.scss";
+
 .quizdb-md {
-  padding-bottom: 3em;
+  padding: 1.5rem 5rem 15rem 5rem;
+  // HACK: shouldn't hard code media queries, should just use react-responsive...
+  @media screen and (max-width: 768px) {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  background: $secondary-background;
 
   h1 {
     font-size: 3rem;

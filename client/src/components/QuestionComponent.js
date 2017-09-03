@@ -26,7 +26,7 @@ class QuestionsComponent extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {showInfo: true};
+    this.state = {showInfo: false};
     this.renderInfo = this.renderInfo.bind(this);
     this.renderInfoColumn = this.renderInfoColumn.bind(this);
     this.renderTossup = this.renderTossup.bind(this);

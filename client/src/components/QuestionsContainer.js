@@ -183,9 +183,9 @@ class QuestionsContainer extends React.Component {
     } else {
       view = this.renderQuestions(q);
     }
-    return <div className="question-container"><Container>
+    return <div className="question-container">
       {view}
-    </Container></div>
+    </div>
   }
 }
 

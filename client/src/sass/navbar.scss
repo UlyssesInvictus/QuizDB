@@ -1,10 +1,14 @@
+@import "./variables.scss";
+
 .navbar {
   position: fixed;
   z-index: 100;
-  background: rgba(255, 255, 255, 0.95);
+  background: transparentize($secondary-background, 0.05); // rgba(255, 255, 255, 0.95);
   width: 100%;
 
   padding: 2rem 0rem 1.4rem 0rem;
+  border-bottom: 1px solid $border-color;
+  // box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
 
   & > .ui.container {
     display: flex;
@@ -118,11 +122,11 @@
   }
 
   & ~ * .quizdb-page {
-    padding-top: 9.5rem;
+    padding-top: 8.5rem;
   }
 
   &.mobile ~ * .quizdb-page {
-    padding-top: 6.5rem;
+    padding-top: 5.5rem;
   }
 
 }

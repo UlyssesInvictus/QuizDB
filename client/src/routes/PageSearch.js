@@ -5,16 +5,14 @@ import SearchForm from '../components/SearchForm';
 import RootCredits from '../components/RootCredits';
 
 import {
-  Divider
+  // Divider
 } from 'semantic-ui-react';
 
 class PageSearch extends React.Component {
   render() {
     return  <div className="quizdb-search">
       <SearchForm/>
-      <Divider section/>
-        <RootCredits/>
-      <Divider section/>
+      <RootCredits/>
       <QuestionsContainer/>
     </div>
 

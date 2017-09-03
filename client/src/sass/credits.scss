@@ -1,4 +1,12 @@
+@import "./variables.scss";
+
 .root-credits {
+  padding: 2rem 0;
+  margin: 2rem 0;
+  border-radius: 0.3rem;
+  border: 1px solid $border-color;
+  background: $secondary-background;
+  
   & > div.container {
     display: flex;
     flex-direction: column;

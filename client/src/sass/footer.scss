@@ -1,6 +1,9 @@
+@import "./variables.scss";
+
 #root {
   min-height: 100%;
   margin-bottom: -3em;
+  background: $primary-background;
 }
 
 #root:after {
@@ -13,7 +16,7 @@ footer, #root:after {
 }
 
 footer.quizdb-footer {
-  background: transparent;
+  background: $secondary-background;
   display: flex;
   flex-direction: row;
   justify-content: space-around;

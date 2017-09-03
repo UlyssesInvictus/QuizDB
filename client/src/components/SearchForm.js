@@ -9,7 +9,6 @@ import {
 
 import { Grid, Input,
   Button,
-  Divider,
   Container,
   Loader,
   Dropdown
@@ -179,7 +178,7 @@ class SearchForm extends React.Component {
 
     return <div className="search"><Container>
       <Grid stackable columns={2} textAlign={"center"}
-            verticalAlign='middle'>
+            verticalAlign='middle' className="search-input">
         {/* Search input */}
         <Grid.Column width={10}>
           <Input fluid size='huge' width={9}
@@ -205,8 +204,6 @@ class SearchForm extends React.Component {
           />
         </Grid.Column>
       </Grid>
-
-      <Divider section/>
 
       {this.props.search.filterOptions ?
         this.renderSearchOptions() :

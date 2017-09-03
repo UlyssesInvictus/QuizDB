@@ -1,7 +1,12 @@
 .quizdb-md {
-  padding-bottom: 3em;
+  padding: 1.5rem 5rem 15rem 5rem;
+  background: white;
   font-size: 1.2rem;
   line-height: 1.5rem; }
+  @media screen and (max-width: 768px) {
+    .quizdb-md {
+      padding-left: 2rem;
+      padding-right: 2rem; } }
   .quizdb-md h1 {
     font-size: 3rem; }
   .quizdb-md h2 {
@@ -23,7 +28,8 @@
   z-index: 100;
   background: rgba(255, 255, 255, 0.95);
   width: 100%;
-  padding: 2rem 0rem 1.4rem 0rem; }
+  padding: 2rem 0rem 1.4rem 0rem;
+  border-bottom: 1px solid #D4D4D5; }
   .navbar > .ui.container {
     display: flex;
     justify-content: space-between;
@@ -86,9 +92,9 @@
     .navbar.shrink .navbar-links i.icon {
       font-size: 1em; }
   .navbar ~ * .quizdb-page {
-    padding-top: 9.5rem; }
+    padding-top: 8.5rem; }
   .navbar.mobile ~ * .quizdb-page {
-    padding-top: 6.5rem; }
+    padding-top: 5.5rem; }
 
 .quizdb-sidebar-close:hover {
   cursor: pointer;
@@ -98,14 +104,21 @@
   cursor: pointer !important;
   color: #2185d0 !important; }
 
-.root-credits > div.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center; }
+.root-credits {
+  padding: 2rem 0;
+  margin: 2rem 0;
+  border-radius: 0.3rem;
+  border: 1px solid #D4D4D5;
+  background: white; }
+  .root-credits > div.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
 
 #root {
   min-height: 100%;
-  margin-bottom: -3em; }
+  margin-bottom: -3em;
+  background: aliceblue; }
 
 #root:after {
   content: "";
@@ -115,7 +128,7 @@ footer, #root:after {
   height: 3em; }
 
 footer.quizdb-footer {
-  background: transparent;
+  background: white;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -128,7 +141,7 @@ footer.quizdb-footer {
   padding-bottom: 5rem; }
 
 .question-container {
-  padding: 4rem 0; }
+  padding: 0 0 4rem 0; }
 
 .question {
   margin-top: 1.5rem;
@@ -206,6 +219,9 @@ footer.quizdb-footer {
   cursor: pointer; }
   .icon-clickable:hover {
     color: #2185d0; }
+
+.ui.grid.search-input {
+  padding: 1.2rem 0 1.2rem 0; }
 
 .ui.grid .column.search-dropdown-column {
   padding: 0.5rem !important; }
