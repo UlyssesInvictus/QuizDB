@@ -96,13 +96,16 @@
   .navbar.mobile ~ * .quizdb-page {
     padding-top: 5.5rem; }
 
-.quizdb-sidebar-close:hover {
+.ui.inverted.menu.quizdb-sidebar-close:hover {
   cursor: pointer;
   color: #2185d0; }
 
-.quizdb-sidebar .item > a:hover {
+.ui.inverted.menu.quizdb-sidebar .item > a:hover {
   cursor: pointer !important;
   color: #2185d0 !important; }
+
+.ui.inverted.menu.quizdb-sidebar > a.item:hover {
+  color: #2185d0; }
 
 .root-credits {
   padding: 2rem 0;
@@ -160,6 +163,9 @@ footer.quizdb-footer {
 
 .ui.segment:first-child.question-info-segment {
   margin: 0.5rem 0.5rem; }
+
+.ui.segment:last-child.question-info-segment {
+  margin-bottom: auto; }
 
 .ui.segment.question-info {
   padding: 0.5rem; }
@@ -283,3 +289,6 @@ footer.quizdb-footer {
 .ui.button.error-modal-trigger {
   max-width: 5rem;
   padding: 0.6em; }
+  .ui.button.error-modal-trigger.short {
+    max-width: 10rem;
+    font-size: 0.7rem; }

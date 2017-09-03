@@ -19,4 +19,8 @@
 .ui.button.error-modal-trigger {
   max-width: 5rem;
   padding: 0.6em;
+  &.short {
+    max-width: 10rem;
+    font-size: 0.7rem;
+  }
 }

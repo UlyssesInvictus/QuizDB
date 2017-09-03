@@ -119,9 +119,6 @@ class QuestionsComponent extends React.Component {
         {this.renderInfoColumn(q.id, "#", q.number)}
         {this.renderInfoColumn(q.id, "Category", q.category.name)}
         {this.renderInfoColumn(q.id, "Subcategory", q.subcategory.name, "None")}
-        <Button content='Report error or fix'
-                className='error-modal-trigger'
-                onClick={() => p.dispatch(toggleErrorModal(q.id))}/>
       </div>;
     } else {
       infoDiv = <div className="question-info-hide">
@@ -136,6 +133,9 @@ class QuestionsComponent extends React.Component {
               className='question-info-toggle'
               onClick={() => this.setState({showInfo: !this.state.showInfo})}
         />
+        <Button content='Report error or fix'
+                className='error-modal-trigger short'
+                onClick={() => p.dispatch(toggleErrorModal(q.id))}/>
       </div>
       {infoDiv}
     </Segment>;

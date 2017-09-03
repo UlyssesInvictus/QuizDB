@@ -30,6 +30,11 @@
   margin: 0.5rem 0.5rem;
 }
 
+.ui.segment:last-child.question-info-segment {
+  // override semantic's default margin-bottom of 0
+  margin-bottom: auto;
+}
+
 .ui.segment.question-info {
   padding: 0.5rem;
 }

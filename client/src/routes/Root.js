@@ -118,39 +118,24 @@ class Root extends React.Component {
                          visible={this.props.appearance.showSidebar}
                          icon='labeled' vertical inverted
       >
-        <Menu.Item name='remove' position='right'>
-          <Icon name='remove' className='quizdb-sidebar-close'
-                onClick={() => this.props.dispatch(toggleSidebar())}/>
+        <Menu.Item name='remove' position='right'
+                  onClick={() => this.props.dispatch(toggleSidebar())}>
+          <Icon name='remove' className='quizdb-sidebar-close'/>
         </Menu.Item>
-        <Menu.Item name='home'>
-          <Link to='/' onClick={() => dispatch(toggleSidebar())}>
-            <Icon name='home' />
-            Home
-          </Link>
+        <Menu.Item name='home' as={Link} to='/' onClick={() => dispatch(toggleSidebar())}>
+            <span><Icon name='home' />Home</span>
         </Menu.Item>
-        <Menu.Item name='about'>
-          <Link to='/about' onClick={() => dispatch(toggleSidebar())}>
-            <Icon name='info circle' />
-            About
-          </Link>
+        <Menu.Item name='about' as={Link} to='/about' onClick={() => dispatch(toggleSidebar())}>
+            <span><Icon name='info circle'/>About</span>
         </Menu.Item>
-        <Menu.Item name='admin'>
-          <Link to='/admin' onClick={() => dispatch(toggleSidebar())}>
-            <Icon name='dashboard' />
-            Admin
-          </Link>
+        <Menu.Item name='admin' as={'a'} href='/admin' onClick={() => dispatch(toggleSidebar())}>
+            <span><Icon name='dashboard'/>Admin</span>
         </Menu.Item>
-        <Menu.Item name='resources'>
-          <Link to='/resources' onClick={() => dispatch(toggleSidebar())}>
-            <Icon name='bookmark' />
-            Resources
-          </Link>
+        <Menu.Item name='resources' as={Link} to='/resources' onClick={() => dispatch(toggleSidebar())}>
+            <span><Icon name='bookmark'/>Resources</span>
         </Menu.Item>
-        <Menu.Item name='help'>
-          <Link to='/about#contact' onClick={() => dispatch(toggleSidebar())}>
-            <Icon name='question circle' />
-            Help
-          </Link>
+        <Menu.Item name='help' as={Link} to='/about#contact' onClick={() => dispatch(toggleSidebar())}>
+            <span><Icon name='question circle'/>Help</span>
         </Menu.Item>
 
       </Sidebar>

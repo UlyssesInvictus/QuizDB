@@ -131,19 +131,26 @@
 
 }
 
+// extra classes to override semantic's stylings
 
-.quizdb-sidebar {
+.ui.inverted.menu.quizdb-sidebar {
   &-close {
     &:hover {
       cursor: pointer;
-      color: #2185d0;
+      color: $secondary-text-color;
     }
   }
 
   & .item > a {
     &:hover {
       cursor: pointer !important;
-      color: #2185d0 !important;
+      color: $secondary-text-color !important;
+    }
+  }
+
+  & > a.item {
+    &:hover {
+      color: $secondary-text-color;
     }
   }
 }
