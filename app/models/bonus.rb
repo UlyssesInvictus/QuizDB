@@ -68,12 +68,12 @@ class Bonus < ApplicationRecord
   # INSTANCE METHODS
   # *************
   def html_content
-    s = "#{formatted_leadin}\n"
+    s = "#{formatted_leadin}</br>"
     bonus_parts.each do |part|
-      s += "[10] #{part.formatted_text}\n"
-      s += "ANSWER: #{part.formatted_answer}\n"
+      s += "[10] #{part.formatted_text}</br>"
+      s += "ANSWER: #{part.formatted_answer}</br>"
     end
-    simple_format(s)
+    s.html_safe
   end
 
 end
