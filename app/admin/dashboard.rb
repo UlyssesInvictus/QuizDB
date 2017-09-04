@@ -79,8 +79,8 @@ ActiveAdmin.register_page "Dashboard" do
         panel "Most recent tossup changes" do
           table_for Tossup.all.order(updated_at: :desc).limit(TABLE_LIMIT) do
             column(:id) {|q| link_to(q.id, admin_tossup_path(q))}
-            column(:text) {|q| q.formatted_text.html_safe.truncate(30)}
-            column(:answer) {|q| q.formatted_answer.html_safe.truncate(30)}
+            column(:text) {|q| q.formatted_text.truncate(50).html_safe}
+            column(:answer) {|q| q.formatted_answer.truncate(50).html_safe}
             column :updated_at
           end
         end
@@ -89,7 +89,7 @@ ActiveAdmin.register_page "Dashboard" do
         panel "Most recent bonus changes" do
           table_for Bonus.all.order(updated_at: :desc).limit(TABLE_LIMIT) do
             column(:id) {|q| link_to(q.id, admin_bonus_path(q))}
-            column(:content) {|q| q.html_content.truncate(30)}
+            column(:content) {|q| q.html_content.truncate(100)}
             column :updated_at
           end
         end
