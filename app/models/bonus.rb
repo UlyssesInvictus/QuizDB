@@ -6,7 +6,7 @@ class Bonus < ApplicationRecord
   has_many :bonus_parts, dependent: :destroy, inverse_of: :bonus
   accepts_nested_attributes_for :bonus_parts, allow_destroy: true
 
-  has_many :question_errors, as: :errorable, class_name: "Error"
+  has_many :question_errors, as: :errorable, class_name: "Error", dependent: :destroy
 
   include Question::Filterable
   include ActionView::Helpers::TextHelper

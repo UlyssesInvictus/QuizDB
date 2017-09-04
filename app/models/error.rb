@@ -10,6 +10,16 @@ class Error < ApplicationRecord
     other: 0,
   }
 
+  ##
+  # VALIDATIONS
+  ##
+
+  validates :errorable_id, :description, :error_type, :errorable_type, presence: true
+
+  ##
+  # HOOKS
+  ##
+
   after_create :update_counter_cache
   after_save :update_counter_cache
   after_update :update_counter_cache
