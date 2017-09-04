@@ -45,7 +45,7 @@ ActiveAdmin.register_page "Dashboard" do
       column span: 2 do
         panel "Most recent errors" do
           table_for Error.all.order(updated_at: :desc).limit(TABLE_LIMIT) do
-            column(:id) {|q| link_to(q.id, q)}
+            column(:id) {|q| link_to q.id, admin_error_path(q)}
             column :error_type
             column(:description) {|q| q.description.truncate(50)}
             column(:question) {|q| link_to("#{q.errorable_type} #{q.errorable_id}", q.errorable)}
@@ -57,7 +57,7 @@ ActiveAdmin.register_page "Dashboard" do
       column do
         panel "Tossups with most errors" do
           table_for Tossup.all.order(errors_count: :desc).limit(TABLE_LIMIT) do
-            column(:id) {|q| link_to(q.id, q)}
+            column(:id) {|q| link_to(q.id, admin_tossup_path(q))}
             column :errors_count
           end
         end
@@ -66,7 +66,7 @@ ActiveAdmin.register_page "Dashboard" do
       column do
         panel "Bonuses with most errors" do
           table_for Bonus.all.order(errors_count: :desc).limit(TABLE_LIMIT) do
-            column(:id) {|q| link_to(q.id, q)}
+            column(:id) {|q| link_to(q.id, admin_bonus_path(q))}
             column :errors_count
           end
         end
@@ -78,7 +78,7 @@ ActiveAdmin.register_page "Dashboard" do
       column do
         panel "Most recent tossup changes" do
           table_for Tossup.all.order(updated_at: :desc).limit(TABLE_LIMIT) do
-            column(:id) {|q| link_to(q.id, q)}
+            column(:id) {|q| link_to(q.id, admin_tossup_path(q))}
             column(:text) {|q| q.formatted_text.html_safe.truncate(30)}
             column(:answer) {|q| q.formatted_answer.html_safe.truncate(30)}
             column :updated_at
@@ -88,7 +88,7 @@ ActiveAdmin.register_page "Dashboard" do
       column do
         panel "Most recent bonus changes" do
           table_for Bonus.all.order(updated_at: :desc).limit(TABLE_LIMIT) do
-            column(:id) {|q| link_to(q.id, q)}
+            column(:id) {|q| link_to(q.id, admin_bonus_path(q))}
             column(:content) {|q| q.html_content.truncate(30)}
             column :updated_at
           end
@@ -97,7 +97,7 @@ ActiveAdmin.register_page "Dashboard" do
       column do
         panel "Most recent tournament changes" do
           table_for Tournament.all.order(updated_at: :desc).limit(TABLE_LIMIT) do
-            column(:id) {|q| link_to(q.id, q)}
+            column(:id) {|q| link_to(q.id, admin_bonus_path(q))}
             column :year
             column(:name) {|q| q.name.truncate(30)}
             column :updated_at
