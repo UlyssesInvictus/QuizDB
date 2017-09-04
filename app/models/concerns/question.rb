@@ -3,6 +3,12 @@ module Question
     extend ActiveSupport::Concern
 
     included do
+      before_validation do
+        if self.category.blank? && self.subcategory.present?
+          self.category = self.subcategory.category
+        end
+      end
+
       validate :subcategory_matches_category
       def subcategory_matches_category
         if subcategory.present?

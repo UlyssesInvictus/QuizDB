@@ -30,8 +30,23 @@ module QuillHelper
       quill_#{id}.on('text-change', function() {
         $('##{object_name}_#{field}').val($('##{id} .ql-editor').html());
       })
-    });</script>").html_safe
+    });</script>" +
 
+    "<script>
+      $('##{object_name}_category_id').change(function() {
+        $('##{object_name}_subcategory_id').children('option').each(function(subcat){
+          if ($(this).text() == '') {
+            $(this).attr('hidden', false);
+          } else if ($(this).text().startsWith($('##{object_name}_category_id option:selected').text())) {
+            $(this).attr('hidden', false);
+          } else {
+            $(this).attr('hidden', true);
+          }
+        });
+      });
+    </script>"
+
+    ).html_safe
 
     # but honestly, this isn't that much prettier either
     # should just be using partials :sigh:
