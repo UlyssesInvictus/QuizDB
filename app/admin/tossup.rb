@@ -99,7 +99,7 @@ ActiveAdmin.register Tossup do
     f.semantic_errors
     f.inputs do
       f.input :category, collection: options_for_select(Category.pluck(:name, :id), category)
-      f.input :subcategory, collection: options_for_select(Category.pluck(:name, :id), subcategory)
+      f.input :subcategory, collection: options_for_select(Subcategory.pluck(:name, :id), subcategory)
       f.input :tournament, collection: options_for_select(Tournament.pluck(:name, :id), tournament)
       f.input :round, input_html: { value: round }
       f.input :number, input_html: { value: number }
@@ -110,7 +110,9 @@ ActiveAdmin.register Tossup do
           text_node quill_generator(f, :formatted_text) {}
         end
       end
-      f.input :formatted_text, hint: "Raw! You should use rich editor instead. Only allowed tags are #{Tossup::ALLOWED_TAGS}",
+      f.input :formatted_text, hint: "Raw! You should use rich editor instead. " \
+                                     "Only allowed tags are #{Tossup::ALLOWED_TAGS}" \
+                                     "Any others or attributes will be auto-stripped.",
               input_html: { rows: 5 }
       f.input :answer, input_html: { rows: 2 }
       li do

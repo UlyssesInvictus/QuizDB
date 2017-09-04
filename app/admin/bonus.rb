@@ -113,7 +113,7 @@ ActiveAdmin.register Bonus do
     f.semantic_errors
     f.inputs do
       f.input :category, collection: options_for_select(Category.pluck(:name, :id), category)
-      f.input :subcategory, collection: options_for_select(Category.pluck(:name, :id), subcategory)
+      f.input :subcategory, collection: options_for_select(Subcategory.pluck(:name, :id), subcategory)
       f.input :tournament, collection: options_for_select(Tournament.pluck(:name, :id), tournament)
       f.input :round, input_html: { value: round}
       f.input :number, input_html: { value: number}
