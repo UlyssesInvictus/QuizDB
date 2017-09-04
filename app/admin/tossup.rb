@@ -18,7 +18,7 @@ ActiveAdmin.register Tossup do
       @tossup = Tossup.new(permitted_params[:tossup])
       if @tossup.save
         if params[:create_another] != "on"
-          format.html { redirect_to @tossup, notice: 'Tossup was successfully created.' }
+          redirect_to admin_tossup_path(@tossup), notice: 'Tossup was successfully created.'
         else
           @number += 1
           @tossup = Tossup.new

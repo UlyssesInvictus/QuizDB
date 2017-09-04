@@ -14,7 +14,7 @@ ActiveAdmin.register Bonus do
       @bonus = Bonus.new(permitted_params[:bonus])
       if @bonus.save
         if params[:create_another] != "on"
-          format.html { redirect_to @bonus, notice: 'Bonus was successfully created.' }
+          redirect_to admin_bonuses_path(@bonus), notice: 'Bonus was successfully created.'
         else
           @number += 1
           @bonus = Bonus.new
