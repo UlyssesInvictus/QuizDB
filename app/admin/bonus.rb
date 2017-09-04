@@ -5,8 +5,28 @@ ActiveAdmin.register Bonus do
 
   controller do
     belongs_to :tournament, :category, :subcategory, optional: true
+    def create
+      @number = (permitted_params[:bonus][:number]&.to_i || 0)
+      @tournament = permitted_params[:bonus][:tournament_id]
+      @round = permitted_params[:bonus][:round]
+      @category = permitted_params[:bonus][:category_id]
+      @subcategory = permitted_params[:bonus][:subcategory_id]
+      @bonus = Bonus.new(permitted_params[:bonus])
+      if @bonus.save
+        if params[:create_another] != "on"
+          format.html { redirect_to @bonus, notice: 'Bonus was successfully created.' }
+        else
+          @number += 1
+          @bonus = Bonus.new
+          flash.now[:notice] = "Bonus was successfully created."
+          render :new
+        end
+      else
+        render :new
+      end
+    end
   end
-  
+
   permit_params :leadin, :formatted_leadin,
     :round, :number,
     :tournament_id, :category_id, :subcategory_id,
@@ -83,12 +103,20 @@ ActiveAdmin.register Bonus do
 
   form do |f|
     f.semantic_errors
+    # we're okay with these being nil
+    round = controller.instance_variable_get(:@round)
+    tournament = controller.instance_variable_get(:@tournament)
+    category = controller.instance_variable_get(:@category)
+    subcategory = controller.instance_variable_get(:@subcategory)
+    number = controller.instance_variable_get(:@number)
+
+    f.semantic_errors
     f.inputs do
-      f.input :category
-      f.input :subcategory
-      f.input :tournament
-      f.input :round
-      f.input :number
+      f.input :category, collection: options_for_select(Category.pluck(:name, :id), category)
+      f.input :subcategory, collection: options_for_select(Category.pluck(:name, :id), subcategory)
+      f.input :tournament, collection: options_for_select(Tournament.pluck(:name, :id), tournament)
+      f.input :round, input_html: { value: round}
+      f.input :number, input_html: { value: number || 1}
       f.input :leadin, input_html: { rows: 2 }
       f.input :formatted_leadin, input_html: { rows: 2 }
     end

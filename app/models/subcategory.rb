@@ -11,6 +11,7 @@ class Subcategory < ApplicationRecord
   ###
 
   validates :name, uniqueness: true
+  validates :name, :category_id, presence: true
 
   before_destroy do
     if tossups.present? || bonuses.present?

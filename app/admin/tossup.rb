@@ -6,6 +6,27 @@ ActiveAdmin.register Tossup do
 
   controller do
     belongs_to :tournament, :category, :subcategory, optional: true
+    def create
+      @number = (permitted_params[:tossup][:number]&.to_i || 0)
+      @tournament = permitted_params[:tossup][:tournament_id]
+      @round = permitted_params[:tossup][:round]
+      @category = permitted_params[:tossup][:category_id]
+      @subcategory = permitted_params[:tossup][:subcategory_id]
+
+      @tossup = Tossup.new(permitted_params[:tossup])
+      if @tossup.save
+        if params[:create_another] != "on"
+          format.html { redirect_to @tossup, notice: 'Tossup was successfully created.' }
+        else
+          @number += 1
+          @tossup = Tossup.new
+          flash.now[:notice] = "Tossup was successfully created."
+          render :new
+        end
+      else
+        render :new
+      end
+    end
   end
 
   permit_params :id, :text, :answer,
@@ -63,6 +84,28 @@ ActiveAdmin.register Tossup do
       row :updated_at
     end
     active_admin_comments
+  end
+
+  form do |f|
+    # we're okay with these being nil
+    round = controller.instance_variable_get(:@round)
+    tournament = controller.instance_variable_get(:@tournament)
+    category = controller.instance_variable_get(:@category)
+    subcategory = controller.instance_variable_get(:@subcategory)
+    number = controller.instance_variable_get(:@number)
+    f.semantic_errors
+    f.inputs do
+      f.input :category, collection: options_for_select(Category.pluck(:name, :id), category)
+      f.input :subcategory, collection: options_for_select(Category.pluck(:name, :id), subcategory)
+      f.input :tournament, collection: options_for_select(Tournament.pluck(:name, :id), tournament)
+      f.input :round, input_html: { value: round}
+      f.input :number, input_html: { value: number || 1}
+      f.input :text, input_html: { rows: 5 }
+      f.input :formatted_text, input_html: { rows: 5 }
+      f.input :answer, input_html: { rows: 2 }
+      f.input :formatted_answer, input_html: { rows: 2 }
+    end
+    f.actions
   end
 
   index do
