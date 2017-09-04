@@ -22,6 +22,12 @@ ActiveAdmin.register Error do
     redirect_to admin_errors_path, notice: "Error resolved."
   end
 
+  collection_action :new_from_question do
+    @error = Error.new(errorable_id: params[:errorable_id], errorable_type: params[:errorable_type])
+    render :new, layout: false
+  end
+
+
   form do |f|
     h3 "Create Error (Work in Progress!!)"
     f.semantic_errors

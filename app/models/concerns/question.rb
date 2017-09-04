@@ -68,11 +68,11 @@ module Question
       before_validation do
         allowed_tags = %w( b strong i em u )
         self.formatted_text = ActionController::Base.helpers.sanitize(self.formatted_text, tags: allowed_tags)
-        self.formatted_text = self.formatted_text.strip
+        self.formatted_text = self.formatted_text&.strip
         self.formatted_answer = ActionController::Base.helpers.sanitize(self.formatted_answer, tags: allowed_tags)
-        self.formatted_answer = self.formatted_answer.strip
-        self.text = self.text.strip
-        self.answer = self.answer.strip
+        self.formatted_answer = self.formatted_answer&.strip
+        self.text = self.text&.strip
+        self.answer = self.answer&.strip
       end
     end
   end

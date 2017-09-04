@@ -117,8 +117,9 @@ ActiveAdmin.register Bonus do
       f.input :tournament, collection: options_for_select(Tournament.pluck(:name, :id), tournament)
       f.input :round, input_html: { value: round}
       f.input :number, input_html: { value: number}
+      f.input :leadin, input_html: { rows: 2 }
       li do
-        f.label :formatted_leadin, "Formatted answer (rich editor)"
+        f.label :formatted_leadin, "Formatted leadin (rich editor)"
         div class: "quill-editor", style: "width:calc(80%);float:left;padding-bottom:30px" do
           text_node quill_generator(f, :formatted_leadin) {}
         end
@@ -126,21 +127,45 @@ ActiveAdmin.register Bonus do
       f.input :formatted_leadin, input_html: { rows: 2 }
     end
     f.inputs do
-      f.has_many :bonus_parts,
-          heading: "Bonus Parts",
-          sortable: :number,
-          allow_destroy: true,
-          sortable_start: 1 do |p|
-        p.input :text, input_html: { rows: 2 }
-        p.input :answer, input_html: { rows: 2 }
-        p.input :formatted_text, input_html: { rows: 2 }
-        # li do
-        #   p.label :formatted_answer, "Formatted answer (rich editor)"
-        #   div class: "quill-editor", style: "width:calc(80%);float:left;padding-bottom:30px" do
-        #     text_node quill_generator(p, :formatted_answer) {}
-        #   end
-        # end
-        p.input :formatted_answer, input_html: { rows: 2 }
+      # f.has_many :bonus_parts,
+      #     heading: "Bonus Parts",
+      #     sortable: :number,
+      #     allow_destroy: true,
+      #     sortable_start: 1 do |p|
+      #   p.input :text, input_html: { rows: 2 }
+      #   p.input :answer, input_html: { rows: 2 }
+      #   p.input :formatted_text, input_html: { rows: 2 }
+      #   binding.pry
+      #   li do
+      #     p.label :formatted_answer, "Formatted answer (rich editor)"
+      #     div class: "quill-editor", style: "width:calc(80%);float:left;padding-bottom:30px" do
+      #       text_node quill_generator(f, "bonus_parts_attributes_#{p.options[:child_index]}_formatted_answer".to_sym) {}
+      #     end
+      #   end
+      #   p.input :formatted_answer, input_html: { rows: 2 }
+      # end
+      (3 - f.object.bonus_parts.length).times do
+        f.object.bonus_parts.build
+      end
+      h5 "Bonus Parts"
+      f.fields_for :bonus_parts do |part|
+        part.inputs do
+          part.input :number, as: :hidden, input_html: {value: part.index + 1}
+          part.input :text, input_html: { rows: 2 }
+          part.input :formatted_text, input_html: { rows: 2 }
+          part.input :answer, input_html: { rows: 2 }
+          part.template.concat (Arbre::Context.new do
+            li do
+              # part.
+              label "Formatted answer (rich editor)", for: "bonus_bonus_parts_attributes_#{part.index}_formatted_answer", class: "label"
+              div class: "quill-editor", style: "width:calc(80%);float:left;padding-bottom:30px" do
+                text_node quill_generator(f, "bonus_parts_attributes_#{part.index}_formatted_answer".to_sym) {}
+              end
+            end
+          end.to_s
+          )
+          part.input :formatted_answer, input_html: { rows: 2 }
+        end
       end
     end
     f.actions
@@ -161,7 +186,9 @@ ActiveAdmin.register Bonus do
     column :created_at
     column :updated_at
 
-    actions
+    actions defaults: true do |b|
+      item "New Error", new_from_question_admin_errors_path(errorable_id: b.id, errorable_type: "Bonus")
+    end
   end
 
   filter :id

@@ -143,7 +143,10 @@ ActiveAdmin.register Tossup do
     column "# Errors", :errors_count, sortable: :errors_count
     column :created_at
     column :updated_at
-    actions
+    actions defaults: true do |t|
+      item "New Error", new_from_question_admin_errors_path(errorable_id: t.id, errorable_type: "Tossup")
+    end
+
   end
 
   filter :id
