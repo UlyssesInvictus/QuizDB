@@ -113,6 +113,7 @@ ActiveAdmin.register Tossup do
       f.input :formatted_text, hint: "Raw! You should use rich editor instead. " \
                                      "Only allowed tags are #{Tossup::ALLOWED_TAGS}" \
                                      "Any others or attributes will be auto-stripped.",
+              label: "Formatted text (HTML)",
               input_html: { rows: 5 }
       f.input :answer, input_html: { rows: 2 }
       li do
@@ -121,7 +122,7 @@ ActiveAdmin.register Tossup do
           text_node quill_generator(f, :formatted_answer) {}
         end
       end
-      f.input :formatted_answer, input_html: { rows: 2 }
+      f.input :formatted_answer, label: "Formatted answer (HTML)", input_html: { rows: 2 }
     end
     f.actions
   end

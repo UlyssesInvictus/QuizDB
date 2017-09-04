@@ -124,26 +124,12 @@ ActiveAdmin.register Bonus do
           text_node quill_generator(f, :formatted_leadin) {}
         end
       end
-      f.input :formatted_leadin, input_html: { rows: 2 }
+      f.input :formatted_leadin, hint: "Raw! You should use rich editor instead. " \
+                                     "Only allowed tags are #{Tossup::ALLOWED_TAGS}" \
+                                     "Any others or attributes will be auto-stripped.",
+              label: "Formatted leadin (HTML)", input_html: { rows: 2 }
     end
     f.inputs do
-      # f.has_many :bonus_parts,
-      #     heading: "Bonus Parts",
-      #     sortable: :number,
-      #     allow_destroy: true,
-      #     sortable_start: 1 do |p|
-      #   p.input :text, input_html: { rows: 2 }
-      #   p.input :answer, input_html: { rows: 2 }
-      #   p.input :formatted_text, input_html: { rows: 2 }
-      #   binding.pry
-      #   li do
-      #     p.label :formatted_answer, "Formatted answer (rich editor)"
-      #     div class: "quill-editor", style: "width:calc(80%);float:left;padding-bottom:30px" do
-      #       text_node quill_generator(f, "bonus_parts_attributes_#{p.options[:child_index]}_formatted_answer".to_sym) {}
-      #     end
-      #   end
-      #   p.input :formatted_answer, input_html: { rows: 2 }
-      # end
       (3 - f.object.bonus_parts.length).times do
         f.object.bonus_parts.build
       end
@@ -152,6 +138,15 @@ ActiveAdmin.register Bonus do
         part.inputs do
           part.input :number, as: :hidden, input_html: {value: part.index + 1}
           part.input :text, input_html: { rows: 2 }
+          part.template.concat (Arbre::Context.new do
+            li do
+              # part.
+              label "Formatted text (rich editor)", for: "bonus_bonus_parts_attributes_#{part.index}_formatted_text", class: "label"
+              div class: "quill-editor", style: "width:calc(80%);float:left;padding-bottom:30px" do
+                text_node quill_generator(f, "bonus_parts_attributes_#{part.index}_formatted_text".to_sym) {}
+              end
+            end
+          end.to_s)
           part.input :formatted_text, input_html: { rows: 2 }
           part.input :answer, input_html: { rows: 2 }
           part.template.concat (Arbre::Context.new do
@@ -162,9 +157,8 @@ ActiveAdmin.register Bonus do
                 text_node quill_generator(f, "bonus_parts_attributes_#{part.index}_formatted_answer".to_sym) {}
               end
             end
-          end.to_s
-          )
-          part.input :formatted_answer, input_html: { rows: 2 }
+          end.to_s)
+          part.input :formatted_answer, label: "Formatted answer (HTML)", input_html: { rows: 2 }
         end
       end
     end
