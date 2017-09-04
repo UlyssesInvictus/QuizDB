@@ -6,8 +6,12 @@ module Question
       validate :subcategory_matches_category
       def subcategory_matches_category
         if subcategory.present?
-          if category.blank? || subcategory.category != category
-            errors.add(:subcategory, "Subcategory must belong to category.")
+          if category.blank?
+            errors.add(:subcategory, "Category must be provided if subcategory is provided.")
+            return false
+          end
+          if subcategory.category_id != category.id
+            errors.add(:subcategory, "Subcategory belongs to #{subcategory.category&.name}, not #{category.name}.")
             return false
           end
         end
