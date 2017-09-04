@@ -125,14 +125,14 @@ class Root extends React.Component {
         <Menu.Item name='home' as={Link} to='/' onClick={() => dispatch(toggleSidebar())}>
             <span><Icon name='home' />Home</span>
         </Menu.Item>
-        <Menu.Item name='about' as={Link} to='/about' onClick={() => dispatch(toggleSidebar())}>
-            <span><Icon name='info circle'/>About</span>
-        </Menu.Item>
         <Menu.Item name='admin' as={'a'} href='/admin' onClick={() => dispatch(toggleSidebar())}>
             <span><Icon name='dashboard'/>Admin</span>
         </Menu.Item>
         <Menu.Item name='resources' as={Link} to='/resources' onClick={() => dispatch(toggleSidebar())}>
             <span><Icon name='bookmark'/>Resources</span>
+        </Menu.Item>
+        <Menu.Item name='about' as={Link} to='/about' onClick={() => dispatch(toggleSidebar())}>
+            <span><Icon name='info circle'/>About</span>
         </Menu.Item>
         <Menu.Item name='help' as={Link} to='/about#contact' onClick={() => dispatch(toggleSidebar())}>
             <span><Icon name='question circle'/>Help</span>
