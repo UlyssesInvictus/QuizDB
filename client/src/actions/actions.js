@@ -95,9 +95,7 @@ export function fetchQuestions(searchQuery, searchFilters, limit=true, random=nu
     let searchQueryString = qs.stringify(searchParamsObject, {
       arrayFormat: 'brackets'
     });
-    return window.fetch(`api/${searchEndpoint}?${searchQueryString}`, {
-        body: searchFilters
-      })
+    return window.fetch(`api/${searchEndpoint}?${searchQueryString}`)
       .then(
         response => response.json(),
         error => console.log('QuizDB: an error occurred.', error)
