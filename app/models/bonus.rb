@@ -64,6 +64,12 @@ class Bonus < ApplicationRecord
     # becomes actually problematic
   end
 
+  before_validation do
+    allowed_tags = %w( b strong i em u )
+    self.formatted_leadin = ActionController::Base.helpers.sanitize(self.formatted_leadin, tags: allowed_tags)
+  end
+
+
   # *************
   # INSTANCE METHODS
   # *************

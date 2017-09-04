@@ -1,3 +1,5 @@
+include QuillHelper
+
 ActiveAdmin.register Tossup do
 
   menu priority: 2
@@ -87,22 +89,36 @@ ActiveAdmin.register Tossup do
   end
 
   form do |f|
-    # we're okay with these being nil
-    round = controller.instance_variable_get(:@round)
-    tournament = controller.instance_variable_get(:@tournament)
-    category = controller.instance_variable_get(:@category)
-    subcategory = controller.instance_variable_get(:@subcategory)
-    number = controller.instance_variable_get(:@number)
+    # we're okay with these being nil too
+    round = controller.instance_variable_get(:@round) || f.object.round
+    tournament = controller.instance_variable_get(:@tournament) || f.object.tournament_id
+    category = controller.instance_variable_get(:@category) || f.object.category_id
+    subcategory = controller.instance_variable_get(:@subcategory) || f.object.subcategory_id
+    number = controller.instance_variable_get(:@number) || 1
+
     f.semantic_errors
     f.inputs do
       f.input :category, collection: options_for_select(Category.pluck(:name, :id), category)
       f.input :subcategory, collection: options_for_select(Category.pluck(:name, :id), subcategory)
       f.input :tournament, collection: options_for_select(Tournament.pluck(:name, :id), tournament)
-      f.input :round, input_html: { value: round}
-      f.input :number, input_html: { value: number || 1}
+      f.input :round, input_html: { value: round }
+      f.input :number, input_html: { value: number }
       f.input :text, input_html: { rows: 5 }
-      f.input :formatted_text, input_html: { rows: 5 }
+      li do
+        f.label :formatted_text, "Formatted text (rich editor)"
+        div class: "quill-editor", style: "width:calc(80%);float:left;padding-bottom:30px" do
+          text_node quill_generator(f, :formatted_text) {}
+        end
+      end
+      f.input :formatted_text, hint: "Raw! You should use rich editor instead. Only allowed tags are #{Tossup::ALLOWED_TAGS}",
+              input_html: { rows: 5 }
       f.input :answer, input_html: { rows: 2 }
+      li do
+        f.label :formatted_answer, "Formatted answer (rich editor)"
+        div class: "quill-editor", style: "width:calc(80%);float:left;padding-bottom:30px" do
+          text_node quill_generator(f, :formatted_answer) {}
+        end
+      end
       f.input :formatted_answer, input_html: { rows: 2 }
     end
     f.actions

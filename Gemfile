@@ -34,9 +34,10 @@ gem 'jbuilder_cache_multi'
 gem 'cancancan', '~> 2.0'
 # postgres full text search
 gem 'pg_search'
+# secrets
 gem 'figaro'
+# emails
 gem 'sendgrid-ruby'
-
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'

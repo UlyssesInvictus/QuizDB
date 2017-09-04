@@ -50,6 +50,7 @@ module Question
   module Searchable
     extend ActiveSupport::Concern
     included do
+      ALLOWED_TAGS = %w( b strong i em u )
       scope :text_contains, -> (query) { where("text ILIKE ?", "%#{query}%") }
       scope :answer_contains, -> (query) { where("answer ILIKE ?", "%#{query}%") }
       scope :text_and_answer_contains, -> (query) {
@@ -64,6 +65,11 @@ module Question
         text_or_answer_contains(query)
       }
       validates :text, :answer, :formatted_text, :formatted_answer, presence: true
+      before_validation do
+        allowed_tags = %w( b strong i em u )
+        self.formatted_text = ActionController::Base.helpers.sanitize(self.formatted_text, tags: allowed_tags)
+        self.formatted_answer = ActionController::Base.helpers.sanitize(self.formatted_answer, tags: allowed_tags)
+      end
     end
   end
 
