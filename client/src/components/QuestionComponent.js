@@ -21,6 +21,8 @@ import sanitizeHtml from 'sanitize-html';
 
 import ErrorModal from './ErrorModal';
 
+import { handleEmpty } from '../utilities/String';
+
 class QuestionsComponent extends React.Component {
 
   constructor(props) {
@@ -110,9 +112,10 @@ class QuestionsComponent extends React.Component {
     const p = this.props;
     const q = p.question;
 
-    let infoDiv;
+    let infoDivTall;
+    let infoDivSkinny;
     if (this.state.showInfo) {
-      infoDiv =  <div className="question-info-show">
+      infoDivTall = <div className="question-info-show">
         {this.renderInfoColumn(q.id, "ID", q.id)}
         {this.renderInfoColumn(q.id, "Tournament", q.tournament.name)}
         {this.renderInfoColumn(q.id, "Round", q.round)}
@@ -121,23 +124,30 @@ class QuestionsComponent extends React.Component {
         {this.renderInfoColumn(q.id, "Subcategory", q.subcategory.name, "None")}
       </div>;
     } else {
-      infoDiv = <div className="question-info-hide">
-      </div>;
+      let infoString = `${handleEmpty(q.tournament.name)} |
+                        ${handleEmpty(q.category.name)} |
+                        ${handleEmpty(q.subcategory.name)}`;
+      infoDivSkinny = <span className="question-info-hide">
+        {infoString}
+      </span>;
     }
 
     let showInfo = !!this.state.showInfo;
     return <Segment className="question-info">
-      <div>
-        {p.index ? <strong>{p.index}.</strong> : null }
-        <Icon name={'caret ' + (showInfo ? 'up' : 'down')} size='big'
-              className='question-info-toggle'
-              onClick={() => this.setState({showInfo: !this.state.showInfo})}
-        />
+      <div className="question-info-skinny">
+        <span>
+          {p.index ? <strong>{p.index}.</strong> : null }
+          <Icon name={'caret ' + (showInfo ? 'up' : 'down')} size='big'
+                className='question-info-toggle'
+                onClick={() => this.setState({showInfo: !this.state.showInfo})}
+          />
+        </span>
+        {infoDivSkinny}
         <Button content='Report error or fix'
                 className='error-modal-trigger short'
                 onClick={() => p.dispatch(toggleErrorModal(q.id))}/>
       </div>
-      {infoDiv}
+      {infoDivTall}
     </Segment>;
 
   }

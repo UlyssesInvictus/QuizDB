@@ -155,11 +155,23 @@ footer.quizdb-footer {
   .question-info-toggle:hover {
     color: #2185d0; }
 
-.question-info-show, .question-info-hide {
+.question-info-show {
   display: flex;
   flex-flow: wrap;
   justify-content: center;
   align-items: center; }
+
+.question-info-skinny {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; }
+
+.question-info-hide {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-grow: 3;
+  padding: 0 0.7rem; }
 
 .ui.segment:first-child.question-info-segment {
   margin: 0.5rem 0.5rem; }
@@ -180,7 +192,7 @@ footer.quizdb-footer {
 
 .ui.top.attached.label:first-child + .question-info-text:not(.attached) {
   margin: 0 !important;
-  max-width: 10rem;
+  max-width: 15rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -291,4 +303,6 @@ footer.quizdb-footer {
   padding: 0.6em; }
   .ui.button.error-modal-trigger.short {
     max-width: 10rem;
-    font-size: 0.7rem; }
+    font-size: 0.7rem;
+    float: right;
+    margin-top: 0.2rem; }
