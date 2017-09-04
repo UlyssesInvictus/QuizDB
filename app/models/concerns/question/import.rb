@@ -1,20 +1,27 @@
 module Question
   module Import
-    def parse_yaml(string, round: nil,
+    def parse_yaml(questions:, round: nil,
                    tournament_id: nil,
                    category_id: nil,
-                   subcategory_id: nil)
-      questions = YAML.load(string)
+                   subcategory_id: nil,
+                   force: false)
+      questions = YAML.load(questions)
       error_questions = []
       success_questions = []
+
+      # if number not provided, try to guess based on position in file
+      tossup_number = 1
+      bonus_number = 1
+      question_models = []
 
       questions.each do |q|
         question_hash = {}
         errors = []
-
+        q = q.with_indifferent_access
+        # validate or look up various associations based on name/ID
         ["tournament", "category", "subcategory"].each do |a|
-          if eval("#{a}_id")
-            question_hash["#{a}_id"] = eval("#{a}_id")
+          if eval("#{a}_id").present?
+            question_hash["#{a}_id"] = eval("#{a}_id").to_i
             next
           end
           a_class = a.classify.constantize
@@ -27,19 +34,92 @@ module Question
           end
         end
         if (question_hash["category_id"] && question_hash["subcategory_id"] &&
+            Subcategory.exists?(id: question_hash["subcategory_id"]) &&
             Subcategory.find(question_hash["subcategory_id"]).category_id != question_hash["category_id"])
           errors.push("Given subcategory does not belong to given category.")
         end
+
+        # the one case that doesn't depend on question type...
+        question_hash[:round] = round || q[:round]
+
+        # handle adding answers
+        if q[:answer].blank? && q[:answers].blank?
+          errors.push("At least some answer must be provided.")
+        elsif q[:type]&.downcase == "tossup" ||
+              q[:answer].present? ||
+              q[:answers].length == 1
+          question_hash[:type] = "Tossup"
+          question_hash[:text] = q[:text]
+          question_hash[:answer] = q[:answer] || q[:answers][0]
+          question_hash[:formatted_answer] = q[:formatted_answer] || question_hash[:answer]
+          if q[:number].present?
+            question_hash[:number] = q[:number].to_i
+            tossup_number = q[:number].to_i
+          else
+            question_hash[:number] = tossup_number
+            tossup_number += 1
+          end
+          # if we've got this far, actually try making the question and see what errors we get
+          if errors.empty?
+            t = Tossup.new(question_hash.except(:type))
+            errors.concat(t.errors.full_messages) unless t.valid?
+            question_models.push(t)
+          end
+        else
+          question_hash[:type] = "Bonus"
+          question_hash[:leadin] = q[:leadin]
+          question_hash[:formatted_leadin] = q[:formatted_leadin] || q[:leadin]
+          question_hash[:answers] = q[:answers]
+          question_hash[:texts] = q[:texts]
+          question_hash[:formatted_answers] = q[:formatted_answers] || q[:answers]
+          question_hash[:formatted_texts] = q[:formatted_texts] || q[:texts]
+          if q[:number].present?
+            question_hash[:number] = q[:number].to_i
+            bonus_number = q[:number].to_i
+          else
+            question_hash[:number] = bonus_number
+            bonus_number += 1
+          end
+          if errors.empty?
+            b = Bonus.new(question_hash.except(:type, :answers, :texts,
+                                               :formatted_answers, :formatted_texts))
+            errors.concat(b.errors.full_messages) unless b.valid?
+            question_models.push(b)
+            question_hash[:answers].each_with_index do |answer, i|
+              part = BonusPart.new(text: question_hash[:texts][i],
+                                   answer: question_hash[:answers][i],
+                                   formatted_text: question_hash[:formatted_texts][i],
+                                   formatted_answer: question_hash[:formatted_answers][i],
+                                   number: i+1
+                                  )
+              errors.concat(part.errors.messages.except(:bonus).values.flatten) unless part.valid?
+              question_models.push(part)
+            end
+          end
+        end
+
         if errors.any?
           error_questions.push({
             original_input: q,
             errors: errors
           })
         else
-          question_hash[:round] = round || q[:round]
           success_questions.push(question_hash)
         end
       end
+      if force
+        # stupid way to do it, but it avoids having to read in all the attrs again
+        current_bonus_id = -1
+
+        Tossup.transaction do
+          question_models.each do |q|
+            q.bonus_id = current_bonus_id if q.class.name == "BonusPart"
+            q.save!
+            current_bonus_id = q.id if q.class.name == "Bonus"
+          end
+        end
+      end
+
       {
         errors: error_questions,
         questions: success_questions

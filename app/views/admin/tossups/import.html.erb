@@ -9,7 +9,8 @@
     Your questions should be uploaded in
     <a href="http://www.yaml.org/start.html" target="_blank">YAML</a> format.
     See <a href="https://github.com/UlyssesInvictus/QuizDB/blob/master/db/data/import.example.yaml" target="_blank">here</a>
-    for an example, with all possible meta-fields and instructions
+    or <a href="https://github.com/UlyssesInvictus/QuizDB/blob/master/db/data/import.hft.yaml" target="_blank">here</a>
+    for examples, with all possible meta-fields and instructions
     on how to format your YAML for QuizDB.
   </li>
   <li>
@@ -28,10 +29,32 @@
 
 <%= semantic_form_for :import, url: admin_import_force_path, method: :post do |f| %>
   <%= f.inputs name: "Bulk Input" do %>
-    <%= f.input :tournament_id, required: false, label: "Tournament", as: :select, collection: Tournament.all %>
-    <%= f.input :round, required: false %>
-    <%= f.input :category_id, required: false, label: "Category", as: :select, collection: Category.all %>
-    <%= f.input :subcategory, required: false, label: "Subcategory", as: :select, collection: Subcategory.all %>
+  <!-- Can't use formtastic fields b/c of deprecated default select option -->
+  <%
+    round ||= ""
+    tournament_id ||= nil
+    category_id ||= nil
+    subcategory_id ||= nil
+  %>
+    <li>
+      <%= f.label "Tournament", for: "import_tournament_id" %>
+      <%= f.select :tournament_id, [["None", nil]] + Tournament.pluck(:name, :id), required: false,
+                              selected: tournament_id
+      %>
+    </li>
+    <%= f.input :round, required: false, input_html: { value: round } %>
+    <li>
+      <%= f.label "Category", for: "import_category_id" %>
+      <%= f.select :category_id, [["None", nil]] + Category.pluck(:name, :id), required: false,
+                              selected: category_id
+      %>
+    </li>
+    <li>
+      <%= f.label "Subcategory", for: "import_subcategory_id" %>
+      <%= f.select :subcategory_id, [["None", nil]] + Subcategory.pluck(:name, :id), required: false,
+                              selected: subcategory_id
+      %>
+    </li>
   <% end %>
   <%= f.inputs name: "Your Questions" do %>
     <% if parse_string.present? %>
@@ -42,10 +65,13 @@
             value: parse_string
           } %>
     <% end %>
-    <%= f.input :questions, as: :text, hint: "Copy-paste your questions here! Remember, YAML format!" %>
+    <%= f.input :questions, as: :text,
+                hint: "Copy-paste your questions here! Remember, YAML format!",
+                input_html: {rows: 50, value: previous_params[:questions] || ""}
+    %>
   <% end %>
   <%= f.actions do %>
-    <%= f.action :submit, label: "Practie Parse" %>
+    <%= f.action :submit, label: "Practice Parse" %>
     <% if parse_string.present? %>
       <%= f.action :submit, label: "Force Upload",
           button_html: { formaction: admin_import_force_path + "?force=true" } %>
