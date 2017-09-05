@@ -57,7 +57,7 @@ class Navbar extends React.Component {
       <Container>
         <div className='navbar-brand' onClick={this.handleBrandClick}>
           <img src='/quizdb.png' alt='QuizDB - Logo'/>
-          QuizDB<span className='navbar-brand-subtext'>(beta!)</span>
+          QuizDB<span className='navbar-brand-subtext'>beta!</span>
         </div>
         <div className='navbar-links'>
           <div className='navbar-link'>
