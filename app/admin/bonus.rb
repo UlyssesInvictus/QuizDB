@@ -1,5 +1,7 @@
 ActiveAdmin.register Bonus do
   menu priority: 3, label: "Bonuses"
+  config.per_page = [10, 30, 50, 100]
+  config.create_another = true
 
   includes :tournament, :category, :subcategory, :bonus_parts
 
@@ -34,10 +36,6 @@ ActiveAdmin.register Bonus do
       :text, :answer,
       :formatted_text, :formatted_answer,
       :number, :_destroy]
-
-  config.sort_order = 'id_asc'
-  config.per_page = [10, 30, 50, 100]
-  config.create_another = true
 
   action_item :import, only: :index do
     link_to 'Import Questions', admin_import_path

@@ -89,6 +89,10 @@ module Question
 
   module Filterable
     extend ActiveSupport::Concern
+    included do
+      scope :most_recent, -> { includes(:tournament).order('tournaments.year desc, tournaments.name asc') }
+      default_scope -> { most_recent }
+    end
     class_methods do
       def filter_by_key(filters, key)
         if filters[key].present?

@@ -3,11 +3,14 @@ include QuillHelper
 ActiveAdmin.register Tossup do
 
   menu priority: 2
+  config.per_page = [10, 30, 50, 100]
+  config.create_another = true
 
   includes :tournament, :category, :subcategory
 
   controller do
     belongs_to :tournament, :category, :subcategory, optional: true
+
     def create
       @number = (permitted_params[:tossup][:number]&.to_i || 0)
       @tournament = permitted_params[:tossup][:tournament_id]
@@ -34,10 +37,6 @@ ActiveAdmin.register Tossup do
   permit_params :id, :text, :answer,
     :tournament_id, :category_id, :subcategory_id,
     :round, :number, :formatted_text, :formatted_answer
-
-  config.sort_order = 'id_asc'
-  config.per_page = [10, 30, 50, 100]
-  config.create_another = true
 
   action_item :import, only: :index do
     link_to 'Import Questions', admin_import_path

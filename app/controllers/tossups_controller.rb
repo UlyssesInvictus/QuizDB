@@ -45,8 +45,8 @@ class TossupsController < ApplicationController
     # and define our own limit here
     random_limit = search_params[:random]&.to_i || 10
     # note that the RANDOM() is postgres specific
-    tossups = questions[:tossups].order("RANDOM()").limit(random_limit)
-    bonuses = questions[:bonuses].order("RANDOM()").limit(random_limit)
+    tossups = questions[:tossups].reorder("RANDOM()").limit(random_limit)
+    bonuses = questions[:bonuses].reorder("RANDOM()").limit(random_limit)
 
     render "search.json.jbuilder", locals: {
       tossups: tossups,
