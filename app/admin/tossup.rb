@@ -59,7 +59,8 @@ ActiveAdmin.register Tossup do
     attr_hash[:number] = inputs[:number].to_i if inputs[:number].present?
     attr_hash[:updated_at] = Time.zone.now
 
-    Tossup.where(id: ids).update_all(attr_hash)
+    # FIXME: have to manually remove default order scope b/c it fucks with AR smart updating
+    Tossup.where(id: ids).reorder("").update_all(attr_hash)
     notice = "Tossups #{ids} updated:\n"
     notice += attr_hash.map {|k, v| "#{k}: #{v}"}.join(" ; ")
     redirect_to collection_path, notice: notice

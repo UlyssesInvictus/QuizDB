@@ -57,7 +57,8 @@ ActiveAdmin.register Bonus do
     attr_hash[:round] = inputs[:round] if inputs[:round].present?
     attr_hash[:number] = inputs[:number].to_i if inputs[:number].present?
 
-    Bonus.where(id: ids).update_all(attr_hash)
+    # FIXME: have to manually remove default order scope b/c it fucks with AR smart updating
+    Bonus.where(id: ids).reorder("").update_all(attr_hash)
     notice = "Tossups #{ids} updated:\n"
     notice += attr_hash.map {|k, v| "#{k}: #{v}"}.join(" ; ")
     redirect_to collection_path, notice: notice
