@@ -1,8 +1,8 @@
-// While app is simple, keep everything in one reducer module :)
-
 import { combineReducers } from 'redux';
+// other reducers
 // responsive state tracker
 import { responsiveStateReducer } from 'redux-responsive';
+import stats from './StatsReducer';
 // notification system
 import {reducer as notifications} from 'react-notification-system-redux';
 
@@ -32,7 +32,7 @@ import {
 const initialSearchState = {
   query: "",
   filters: {},
-  filterOptions: false,
+  filterOptions: null,
   isFetchingFilterOptions: false
 }
 function search(state = initialSearchState, action) {
@@ -117,7 +117,7 @@ function questions(state = initialQuestionsState, action) {
         hasSearchedEver: true,
       });
     case RECEIVE_QUESTIONS:
-      return Object.assign({}, state, {
+      const newQuestionState = {
         isFetching: false,
         tossups: action.tossups,
         bonuses: action.bonuses,
@@ -125,7 +125,12 @@ function questions(state = initialQuestionsState, action) {
         num_bonuses_found: action.num_bonuses_found,
         lastUpdated: action.receivedAt,
         lastSearchOptions: action.lastSearchOptions
-      });
+      };
+      if (action.storeKey) {
+        return Object.assign({}, state, newQuestionState);
+      } else {
+        return Object.assign({}, state, {[action.storeKey]: newQuestionState});
+      }
     default:
       return state;
   }
@@ -206,6 +211,7 @@ const quizdb = combineReducers({
   appearance,
   browser: responsiveStateReducer,
   notifications,
+  stats
 })
 
 export default quizdb

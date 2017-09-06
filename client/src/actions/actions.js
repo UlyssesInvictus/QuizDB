@@ -77,7 +77,7 @@ function receiveQuestions(json, lastSearchOptions) {
     lastSearchOptions: lastSearchOptions
   }
 }
-export function fetchQuestions(searchQuery, searchFilters, limit=true, random=null) {
+export function fetchQuestions({searchQuery, searchFilters, limit=true, random=null}) {
   return function (dispatch) {
     dispatch(searchQuestions());
     let searchParamsObject = {

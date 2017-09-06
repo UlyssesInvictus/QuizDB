@@ -6,7 +6,8 @@ import {
   fetchQuestions,
 } from '../actions/actions';
 
-import { Container,
+import {
+  // Container,
   Loader,
   Header,
   Segment,
