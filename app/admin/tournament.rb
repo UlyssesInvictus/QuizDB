@@ -7,6 +7,9 @@ ActiveAdmin.register Tournament do
   config.per_page = [10, 30, 50, 100]
 
   scope :all, default: true
+  scope("Open") do |scope|
+    scope.where(difficulty: :middle_school)
+  end
   scope("High School") do |scope|
     scope.where(difficulty: [
       :regular_high_school,
@@ -21,6 +24,10 @@ ActiveAdmin.register Tournament do
       :hard_college
     ])
   end
+  scope("Open") do |scope|
+    scope.where(difficulty: :open)
+  end
+
 
   controller do
     def destroy
