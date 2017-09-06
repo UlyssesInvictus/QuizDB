@@ -21,4 +21,22 @@ class Subcategory < ApplicationRecord
     end
   end
 
+  ###
+  # CLASS METHODS
+  ###
+
+  def self.select_options
+    pluck(:name, :id)
+  end
+
+  def self.select_options_by_important
+    # make sure the big 3 come first
+    hist = where("name ILIKE ?", "%History%")
+    lit = where("name ILIKE ?", "%Literature%")
+    science = where("name ILIKE ?", "%Science%").where.not("name ILIKE ?", "%Social Science%")
+    # then don't give a shit about the rest
+    others = where.not(id: hist.ids + lit.ids + science.ids)
+    hist.select_options + lit.select_options + science.select_options + others.select_options
+  end
+
 end

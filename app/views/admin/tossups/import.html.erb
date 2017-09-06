@@ -45,14 +45,16 @@
     <%= f.input :round, required: false, input_html: { value: round } %>
     <li>
       <%= f.label "Category", for: "import_category_id" %>
-      <%= f.select :category_id, [["None", nil]] + Category.pluck(:name, :id), required: false,
-                              selected: category_id
+      <%= f.select :category_id, [["None", nil]] + Category.select_options_by_important,
+            required: false,
+            selected: category_id
       %>
     </li>
     <li>
       <%= f.label "Subcategory", for: "import_subcategory_id" %>
-      <%= f.select :subcategory_id, [["None", nil]] + Subcategory.pluck(:name, :id), required: false,
-                              selected: subcategory_id
+      <%= f.select :subcategory_id, [["None", nil]] + Subcategory.select_options_by_important,
+            required: false,
+            selected: subcategory_id
       %>
     </li>
   <% end %>

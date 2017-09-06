@@ -112,8 +112,8 @@ ActiveAdmin.register Bonus do
 
     f.semantic_errors
     f.inputs do
-      f.input :category, collection: options_for_select(Category.pluck(:name, :id), category)
-      f.input :subcategory, collection: options_for_select(Subcategory.pluck(:name, :id), subcategory)
+      f.input :category, collection: options_for_select(Category.select_options_by_important, category)
+      f.input :subcategory, collection: options_for_select(Subcategory.select_options_by_important, subcategory)
       f.input :tournament, collection: options_for_select(Tournament.pluck(:name, :id), tournament)
       f.input :round, input_html: { value: round}
       f.input :number, input_html: { value: number}
@@ -189,9 +189,9 @@ ActiveAdmin.register Bonus do
   filter :leadin
   filter :bonus_parts_text, as: :string, label: "Text"
   filter :bonus_parts_answer, as: :string, label: "Answers"
-  filter :tournament, multiple: true
-  filter :category, as: :check_boxes
-  filter :subcategory, as: :check_boxes
+  filter :tournament, multiple: true, collection: -> { Tournament.order(year: :desc, name: :asc) }
+  filter :category, as: :check_boxes, collection: -> { Category.select_options_by_important }
+  filter :subcategory, as: :check_boxes, collection: -> { Subcategory.select_options_by_important }
   filter :round
   filter :number
   filter :errors_count

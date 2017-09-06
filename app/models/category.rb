@@ -21,4 +21,20 @@ class Category < ApplicationRecord
     end
   end
 
+  ###
+  # CLASS METHODS
+  ###
+
+  def self.select_options
+    pluck(:name, :id)
+  end
+
+  def self.select_options_by_important
+    # make sure the big 3 come first
+    big_three = where(name: %w(Literature Science History))
+    # then don't give a shit about the rest
+    others = where.not(name: %w(Literature Science History))
+    big_three.select_options + others.select_options
+  end
+
 end
