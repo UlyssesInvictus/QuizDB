@@ -3,4 +3,6 @@ class BonusPart < ApplicationRecord
 
   include Question::Searchable
 
+  default_scope { order(number: :asc) } 
+
 end
