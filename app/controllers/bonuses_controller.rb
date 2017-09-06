@@ -4,7 +4,7 @@ class BonusesController < ApplicationController
   # GET /bonuses
   # GET /bonuses.json
   def index
-    @bonus = Bonus.all
+    # @bonus = Bonus.all
   end
 
   # GET /bonuses/1
