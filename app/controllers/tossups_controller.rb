@@ -1,7 +1,7 @@
 class TossupsController < ApplicationController
   before_action :set_tossup, only: [:show, :update, :destroy]
 
-  QUESTION_SEARCH_LIMT = 15
+  QUESTION_SEARCH_LIMIT = 15
 
   def filter_options
     render json: {
@@ -68,9 +68,9 @@ class TossupsController < ApplicationController
     bonuses = questions[:bonuses]
 
     locals = {
-      tossups: limit ? tossups.limit(QUESTION_SEARCH_LIMT) : tossups,
+      tossups: limit ? tossups.limit(QUESTION_SEARCH_LIMIT) : tossups,
       num_tossups_found: tossups.size,
-      bonuses: limit ? bonuses.limit(QUESTION_SEARCH_LIMT) : bonuses,
+      bonuses: limit ? bonuses.limit(QUESTION_SEARCH_LIMIT) : bonuses,
       num_bonuses_found: bonuses.size
     }
 
