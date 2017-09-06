@@ -96,7 +96,7 @@ class TossupsController < ApplicationController
   # GET /tossups
   # GET /tossups.json
   def index
-    @tossups = Tossup.all
+    # @tossups = Tossup.all
   end
 
   # GET /tossups/1
