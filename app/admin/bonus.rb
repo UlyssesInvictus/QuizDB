@@ -181,16 +181,16 @@ ActiveAdmin.register Bonus do
 
     actions defaults: false do |b|
       # force action paths to not take any potential scopes from our belongs_to's
-      item "View", admin_bonus_path(t)
+      item "View", admin_bonus_path(b)
       text_node " "
-      item "Edit", edit_admin_bonus_path(t)
+      item "Edit", edit_admin_bonus_path(b)
       text_node " "
       text_node "<a class='delete_link member_link'
           title='Delete'
           data-confirm='Are you sure you want to delete this?'
           rel='nofollow'
           data-method='delete'
-          href='#{admin_bonus_path(t)}'>
+          href='#{admin_bonus_path(b)}'>
           Delete
       </a>".html_safe
       text_node " "
