@@ -67,12 +67,15 @@ class QuestionsComponent extends React.Component {
       // theoretically this is a race condition, but it basically never matters
       // since we manually pass in an empty filter anyway
       this.props.dispatch(setSearchFilters({}));
-      this.props.dispatch(fetchQuestions(query, {}));
+      this.props.dispatch(fetchQuestions({ searchQuery: query }));
     } else {
       // same
       let lastFilters = this.props.questions.lastSearchOptions.filters;
       this.props.dispatch(setSearchFilters(lastFilters));
-      this.props.dispatch(fetchQuestions(query, lastFilters));
+      this.props.dispatch(fetchQuestions({
+        searchQuery: query,
+        searchFilters: lastFilters
+      }));
     }
   }
 

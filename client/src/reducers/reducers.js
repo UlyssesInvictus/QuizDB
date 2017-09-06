@@ -97,6 +97,7 @@ function search(state = initialSearchState, action) {
 }
 
 const initialQuestionsState = {
+  // this is what it looks like broadly
   hasSearchedEver: false,
   isFetching: false,
   tossups: [],
@@ -108,14 +109,23 @@ const initialQuestionsState = {
     query: "",
     filters: {}
   }
+  // and we can also have the same structure mirrored
+  // in subState keys, according to whatever component
+  // wants to keep track of its own questions e.g.
+  // stats: { [same object as above] }
 }
 function questions(state = initialQuestionsState, action) {
   switch (action.type) {
     case SEARCH_QUESTIONS:
-      return Object.assign({}, state, {
+      const newSearchingState = {
         isFetching: true,
         hasSearchedEver: true,
-      });
+      };
+      if (action.stateKey) {
+        return Object.assign({}, state, {[action.stateKey]: newSearchingState});
+      } else {
+        return Object.assign({}, state, newSearchingState);
+      }
     case RECEIVE_QUESTIONS:
       const newQuestionState = {
         isFetching: false,
@@ -126,10 +136,10 @@ function questions(state = initialQuestionsState, action) {
         lastUpdated: action.receivedAt,
         lastSearchOptions: action.lastSearchOptions
       };
-      if (action.storeKey) {
-        return Object.assign({}, state, newQuestionState);
+      if (action.stateKey) {
+        return Object.assign({}, state, {[action.stateKey]: newQuestionState});
       } else {
-        return Object.assign({}, state, {[action.storeKey]: newQuestionState});
+        return Object.assign({}, state, newQuestionState);
       }
     default:
       return state;

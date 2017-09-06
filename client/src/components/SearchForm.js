@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import {
@@ -33,6 +34,33 @@ class SearchForm extends React.Component {
     if (!p.search.filterOptions) {
       p.dispatch(fetchFilterOptions());
     }
+  }
+
+  handleInputKeyPress(e) {
+    if (e.key === "Enter") {
+      this.triggerSearch();
+    }
+  }
+
+  handleRandomDropdownChange(e, data) {
+    const p = this.props;
+    p.dispatch(fetchQuestions({
+      searchQuery: p.search.query,
+      searchFilters: p.search.filters,
+      random: data.value,
+      stateKey: p.stateKey,
+    }));
+  }
+
+  triggerSearch() {
+    const p = this.props;
+
+    SearchEasterEggs(this.props.dispatch, p.search.query);
+    p.dispatch(fetchQuestions({
+      searchQuery: p.search.query,
+      searchFilters: p.search.filters,
+      stateKey: p.stateKey,
+    }));
   }
 
   buildTourneyOptions(difficulties, tournaments) {
@@ -147,26 +175,6 @@ class SearchForm extends React.Component {
     </Grid>;
   }
 
-  handleInputKeyPress(e) {
-    if (e.key === "Enter") {
-      this.triggerSearch();
-    }
-  }
-
-  handleRandomDropdownChange(e, data) {
-    const p = this.props;
-    // we could switch to named parameters, but this is currently easier
-    // since limit (3rd arg) is totally ignored when random (4th) is passed
-    p.dispatch(fetchQuestions(p.search.query, p.search.filters, null, data.value));
-  }
-
-  triggerSearch() {
-    const p = this.props;
-
-    SearchEasterEggs(this.props.dispatch, p.search.query);
-    p.dispatch(fetchQuestions(p.search.query, p.search.filters));
-  }
-
   render() {
     const randomOptions = [
       {text: '5 Questions', value: 5, onClick: this.handleRandomDropdownChange},
@@ -213,6 +221,10 @@ class SearchForm extends React.Component {
 
     </Container></div>
   }
+}
+
+SearchForm.PropTypes = {
+  stateKey: PropTypes.string
 }
 
 const mapStateToProps = state => {
