@@ -179,7 +179,21 @@ ActiveAdmin.register Bonus do
     column :created_at
     column :updated_at
 
-    actions defaults: true do |b|
+    actions defaults: false do |b|
+      # force action paths to not take any potential scopes from our belongs_to's
+      item "View", admin_bonus_path(t)
+      text_node " "
+      item "Edit", edit_admin_bonus_path(t)
+      text_node " "
+      text_node "<a class='delete_link member_link'
+          title='Delete'
+          data-confirm='Are you sure you want to delete this?'
+          rel='nofollow'
+          data-method='delete'
+          href='#{admin_bonus_path(t)}'>
+          Delete
+      </a>".html_safe
+      text_node " "
       item "New Error", new_from_question_admin_errors_path(errorable_id: b.id, errorable_type: "Bonus")
     end
   end

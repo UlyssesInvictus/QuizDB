@@ -144,7 +144,21 @@ ActiveAdmin.register Tossup do
     column "# Errors", :errors_count, sortable: :errors_count
     column :created_at
     column :updated_at
-    actions defaults: true do |t|
+    actions defaults: false do |t|
+      # force action paths to not take any potential scopes from our belongs_to's
+      item "View", admin_tossup_path(t)
+      text_node " "
+      item "Edit", edit_admin_tossup_path(t)
+      text_node " "
+      text_node "<a class='delete_link member_link'
+          title='Delete'
+          data-confirm='Are you sure you want to delete this?'
+          rel='nofollow'
+          data-method='delete'
+          href='#{admin_tossup_path(t)}'>
+          Delete
+      </a>".html_safe
+      text_node " "
       item "New Error", new_from_question_admin_errors_path(errorable_id: t.id, errorable_type: "Tossup")
     end
 
