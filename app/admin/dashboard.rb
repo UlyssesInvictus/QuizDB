@@ -56,7 +56,7 @@ ActiveAdmin.register_page "Dashboard" do
 
       column do
         panel "Tossups with most errors" do
-          table_for Tossup.all.order(errors_count: :desc).limit(TABLE_LIMIT) do
+          table_for Tossup.all.reorder("").order(errors_count: :desc).limit(TABLE_LIMIT) do
             column(:id) {|q| link_to(q.id, admin_tossup_path(q))}
             column :errors_count
           end
@@ -65,7 +65,7 @@ ActiveAdmin.register_page "Dashboard" do
 
       column do
         panel "Bonuses with most errors" do
-          table_for Bonus.all.order(errors_count: :desc).limit(TABLE_LIMIT) do
+          table_for Bonus.all.reorder("").order(errors_count: :desc).limit(TABLE_LIMIT) do
             column(:id) {|q| link_to(q.id, admin_bonus_path(q))}
             column :errors_count
           end
@@ -77,7 +77,7 @@ ActiveAdmin.register_page "Dashboard" do
     columns do
       column do
         panel "Most recent tossup changes" do
-          table_for Tossup.all.order(updated_at: :desc).limit(TABLE_LIMIT) do
+          table_for Tossup.all.reorder("").order(updated_at: :desc).limit(TABLE_LIMIT) do
             column(:id) {|q| link_to(q.id, admin_tossup_path(q))}
             column(:text) {|q| q.formatted_text.truncate(50).html_safe}
             column(:answer) {|q| q.formatted_answer.truncate(50).html_safe}
@@ -88,7 +88,7 @@ ActiveAdmin.register_page "Dashboard" do
       end
       column do
         panel "Most recent bonus changes" do
-          table_for Bonus.all.order(updated_at: :desc).limit(TABLE_LIMIT) do
+          table_for Bonus.all.reorder("").order(updated_at: :desc).limit(TABLE_LIMIT) do
             column(:id) {|q| link_to(q.id, admin_bonus_path(q))}
             column(:content) {|q| q.html_content.truncate(100).html_safe}
             column :tournament
