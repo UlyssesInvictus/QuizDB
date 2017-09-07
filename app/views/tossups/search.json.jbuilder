@@ -16,6 +16,7 @@ json.data do
       :round, :created_at, :updated_at, :quinterest_id,
       :formatted_text, :formatted_answer
     json.url tossup_url(tossup, format: :json)
+    json.type "tossup"
 
     # these cause extra renders too
     # json.tournament tossup.tournament, partial: "tournaments/tournament", as: :tournament
@@ -73,6 +74,7 @@ json.data do
     json.formatted_texts bonus_parts.map {|b| b[3]}
     json.formatted_answers bonus_parts.map {|b| b[4]}
     json.url bonus_url(bonus, format: :json)
+    json.type "bonus"
 
     # json.tournament bonus.tournament, partial: "tournaments/tournament", as: :tournament
     # json.category bonus.category, partial: "categories/category", as: :category

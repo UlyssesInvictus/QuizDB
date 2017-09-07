@@ -236,7 +236,8 @@ footer.quizdb-footer {
   padding: 0px 0px 10px 0px !important; }
 
 .icon-clickable {
-  cursor: pointer; }
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.87); }
   .icon-clickable:hover {
     color: #2185d0; }
 

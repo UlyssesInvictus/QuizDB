@@ -1,3 +1,5 @@
+@import "./variables.scss";
+
 .question-loader {
   // top padding should come from ::before element of actual loader
   padding-bottom: 5rem;
@@ -121,6 +123,7 @@
 
 .icon-clickable {
   cursor: pointer;
+  color: $primary-text-color;
   &:hover {
     color: #2185d0;
   }

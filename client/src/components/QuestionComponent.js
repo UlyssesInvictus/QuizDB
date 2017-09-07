@@ -79,6 +79,8 @@ class QuestionsComponent extends React.Component {
     const googlePrefix = 'https://google.com/search?q=';
     const wikiPrefix = 'https://en.wikipedia.org/w/index.php?search=';
     const googleImagesPrefix = 'https://google.com/search?tbm=isch&q=';
+    const q = this.props.question;
+    const typePlural = q.type === "tossup" ? "tossups" : "bonuses";
 
     return <Grid.Column largeScreen='3' computer='2' tablet='16' mobile='16'
                         verticalAlign='middle' textAlign='center'
@@ -89,19 +91,22 @@ class QuestionsComponent extends React.Component {
             onClick={() => this.handleIconClick(googleImagesPrefix, query)}/>
       <Icon name='wikipedia' className='icon-clickable'
             onClick={() => this.handleIconClick(wikiPrefix, query)}/>
+      <a href={`/admin/${typePlural}s/${q.id}`} target="_blank" ref="nofollow">
+        <Icon name='database' className='icon-clickable' link/>
+      </a>
       <Icon name='clone' className='icon-clickable'
             onClick={() => this.handleIconClick("copy", query, index)}/>
       <Icon name='repeat' corner className='icon-clickable'
-            data-tip data-for={`${this.props.question.id}-repeat`}
+            data-tip data-for={`${q.id}-repeat`}
             onClick={() => this.handleSearchIconClick(query)}/>
       <Icon name='refresh' className='icon-clickable'
-            data-tip data-for={`${this.props.question.id}-refresh`}
+            data-tip data-for={`${q.id}-refresh`}
             onClick={() => this.handleSearchIconClick(query, false)}/>
 
-      <ReactTooltip effect='solid' type='info' id={`${this.props.question.id}-repeat`}>
+      <ReactTooltip effect='solid' type='info' id={`${q.id}-repeat`}>
         Search for this answerline, with no filters
       </ReactTooltip>
-      <ReactTooltip effect='solid' type='info' id={`${this.props.question.id}-refresh`}>
+      <ReactTooltip effect='solid' type='info' id={`${q.id}-refresh`}>
         Search for this answerline, with the same filters
       </ReactTooltip>
 
