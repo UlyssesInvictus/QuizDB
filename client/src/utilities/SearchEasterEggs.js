@@ -23,7 +23,7 @@ export function handleSearchInput(dispatch, query) {
     })
   } else if (query.match(/(R|r)ilke/)) {
     success(dispatch, {
-      title: "Like the poet?",
+      title: "\"Like the poet?\"",
       message: "I've given up on trying to get Starbucks to spell my name right."
     })
   }
