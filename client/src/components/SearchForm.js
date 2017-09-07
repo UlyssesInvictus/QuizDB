@@ -17,8 +17,6 @@ import { Grid, Input,
 
 import SearchDropDown from './SearchDropDown';
 
-import SearchEasterEggs from '../utilities/SearchEasterEggs';
-
 class SearchForm extends React.Component {
 
   constructor(props) {
@@ -54,13 +52,7 @@ class SearchForm extends React.Component {
 
   triggerSearch() {
     const p = this.props;
-
-    SearchEasterEggs(this.props.dispatch, p.search.query);
-    p.dispatch(fetchQuestions({
-      searchQuery: p.search.query,
-      searchFilters: p.search.filters,
-      stateKey: p.stateKey,
-    }));
+    p.onSearch();
   }
 
   buildTourneyOptions(difficulties, tournaments) {
@@ -224,7 +216,8 @@ class SearchForm extends React.Component {
 }
 
 SearchForm.PropTypes = {
-  stateKey: PropTypes.string
+  stateKey: PropTypes.string,
+  onSearch: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => {
