@@ -11,6 +11,7 @@ class Bonus < ApplicationRecord
   include Question::Filterable
   include ActionView::Helpers::TextHelper
   include Question::Categorizable
+  include Question::Tournamentable
 
   # **********
   # SCOPES

@@ -3,37 +3,6 @@ class TossupsController < ApplicationController
 
   QUESTION_SEARCH_LIMIT = 15
 
-  def filter_options
-    render json: {
-      search_type: ["Question", "Answer"],
-      question_type: ["Tossup", "Bonus"],
-      # pluck to speed up query a little, instead of accessing each record
-      category: Category.order(:name).pluck(:name, :id).map { |c| {
-        name: c[0],
-        id: c[1]
-        } },
-      subcategory: Subcategory.order(:name).pluck(:name, :id, :category_id).map { |c| {
-        name: c[0],
-        id: c[1],
-        category_id: c[2]
-        } },
-      tournament: Tournament.all.order(year: :desc, name: :asc)
-        .pluck(:name, :id, :difficulty, :quality, :year).map { |c| {
-          name: c[0],
-          id: c[1],
-          difficulty: c[2].titleize,
-          difficulty_num: Tournament.difficulties[c[2]],
-          quality: c[3],
-          year: c[4]
-        } },
-      difficulty: Tournament.difficulties.map { |k,v | {
-        number: v,
-        name: k,
-        title: k.titleize
-        } }
-    }
-  end
-
   def random
     # pretty much identical to search
     query = search_params[:query]

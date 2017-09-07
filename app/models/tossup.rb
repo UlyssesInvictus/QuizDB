@@ -10,6 +10,7 @@ class Tossup < ApplicationRecord
   include Question::Searchable
   include Question::Filterable
   include Question::Categorizable
+  include Question::Tournamentable
 
   ## VALIDATIONS ##
 

@@ -10,6 +10,7 @@ module Question
       end
 
       validate :subcategory_matches_category
+      validates :category_id, presence: true
       def subcategory_matches_category
         if subcategory.present?
           if category.blank?
@@ -24,7 +25,55 @@ module Question
         return true
       end
     end
+
+    class_methods do
+      def stats_on_category
+        raw_stats = reorder("")
+          .joins(:tournament, :category)
+          .group("tournaments.year", "categories.name")
+          .size
+        stats = {}
+        raw_stats.each do |stat, count|
+          year = stat[0].to_s
+          category = stat[1].to_s
+          stats[year] = { total: 0 } if stats[year].blank?
+          stats[year][category] = 0 if stats[year][category].blank?
+          stats[year][:total] += count
+          stats[year][category] += count
+        end
+        stats
+      end
+    end
+
   end
+
+  module Tournamentable
+    extend ActiveSupport::Concern
+
+    included do
+      validates :tournament_id, presence: true
+    end
+
+    class_methods do
+      def stats_on_tournament
+        raw_stats = reorder("")
+          .joins(:tournament)
+          .group("tournaments.year", "tournaments.difficulty")
+          .size
+        stats = {}
+        raw_stats.each do |stat, count|
+          year = stat[0].to_s
+          difficulty = stat[1].to_s
+          stats[year] = { total: 0 } if stats[year].blank?
+          stats[year][difficulty] = 0 if stats[year][difficulty].blank?
+          stats[year][:total] += count
+          stats[year][difficulty] += count
+        end
+        stats
+      end
+    end
+  end
+
 
   module SearchAndFilter
     def self.search_and_filter(query, filters)
@@ -92,8 +141,6 @@ module Question
     included do
       scope :most_recent, -> { includes(:tournament).order('tournaments.year desc, tournaments.name asc') }
       default_scope -> { most_recent }
-
-      validates :tournament_id, :category_id, presence: true
     end
     class_methods do
       def filter_by_key(filters, key)
