@@ -121,11 +121,7 @@ function questions(state = initialQuestionsState, action) {
         isFetching: true,
         hasSearchedEver: true,
       };
-      if (action.stateKey) {
-        return Object.assign({}, state, {[action.stateKey]: newSearchingState});
-      } else {
-        return Object.assign({}, state, newSearchingState);
-      }
+      return Object.assign({}, state, newSearchingState);
     case RECEIVE_QUESTIONS:
       const newQuestionState = {
         isFetching: false,
@@ -136,11 +132,7 @@ function questions(state = initialQuestionsState, action) {
         lastUpdated: action.receivedAt,
         lastSearchOptions: action.lastSearchOptions
       };
-      if (action.stateKey) {
-        return Object.assign({}, state, {[action.stateKey]: newQuestionState});
-      } else {
-        return Object.assign({}, state, newQuestionState);
-      }
+      return Object.assign({}, state, newQuestionState);
     default:
       return state;
   }

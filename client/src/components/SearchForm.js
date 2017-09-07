@@ -46,7 +46,6 @@ class SearchForm extends React.Component {
       searchQuery: p.search.query,
       searchFilters: p.search.filters,
       random: data.value,
-      stateKey: p.stateKey,
     }));
   }
 
@@ -216,7 +215,6 @@ class SearchForm extends React.Component {
 }
 
 SearchForm.PropTypes = {
-  stateKey: PropTypes.string,
   onSearch: PropTypes.func.isRequired,
 }
 

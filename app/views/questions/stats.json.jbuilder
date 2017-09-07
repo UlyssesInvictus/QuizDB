@@ -1,5 +1,5 @@
 json.data do
-  json.tossups do
+  json.tossup_stats do
     json.year_category_stats tossups.stats_by_year_and_category
     json.year_difficulty_stats tossups.stats_by_year_and_difficulty
     json.category_stats tossups.stats_by_category
@@ -10,7 +10,7 @@ json.data do
       }
     end
   end
-  json.bonuses do
+  json.bonus_stats do
     json.year_category_stats bonuses.stats_by_year_and_category
     json.year_difficulty_stats bonuses.stats_by_year_and_difficulty
     json.category_stats bonuses.stats_by_category
