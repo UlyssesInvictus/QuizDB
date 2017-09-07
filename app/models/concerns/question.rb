@@ -92,6 +92,8 @@ module Question
     included do
       scope :most_recent, -> { includes(:tournament).order('tournaments.year desc, tournaments.name asc') }
       default_scope -> { most_recent }
+
+      validates :tournament_id, :category_id, presence: true
     end
     class_methods do
       def filter_by_key(filters, key)
