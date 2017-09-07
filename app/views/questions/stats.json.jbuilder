@@ -1,7 +1,8 @@
 json.data do
   json.tossups do
-    json.year_category_stats tossups.stats_on_category
-    json.year_tournament_stats tossups.stats_on_tournament
+    json.year_category_stats tossups.stats_by_year_and_category
+    json.year_difficulty_stats tossups.stats_by_year_and_difficulty
+    json.category_stats tossups.stats_by_category
     if tossups.size < 500
       json.partial! "questions/tossups", locals: {
         tossups: tossups,
@@ -10,8 +11,9 @@ json.data do
     end
   end
   json.bonuses do
-    json.year_category_stats bonuses.stats_on_category
-    json.year_tournament_stats bonuses.stats_on_tournament
+    json.year_category_stats bonuses.stats_by_year_and_category
+    json.year_difficulty_stats bonuses.stats_by_year_and_difficulty
+    json.category_stats bonuses.stats_by_category
     if bonuses.size < 500
       json.partial! "questions/bonuses", locals: {
         bonuses: bonuses,

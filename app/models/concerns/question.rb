@@ -27,7 +27,7 @@ module Question
     end
 
     class_methods do
-      def stats_on_category
+      def stats_by_year_and_category
         raw_stats = reorder("")
           .joins(:tournament, :category)
           .group("tournaments.year", "categories.name")
@@ -43,6 +43,23 @@ module Question
         end
         stats
       end
+      def stats_by_category
+        raw_stats = reorder("")
+          .joins(:category, :subcategory)
+          .group("categories.name", "subcategories.name")
+          .size
+        stats = {}
+        raw_stats.each do |stat, count|
+          category = stat[0].to_s
+          subcategory = stat[1].to_s
+          stats[category] = { total: 0 } if stats[category].blank?
+          stats[category][subcategory] = 0 if stats[category][subcategory].blank?
+          stats[category][:total] += count
+          stats[category][subcategory] += count
+        end
+        stats
+      end
+
     end
 
   end
@@ -55,7 +72,7 @@ module Question
     end
 
     class_methods do
-      def stats_on_tournament
+      def stats_by_year_and_difficulty
         raw_stats = reorder("")
           .joins(:tournament)
           .group("tournaments.year", "tournaments.difficulty")
