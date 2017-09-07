@@ -127,9 +127,12 @@ class QuestionsComponent extends React.Component {
       let infoString = `${handleEmpty(q.tournament.name)} |
                         ${handleEmpty(q.category.name)} |
                         ${handleEmpty(q.subcategory.name)}`;
-      infoDivSkinny = <span className="question-info-hide">
-        {infoString}
-      </span>;
+      infoDivSkinny = (
+        <span className="question-info-hide"
+          onClick={() => this.setState({showInfo: !this.state.showInfo})}>
+          {infoString}
+        </span>
+      );
     }
 
     let showInfo = !!this.state.showInfo;
