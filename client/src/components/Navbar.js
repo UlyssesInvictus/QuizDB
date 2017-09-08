@@ -15,7 +15,11 @@ class Navbar extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {shrink: false};
+    this.state = {
+      shrink: false,
+      hide: false,
+      currentY: window.scrollY,
+    };
     this.handleScroll = this.handleScroll.bind(this);
     this.handleBrandClick = this.handleBrandClick.bind(this);
     this.handleBurgerClick = this.handleBurgerClick.bind(this);
@@ -35,6 +39,10 @@ class Navbar extends React.Component {
     } else {
       this.setState({shrink: false});
     }
+    this.setState({
+      hide: window.scrollY > 30 && window.scrollY > this.state.currentY && this.state.shrink,
+      currentY: window.scrollY,
+    });
   }
 
   handleBrandClick() {
@@ -49,6 +57,9 @@ class Navbar extends React.Component {
     let navClass = 'navbar ';
     if (this.state.shrink) {
       navClass += 'shrink ';
+    }
+    if (this.state.hide) {
+      navClass += 'hide ';
     }
     if (this.props.browser.lessThan.medium) {
       navClass += 'mobile';

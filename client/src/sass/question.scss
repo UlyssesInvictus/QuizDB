@@ -110,10 +110,10 @@
   outline: none;
   box-shadow: none;
   background: transparent;
-  color: white;
+  color: $primary-background;
   &:focus {
     background: transparent;
-    color: white;
+    color: $primary-background;
   }
 }
 

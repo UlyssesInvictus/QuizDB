@@ -6,6 +6,7 @@ Here are supplementary features I'd like to add over time, organized roughly by 
 
 - Improved question formatting for powers and answerlines. (The issue here is that, ultimately, questions have to be manually marked to display things like bold and underline. It's a high priority, but it'll be slow.)
   - Improved tagging and categorization for question content. I'm going to try to use some smart parsing to do this, but it may end up being a knees-in-the-mud manual effort.
+- Improved display and styling. I'm a perfectionist for these things and will probably keep tinkering until someone yells at me. (On that note, your feedback appreciated.)
 - Advanced "google-style" search, allowing you to do things like "do NOT include" or "includes any of the following."
 - Offline support using cached data of the most popular and high quality questions.
 - Interactive charts and statistics showing answer distribution and quality over time. (I imagine it'll be useful for seeing which way the winds are blowing with stock clues.)

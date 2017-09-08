@@ -151,7 +151,7 @@ class QuestionsComponent extends React.Component {
           />
         </span>
         {infoDivSkinny}
-        <Button content='Report error or fix'
+        <Button content='Errors in question?'
                 className='error-modal-trigger short'
                 onClick={() => p.dispatch(toggleErrorModal(q.id))}/>
       </div>
