@@ -91,7 +91,7 @@ class QuestionsComponent extends React.Component {
             onClick={() => this.handleIconClick(googleImagesPrefix, query)}/>
       <Icon name='wikipedia' className='icon-clickable'
             onClick={() => this.handleIconClick(wikiPrefix, query)}/>
-      <a href={`/admin/${typePlural}s/${q.id}`} target="_blank" ref="nofollow">
+      <a href={`/admin/${typePlural}/${q.id}`} target="_blank" ref="nofollow">
         <Icon name='database' className='icon-clickable' link/>
       </a>
       <Icon name='clone' className='icon-clickable'
