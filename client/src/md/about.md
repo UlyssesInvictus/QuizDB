@@ -30,6 +30,7 @@ All that aside, here are the features:
   - Breakfast food of the question writer at time question was written [^3]
 - Responsive UI, suitable for any size screen [^4]
 - Admin portal for editing, fixing, uploading, or otherwise improving question content and metainfo.
+  - With accompanying API exposing all questions and data for machine readable public consumption.
 - User error and correction report system.
 - Search for answerlines in Google, Wikipedia, or QuizDB from within question itself.
 - Easy export of questions to text, JSON, or CSV.
