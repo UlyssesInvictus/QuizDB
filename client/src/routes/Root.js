@@ -15,6 +15,7 @@ import {
 import PageSearch from './PageSearch';
 import PageAbout from './PageAbout';
 import PageResources from './PageResources';
+import PageFuture from './PageFuture';
 import Page404 from './Page404';
 import PageRefresh from './PageRefresh';
 
@@ -148,6 +149,7 @@ class Root extends React.Component {
               <Route exact path="/" component={PageSearch}/>
               <Route exact path="/about" component={PageAbout}/>
               <Route exact path="/resources" component={PageResources}/>
+              <Route exact path="/future" component={PageFuture}/>
               <Route component={Page404}/>
             </Switch>
           </main>

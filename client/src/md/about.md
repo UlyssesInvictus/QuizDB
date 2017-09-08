@@ -29,7 +29,7 @@ All that aside, here are the features:
   - Tournament source and difficulty
   - Breakfast food of the question writer at time question was written [^3]
 - Responsive UI, suitable for any size screen [^4]
-- Admin portal for editing, fixing, uploading, or otherwise improving question content and metainfo by trusted QB peers.
+- Admin portal for editing, fixing, uploading, or otherwise improving question content and metainfo.
 - User error and correction report system.
 - Search for answerlines in Google, Wikipedia, or QuizDB from within question itself.
 - Easy export of questions to text, JSON, or CSV.
@@ -39,20 +39,15 @@ And all this on a live server instance connected to my codebase, meaning I can d
 
 ## Future
 
-Here are supplementary features I'd like to add over time, organized roughly by likelihood of being added:
+You can find an up-to-date list planned feature release list [here](/future).
 
-- Improved question formatting for powers and answerlines. (The issue here is that, ultimately, questions have to be manually marked to display things like bold and underline. It's a high priority, but it'll be slow.)
-  - Improved tagging and categorization for question content. I'm going to try to use some smart parsing to do this, but it may end up being a knees-in-the-mud manual effort.
-- Advanced "google-style" search, allowing you to do things like "do NOT include" or "includes any of the following."
-- Moxon, a live question reader.
-  - And, potentially, with an actual AI playing against you!
-- Interactive charts and statistics showing answer distribution and quality over time. (I imagine it'll be useful for seeing which way the winds are blowing with stock clues. [^5])
-- User accounts, with:
-  - Starring questions & packets, and viewing/filtering starred questions.
-  - Creating memory cards and notes using live highlighting
-  - Tracking questions read (or at least searched for)
-- Improved appearance customization, with dark themes and font customization.
-- Who knows..?
+A very quick list, though, includes:
+
+- Better coverage of question formatting and metainfo
+- Advanced search
+- Offline improvements
+- Stats
+- **Moxon**, a question reader
 
 ### Monetization
 
@@ -101,5 +96,3 @@ You can use the Error Report system to report any errors on individual questions
 [^3]: Okay, not really. But I wonder if there's a difference in question quality between the kind of writer who has Wheaties for breakfast and the kind that has Red Bull...
 
 [^4]: Except, perhaps, a screen "made for ants."
-
-[^5]: Although, my understanding of the QB world tells me it will likely just be used to make fun of bad question writers.
