@@ -22,6 +22,7 @@ import sanitizeHtml from 'sanitize-html';
 import ErrorModal from './ErrorModal';
 
 import { handleEmpty } from '../utilities/String';
+import { cleanString } from '../utilities/Question';
 
 class QuestionsComponent extends React.Component {
 
@@ -174,13 +175,9 @@ class QuestionsComponent extends React.Component {
   }
 
   renderTossup(q) {
-    let formattedText = sanitizeHtml(q.formatted_text, {
-      allowedTags: [ 'b', 'i', 'em', 'strong', 'u' ]
-    });
+    let formattedText = cleanString(q.formatted_text);
     formattedText = <span dangerouslySetInnerHTML={{__html: formattedText}}/>;
-    let formattedAnswer = sanitizeHtml(q.formatted_answer, {
-      allowedTags: [ 'b', 'i', 'em', 'strong', 'u' ]
-    });
+    let formattedAnswer = cleanString(q.formatted_answer);
     formattedAnswer = <span dangerouslySetInnerHTML={{__html: formattedAnswer}}/>;
 
     return <div className="question-content">
@@ -202,18 +199,15 @@ class QuestionsComponent extends React.Component {
   }
 
   renderBonus(q) {
+    let formattedLeadin = cleanString(q.formatted_leadin);
     return <div className="question-content">
       <Segment className="question-bonus-leadin">
-        <strong>Question: </strong>{q.leadin}
+        <strong>Question: </strong>{formattedLeadin}
       </Segment>
       {[0, 1, 2].map(index => {
-        let formattedText = sanitizeHtml(q.formatted_texts[index], {
-          allowedTags: [ 'b', 'i', 'em', 'strong', 'u' ]
-        });
+        let formattedText = cleanString(q.formatted_texts[index]);
         formattedText = <span dangerouslySetInnerHTML={{__html: formattedText}}/>;
-        let formattedAnswer = sanitizeHtml(q.formatted_answers[index], {
-          allowedTags: [ 'b', 'i', 'em', 'strong', 'u' ]
-        });
+        let formattedAnswer = cleanString(q.formatted_answers[index]);
         formattedAnswer = <span dangerouslySetInnerHTML={{__html: formattedAnswer}}/>;
 
         return <Segment className="question-bonus-part" key={`question-bonus-part-${index}`}>
