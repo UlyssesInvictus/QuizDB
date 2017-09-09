@@ -123,16 +123,22 @@ module Question
       def filter_by_search_type(filter, query)
         filter = filter.present? ? filter : []
         query = query.present? ? query : ""
-        if (["Question", "Answer"] - filter).empty?
-          contains(query)
-        elsif filter.include?("Question")
-          text_contains(query)
-        # explicitly separate last two cases in case we add new ones
-        elsif filter.include?("Answer")
-          answer_contains(query)
-        else
-          answer_contains(query)
+        # TODO: make fuzzy search the default!
+        query = query.split(" ")
+        results = all
+        query.each do |q|
+          if (["Question", "Answer"] - filter).empty?
+            results = results.contains(q)
+          elsif filter.include?("Question")
+            results = results.text_contains(q)
+          # explicitly separate last two cases in case we add new ones
+          elsif filter.include?("Answer")
+            results = results.answer_contains(q)
+          else
+            results = results.answer_contains(q)
+          end
         end
+        results
       end
 
       def filter_by_difficulty(filter)
