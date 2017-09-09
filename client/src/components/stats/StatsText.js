@@ -8,6 +8,11 @@ import nlcstToString from 'nlcst-to-string';
 import { extractTossupText, extractBonusText } from "../../utilities/Question";
 import { stripStopWords } from "../../utilities/parser/Parser";
 
+import {
+  Table,
+} from 'semantic-ui-react';
+
+
 class StatsText extends React.Component {
 
   // constructor(props) {
@@ -25,24 +30,35 @@ class StatsText extends React.Component {
     const bonusText = this.props.bonuses.map(t => {
       return stripStopWords(extractBonusText(t));
     }).join(" ");
-    retext().use(keywords, {"maximum": 80}).process(tossupText + "\n\n" + bonusText, (err, file) => {
-      console.log(tossupText + "\n\n" + bonusText);
-      console.log(file.data.keywords.map((keyword) => {
-        return {
-          score: keyword.score,
-          value: nlcstToString(keyword.matches[0].node)
-        };
-      }));
-      console.log(file.data.keyphrases.map((phrase) => {
+    let keyphrases;
+    retext().use(keywords, {"maximum": 100}).process(tossupText + "\n\n" + bonusText, (err, file) => {
+      keyphrases = file.data.keyphrases.map((phrase) => {
         return {
           score: phrase.score,
           value: phrase.matches[0].nodes.map(nlcstToString).join('')
         };
-      }));
+      });
     });
     return (
-      <div>
-        test
+      <div className="stats-text-table">
+        <Table striped compact size="small">
+          <Table.Header>
+            <Table.Row>
+              <Table.HeaderCell width='4'>Value</Table.HeaderCell>
+              <Table.HeaderCell width='4'>Score</Table.HeaderCell>
+            </Table.Row>
+          </Table.Header>
+          <Table.Body>
+            {keyphrases.map(keyphrase => {
+              return (
+                <Table.Row>
+                  <Table.Cell>{keyphrase.value}</Table.Cell>
+                  <Table.Cell>{(keyphrase.score * 100).toFixed(2)}</Table.Cell>
+                </Table.Row>
+              );
+            })}
+          </Table.Body>
+        </Table>
       </div>
     );
   }
