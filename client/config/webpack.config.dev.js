@@ -144,7 +144,8 @@ module.exports = {
           /\.gif$/,
           /\.jpe?g$/,
           /\.png$/,
-          /\.md$/
+          /\.md$/,
+          /\.txt$/
         ],
         loader: require.resolve('file-loader'),
         options: {
@@ -217,7 +218,11 @@ module.exports = {
       {
         test: /\.md$/,
         use: 'raw-loader'
-      }
+      },
+      {
+        test: /\.txt$/,
+        use: 'raw-loader'
+      },
     ],
   },
   plugins: [

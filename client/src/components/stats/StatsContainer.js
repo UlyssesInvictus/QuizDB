@@ -8,11 +8,14 @@ import {
 } from 'semantic-ui-react';
 // import ReactTooltip from 'react-tooltip';
 
+import StatsText from "./StatsText";
+
 class StatsContainer extends React.Component {
 
-  // constructor(props) {
-  //   super(props);
-  // }
+  constructor(props) {
+    super(props);
+    this.renderStats = this.renderStats.bind(this);
+  }
 
   renderFetching() {
     return <Loader active inline='centered' size='huge'
@@ -23,7 +26,12 @@ class StatsContainer extends React.Component {
   renderStats(){
     return (
       <div>
-        test
+        <StatsText
+          tossups={this.props.stats.tossups}
+          bonuses={this.props.stats.bonuses}
+          numTossupsFound={this.props.stats.numTossupsFound}
+          numBonusesFound={this.props.stats.numBonusesFound}
+        />
       </div>
     );
   }

@@ -22,7 +22,9 @@ function stats(state = initialStatsState, action) {
       const newStatsState = {
         isFetching: false,
         tossups: action.data.tossups,
+        numTossupsFound: action.data.num_tossups_found,
         bonuses: action.data.bonuses,
+        numBonusesFound: action.data.numBonusesFound,
         years: action.data.years,
         lastUpdated: action.receivedAt,
       };
