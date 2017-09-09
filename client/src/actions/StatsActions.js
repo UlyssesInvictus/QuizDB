@@ -14,8 +14,7 @@ function searchStats() {
 function receiveStats(json) {
   return {
     type: RECEIVE_STATS,
-    tossupStats: json.data.tossup_stats,
-    bonusStats: json.data.bonus_stats,
+    data: json.data,
     receivedAt: Date.now(),
   }
 }

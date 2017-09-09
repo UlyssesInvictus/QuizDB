@@ -6,7 +6,6 @@ import {
 const initialStatsState = {
   // isFetching:,
   // tossupStats:,
-  // bonusStats:,
   // lastUpdated:,
 }
 
@@ -21,8 +20,9 @@ function stats(state = initialStatsState, action) {
     case RECEIVE_STATS:
       const newStatsState = {
         isFetching: false,
-        tossupStats: action.tossupStats,
-        bonusStats: action.bonusStats,
+        tossups: action.data.tossups,
+        bonuses: action.data.bonuses,
+        years: action.data.years,
         lastUpdated: action.receivedAt,
       };
       return Object.assign({}, state, newStatsState);
