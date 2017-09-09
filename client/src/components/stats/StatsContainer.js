@@ -20,16 +20,24 @@ class StatsContainer extends React.Component {
       className="question-loader"/>
   }
 
+  renderStats(){
+    return (
+      <div>
+        test
+      </div>
+    );
+  }
+
   render() {
-    let q = this.props.questions;
+    let stats = this.props.stats;
     let view;
-    if (!q.hasSearchedEver) {
+    if (!stats.hasSearchedEver) {
       view = null;
     }
-    else if (q.isFetching) {
+    else if (stats.isFetching) {
       view = this.renderFetching();
     } else {
-      view = this.renderStats(q);
+      view = this.renderStats(stats);
     }
     return <div className="stats-container">
       {view}
@@ -39,7 +47,7 @@ class StatsContainer extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    questions: state.questions.stats,
+    stats: state.stats,
     browser: state.browser,
   }
 }

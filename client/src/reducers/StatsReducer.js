@@ -4,6 +4,7 @@ import {
 } from "../actions/StatsActions";
 
 const initialStatsState = {
+  hasSearchedEver: false,
   // isFetching:,
   // tossupStats:,
   // lastUpdated:,

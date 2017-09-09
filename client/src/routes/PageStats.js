@@ -8,6 +8,7 @@ import {
 // Components
 import SearchForm from '../components/SearchForm';
 import RootCredits from '../components/RootCredits';
+import StatsContainer from '../components/stats/StatsContainer';
 
 import {
   // Divider
@@ -26,6 +27,7 @@ class PageStats extends React.Component {
         }}
       />
       <RootCredits/>
+      <StatsContainer/>
     </div>
 
   }
