@@ -58,6 +58,7 @@ ActiveAdmin.register Error do
         a "Bonus #{e.errorable_id}", href: admin_bonus_path(e.errorable_id)
       end
     end
+    column :updated_at
     actions defaults: false do |e|
       item "View", admin_error_path(e)
       text_node " "
