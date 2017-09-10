@@ -45,7 +45,7 @@
       width: 75px;
       height: 60px; }
     .navbar-brand-subtext {
-      font-size: 2rem;
+      font-size: 1.8rem;
       font-style: italic; }
   .navbar-links {
     font-size: 3rem;
@@ -64,6 +64,8 @@
       .navbar.mobile .navbar-brand img {
         width: 30px;
         height: 25px; }
+      .navbar.mobile .navbar-brand-subtext {
+        display: none; }
     .navbar.mobile .navbar-links i.icon {
       font-size: 1em; }
     .navbar.mobile.shrink {

@@ -32,7 +32,7 @@
     }
 
     &-subtext {
-      font-size: 2rem;
+      font-size: 1.8rem;
       font-style: italic;
     }
 
@@ -65,6 +65,10 @@
       & img {
         width: 30px;
         height: 25px;
+      }
+
+      &-subtext {
+        display: none;
       }
     }
 

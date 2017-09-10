@@ -15,8 +15,8 @@ class Root extends React.Component {
         <p>
           Created by <a href={raynorForumLink} target="_blank" rel="noopener noreferrer">Raynor Kuang</a> {"<>"}
           {/* <Icon fitted name='question' style={{marginRight: 0}}/> */}
-          {" Inspired by "}
-          <a href="http://quinterest.org/" target="_blank" rel="noopener noreferrer">Quinterest</a>
+          {" Sponsored by "}
+          <a href="http://www.pace-nsc.org/" target="_blank" rel="noopener noreferrer">PACE</a>
         </p>
       </Header>
       <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
