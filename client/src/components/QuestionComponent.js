@@ -99,9 +99,11 @@ class QuestionsComponent extends React.Component {
             onClick={() => this.handleIconClick("copy", query, index)}/>
       <Icon name='repeat' corner className='icon-clickable'
             data-tip data-for={`${q.id}-repeat`}
+            target="_blank"
             onClick={() => this.handleSearchIconClick(query)}/>
       <Icon name='refresh' className='icon-clickable'
             data-tip data-for={`${q.id}-refresh`}
+            target="_blank"
             onClick={() => this.handleSearchIconClick(query, false)}/>
 
       <ReactTooltip effect='solid' type='info' id={`${q.id}-repeat`}>
