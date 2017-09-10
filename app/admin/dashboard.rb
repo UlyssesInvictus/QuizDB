@@ -48,6 +48,7 @@ ActiveAdmin.register_page "Dashboard" do
             column(:id) {|q| link_to q.id, admin_error_path(q)}
             column :error_type
             column(:description) {|q| q.description.truncate(50)}
+            column(:resolved)
             column(:question) {|q| q.errorable_type == "Tossup" ?
               link_to("Tossup #{q.id}", admin_tossup_path(q.errorable)) :
               link_to("Bonus #{q.id}", admin_bonus_path(q.errorable))}
