@@ -10,8 +10,9 @@ import { stripStopWords } from "../../utilities/parser/Parser";
 
 import {
   Table,
+  Icon,
 } from 'semantic-ui-react';
-
+import ReactTooltip from 'react-tooltip';
 
 class StatsText extends React.Component {
 
@@ -21,6 +22,16 @@ class StatsText extends React.Component {
 
   renderTooMany() {
     return <span>Too many questions to load. Please narrow your filters and search again.</span>
+  }
+
+  renderStatsTextHeader() {
+    return <h2 className="stats-text-header">
+      Top Keywords <Icon name="warning sign" data-tip data-for={`stats-text-warning`}></Icon>
+      <ReactTooltip effect='solid' place='right' type='error' id={`stats-text-warning`}>
+        This feature is experimental.
+        Please excuse any glaring errors or nonsensible foibles!
+      </ReactTooltip>
+    </h2>
   }
 
   renderStatsText(){
@@ -67,14 +78,17 @@ class StatsText extends React.Component {
     const p = this.props;
     let view = null;
     if (p.tossups.length < p.numTossupsFound || p.bonuses.length < p.numBonusesFound) {
-      view = this.renderTooMany();
+      view = <div className="stats-text">{this.renderTooMany()}</div>;
     } else {
-      view = this.renderStatsText();
+      view = (
+        <div className="stats-text">
+          {this.renderStatsTextHeader()}
+          {this.renderStatsText()}
+        </div>
+      )
     }
 
-    return <div className="stats-text">
-      {view}
-    </div>
+    return view;
   }
 }
 

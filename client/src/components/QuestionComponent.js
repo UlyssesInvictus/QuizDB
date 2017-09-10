@@ -17,7 +17,6 @@ import {
   Icon
 } from 'semantic-ui-react';
 import ReactTooltip from 'react-tooltip';
-import sanitizeHtml from 'sanitize-html';
 
 import ErrorModal from './ErrorModal';
 

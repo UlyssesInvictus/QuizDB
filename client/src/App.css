@@ -315,3 +315,13 @@ footer.quizdb-footer {
     font-size: 0.7rem;
     float: right;
     margin-top: 0.2rem; }
+
+.stats-text-header .icon {
+  color: red; }
+
+.stats-text-table {
+  max-height: 20rem;
+  overflow-y: auto; }
+
+.quizdb-stats {
+  padding-bottom: 5rem; }
