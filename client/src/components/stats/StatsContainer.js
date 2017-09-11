@@ -9,6 +9,7 @@ import {
 // import ReactTooltip from 'react-tooltip';
 
 import StatsText from "./StatsText";
+import StatsBar from "./StatsBar";
 
 class StatsContainer extends React.Component {
 
@@ -26,6 +27,16 @@ class StatsContainer extends React.Component {
   renderStats(){
     return (
       <div>
+        <div className="stats-bar_charts">
+          <StatsBar
+            years={this.props.stats.years}
+            yearsKey={"categories"}
+          />
+          <StatsBar
+            years={this.props.stats.years}
+            yearsKey={"difficulties"}
+          />
+        </div>
         <StatsText
           tossups={this.props.stats.tossups}
           bonuses={this.props.stats.bonuses}

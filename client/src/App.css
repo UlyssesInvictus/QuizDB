@@ -325,3 +325,10 @@ footer.quizdb-footer {
 
 .quizdb-stats {
   padding-bottom: 5rem; }
+
+.stats-bar_charts {
+  height: 25rem;
+  display: flex; }
+  .stats-bar_charts .stats-bar_chart {
+    height: 100%;
+    width: 50%; }

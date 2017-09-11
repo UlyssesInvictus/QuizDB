@@ -4,3 +4,13 @@
 .quizdb-stats {
   padding-bottom: $page-padding-bottom;
 }
+
+.stats-bar_charts {
+  height: 25rem;
+  display: flex;
+
+  .stats-bar_chart {
+    height: 100%;
+    width: 50%;
+  }
+}

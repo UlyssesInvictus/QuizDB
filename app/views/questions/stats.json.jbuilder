@@ -37,31 +37,47 @@ json.data do
   tossup_stats = tossups.stats_by_year_and_category.deep_merge(tossups.stats_by_year_and_difficulty)
   bonus_stats = bonuses.stats_by_year_and_category.deep_merge(bonuses.stats_by_year_and_difficulty)
 
-  years = Tournament.reorder("").distinct(:year).pluck(:year)
+  years = Tournament.reorder("").distinct(:year).pluck(:year).sort
   difficulties = Tournament.reorder("").difficulties_titleized
   categories = Category.distinct(:name).pluck(:name)
 
   json.years years do |y|
     json.year y
+    json.total do
+      total = (tossup_stats[y.to_s] ? tossup_stats[y.to_s][:total] : 0) + (bonus_stats[y.to_s] ? bonus_stats[y.to_s][:total] : 0)
+      json.total total
+      json.categories categories do |c|
+        category_total = (tossup_stats[y.to_s] ? (tossup_stats[y.to_s][c] || 0) : 0) +
+                         (bonus_stats[y.to_s] ? (bonus_stats[y.to_s][c] || 0) : 0)
+        json.name c
+        json.total category_total
+      end
+      json.difficulties difficulties.keys do |d|
+        difficulty_total = (tossup_stats[y.to_s] ? (tossup_stats[y.to_s][difficulties[d].to_s] || 0) : 0) +
+                           (bonus_stats[y.to_s] ? (bonus_stats[y.to_s][difficulties[d].to_s] || 0) : 0)
+        json.name d
+        json.total difficulty_total
+      end
+    end
     json.tossups do
       json.total tossup_stats[y.to_s] ? tossup_stats[y.to_s][:total] : 0
       json.categories categories do |c|
-        json.category c
+        json.name c
         json.total tossup_stats[y.to_s] ? (tossup_stats[y.to_s][c] || 0) : 0
       end
       json.difficulties difficulties.keys do |d|
-        json.difficulty d
+        json.name d
         json.total tossup_stats[y.to_s] ? (tossup_stats[y.to_s][difficulties[d].to_s] || 0) : 0
       end
     end
     json.bonuses do
       json.total bonus_stats[y.to_s] ? bonus_stats[y.to_s][:total] : 0
       json.categories categories do |c|
-        json.category c
+        json.name c
         json.total bonus_stats[y.to_s] ? (bonus_stats[y.to_s][c] || 0) : 0
       end
       json.difficulties difficulties.keys do |d|
-        json.difficulty d
+        json.name d
         json.total bonus_stats[y.to_s] ? (bonus_stats[y.to_s][difficulties[d].to_s] || 0) : 0
       end
     end
