@@ -17,7 +17,6 @@ import {
   Icon
 } from 'semantic-ui-react';
 import ReactTooltip from 'react-tooltip';
-import sanitizeHtml from 'sanitize-html';
 
 import ErrorModal from './ErrorModal';
 
@@ -200,6 +199,7 @@ class QuestionsComponent extends React.Component {
 
   renderBonus(q) {
     let formattedLeadin = cleanString(q.formatted_leadin);
+    formattedLeadin = <span dangerouslySetInnerHTML={{__html: formattedLeadin}}/>;
     return <div className="question-content">
       <Segment className="question-bonus-leadin">
         <strong>Question: </strong>{formattedLeadin}
