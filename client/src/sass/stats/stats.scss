@@ -6,11 +6,24 @@
 }
 
 .stats-bar_charts {
-  height: 25rem;
+  height: 30rem;
   display: flex;
+  flex-wrap: wrap;
+  margin: 2rem 0;
 
   .stats-bar_chart {
     height: 100%;
     width: 50%;
+    padding: 1.2rem 0;
   }
+
+  @media (max-width: #{$screen-medium - 1px}) {
+    height: 45rem;
+    .stats-bar_chart {
+      height: 50%;
+      width: 100%;
+      padding: 2.4rem 0;
+    }
+  }
+
 }

@@ -6,3 +6,38 @@ $secondary-text-color: #2185d0;
 $border-color: #D4D4D5;
 
 $page-padding-bottom: 5rem;
+
+$screen-extraSmall: 480px;
+$screen-small: 768px;
+$screen-medium: 992px;
+$screen-large: 1200px;
+
+@mixin extraSmall {
+  @media (max-width: #{$screen-extraSmall - 1px}) {
+    @content;
+  }
+}
+
+@mixin small {
+  @media (min-width: #{$screen-extraSmall}) and (max-width: #{$screen-small - 1px}) {
+    @content;
+  }
+}
+
+@mixin medium {
+  @media (min-width: #{$screen-small}) and (max-width: #{$screen-medium - 1px}) {
+    @content;
+  }
+}
+
+@mixin large {
+  @media (min-width: #{$screen-medium}) and (max-width: #{$screen-large - 1px}) {
+    @content;
+  }
+}
+
+@mixin extraLarge {
+  @media (min-width: #{$screen-large}) {
+    @content;
+  }
+}

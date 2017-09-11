@@ -60,9 +60,9 @@ class StatsText extends React.Component {
             </Table.Row>
           </Table.Header>
           <Table.Body>
-            {keyphrases.map(keyphrase => {
+            {keyphrases.map((keyphrase, index) => {
               return (
-                <Table.Row>
+                <Table.Row key={`keyphrase-${index}`}>
                   <Table.Cell>{keyphrase.value}</Table.Cell>
                   <Table.Cell>{(keyphrase.score * 100).toFixed(2)}</Table.Cell>
                 </Table.Row>

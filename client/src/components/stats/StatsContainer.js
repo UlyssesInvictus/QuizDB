@@ -31,10 +31,12 @@ class StatsContainer extends React.Component {
           <StatsBar
             years={this.props.stats.years}
             yearsKey={"categories"}
+            title="Category"
           />
           <StatsBar
             years={this.props.stats.years}
             yearsKey={"difficulties"}
+            title="Difficulty"
           />
         </div>
         <StatsText
