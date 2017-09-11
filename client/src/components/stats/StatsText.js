@@ -26,7 +26,7 @@ class StatsText extends React.Component {
 
   renderStatsTextHeader() {
     return <h2 className="stats-text-header">
-      Top Keywords <Icon name="warning sign" data-tip data-for={`stats-text-warning`}></Icon>
+      Top Keyphrases <Icon name="warning sign" data-tip data-for={`stats-text-warning`}></Icon>
       <ReactTooltip effect='solid' place='right' type='error' id={`stats-text-warning`}>
         This feature is experimental.
         Please excuse any glaring errors or nonsensible foibles!
@@ -55,8 +55,8 @@ class StatsText extends React.Component {
         <Table striped compact size="small">
           <Table.Header>
             <Table.Row>
-              <Table.HeaderCell width='4'>Value</Table.HeaderCell>
-              <Table.HeaderCell width='4'>Score</Table.HeaderCell>
+              <Table.HeaderCell width='4'>Phrase</Table.HeaderCell>
+              <Table.HeaderCell width='4'>Relevancy Score</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
           <Table.Body>
