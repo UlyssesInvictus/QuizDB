@@ -107,6 +107,9 @@ ActiveAdmin.register Bonus do
   end
 
   form do |f|
+
+    h4 "Make sure to select the 'Create Another' box for easy round uploading!"
+
     f.semantic_errors
     # we're okay with these being nil
     round = controller.instance_variable_get(:@round) || f.object.round

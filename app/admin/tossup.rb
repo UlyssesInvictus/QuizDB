@@ -100,6 +100,8 @@ ActiveAdmin.register Tossup do
     subcategory = controller.instance_variable_get(:@subcategory) || f.object.subcategory_id
     number = controller.instance_variable_get(:@number) || 1
 
+    h4 "Make sure to select the 'Create Another' box for easy round uploading!"
+
     f.semantic_errors
     f.inputs do
       f.input :category, collection: options_for_select(Category.select_options_by_important, category)
