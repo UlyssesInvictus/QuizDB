@@ -3,6 +3,7 @@ include QuillHelper
 ActiveAdmin.register Tossup do
 
   menu priority: 2
+  config.default_per_page = 30
   config.per_page = [10, 30, 50, 100]
   config.create_another = true
 

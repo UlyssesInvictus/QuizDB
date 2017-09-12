@@ -6,6 +6,7 @@ ActiveAdmin.register Error do
     :resolved
 
   config.sort_order = 'updated_at_desc'
+  config.default_per_page = 30
   config.per_page = [10, 30, 50, 100]
 
   batch_action :resolve, if: proc {

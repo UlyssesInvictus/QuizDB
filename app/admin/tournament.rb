@@ -4,6 +4,7 @@ ActiveAdmin.register Tournament do
   permit_params :year, :name, :difficulty, :quality, :address, :link
 
   config.sort_order = 'year_desc'
+  config.default_per_page = 30
   config.per_page = [10, 30, 50, 100]
 
   scope :all, default: true
