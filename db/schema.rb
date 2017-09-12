@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170901024537) do
+ActiveRecord::Schema.define(version: 20170912000114) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 20170901024537) do
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.integer  "number",           null: false
+    t.text     "wikipedia_url"
     t.index "answer gin_trgm_ops", name: "index_bonus_parts_on_answer_gin_trgm_ops", using: :gin
     t.index "text gin_trgm_ops", name: "index_bonus_parts_on_text_gin_trgm_ops", using: :gin
     t.index ["bonus_id"], name: "index_bonus_parts_on_bonus_id", using: :btree
@@ -126,6 +127,7 @@ ActiveRecord::Schema.define(version: 20170901024537) do
     t.text     "formatted_text"
     t.integer  "errors_count",     default: 0
     t.text     "formatted_answer"
+    t.text     "wikipedia_url"
     t.index "answer gin_trgm_ops", name: "index_tossups_on_answer_gin_trgm_ops", using: :gin
     t.index "text gin_trgm_ops", name: "index_tossups_on_text_gin_trgm_ops", using: :gin
     t.index ["category_id"], name: "index_tossups_on_category_id", using: :btree

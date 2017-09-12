@@ -35,6 +35,7 @@ ActiveAdmin.register Bonus do
     bonus_parts_attributes: [:id, :bonus_id,
       :text, :answer,
       :formatted_text, :formatted_answer,
+      :wikipedia_url,
       :number, :_destroy]
 
   action_item :import, only: :index do
@@ -93,6 +94,11 @@ ActiveAdmin.register Bonus do
         simple_format (q.question_errors.map do |e|
           "#{e.error_type}: #{e.description} (#{e.resolved? ? 'Resolved' : 'Unresolved'})"
         end).join("\n")
+      end
+      row :wikipedia_urls do |bonus|
+        simple_format (bonus.bonus_parts.pluck(:wikipedia_url).map do |p|
+          link_to(p, p, target: "_blank")
+        end.join("\n"))
       end
       row :created_at
       row :updated_at
@@ -158,6 +164,7 @@ ActiveAdmin.register Bonus do
             end
           end.to_s)
           part.input :formatted_answer, label: "Formatted answer (HTML)", input_html: { rows: 2 }
+          part.input :wikipedia_url, label: "Wikipedia Page Link", input_html: { rows: 1 }
         end
       end
     end
@@ -208,6 +215,7 @@ ActiveAdmin.register Bonus do
   filter :round
   filter :number
   filter :errors_count
+  filter :wikipedia_url
   filter :created_at, label: 'Added to QuizDB On'
 
 end

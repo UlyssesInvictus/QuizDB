@@ -36,7 +36,8 @@ ActiveAdmin.register Tossup do
 
   permit_params :id, :text, :answer,
     :tournament_id, :category_id, :subcategory_id,
-    :round, :number, :formatted_text, :formatted_answer
+    :round, :number, :formatted_text, :formatted_answer,
+    :wikipedia_url
 
   action_item :import, only: :index do
     link_to 'Import Questions', admin_import_path
@@ -82,6 +83,9 @@ ActiveAdmin.register Tossup do
           "#{e.error_type}: #{e.description} (#{e.resolved? ? 'Resolved' : 'Unresolved'})"
         end).join("\n")
       end
+      row :wikipedia_url do |q|
+        link_to q.wikipedia_url, q.wikipedia_url, target: "_blank"
+      end
       row :created_at
       row :updated_at
     end
@@ -123,6 +127,9 @@ ActiveAdmin.register Tossup do
         end
       end
       f.input :formatted_answer, label: "Formatted answer (HTML)", input_html: { rows: 2 }
+      f.input :wikipedia_url, label: "Wikipedia Page Link", input_html: { rows: 1 },
+                              hint: "This isn't super necessary, so don't add it if it's time consuming " \
+                                    "but it's definitely helpful."
     end
     f.actions
   end
@@ -173,6 +180,7 @@ ActiveAdmin.register Tossup do
   filter :round
   filter :number
   filter :errors_count
+  filter :wikipedia_url
   filter :created_at, label: 'Added to QuizDB On'
 
 end
