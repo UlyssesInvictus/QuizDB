@@ -26,9 +26,9 @@ class StatsText extends React.Component {
 
   renderStatsTextHeader() {
     return <h2 className="stats-text-header">
-      Top Keyphrases <Icon name="warning sign" data-tip data-for={`stats-text-warning`}></Icon>
+      Top Keyphrases <Icon name="warning sign" data-tip data-for={`stats-text-warning`}/>
       <ReactTooltip effect='solid' place='right' type='error' id={`stats-text-warning`}>
-        This feature is experimental.
+        This feature is experimental and improving gradually.
         Please excuse any glaring errors or nonsensible foibles!
       </ReactTooltip>
     </h2>

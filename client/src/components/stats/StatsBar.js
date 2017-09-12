@@ -11,6 +11,10 @@ import {
   Tooltip,
   Legend
 } from 'recharts';
+import {
+  Icon,
+} from 'semantic-ui-react';
+import ReactTooltip from 'react-tooltip';
 
 const BAR_COLORS_DIVERGING = [
   "#a6cee3",
@@ -48,7 +52,16 @@ class StatsBar extends React.Component {
   }
 
   renderBarHeader() {
-    return <h2>Appearances by Year and {this.props.title}</h2>;
+    return (
+      <h2>
+        Appearances by Year and {this.props.title}
+        <Icon color="red" name="warning sign" data-tip data-for={`stats-bar-warning-${this.props.title}`}/>
+        <ReactTooltip effect='solid' place='right' type='error' id={`stats-bar-warning-${this.props.title}`}>
+          Likely to vary due to tournament coverage in QuizDB.
+          Take numbers with a grain of salt!
+        </ReactTooltip>
+      </h2>
+    );
   }
 
   renderBarChart(){
