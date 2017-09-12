@@ -4,6 +4,7 @@ ActiveAdmin.register Subcategory do
   permit_params :name, :category_id
 
   config.sort_order = 'name_asc'
+  config.default_per_page = 30
   config.per_page = [10, 30, 50, 100]
 
   scope :all, default: true

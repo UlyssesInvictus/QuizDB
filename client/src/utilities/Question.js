@@ -3,6 +3,9 @@ import sanitizeHtml from 'sanitize-html';
 export function cleanSpecial(str) {
   let newStr = str.replace(/Â/g, "");
   newStr = newStr.replace(/&quot;/g, "");
+  // assuming these specific chinese characters are never actually intentional...
+  newStr = newStr.replace(/猴/g, "f");
+  newStr = newStr.replace(/睌/g, "f");
   return newStr;
 }
 

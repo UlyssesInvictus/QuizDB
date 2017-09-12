@@ -31,6 +31,8 @@ class Ability
         Error,
         ActiveAdmin::Comment
       ]
+      can :resolve, Error
+      can :manage, ActiveAdmin::Page, name: "Import"
     else # user should be :grunt
       can :read, [
         Tossup,

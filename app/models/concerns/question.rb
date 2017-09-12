@@ -150,6 +150,10 @@ module Question
         self.text = self.text&.strip
         self.answer = self.answer&.strip
       end
+
+      def link_to_wikipedia
+        wikipedia_url.present? ? ActionController::Base.helpers.link_to(wikipedia_url, wikipedia_url, target: "_blank") : nil
+      end
     end
   end
 

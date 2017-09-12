@@ -1,5 +1,5 @@
 ActiveAdmin.register AdminUser do
-  permit_params :email, :role
+  permit_params :email, :role, :password, :password_confirmation
 
   config.sort_order = 'email_asc'
   config.per_page = [10, 30, 50, 100]

@@ -1,5 +1,6 @@
 ActiveAdmin.register Bonus do
   menu priority: 3, label: "Bonuses"
+  config.default_per_page = 30
   config.per_page = [10, 30, 50, 100]
   config.create_another = true
 
@@ -35,6 +36,7 @@ ActiveAdmin.register Bonus do
     bonus_parts_attributes: [:id, :bonus_id,
       :text, :answer,
       :formatted_text, :formatted_answer,
+      :wikipedia_url,
       :number, :_destroy]
 
   action_item :import, only: :index do
@@ -94,6 +96,11 @@ ActiveAdmin.register Bonus do
           "#{e.error_type}: #{e.description} (#{e.resolved? ? 'Resolved' : 'Unresolved'})"
         end).join("\n")
       end
+      row :wikipedia_urls do |bonus|
+        simple_format (bonus.bonus_parts.map do |p|
+          p.link_to_wikipedia
+        end.join("\n"))
+      end
       row :created_at
       row :updated_at
     end
@@ -101,6 +108,9 @@ ActiveAdmin.register Bonus do
   end
 
   form do |f|
+
+    h4 "Make sure to select the 'Create Another' box for easy round uploading!"
+
     f.semantic_errors
     # we're okay with these being nil
     round = controller.instance_variable_get(:@round) || f.object.round
@@ -158,6 +168,7 @@ ActiveAdmin.register Bonus do
             end
           end.to_s)
           part.input :formatted_answer, label: "Formatted answer (HTML)", input_html: { rows: 2 }
+          part.input :wikipedia_url, label: "Wikipedia Page Link", input_html: { rows: 1 }
         end
       end
     end
@@ -208,6 +219,7 @@ ActiveAdmin.register Bonus do
   filter :round
   filter :number
   filter :errors_count
+  filter :wikipedia_url
   filter :created_at, label: 'Added to QuizDB On'
 
 end

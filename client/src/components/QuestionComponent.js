@@ -17,6 +17,7 @@ import {
   Icon
 } from 'semantic-ui-react';
 import ReactTooltip from 'react-tooltip';
+import Notifications from 'react-notification-system-redux';
 
 import ErrorModal from './ErrorModal';
 
@@ -53,6 +54,10 @@ class QuestionsComponent extends React.Component {
       let answer = document.querySelector(hiddenId);
       answer.select();
       document.execCommand('copy');
+      this.props.dispatch(Notifications.success({
+        title: "Answer copied to clipboard!",
+        message: `Copied "${query}."`,
+      }));
       return;
     }
 
@@ -202,6 +207,7 @@ class QuestionsComponent extends React.Component {
 
   renderBonus(q) {
     let formattedLeadin = cleanString(q.formatted_leadin);
+    formattedLeadin = <span dangerouslySetInnerHTML={{__html: formattedLeadin}}/>;
     return <div className="question-content">
       <Segment className="question-bonus-leadin">
         <strong>Question: </strong>{formattedLeadin}
