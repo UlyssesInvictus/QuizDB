@@ -96,8 +96,8 @@ ActiveAdmin.register Bonus do
         end).join("\n")
       end
       row :wikipedia_urls do |bonus|
-        simple_format (bonus.bonus_parts.pluck(:wikipedia_url).map do |p|
-          link_to(p, p, target: "_blank")
+        simple_format (bonus.bonus_parts.map do |p|
+          p.link_to_wikipedia
         end.join("\n"))
       end
       row :created_at

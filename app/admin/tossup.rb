@@ -84,7 +84,7 @@ ActiveAdmin.register Tossup do
         end).join("\n")
       end
       row :wikipedia_url do |q|
-        link_to q.wikipedia_url, q.wikipedia_url, target: "_blank"
+        q.link_to_wikipedia
       end
       row :created_at
       row :updated_at
