@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 
 import {
   Loader,
+  Icon
 } from 'semantic-ui-react';
 // import ReactTooltip from 'react-tooltip';
 
@@ -53,7 +54,7 @@ class StatsContainer extends React.Component {
     let stats = this.props.stats;
     let view;
     if (!stats.hasSearchedEver) {
-      view = null;
+      view = <h2>Your Stats Appear Here! <Icon name="plug"/></h2>;
     }
     else if (stats.isFetching) {
       view = this.renderFetching();

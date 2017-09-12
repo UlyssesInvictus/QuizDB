@@ -336,7 +336,14 @@ footer.quizdb-footer {
     height: 100%;
     width: 50%;
     padding: 1.2rem 0; }
-  @media (max-width: 991px) {
+  @media (max-width: 767px) {
+    .stats-bar_charts {
+      height: 50rem; }
+      .stats-bar_charts .stats-bar_chart {
+        height: 50%;
+        width: 100%;
+        padding: 2.4rem 0 5.2rem 0; } }
+  @media (min-width: 768px) and (max-width: 991px) {
     .stats-bar_charts {
       height: 45rem; }
       .stats-bar_charts .stats-bar_chart {

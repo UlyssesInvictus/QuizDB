@@ -12,8 +12,6 @@ import {
   Legend
 } from 'recharts';
 
-import { findByKey } from "../../utilities/Array";
-
 const BAR_COLORS_DIVERGING = [
   "#a6cee3",
   "#1f78b4",
@@ -85,14 +83,13 @@ class StatsBar extends React.Component {
               />;
             })
           }
-          <Legend height="5rem"/>
+          <Legend height={60}/>
         </BarChart>
       </ResponsiveContainer>
     );
   }
 
   render() {
-    const p = this.props;
     let view = null;
     view = (
       <div className="stats-bar_chart">

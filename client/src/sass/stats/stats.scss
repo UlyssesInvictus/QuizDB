@@ -17,7 +17,16 @@
     padding: 1.2rem 0;
   }
 
-  @media (max-width: #{$screen-medium - 1px}) {
+  @media (max-width: #{$screen-small - 1px}) {
+    height: 50rem;
+    .stats-bar_chart {
+      height: 50%;
+      width: 100%;
+      padding: 2.4rem 0 5.2rem 0;
+    }
+  }
+
+  @media (min-width: #{$screen-small}) and (max-width: #{$screen-medium - 1px}) {
     height: 45rem;
     .stats-bar_chart {
       height: 50%;
