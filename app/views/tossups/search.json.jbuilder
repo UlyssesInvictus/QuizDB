@@ -14,7 +14,7 @@ json.data do
     json.extract! tossup, :id, :text, :answer, :number,
       :tournament_id, :category_id, :subcategory_id,
       :round, :created_at, :updated_at, :quinterest_id,
-      :formatted_text, :formatted_answer
+      :formatted_text, :formatted_answer, :wikipedia_url
     json.url tossup_url(tossup, format: :json)
     json.type "tossup"
 
@@ -66,13 +66,15 @@ json.data do
     # plucking's much faster than actually loading the object
     bonus_parts = bonus.bonus_parts.pluck(:number, :text, :answer,
                                           :formatted_text,
-                                          :formatted_answer
+                                          :formatted_answer,
+                                          :wikipedia_url
                                          )
                                    .sort_by {|b| b[0]}
     json.texts bonus_parts.map {|b| b[1]}
     json.answers bonus_parts.map {|b| b[2]}
     json.formatted_texts bonus_parts.map {|b| b[3]}
     json.formatted_answers bonus_parts.map {|b| b[4]}
+    json.wikipedia_urls bonus_parts.map {|b| b[5]}
     json.url bonus_url(bonus, format: :json)
     json.type "bonus"
 

@@ -39,7 +39,7 @@ ActiveAdmin.register_page "Dashboard" do
       end
     end
 
-    TABLE_LIMIT = 10
+    TABLE_LIMIT = 15
 
     columns do
       column span: 2 do
