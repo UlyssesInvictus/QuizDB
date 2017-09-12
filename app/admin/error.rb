@@ -5,7 +5,7 @@ ActiveAdmin.register Error do
     :errorable_type, :errorable_id,
     :resolved
 
-  config.sort_order = 'id_asc'
+  config.sort_order = 'updated_at_desc'
   config.per_page = [10, 30, 50, 100]
 
   batch_action :resolve, if: proc {
@@ -29,7 +29,7 @@ ActiveAdmin.register Error do
 
 
   form do |f|
-    h3 "Create Error (Work in Progress!!)"
+    h3 "Create Error"
     f.semantic_errors
     f.inputs do
       f.input :error_type, label: "Error Category"
