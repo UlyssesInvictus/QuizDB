@@ -1,4 +1,5 @@
 import sanitizeHtml from 'sanitize-html';
+import { present } from './String';
 
 export function cleanSpecial(str) {
   let newStr = str.replace(/Â/g, "");
@@ -31,4 +32,32 @@ export function extractBonusText(bonus) {
     content += " \n\n";
   });
   return content;
+}
+
+export function extractActualAnswer(answer) {
+  const regMatch = answer.match(/<b>.*<\/b>/) || answer.match(/<strong>.*<\/strong>/);
+  return regMatch ? regMatch[0] : null;
+}
+
+export function generateWikiLink(question, index = null) {
+  const wikiPrefix = 'https://en.wikipedia.org/w/index.php?search=';
+  let url, answer, formattedAnswer;
+  if (question.type === "tossup") {
+    url = question.wikipedia_url;
+    answer = question.answer;
+    formattedAnswer = question.formatted_answer;
+  } else {
+    url = question.wikipedia_urls[index];
+    answer = question.answers[index];
+    formattedAnswer = question.formatted_answers[index];
+  }
+
+  if (present(url)) {
+    return url;
+  } else if (extractActualAnswer(formattedAnswer)) {
+    const actualAnswer = sanitizeHtml(extractActualAnswer(formattedAnswer), { allowedTags: [] });
+    return `${wikiPrefix}${encodeURI(actualAnswer)}`;
+  } else {
+    return `${wikiPrefix}${encodeURI(answer)}`;
+  }
 }
