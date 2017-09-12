@@ -143,7 +143,8 @@ module.exports = {
           /\.gif$/,
           /\.jpe?g$/,
           /\.png$/,
-          /\.md$/
+          /\.md$/,
+          /\.txt$/,
         ],
         loader: require.resolve('file-loader'),
         options: {
@@ -228,6 +229,10 @@ module.exports = {
       // Remember to add the new extension(s) to the "file" loader exclusion list.
       {
         test: /\.md$/,
+        use: 'raw-loader'
+      },
+      {
+        test: /\.txt/,
         use: 'raw-loader'
       }
     ],

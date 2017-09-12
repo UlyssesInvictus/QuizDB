@@ -1,8 +1,8 @@
 ActiveAdmin.register AdminUser do
   permit_params :email, :role, :password, :password_confirmation
 
-  config.sort_order = 'email_asc'
-  config.per_page = [10, 30, 50, 100]
+  config.sort_order = 'confirmed_at_desc'
+  config.per_page = [30, 50, 100]
 
   index do
     selectable_column

@@ -27,9 +27,10 @@ Rails.application.routes.draw do
     resources :errors
 
     get 'error_types', to: 'errors#error_types'
-    get 'filter_options', to: 'tossups#filter_options'
+    get 'filter_options', to: 'quiz#filter_options'
     get 'search', to: 'tossups#search'
     get 'random', to: 'tossups#random'
+    get 'stats', to: 'quiz#stats'
   end
 
   # When serving in production, have unmatched routes be handled by our client app

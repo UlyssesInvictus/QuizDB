@@ -13,6 +13,7 @@ import {
   Link,
 } from 'react-router-dom';
 import PageSearch from './PageSearch';
+import PageStats from './PageStats';
 import PageAbout from './PageAbout';
 import PageResources from './PageResources';
 import PageFuture from './PageFuture';
@@ -129,6 +130,9 @@ class Root extends React.Component {
         <Menu.Item name='admin' as={'a'} href='/admin' onClick={() => dispatch(toggleSidebar())}>
             <span><Icon name='dashboard'/>Admin</span>
         </Menu.Item>
+        <Menu.Item name='stats' as={Link} to='/stats' onClick={() => dispatch(toggleSidebar())}>
+            <span><Icon name='bar chart'/>Stats</span>
+        </Menu.Item>
         <Menu.Item name='resources' as={Link} to='/resources' onClick={() => dispatch(toggleSidebar())}>
             <span><Icon name='bookmark'/>Resources</span>
         </Menu.Item>
@@ -150,6 +154,7 @@ class Root extends React.Component {
               <Route exact path="/about" component={PageAbout}/>
               <Route exact path="/resources" component={PageResources}/>
               <Route exact path="/future" component={PageFuture}/>
+              <Route exact path="/stats" component={PageStats}/>
               <Route component={Page404}/>
             </Switch>
           </main>

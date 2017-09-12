@@ -2,11 +2,11 @@
 
 .question-loader {
   // top padding should come from ::before element of actual loader
-  padding-bottom: 5rem;
+  padding-bottom: $page-padding-bottom;
 }
 
 .question-container {
-  padding: 0 0 4rem 0;
+  padding: 0 0 $page-padding-bottom 0;
 }
 
 .question {

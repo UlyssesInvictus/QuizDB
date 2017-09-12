@@ -6,7 +6,8 @@ import {
   fetchQuestions,
 } from '../actions/actions';
 
-import { Container,
+import {
+  // Container,
   Loader,
   Header,
   Segment,
@@ -60,7 +61,11 @@ class QuestionsContainer extends React.Component {
 
   loadAllQuestions() {
     const p = this.props;
-    p.dispatch(fetchQuestions(p.search.query, p.search.filters, false))
+    p.dispatch(fetchQuestions({
+      searchQuery: p.search.query,
+      searchFilters: p.search.filters,
+      limit: false
+    }))
   }
 
   renderQuestionsSectionHeader(questionsObject, questionType) {

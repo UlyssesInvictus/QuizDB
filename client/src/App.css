@@ -151,7 +151,7 @@ footer.quizdb-footer {
   padding-bottom: 5rem; }
 
 .question-container {
-  padding: 0 0 4rem 0; }
+  padding: 0 0 5rem 0; }
 
 .question {
   margin-top: 1.5rem;
@@ -315,3 +315,38 @@ footer.quizdb-footer {
     font-size: 0.7rem;
     float: right;
     margin-top: 0.2rem; }
+
+.stats-text {
+  padding: 2rem 0; }
+  .stats-text-header .icon {
+    color: red; }
+  .stats-text-table {
+    max-height: 20rem;
+    overflow-y: auto; }
+
+.quizdb-stats {
+  padding-bottom: 5rem; }
+
+.stats-bar_charts {
+  height: 30rem;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 2rem 0; }
+  .stats-bar_charts .stats-bar_chart {
+    height: 100%;
+    width: 50%;
+    padding: 1.2rem 0; }
+  @media (max-width: 767px) {
+    .stats-bar_charts {
+      height: 50rem; }
+      .stats-bar_charts .stats-bar_chart {
+        height: 50%;
+        width: 100%;
+        padding: 2.4rem 0 5.2rem 0; } }
+  @media (min-width: 768px) and (max-width: 991px) {
+    .stats-bar_charts {
+      height: 45rem; }
+      .stats-bar_charts .stats-bar_chart {
+        height: 50%;
+        width: 100%;
+        padding: 2.4rem 0; } }

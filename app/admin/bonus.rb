@@ -1,7 +1,6 @@
 ActiveAdmin.register Bonus do
   menu priority: 3, label: "Bonuses"
-  config.default_per_page = 30
-  config.per_page = [10, 30, 50, 100]
+  config.per_page = [30, 50, 100]
   config.create_another = true
 
   includes :tournament, :category, :subcategory, :bonus_parts

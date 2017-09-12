@@ -21,8 +21,13 @@ import Notifications from 'react-notification-system-redux';
 
 import ErrorModal from './ErrorModal';
 
-import { handleEmpty } from '../utilities/String';
-import { cleanString } from '../utilities/Question';
+import { present, handleEmpty } from '../utilities/String';
+import {
+  cleanString,
+  extractActualAnswer,
+  generateWikiLink,
+} from '../utilities/Question';
+import sanitizeHtml from 'sanitize-html';
 
 class QuestionsComponent extends React.Component {
 
@@ -36,6 +41,7 @@ class QuestionsComponent extends React.Component {
     this.renderBonus = this.renderBonus.bind(this);
     this.handleIconClick = this.handleIconClick.bind(this);
     this.handleSearchIconClick = this.handleSearchIconClick.bind(this);
+    this.handleWikiIconClick = this.handleWikiIconClick.bind(this);
     this.renderThirdPartyIcons = this.renderThirdPartyIcons.bind(this);
   }
 
@@ -61,8 +67,16 @@ class QuestionsComponent extends React.Component {
       return;
     }
 
-    const encodedQuery = encodeURI(query);
+    const actualQuery = extractActualAnswer(query) || query;
+    const encodedQuery = encodeURI(sanitizeHtml(actualQuery, {
+      allowedTags: [],
+      parser: { decodeEntities: false },
+    }));
     window.open(`${prefix}${encodedQuery}`, '_blank');
+  }
+
+  handleWikiIconClick(question, index = null) {
+    window.open(generateWikiLink(question, index), '_blank');
   }
 
   handleSearchIconClick(query, reset = true) {
@@ -71,18 +85,24 @@ class QuestionsComponent extends React.Component {
       // theoretically this is a race condition, but it basically never matters
       // since we manually pass in an empty filter anyway
       this.props.dispatch(setSearchFilters({}));
-      this.props.dispatch(fetchQuestions(query, {}));
+      this.props.dispatch(fetchQuestions({ searchQuery: query }));
     } else {
       // same
       let lastFilters = this.props.questions.lastSearchOptions.filters;
       this.props.dispatch(setSearchFilters(lastFilters));
-      this.props.dispatch(fetchQuestions(query, lastFilters));
+      this.props.dispatch(fetchQuestions({
+        searchQuery: query,
+        searchFilters: lastFilters
+      }));
     }
   }
 
-  renderThirdPartyIcons(query, index=null) {
+  renderThirdPartyIcons(formattedQuery, index=null) {
+    const query = sanitizeHtml(formattedQuery, {
+      allowedTags: [],
+      parser: { decodeEntities: false }
+    });
     const googlePrefix = 'https://google.com/search?q=';
-    const wikiPrefix = 'https://en.wikipedia.org/w/index.php?search=';
     const googleImagesPrefix = 'https://google.com/search?tbm=isch&q=';
     const q = this.props.question;
     const typePlural = q.type === "tossup" ? "tossups" : "bonuses";
@@ -91,11 +111,11 @@ class QuestionsComponent extends React.Component {
                         verticalAlign='middle' textAlign='center'
                         className='question-icons'>
       <Icon name='google' className='icon-clickable'
-            onClick={() => this.handleIconClick(googlePrefix, query)}/>
+            onClick={() => this.handleIconClick(googlePrefix, formattedQuery)}/>
       <Icon corner name='image' className='icon-clickable'
-            onClick={() => this.handleIconClick(googleImagesPrefix, query)}/>
+            onClick={() => this.handleIconClick(googleImagesPrefix, formattedQuery)}/>
       <Icon name='wikipedia' className='icon-clickable'
-            onClick={() => this.handleIconClick(wikiPrefix, query)}/>
+            onClick={() => this.handleWikiIconClick(q, index)}/>
       <a href={`/admin/${typePlural}/${q.id}`} target="_blank" ref="nofollow">
         <Icon name='database' className='icon-clickable' link/>
       </a>
@@ -196,7 +216,7 @@ class QuestionsComponent extends React.Component {
                    className='question-hidden-answer'
                    value={q.answer} readOnly/>
           </Grid.Column>
-          {this.renderThirdPartyIcons(q.answer)}
+          {this.renderThirdPartyIcons(present(q.formatted_answer) ? q.formatted_answer : q.answer)}
         </Grid>
       </Segment>
     </div>
@@ -224,7 +244,10 @@ class QuestionsComponent extends React.Component {
                      className='question-hidden-answer'
                      value={q.answers[index]} readOnly/>
             </Grid.Column>
-            {this.renderThirdPartyIcons(q.answers[index], index)}
+            {this.renderThirdPartyIcons((present(q.formatted_answers[index]) ?
+                                                  q.formatted_answers[index] :
+                                                  q.answers[index]),
+                                        index)}
           </Grid>
         </Segment>
       })}

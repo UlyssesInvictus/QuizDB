@@ -1,8 +1,8 @@
-// While app is simple, keep everything in one reducer module :)
-
 import { combineReducers } from 'redux';
+// other reducers
 // responsive state tracker
 import { responsiveStateReducer } from 'redux-responsive';
+import stats from './StatsReducer';
 // notification system
 import {reducer as notifications} from 'react-notification-system-redux';
 
@@ -32,7 +32,7 @@ import {
 const initialSearchState = {
   query: "",
   filters: {},
-  filterOptions: false,
+  filterOptions: null,
   isFetchingFilterOptions: false
 }
 function search(state = initialSearchState, action) {
@@ -97,6 +97,7 @@ function search(state = initialSearchState, action) {
 }
 
 const initialQuestionsState = {
+  // this is what it looks like broadly
   hasSearchedEver: false,
   isFetching: false,
   tossups: [],
@@ -108,16 +109,21 @@ const initialQuestionsState = {
     query: "",
     filters: {}
   }
+  // and we can also have the same structure mirrored
+  // in subState keys, according to whatever component
+  // wants to keep track of its own questions e.g.
+  // stats: { [same object as above] }
 }
 function questions(state = initialQuestionsState, action) {
   switch (action.type) {
     case SEARCH_QUESTIONS:
-      return Object.assign({}, state, {
+      const newSearchingState = {
         isFetching: true,
         hasSearchedEver: true,
-      });
+      };
+      return Object.assign({}, state, newSearchingState);
     case RECEIVE_QUESTIONS:
-      return Object.assign({}, state, {
+      const newQuestionState = {
         isFetching: false,
         tossups: action.tossups,
         bonuses: action.bonuses,
@@ -125,7 +131,8 @@ function questions(state = initialQuestionsState, action) {
         num_bonuses_found: action.num_bonuses_found,
         lastUpdated: action.receivedAt,
         lastSearchOptions: action.lastSearchOptions
-      });
+      };
+      return Object.assign({}, state, newQuestionState);
     default:
       return state;
   }
@@ -206,6 +213,7 @@ const quizdb = combineReducers({
   appearance,
   browser: responsiveStateReducer,
   notifications,
+  stats
 })
 
 export default quizdb
