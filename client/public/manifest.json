@@ -1,6 +1,6 @@
 {
   "short_name": "QuizDB",
-  "name": "QuizDB: A Quizbowl Database",
+  "name": "QuizDB: Knowledge is Power",
   "icons": [
    {
     "src": "\/android-icon-36x36.png",
@@ -39,8 +39,8 @@
     "density": "4.0"
    }
   ],
-  "start_url": ".",
+  "start_url": "/?utm_source=homescreen",
   "display": "standalone",
   "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "background_color": "aliceblue"
 }
