@@ -1,6 +1,6 @@
 # About QuizDB
 
-QuizDB is a searchable question database for the popular scholastic activity of Quizbowl. [^1]
+QuizDB is a searchable question database for the popular scholastic activity of Quizbowl. [^1](#endnote-1)
 
 Right now, I know what you're thinking: _another_ question database?
 
@@ -8,7 +8,7 @@ Right now, I know what you're thinking: _another_ question database?
 
 I appreciated the existing options, but each had at its own issues I was unhappy with (poor question coverage in QBDB, file-search only in AseemDB, and poor UI / aged tech stack in Quinterest).
 
-Rather than waste manhours learning and improving the code for these sites, I decided to build a new site, using frameworks I was familiar with, and implementing the features I knew I wanted. [^2]
+Rather than waste manhours learning and improving the code for these sites, I decided to build a new site, using frameworks I was familiar with, and implementing the features I knew I wanted. [^2](#endnote-2)
 
 From the outset, I focused on three core philosophies:
 
@@ -27,8 +27,8 @@ All that aside, here are the features:
   - Answerline and content
   - Category and subcategory
   - Tournament source and difficulty
-  - Breakfast food of the question writer at time question was written [^3]
-- Responsive UI, suitable for any size screen [^4]
+  - Breakfast food of the question writer at time question was written [^3](#endnote-3)
+- Responsive UI, suitable for any size screen [^4](#endnote-4)
 - Admin portal for editing, fixing, uploading, or otherwise improving question content and metainfo.
   - With accompanying API exposing all questions and data for machine readable public consumption.
 - User error and correction report system.
@@ -90,10 +90,18 @@ You can use the Error Report system to report any errors on individual questions
 
 ## Endnotes
 
+<div id='endnote-1' class='anchor'></div>
+
 [^1]: And the one word spelling is the one QuizDB adheres religiously to, so that's what we're going with here. Also, GIF is prounounced "jiff."
+
+<div id='endnote-2' class='anchor'></div>
 
 [^2]: "I'll build my own website! With blackjack and hookers!"
 
+<div id='endnote-3' class='anchor'></div>
+
 [^3]: Okay, not really. But I wonder if there's a difference in question quality between the kind of writer who has Wheaties for breakfast and the kind that has Red Bull...
+
+<div id='endnote-4' class='anchor'></div>
 
 [^4]: Except, perhaps, a screen "made for ants."
