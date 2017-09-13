@@ -71,8 +71,18 @@ ActiveAdmin.register Tossup do
     attributes_table do
       row :text
       row :answer
-      row :formatted_text
-      row :formatted_answer
+      row :formatted_text do |q|
+        text_node q.formatted_text.html_safe
+      end
+      row :formatted_answer do |q|
+        text_node q.formatted_answer.html_safe
+      end
+      row :formatted_text_raw do |q|
+        text_node q.formatted_text
+      end
+      row :formatted_answer_raw do |q|
+        text_node q.formatted_answer
+      end
       row :category
       row :subcategory
       row :tournament

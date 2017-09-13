@@ -74,13 +74,28 @@ ActiveAdmin.register Bonus do
       row :answers do |bonus|
         simple_format bonus.bonus_parts.pluck(:answer).join("\n")
       end
-      row :formatted_leadin
+      row :formatted_leadin do |bonus|
+        text_node bonus.formatted_leadin.html_safe
+      end
       row :formatted_texts do |bonus|
+        simple_format (bonus.bonus_parts.pluck(:formatted_text).map do |p|
+          p
+        end.join("\n").html_safe)
+      end
+      row :formatted_answers do |bonus|
+        simple_format (bonus.bonus_parts.pluck(:formatted_answer).map do |p|
+          p
+        end.join("\n").html_safe)
+      end
+      row :formatted_leadin_raw do |bonus|
+        text_node bonus.formatted_leadin
+      end
+      row :formatted_texts_raw do |bonus|
         simple_format (bonus.bonus_parts.pluck(:formatted_text).map do |p|
           ERB::Util.html_escape(p)
         end.join("\n"))
       end
-      row :formatted_answers do |bonus|
+      row :formatted_answers_raw do |bonus|
         simple_format (bonus.bonus_parts.pluck(:formatted_answer).map do |p|
           ERB::Util.html_escape(p)
         end.join("\n"))
