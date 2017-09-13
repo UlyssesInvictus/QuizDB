@@ -52,11 +52,22 @@ class Root extends React.Component {
   componentDidMount() {
     window.addEventListener('click', this.handleOutOfSidebarClick);
     window.addEventListener('keydown', this.handleInputKeyPress);
+    if('serviceWorker' in window.navigator){
+      // Handler for messages coming from the service worker
+      console.log('testadd');
+      window.navigator.serviceWorker.onmessage(this.receiveServiceWorkerMessage);
+    }
   }
 
   componentWillUnmount() {
     window.removeEventListener('click', this.handleOutOfSidebarClick);
     window.removeEventListener('keydown', this.handleInputKeyPress);
+    if('serviceWorker' in window.navigator){
+      // Handler for messages coming from the service worker
+      console.log('testaddunmount');
+      // window.navigator.serviceWorker.onmessage(this.receiveServiceWorkerMessage);
+    }
+
   }
 
   componentWillReceiveProps(nextProps) {
@@ -88,6 +99,12 @@ class Root extends React.Component {
     const page = pathname + search
     ReactGA.set({page});
     ReactGA.pageview(page);
+  }
+
+  receiveServiceWorkerMessage(event) {
+    // event.ports[0].postMessage("Client 1 Says 'Hello back!'");
+    console.log(event);
+    console.log('test?');
   }
 
   handleInputKeyPress(e) {
