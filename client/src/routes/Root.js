@@ -44,6 +44,7 @@ class Root extends React.Component {
     this.handleOutOfSidebarClick = this.handleOutOfSidebarClick.bind(this);
     this.handleInputKeyPress = this.handleInputKeyPress.bind(this);
     this.hashLinkScroll = this.hashLinkScroll.bind(this);
+    this.receiveServiceWorkerMessage = this.receiveServiceWorkerMessage.bind(this);
 
     // Initial page load - only fired once
     this.sendPageChange(props.location.pathname, props.location.search)
@@ -53,9 +54,8 @@ class Root extends React.Component {
     window.addEventListener('click', this.handleOutOfSidebarClick);
     window.addEventListener('keydown', this.handleInputKeyPress);
     if('serviceWorker' in window.navigator){
-      // Handler for messages coming from the service worker
-      console.log('testadd');
-      window.navigator.serviceWorker.onmessage(this.receiveServiceWorkerMessage);
+      window.addEventListener('sw-reload', this.receiveServiceWorkerMessage);
+      window.addEventListener('sw-load', this.receiveServiceWorkerMessage);
     }
   }
 
@@ -63,9 +63,8 @@ class Root extends React.Component {
     window.removeEventListener('click', this.handleOutOfSidebarClick);
     window.removeEventListener('keydown', this.handleInputKeyPress);
     if('serviceWorker' in window.navigator){
-      // Handler for messages coming from the service worker
-      console.log('testaddunmount');
-      // window.navigator.serviceWorker.onmessage(this.receiveServiceWorkerMessage);
+      window.removeEventListener('sw-reload', this.receiveServiceWorkerMessage);
+      window.removeEventListener('sw-load', this.receiveServiceWorkerMessage);
     }
 
   }
@@ -101,10 +100,31 @@ class Root extends React.Component {
     ReactGA.pageview(page);
   }
 
-  receiveServiceWorkerMessage(event) {
-    // event.ports[0].postMessage("Client 1 Says 'Hello back!'");
-    console.log(event);
-    console.log('test?');
+  receiveServiceWorkerMessage(event, dispatch=null) {
+    switch(event.type) {
+      case "sw-load":
+        console.log(event.type);
+        const loadMessage = `This site is now cached! Future visits will now work to
+                             an extent offline. See 'Help' for more info.`;
+        this.props.dispatch(Notifications.success({
+          message: loadMessage,
+          autoDismiss: 20,
+        }));
+        return;
+      case "sw-reload":
+        const reloadMessage = `New content available! Click below to reload page.`;
+        dispatch(Notifications.success({
+          message: reloadMessage,
+          autoDismiss: 20,
+          action: {
+            label: "Reload",
+            callback: () => { window.reload(true); }
+          }
+        }));
+        return;
+      default:
+        return;
+    }
   }
 
   handleInputKeyPress(e) {

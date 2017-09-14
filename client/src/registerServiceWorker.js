@@ -59,13 +59,13 @@ function registerValidSW(swUrl) {
               // the fresh content will have been added to the cache.
               // It's the perfect time to display a "New content is
               // available; please refresh." message in your web app.
-              navigator.serviceWorker.controller.postMessage({test: "test"});
+              window.dispatchEvent(new Event('sw-reload'));
               console.log('New content is available; please refresh.');
             } else {
               // At this point, everything has been precached.
               // It's the perfect time to display a
               // "Content is cached for offline use." message.
-              installingWorker.postMessage({test: "test"});
+              window.dispatchEvent(new Event('sw-load'));
               console.log('Content is cached for offline use.');
             }
           }
