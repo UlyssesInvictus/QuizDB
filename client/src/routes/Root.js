@@ -17,6 +17,8 @@ import PageStats from './PageStats';
 import PageAbout from './PageAbout';
 import PageResources from './PageResources';
 import PageFuture from './PageFuture';
+import PageSettings from './PageSettings';
+
 import Page404 from './Page404';
 import PageRefresh from './PageRefresh';
 
@@ -118,7 +120,7 @@ class Root extends React.Component {
           autoDismiss: 20,
           action: {
             label: "Reload",
-            callback: () => { window.reload(true); }
+            callback: function() { window.reload(true); }
           }
         }));
         return;
@@ -173,6 +175,9 @@ class Root extends React.Component {
         <Menu.Item name='resources' as={Link} to='/resources' onClick={() => dispatch(toggleSidebar())}>
             <span><Icon name='bookmark'/>Resources</span>
         </Menu.Item>
+        <Menu.Item name='settings' as={Link} to='/settings' onClick={() => dispatch(toggleSidebar())}>
+            <span><Icon name='settings'/>Settings</span>
+        </Menu.Item>
         <Menu.Item name='about' as={Link} to='/about' onClick={() => dispatch(toggleSidebar())}>
             <span><Icon name='info circle'/>About</span>
         </Menu.Item>
@@ -192,6 +197,7 @@ class Root extends React.Component {
               <Route exact path="/resources" component={PageResources}/>
               <Route exact path="/future" component={PageFuture}/>
               <Route exact path="/stats" component={PageStats}/>
+              <Route exact path="/settings" component={PageSettings}/>
               <Route component={Page404}/>
             </Switch>
           </main>

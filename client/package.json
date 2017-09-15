@@ -56,6 +56,7 @@
     "semantic-ui-css": "^2.2.12",
     "semantic-ui-react": "^0.71.5",
     "source-map-explorer": "^1.4.0",
+    "store": "^2.0.12",
     "style-loader": "0.18.2",
     "sw-precache-webpack-plugin": "0.11.3",
     "url-loader": "0.5.9",

@@ -3,6 +3,7 @@ import { combineReducers } from 'redux';
 // responsive state tracker
 import { responsiveStateReducer } from 'redux-responsive';
 import stats from './StatsReducer';
+import storage from './StorageReducer';
 // notification system
 import {reducer as notifications} from 'react-notification-system-redux';
 
@@ -213,7 +214,8 @@ const quizdb = combineReducers({
   appearance,
   browser: responsiveStateReducer,
   notifications,
-  stats
+  stats,
+  storage
 })
 
 export default quizdb

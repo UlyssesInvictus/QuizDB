@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 
 import {
   Loader,
-  Icon
+  Icon,
+  Segment
 } from 'semantic-ui-react';
 // import ReactTooltip from 'react-tooltip';
 
@@ -29,6 +30,7 @@ class StatsContainer extends React.Component {
     return (
       <div>
         <div className="stats-bar_charts">
+          <Segment>
           <StatsBar
             years={this.props.stats.years}
             yearsKey={"categories"}
@@ -39,6 +41,7 @@ class StatsContainer extends React.Component {
             yearsKey={"difficulties"}
             title="Difficulty"
           />
+        </Segment>
         </div>
         <StatsText
           tossups={this.props.stats.tossups}
