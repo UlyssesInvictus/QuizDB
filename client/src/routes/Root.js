@@ -5,6 +5,9 @@ import { connect } from 'react-redux';
 import {
   toggleSidebar,
 } from '../actions/actions';
+import {
+  loadStorage,
+} from '../actions/StorageActions';
 
 // Routes
 import {
@@ -49,7 +52,8 @@ class Root extends React.Component {
     this.receiveServiceWorkerMessage = this.receiveServiceWorkerMessage.bind(this);
 
     // Initial page load - only fired once
-    this.sendPageChange(props.location.pathname, props.location.search)
+    this.sendPageChange(props.location.pathname, props.location.search);
+    props.dispatch(loadStorage());
   }
 
   componentDidMount() {

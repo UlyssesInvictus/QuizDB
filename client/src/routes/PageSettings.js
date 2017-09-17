@@ -1,22 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { loadStorage, setStorage } from '../actions/StorageActions';
-
-import { createStorage } from '../utilities/Storage';
 
 import {
   Segment,
 } from 'semantic-ui-react';
 
+import AppearanceSettings from "../components/settings/AppearanceSettings";
+
 class PageSettings extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.props.dispatch(loadStorage());
-  }
-
   render() {
-
     return <div className="quizdb-settings">
       <Segment size="large">
         <h1>Settings</h1>
@@ -25,6 +18,7 @@ class PageSettings extends React.Component {
           These features are experimental. Use them carefully!
         </p>
       </Segment>
+      <AppearanceSettings/>
     </div>
   }
 }
