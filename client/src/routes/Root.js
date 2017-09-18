@@ -38,6 +38,11 @@ import {
   Menu
 } from 'semantic-ui-react';
 
+import {
+  showUsageTip
+} from "../utilities/Root";
+import { createStorage } from "../utilities/Storage";
+
 ReactGA.initialize('UA-105674080-1', {
   debug: process.env.NODE_ENV !== 'production',
 });
@@ -53,7 +58,7 @@ class Root extends React.Component {
 
     // Initial page load - only fired once
     this.sendPageChange(props.location.pathname, props.location.search);
-    props.dispatch(loadStorage());
+    this.props.dispatch(loadStorage());
   }
 
   componentDidMount() {
@@ -63,6 +68,9 @@ class Root extends React.Component {
       window.addEventListener('sw-reload', this.receiveServiceWorkerMessage);
       window.addEventListener('sw-load', this.receiveServiceWorkerMessage);
     }
+    // since we load state in pre-mount lifecycle, modified state (with storage)
+    // isn't usable until next action, so get directly for now
+    showUsageTip(this.props.dispatch, createStorage().dump());
   }
 
   componentWillUnmount() {
@@ -215,7 +223,8 @@ const mapStateToProps = state => {
   return {
     notifications: state.notifications,
     browser: state.browser,
-    appearance: state.appearance
+    appearance: state.appearance,
+    storage: state.storage,
   }
 }
 

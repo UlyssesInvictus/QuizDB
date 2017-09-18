@@ -11,23 +11,36 @@ import {
 
 class AppearanceSettings extends React.Component {
 
-  render() {
+  constructor(props) {
+    super(props);
+    this.renderCheckbox = this.renderCheckbox.bind(this);
+  }
+
+  renderCheckbox(label, key) {
     const dispatch = this.props.dispatch;
     const settings = this.props.storage;
+    return (
+      <Checkbox
+        label={label}
+        checked={!!settings[key]}
+        onChange={(_, value) => {
+          dispatch(setStorage(key, value.checked))
+        }}
+      />
+    )
+  }
 
+  render() {
+    console.log(this.props.storage.randomkey);
     return <div className="quizdb-settings-storage">
       <Segment size="large">
         <Label attached='top'><h3>Appearance</h3></Label>
         <Grid columns={3} stackable>
           <Grid.Column>
-            <Checkbox
-              label="Highlight matching results in search"
-              checked={!!settings.highlightSearch}
-              onChange={(_, value) => {
-                console.log(value);
-                dispatch(setStorage("highlightSearch", value.checked))
-              }}
-            />
+            {this.renderCheckbox("Highlight matching results in search", "highlightSearch")}
+          </Grid.Column>
+          <Grid.Column>
+            {this.renderCheckbox("Show daily QuizDB usage tips", "usageTips")}
           </Grid.Column>
         </Grid>
       </Segment>
