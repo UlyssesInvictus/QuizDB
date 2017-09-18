@@ -7,6 +7,7 @@ export function cleanSpecial(str) {
   // assuming these specific chinese characters are never actually intentional...
   newStr = newStr.replace(/猴/g, "f");
   newStr = newStr.replace(/睌/g, "f");
+  newStr = newStr.replace(/猼/g, "f");
   return newStr;
 }
 
