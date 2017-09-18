@@ -51,7 +51,6 @@ const USAGE_TIPS = [
 ];
 
 export function showUsageTip(dispatch, storage) {
-  console.log(storage);
   let usageTips = storage.usageTips;
   if (usageTips === null || usageTips === undefined) {
     dispatch(setStorage("usageTips", true));
@@ -59,7 +58,6 @@ export function showUsageTip(dispatch, storage) {
   }
   const lastUsageTipTime = !!storage.lastUsageTipTime ?
     moment(storage.lastUsageTipTime) : moment().subtract(2, 'days');
-  console.log(moment().diff(lastUsageTipTime, 'days', true));
   if (usageTips && moment().diff(lastUsageTipTime, 'days', true) > 1) {
     dispatch(setStorage("lastUsageTipTime", new Date()));
     dispatch(Notifications.success({

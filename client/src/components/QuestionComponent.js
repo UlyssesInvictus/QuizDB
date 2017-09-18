@@ -21,7 +21,7 @@ import Notifications from 'react-notification-system-redux';
 
 import ErrorModal from './ErrorModal';
 
-import { present, handleEmpty } from '../utilities/String';
+import { isPresent, handleEmpty } from '../utilities/String';
 import {
   cleanString,
   extractActualAnswer,
@@ -37,105 +37,16 @@ class QuestionsComponent extends React.Component {
     this.state = {showInfo: false};
     this.renderInfo = this.renderInfo.bind(this);
     this.renderInfoColumn = this.renderInfoColumn.bind(this);
-    this.renderTossup = this.renderTossup.bind(this);
     this.renderBonus = this.renderBonus.bind(this);
     this.handleIconClick = this.handleIconClick.bind(this);
     this.handleSearchIconClick = this.handleSearchIconClick.bind(this);
     this.handleWikiIconClick = this.handleWikiIconClick.bind(this);
-    this.renderThirdPartyIcons = this.renderThirdPartyIcons.bind(this);
   }
 
   componentWillMount() {
     if (this.props.browser.lessThan.medium) {
       this.setState({showInfo: false});
     }
-  }
-
-  handleIconClick(prefix, query, index=null) {
-    if (prefix === 'copy') {
-      let hiddenId = '#question-hidden-answer-'+this.props.question.id;
-      if (index !== null) {
-        hiddenId += '-' + index;
-      }
-      let answer = document.querySelector(hiddenId);
-      answer.select();
-      document.execCommand('copy');
-      this.props.dispatch(Notifications.success({
-        title: "Answer copied to clipboard!",
-        message: `Copied "${query}."`,
-      }));
-      return;
-    }
-
-    const actualQuery = extractActualAnswer(query) || query;
-    const encodedQuery = encodeURI(sanitizeHtml(actualQuery, {
-      allowedTags: [],
-      parser: { decodeEntities: false },
-    }));
-    window.open(`${prefix}${encodedQuery}`, '_blank');
-  }
-
-  handleWikiIconClick(question, index = null) {
-    window.open(generateWikiLink(question, index), '_blank');
-  }
-
-  handleSearchIconClick(query, reset = true) {
-    this.props.dispatch(updateSearch(query));
-    if (reset) {
-      // theoretically this is a race condition, but it basically never matters
-      // since we manually pass in an empty filter anyway
-      this.props.dispatch(setSearchFilters({}));
-      this.props.dispatch(fetchQuestions({ searchQuery: query }));
-    } else {
-      // same
-      let lastFilters = this.props.questions.lastSearchOptions.filters;
-      this.props.dispatch(setSearchFilters(lastFilters));
-      this.props.dispatch(fetchQuestions({
-        searchQuery: query,
-        searchFilters: lastFilters
-      }));
-    }
-  }
-
-  renderThirdPartyIcons(formattedQuery, index=null) {
-    const query = sanitizeHtml(formattedQuery, {
-      allowedTags: [],
-      parser: { decodeEntities: false }
-    });
-    const googlePrefix = 'https://google.com/search?q=';
-    const googleImagesPrefix = 'https://google.com/search?tbm=isch&q=';
-    const q = this.props.question;
-    const typePlural = q.type === "tossup" ? "tossups" : "bonuses";
-
-    return <Grid.Column largeScreen='3' computer='2' tablet='16' mobile='16'
-                        verticalAlign='middle' textAlign='center'
-                        className='question-icons'>
-      <Icon name='google' className='icon-clickable'
-            onClick={() => this.handleIconClick(googlePrefix, formattedQuery)}/>
-      <Icon corner name='image' className='icon-clickable'
-            onClick={() => this.handleIconClick(googleImagesPrefix, formattedQuery)}/>
-      <Icon name='wikipedia' className='icon-clickable'
-            onClick={() => this.handleWikiIconClick(q, index)}/>
-      <a href={`/admin/${typePlural}/${q.id}`} target="_blank" ref="nofollow">
-        <Icon name='database' className='icon-clickable' link/>
-      </a>
-      <Icon name='clone' className='icon-clickable'
-            onClick={() => this.handleIconClick("copy", query, index)}/>
-      <Icon name='repeat' corner className='icon-clickable'
-            data-tip data-for={`${q.id}-repeat`}
-            onClick={() => this.handleSearchIconClick(query)}/>
-      <Icon name='refresh' className='icon-clickable'
-            data-tip data-for={`${q.id}-refresh`}
-            onClick={() => this.handleSearchIconClick(query, false)}/>
-
-      <ReactTooltip effect='solid' type='info' id={`${q.id}-repeat`}>
-        Search for this answerline, with no filters
-      </ReactTooltip>
-      <ReactTooltip effect='solid' type='info' id={`${q.id}-refresh`}>
-        Search for this answerline, with the same filters
-      </ReactTooltip>
-
-    </Grid.Column>
   }
 
   renderInfo() {
@@ -216,7 +127,7 @@ class QuestionsComponent extends React.Component {
                    className='question-hidden-answer'
                    value={q.answer} readOnly/>
           </Grid.Column>
-          {this.renderThirdPartyIcons(present(q.formatted_answer) ? q.formatted_answer : q.answer)}
+          {this.renderThirdPartyIcons(isPresent(q.formatted_answer) ? q.formatted_answer : q.answer)}
         </Grid>
       </Segment>
     </div>
@@ -244,7 +155,7 @@ class QuestionsComponent extends React.Component {
                      className='question-hidden-answer'
                      value={q.answers[index]} readOnly/>
             </Grid.Column>
-            {this.renderThirdPartyIcons((present(q.formatted_answers[index]) ?
+            {this.renderThirdPartyIcons((isPresent(q.formatted_answers[index]) ?
                                                   q.formatted_answers[index] :
                                                   q.answers[index]),
                                         index)}
