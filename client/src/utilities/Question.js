@@ -1,5 +1,5 @@
 import sanitizeHtml from 'sanitize-html';
-import { present } from './String';
+import { isPresent } from './String';
 
 export function cleanSpecial(str) {
   let newStr = str.replace(/Â/g, "");
@@ -52,7 +52,7 @@ export function generateWikiLink(question, index = null) {
     formattedAnswer = question.formatted_answers[index];
   }
 
-  if (present(url)) {
+  if (isPresent(url)) {
     return url;
   } else if (extractActualAnswer(formattedAnswer)) {
     const actualAnswer = sanitizeHtml(extractActualAnswer(formattedAnswer), { allowedTags: [] });

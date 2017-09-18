@@ -4,30 +4,21 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {
   toggleErrorModal,
-  updateSearch,
-  setSearchFilters,
-  fetchQuestions,
 } from '../actions/actions';
 
 import {
   Button,
   Segment,
   Label,
-  Grid,
   Icon
 } from 'semantic-ui-react';
 import ReactTooltip from 'react-tooltip';
-import Notifications from 'react-notification-system-redux';
 
 import ErrorModal from './ErrorModal';
+import Tossup from "./question/Tossup";
+import Bonus from "./question/Bonus";
 
-import { isPresent, handleEmpty } from '../utilities/String';
-import {
-  cleanString,
-  extractActualAnswer,
-  generateWikiLink,
-} from '../utilities/Question';
-import sanitizeHtml from 'sanitize-html';
+import { handleEmpty } from '../utilities/String';
 
 class QuestionsComponent extends React.Component {
 
@@ -37,10 +28,6 @@ class QuestionsComponent extends React.Component {
     this.state = {showInfo: false};
     this.renderInfo = this.renderInfo.bind(this);
     this.renderInfoColumn = this.renderInfoColumn.bind(this);
-    this.renderBonus = this.renderBonus.bind(this);
-    this.handleIconClick = this.handleIconClick.bind(this);
-    this.handleSearchIconClick = this.handleSearchIconClick.bind(this);
-    this.handleWikiIconClick = this.handleWikiIconClick.bind(this);
   }
 
   componentWillMount() {
@@ -109,70 +96,16 @@ class QuestionsComponent extends React.Component {
     </Segment>
   }
 
-  renderTossup(q) {
-    let formattedText = cleanString(q.formatted_text);
-    formattedText = <span dangerouslySetInnerHTML={{__html: formattedText}}/>;
-    let formattedAnswer = cleanString(q.formatted_answer);
-    formattedAnswer = <span dangerouslySetInnerHTML={{__html: formattedAnswer}}/>;
-
-    return <div className="question-content">
-      <Segment className="question-tossup-text">
-        <strong>Question: </strong>{formattedText}
-      </Segment>
-      <Segment className="question-tossup-answer">
-        <Grid columns='16'>
-          <Grid.Column largeScreen='13' computer='14' tablet='16' mobile='16'>
-            <strong>ANSWER: </strong>{formattedAnswer}
-            <input id={'question-hidden-answer-'+q.id}
-                   className='question-hidden-answer'
-                   value={q.answer} readOnly/>
-          </Grid.Column>
-          {this.renderThirdPartyIcons(isPresent(q.formatted_answer) ? q.formatted_answer : q.answer)}
-        </Grid>
-      </Segment>
-    </div>
-  }
-
-  renderBonus(q) {
-    let formattedLeadin = cleanString(q.formatted_leadin);
-    formattedLeadin = <span dangerouslySetInnerHTML={{__html: formattedLeadin}}/>;
-    return <div className="question-content">
-      <Segment className="question-bonus-leadin">
-        <strong>Question: </strong>{formattedLeadin}
-      </Segment>
-      {[0, 1, 2].map(index => {
-        let formattedText = cleanString(q.formatted_texts[index]);
-        formattedText = <span dangerouslySetInnerHTML={{__html: formattedText}}/>;
-        let formattedAnswer = cleanString(q.formatted_answers[index]);
-        formattedAnswer = <span dangerouslySetInnerHTML={{__html: formattedAnswer}}/>;
-
-        return <Segment className="question-bonus-part" key={`question-bonus-part-${index}`}>
-          <p><strong>[10] </strong>{formattedText}</p>
-          <Grid columns='16'>
-            <Grid.Column largeScreen='13' computer='14' tablet='16' mobile='16' >
-              <strong>ANSWER: </strong>{formattedAnswer}
-              <input id={'question-hidden-answer-'+q.id+'-'+index}
-                     className='question-hidden-answer'
-                     value={q.answers[index]} readOnly/>
-            </Grid.Column>
-            {this.renderThirdPartyIcons((isPresent(q.formatted_answers[index]) ?
-                                                  q.formatted_answers[index] :
-                                                  q.answers[index]),
-                                        index)}
-          </Grid>
-        </Segment>
-      })}
-    </div>
-  }
-
   render() {
     const p = this.props;
     const q = this.props.question;
+    const questionView = p.questionType === "tossup" ?
+      <Tossup question={q} /> : <Bonus question={q} />;
     return (
       <div className='question'>
         <Segment.Group>
           {this.renderInfo()}
-          {p.questionType === "tossup" ? this.renderTossup(q) : this.renderBonus(q)}
+          {questionView}
         </Segment.Group>
         <ErrorModal
           errorableType={p.questionType}
