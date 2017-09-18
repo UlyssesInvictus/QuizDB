@@ -93,9 +93,9 @@
 }
 
 .ui.segments .question-content {
-  & .segment {
-    font-size: 1.2rem;
-    line-height: 2rem;
+  & .segment, & .segment p {
+    font-size: $question-font-size;
+    line-height: $question-line-height;
   }
 }
 
