@@ -98,10 +98,11 @@ class QuestionsComponent extends React.Component {
 
   render() {
     const p = this.props;
-    const q = this.props.question;
+    const q = p.question;
+    const highlightQuery = p.storage.highlightSearch ? p.search.query : null;
     const questionView = p.questionType === "tossup" ?
-      <Tossup question={q} query={p.search.query} /> :
-      <Bonus question={q} query={p.search.query} />;
+      <Tossup question={q} query={highlightQuery} /> :
+      <Bonus question={q} query={highlightQuery} />;
     return (
       <div className='question'>
         <Segment.Group>
@@ -130,7 +131,8 @@ const mapStateToProps = state => {
     browser: state.browser,
     errors: state.errors,
     search: state.search,
-    questions: state.questions
+    questions: state.questions,
+    storage: state.storage,
   }
 }
 
