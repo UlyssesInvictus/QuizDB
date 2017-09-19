@@ -5,6 +5,7 @@ import {
 
 const initialStorageState = {
   highlightSearch: true,
+  usageTips: true,
   updatedAt: null,
 }
 

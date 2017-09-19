@@ -31,7 +31,6 @@ class AppearanceSettings extends React.Component {
   }
 
   render() {
-    console.log(this.props.storage.randomkey);
     return <div className="quizdb-settings-storage">
       <Segment size="large">
         <Label attached='top'><h3>Appearance</h3></Label>
