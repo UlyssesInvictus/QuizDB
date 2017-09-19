@@ -8,14 +8,12 @@ import {
 import ThirdPartyIcons from "./ThirdPartyIcons";
 
 import {
-  cleanString,
+  formatQuestionString,
 } from '../../utilities/Question';
 
-const Tossup = ({ question }) => {
-  let formattedText = cleanString(question.formatted_text);
-  formattedText = <span dangerouslySetInnerHTML={{__html: formattedText}}/>;
-  let formattedAnswer = cleanString(question.formatted_answer);
-  formattedAnswer = <span dangerouslySetInnerHTML={{__html: formattedAnswer}}/>;
+const Tossup = ({ question, query }) => {
+  const formattedText = formatQuestionString(question.formatted_text, query);
+  const formattedAnswer = formatQuestionString(question.formatted_answer, query);
 
   return (
     <div className="question-content">
@@ -39,6 +37,7 @@ const Tossup = ({ question }) => {
 
 Tossup.propTypes = {
   question: PropTypes.object.isRequired,
+  query: PropTypes.string,
 };
 
 export default Tossup;

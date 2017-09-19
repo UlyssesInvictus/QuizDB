@@ -1,4 +1,7 @@
+import React from 'react';
+
 import sanitizeHtml from 'sanitize-html';
+
 import { isPresent } from './String';
 
 export function cleanSpecial(str) {
@@ -16,6 +19,15 @@ export function cleanString(str) {
   newStr = sanitizeHtml(newStr, {
     allowedTags: [ 'b', 'i', 'em', 'strong', 'u' ]
   });
+  return newStr;
+}
+
+export function formatQuestionString(str, query=null) {
+  let newStr = cleanString(str);
+  if (query) {
+    newStr = newStr.replace(new RegExp(query, 'gi'), `<mark class='question-highlight'>$&</mark>`);
+  }
+  newStr = <span dangerouslySetInnerHTML={{__html: newStr}}/>;
   return newStr;
 }
 

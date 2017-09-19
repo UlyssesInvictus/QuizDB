@@ -8,20 +8,17 @@ import {
 import ThirdPartyIcons from "./ThirdPartyIcons";
 
 import {
-  cleanString,
+  formatQuestionString,
 } from '../../utilities/Question';
 
-export function Bonus({ question }) {
-  let formattedLeadin = cleanString(question.formatted_leadin);
-  formattedLeadin = <span dangerouslySetInnerHTML={{__html: formattedLeadin}}/>;
+export function Bonus({ question, query }) {
+  const formattedLeadin = formatQuestionString(question.formatted_leadin, query);
 
   const formattedTexts = question.formatted_texts.map(t => {
-    let text = cleanString(t);
-    return <span dangerouslySetInnerHTML={{__html: text}}/>;
+    return formatQuestionString(t, query);
   })
   const formattedAnswers = question.formatted_answers.map(a => {
-    let answer = cleanString(a);
-    return <span dangerouslySetInnerHTML={{__html: answer}}/>;
+    return formatQuestionString(a, query);
   });
 
   const renderBonusPart = (index) => {
@@ -53,6 +50,7 @@ export function Bonus({ question }) {
 
 Bonus.propTypes = {
   question: PropTypes.object.isRequired,
+  query: PropTypes.string,
 };
 
 export default Bonus;

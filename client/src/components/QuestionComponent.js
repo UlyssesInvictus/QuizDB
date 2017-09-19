@@ -100,7 +100,8 @@ class QuestionsComponent extends React.Component {
     const p = this.props;
     const q = this.props.question;
     const questionView = p.questionType === "tossup" ?
-      <Tossup question={q} /> : <Bonus question={q} />;
+      <Tossup question={q} query={p.search.query} /> :
+      <Bonus question={q} query={p.search.query} />;
     return (
       <div className='question'>
         <Segment.Group>
