@@ -2,6 +2,7 @@ class TossupsController < ApplicationController
   before_action :set_tossup, only: [:show, :update, :destroy]
 
   QUESTION_SEARCH_LIMIT = 15
+  QUESTION_RANDOM_LIMIT = 300
 
   def random
     # pretty much identical to search
@@ -28,18 +29,19 @@ class TossupsController < ApplicationController
   def search
     query = search_params[:query]
     filters = search_params[:filters]
-    limit = search_params[:limit].blank? || search_params[:limit] != 'false'
-    # default to downloading all, but can potentially use limit as well
-    limit = false if params[:download]
+    limit = (search_params[:limit].blank? || search_params[:limit] != 'false') ?
+      QUESTION_SEARCH_LIMIT : nil
+    # override and provide a high limit if downloading
+    limit = QUESTION_RANDOM_LIMIT if params[:download]
 
     questions = Question::SearchAndFilter.search_and_filter(query, filters)
     tossups = questions[:tossups]
     bonuses = questions[:bonuses]
 
     locals = {
-      tossups: limit ? tossups.limit(QUESTION_SEARCH_LIMIT) : tossups,
+      tossups: tossups.limit(limit),
       num_tossups_found: tossups.size,
-      bonuses: limit ? bonuses.limit(QUESTION_SEARCH_LIMIT) : bonuses,
+      bonuses: bonuses.limit(limit),
       num_bonuses_found: bonuses.size
     }
 
