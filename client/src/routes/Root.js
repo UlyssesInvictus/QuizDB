@@ -65,8 +65,21 @@ class Root extends React.Component {
     window.addEventListener('click', this.handleOutOfSidebarClick);
     window.addEventListener('keydown', this.handleInputKeyPress);
     if('serviceWorker' in window.navigator){
-      window.addEventListener('sw-reload', this.receiveServiceWorkerMessage);
       window.addEventListener('sw-load', this.receiveServiceWorkerMessage);
+
+      const storage = createStorage();
+      if (storage.get("cacheUpToDate") === false) {
+        storage.set("cacheUpToDate", true);
+        storage.set("cacheLastUpdated", new Date());
+        this.props.dispatch(Notifications.success({
+          message: `New content available! Click below to refresh page.`,
+          autoDismiss: 10,
+          action: {
+            label: "Reload",
+            callback: function() { window.location.reload(true); }
+          }
+        }));
+      }
     }
     // since we load state in pre-mount lifecycle, modified state (with storage)
     // isn't usable until next action, so get directly for now
@@ -77,7 +90,6 @@ class Root extends React.Component {
     window.removeEventListener('click', this.handleOutOfSidebarClick);
     window.removeEventListener('keydown', this.handleInputKeyPress);
     if('serviceWorker' in window.navigator){
-      window.removeEventListener('sw-reload', this.receiveServiceWorkerMessage);
       window.removeEventListener('sw-load', this.receiveServiceWorkerMessage);
     }
 
@@ -114,26 +126,14 @@ class Root extends React.Component {
     ReactGA.pageview(page);
   }
 
-  receiveServiceWorkerMessage(event, dispatch=null) {
+  receiveServiceWorkerMessage(event) {
     switch(event.type) {
       case "sw-load":
-        console.log(event.type);
         const loadMessage = `This site is now cached! Future visits will now work to
                              an extent offline. See 'Help' for more info.`;
         this.props.dispatch(Notifications.success({
           message: loadMessage,
-          autoDismiss: 20,
-        }));
-        return;
-      case "sw-reload":
-        const reloadMessage = `New content available! Click below to reload page.`;
-        dispatch(Notifications.success({
-          message: reloadMessage,
-          autoDismiss: 20,
-          action: {
-            label: "Reload",
-            callback: function() { window.reload(true); }
-          }
+          autoDismiss: 10,
         }));
         return;
       default:

@@ -1,3 +1,5 @@
+import { createStorage } from "./utilities/Storage";
+
 // In production, we register a service worker to serve assets from local cache.
 
 // This lets the app load faster on subsequent visits in production, and gives
@@ -60,6 +62,8 @@ function registerValidSW(swUrl) {
               // It's the perfect time to display a "New content is
               // available; please refresh." message in your web app.
               window.dispatchEvent(new Event('sw-reload'));
+              const storage = createStorage();
+              storage.set("cacheUpToDate", false);
               console.log('New content is available; please refresh.');
             } else {
               // At this point, everything has been precached.
