@@ -11,6 +11,9 @@ export function cleanSpecial(str) {
   newStr = newStr.replace(/⢄/g, "ft");
   newStr = newStr.replace(/Ã¶/g, "ö");
   newStr = newStr.replace(/Ã©/g, "é");
+  newStr = newStr.replace(/送/g, "fi");
+  newStr = newStr.replace(/畔/g, "f");
+  newStr = newStr.replace(/㱀/g, "f");
   return newStr;
 }
 
