@@ -10,6 +10,7 @@ export function cleanSpecial(str) {
   newStr = newStr.replace(/✴/g, "fi");
   newStr = newStr.replace(/⢄/g, "ft");
   newStr = newStr.replace(/Ã¶/g, "ö");
+  newStr = newStr.replace(/Ã©/g, "é");
   return newStr;
 }
 
