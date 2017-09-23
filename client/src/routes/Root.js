@@ -21,6 +21,7 @@ import PageAbout from './PageAbout';
 import PageResources from './PageResources';
 import PageFuture from './PageFuture';
 import PageSettings from './PageSettings';
+import PageHelp from './PageHelp';
 
 import Page404 from './Page404';
 import PageRefresh from './PageRefresh';
@@ -193,7 +194,7 @@ class Root extends React.Component {
         <Menu.Item name='about' as={Link} to='/about' onClick={() => dispatch(toggleSidebar())}>
             <span><Icon name='info circle'/>About</span>
         </Menu.Item>
-        <Menu.Item name='help' as={Link} to='/about#contact' onClick={() => dispatch(toggleSidebar())}>
+        <Menu.Item name='help' as={Link} to='/help' onClick={() => dispatch(toggleSidebar())}>
             <span><Icon name='question circle'/>Help</span>
         </Menu.Item>
 
@@ -206,6 +207,7 @@ class Root extends React.Component {
               <Route exact path="/admin" component={PageRefresh}/>
               <Route exact path="/" component={PageSearch}/>
               <Route exact path="/about" component={PageAbout}/>
+              <Route exact path="/help" component={PageHelp}/>
               <Route exact path="/resources" component={PageResources}/>
               <Route exact path="/future" component={PageFuture}/>
               <Route exact path="/stats" component={PageStats}/>
