@@ -64,7 +64,7 @@ I'm also chewing on an idea of "pro" user accounts, wherein some newer questions
 
 ## Credits
 
-This site was first created in the summer of 2017 by Raynor Kuang.
+This site was first created in the summer of 2017 by Raynor Kuang. It is graciously sponsored by [PACE](http://www.pace-nsc.org/).
 
 It was inspired by Rohit Lalchandani's Quinterest, Jerry Vinokurov's QBDB, and Aseem Keyal's aseemDB.
 

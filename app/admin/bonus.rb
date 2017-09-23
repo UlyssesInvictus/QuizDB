@@ -107,7 +107,8 @@ ActiveAdmin.register Bonus do
       row :number
       row :question_errors do |q|
         simple_format (q.question_errors.map do |e|
-          "#{e.error_type}: #{e.description} (#{e.resolved? ? 'Resolved' : 'Unresolved'})"
+          link_to("Error #{e.id}", admin_error_path(e)) +
+          ": #{e.error_type}: #{e.description} (#{e.resolved? ? 'Resolved' : 'Unresolved'})"
         end).join("\n")
       end
       row :wikipedia_urls do |bonus|

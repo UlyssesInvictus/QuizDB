@@ -1,5 +1,5 @@
-Number tossups found: <%= num_tossups_found %>
-Number bonuses found: <%= num_bonuses_found %>
+Number tossups found: <%= num_tossups_found %> <%= num_tossups_found > tossups.size ? "(questions limited; please download a smaller group of questions or access the API directly)" : "" %>
+Number bonuses found: <%= num_bonuses_found %> <%= num_bonuses_found > bonuses.size ? "(questions limited; please download a smaller group of questions or access the API directly)" : "" %>
 
 ## TOSSUPS
 
