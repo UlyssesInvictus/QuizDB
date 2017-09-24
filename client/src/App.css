@@ -222,6 +222,9 @@ footer.quizdb-footer {
   font-size: 1.2rem;
   line-height: 1.8rem; }
 
+.question-highlight {
+  background-color: #ff0; }
+
 .question-hidden-answer {
   position: fixed;
   top: 0;
@@ -350,3 +353,6 @@ footer.quizdb-footer {
         height: 50%;
         width: 100%;
         padding: 2.4rem 0; } }
+
+.quizdb-settings {
+  padding: 1.5rem 0rem 15rem 0rem; }

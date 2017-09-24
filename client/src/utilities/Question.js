@@ -1,5 +1,8 @@
+import React from 'react';
+
 import sanitizeHtml from 'sanitize-html';
-import { present } from './String';
+
+import { isPresent } from './String';
 
 export function cleanSpecial(str) {
   let newStr = str.replace(/Â/g, "");
@@ -7,6 +10,7 @@ export function cleanSpecial(str) {
   // assuming these specific chinese characters are never actually intentional...
   newStr = newStr.replace(/猴/g, "f");
   newStr = newStr.replace(/睌/g, "f");
+  newStr = newStr.replace(/猼/g, "f");
   newStr = newStr.replace(/✴/g, "fi");
   newStr = newStr.replace(/⢄/g, "ft");
   newStr = newStr.replace(/Ã¶/g, "ö");
@@ -23,6 +27,15 @@ export function cleanString(str) {
   newStr = sanitizeHtml(newStr, {
     allowedTags: [ 'b', 'i', 'em', 'strong', 'u' ]
   });
+  return newStr;
+}
+
+export function formatQuestionString(str, query=null) {
+  let newStr = cleanString(str);
+  if (query) {
+    newStr = newStr.replace(new RegExp(query, 'gi'), `<mark class='question-highlight'>$&</mark>`);
+  }
+  newStr = <span dangerouslySetInnerHTML={{__html: newStr}}/>;
   return newStr;
 }
 
@@ -60,7 +73,7 @@ export function generateWikiLink(question, index = null) {
     formattedAnswer = question.formatted_answers[index];
   }
 
-  if (present(url)) {
+  if (isPresent(url)) {
     return url;
   } else if (extractActualAnswer(formattedAnswer)) {
     const actualAnswer = sanitizeHtml(extractActualAnswer(formattedAnswer), { allowedTags: [] });

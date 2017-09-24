@@ -99,6 +99,10 @@
   }
 }
 
+.question-highlight {
+   background-color: $highlight-color;
+}
+
 .question-hidden-answer {
   position: fixed;
   top: 0;

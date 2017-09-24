@@ -5,6 +5,9 @@ import { connect } from 'react-redux';
 import {
   toggleSidebar,
 } from '../actions/actions';
+import {
+  loadStorage,
+} from '../actions/StorageActions';
 
 // Routes
 import {
@@ -17,6 +20,9 @@ import PageStats from './PageStats';
 import PageAbout from './PageAbout';
 import PageResources from './PageResources';
 import PageFuture from './PageFuture';
+import PageSettings from './PageSettings';
+import PageHelp from './PageHelp';
+
 import Page404 from './Page404';
 import PageRefresh from './PageRefresh';
 
@@ -33,6 +39,11 @@ import {
   Menu
 } from 'semantic-ui-react';
 
+import {
+  showUsageTip
+} from "../utilities/Root";
+import { createStorage } from "../utilities/Storage";
+
 ReactGA.initialize('UA-105674080-1', {
   debug: process.env.NODE_ENV !== 'production',
 });
@@ -44,19 +55,45 @@ class Root extends React.Component {
     this.handleOutOfSidebarClick = this.handleOutOfSidebarClick.bind(this);
     this.handleInputKeyPress = this.handleInputKeyPress.bind(this);
     this.hashLinkScroll = this.hashLinkScroll.bind(this);
+    this.receiveServiceWorkerMessage = this.receiveServiceWorkerMessage.bind(this);
 
     // Initial page load - only fired once
-    this.sendPageChange(props.location.pathname, props.location.search)
+    this.sendPageChange(props.location.pathname, props.location.search);
+    this.props.dispatch(loadStorage());
   }
 
   componentDidMount() {
     window.addEventListener('click', this.handleOutOfSidebarClick);
     window.addEventListener('keydown', this.handleInputKeyPress);
+    if('serviceWorker' in window.navigator){
+      window.addEventListener('sw-load', this.receiveServiceWorkerMessage);
+
+      const storage = createStorage();
+      if (storage.get("cacheUpToDate") === false) {
+        storage.set("cacheUpToDate", true);
+        storage.set("cacheLastUpdated", new Date());
+        this.props.dispatch(Notifications.success({
+          message: `New content available! Click below to refresh page.`,
+          autoDismiss: 10,
+          action: {
+            label: "Reload",
+            callback: function() { window.location.reload(true); }
+          }
+        }));
+      }
+    }
+    // since we load state in pre-mount lifecycle, modified state (with storage)
+    // isn't usable until next action, so get directly for now
+    showUsageTip(this.props.dispatch, createStorage().dump());
   }
 
   componentWillUnmount() {
     window.removeEventListener('click', this.handleOutOfSidebarClick);
     window.removeEventListener('keydown', this.handleInputKeyPress);
+    if('serviceWorker' in window.navigator){
+      window.removeEventListener('sw-load', this.receiveServiceWorkerMessage);
+    }
+
   }
 
   componentWillReceiveProps(nextProps) {
@@ -88,6 +125,21 @@ class Root extends React.Component {
     const page = pathname + search
     ReactGA.set({page});
     ReactGA.pageview(page);
+  }
+
+  receiveServiceWorkerMessage(event) {
+    switch(event.type) {
+      case "sw-load":
+        const loadMessage = `This site is now cached! Future visits will now work to
+                             an extent offline. See 'Help' for more info.`;
+        this.props.dispatch(Notifications.success({
+          message: loadMessage,
+          autoDismiss: 10,
+        }));
+        return;
+      default:
+        return;
+    }
   }
 
   handleInputKeyPress(e) {
@@ -136,10 +188,13 @@ class Root extends React.Component {
         <Menu.Item name='resources' as={Link} to='/resources' onClick={() => dispatch(toggleSidebar())}>
             <span><Icon name='bookmark'/>Resources</span>
         </Menu.Item>
+        <Menu.Item name='settings' as={Link} to='/settings' onClick={() => dispatch(toggleSidebar())}>
+            <span><Icon name='settings'/>Settings</span>
+        </Menu.Item>
         <Menu.Item name='about' as={Link} to='/about' onClick={() => dispatch(toggleSidebar())}>
             <span><Icon name='info circle'/>About</span>
         </Menu.Item>
-        <Menu.Item name='help' as={Link} to='/about#contact' onClick={() => dispatch(toggleSidebar())}>
+        <Menu.Item name='help' as={Link} to='/help' onClick={() => dispatch(toggleSidebar())}>
             <span><Icon name='question circle'/>Help</span>
         </Menu.Item>
 
@@ -152,9 +207,11 @@ class Root extends React.Component {
               <Route exact path="/admin" component={PageRefresh}/>
               <Route exact path="/" component={PageSearch}/>
               <Route exact path="/about" component={PageAbout}/>
+              <Route exact path="/help" component={PageHelp}/>
               <Route exact path="/resources" component={PageResources}/>
               <Route exact path="/future" component={PageFuture}/>
               <Route exact path="/stats" component={PageStats}/>
+              <Route exact path="/settings" component={PageSettings}/>
               <Route component={Page404}/>
             </Switch>
           </main>
@@ -168,7 +225,8 @@ const mapStateToProps = state => {
   return {
     notifications: state.notifications,
     browser: state.browser,
-    appearance: state.appearance
+    appearance: state.appearance,
+    storage: state.storage,
   }
 }
 
