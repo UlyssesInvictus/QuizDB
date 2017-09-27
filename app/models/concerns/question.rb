@@ -172,16 +172,21 @@ module Question
         end
       end
 
+      def filter_by_category(filters)
+        results = where(subcategory: filters[:subcategory] || [])
+        cats = Subcategory.where(id: filters[:subcategory] || []).pluck(:category_id).map {|c| c.to_s}
+        results.or(where(category: (filters[:category] || []) - cats))
+      end
+
       def filter_by_defaults(filters, query)
         results = all
         if filters.present?
           # annoyingly hardcoded, but effectively acts as
           # a whitelist on the filters allowed as well
-          results = results.filter_by_key(filters, :category)
-          .filter_by_key(filters, :subcategory)
-          .filter_by_key(filters, :tournament)
-          .filter_by_difficulty(filters[:difficulty])
-          .filter_by_search_type(filters[:search_type], query)
+          results = results.filter_by_category(filters)
+            .filter_by_key(filters, :tournament)
+            .filter_by_difficulty(filters[:difficulty])
+            .filter_by_search_type(filters[:search_type], query)
         else
           results = results.filter_by_search_type({}, query)
         end
