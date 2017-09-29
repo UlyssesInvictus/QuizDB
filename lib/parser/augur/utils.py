@@ -29,7 +29,7 @@ def is_valid_content(s):
 
     # handle common <Author> formatting
     # disabled b/c it's returning false positives on html
-    # if re.search('^(<.*>|&lt;.*&gt;)', s):
-    #     return False
+    if re.search('^(<.*>|&lt;.*&gt;)', s):
+        return False
 
     return True
