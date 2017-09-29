@@ -1,3 +1,6 @@
+from utils import sanitize
+
+
 class Tossup:
 
     def __init__(self, number, text="", answer="",
@@ -14,8 +17,10 @@ class Tossup:
     def to_dict(self):
         return {
             "number": self.number,
-            "text": unicode(self.text),
-            "answer": unicode(self.answer),
+            "formatted_text": self.text,
+            "formatted_answer": self.answer,
+            "text": sanitize(self.text, valid_tags=[]),
+            "answer": sanitize(self.answer, valid_tags=[]),
             "category": self.category,
             "subcategory": self.subcategory
         }

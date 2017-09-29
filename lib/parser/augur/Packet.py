@@ -1,4 +1,5 @@
 import codecs
+import yaml
 import re
 from utils import sanitize, is_valid_content
 from Tossup import Tossup
@@ -31,6 +32,9 @@ class Packet:
 
         self.num_tossups = num_tossups
 
+        self.tossups = []
+        self.bonuses = []
+
     def load_html(self):
         with codecs.open(self.filename, 'r', encoding='utf-8') as f:
             lines = f.readlines()
@@ -43,6 +47,17 @@ class Packet:
                     prepared_lines.append(sanitized_line)
         return prepared_lines
 
+    def is_valid(self):
+        return (all(tossup.is_valid() for tossup in self.tossups) and
+                all(bonus.is_valid() for bonus in self.bonuses))
+
+    def dump_yaml(self, filename=None):
+        if filename is None:
+            filename = self.filename + ".yml"
+        with open(filename, 'w') as f:
+            yaml.dump(map(lambda x: x.to_dict(), self.tossups), f, default_flow_style=False)
+            yaml.dump(map(lambda x: x.to_dict(), self.bonuses), f, default_flow_style=False)
+
     def parse_packet(self):
         lines = self.load_html()
 
@@ -54,7 +69,6 @@ class Packet:
 
         bonuses = []
         current_bonus = Bonus(1)
-        print len(current_bonus.answers)
 
         for l in lines:
             # edge case for switching from tossups to bonuses
@@ -114,4 +128,6 @@ class Packet:
         if current_bonus.has_content():
             bonuses.append(current_bonus)
 
+        self.tossups = tossups
+        self.bonuses = bonuses
         return (tossups, bonuses)

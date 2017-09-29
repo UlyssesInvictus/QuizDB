@@ -1,3 +1,6 @@
+from utils import sanitize
+
+
 class Bonus:
 
     def __init__(self, number, leadin="", texts=None, answers=None,
@@ -24,8 +27,10 @@ class Bonus:
         return {
             "number": self.number,
             "leadin": self.leadin,
-            "texts": self.texts,
-            "answers": self.answers,
+            "formatted_texts": self.texts,
+            "formatted_answers": self.answers,
+            "texts": map(lambda x: sanitize(x, valid_tags=[]), self.texts),
+            "answers": map(lambda x: sanitize(x, valid_tags=[]), self.answers),
             "category": self.category,
             "subcategory": self.subcategory
         }
