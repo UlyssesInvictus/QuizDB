@@ -173,9 +173,11 @@ module Question
       end
 
       def filter_by_category(filters)
+        return all unless filters[:subcategory].present? || filters[:category].present?
         results = where(subcategory: filters[:subcategory] || [])
         cats = Subcategory.where(id: filters[:subcategory] || []).pluck(:category_id).map {|c| c.to_s}
-        results.or(where(category: (filters[:category] || []) - cats))
+        cats = (filters[:category] || []) - cats
+        results.or(where(category: cats))
       end
 
       def filter_by_defaults(filters, query)
