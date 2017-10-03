@@ -1,3 +1,5 @@
+# TOSSUPS
+# 21 tossups total
 - answer: "Pierre de Fermat (accept answers like Fermat\u2019s Last Theorem)"
   category: ''
   formatted_answer: "Pierre de <strong><em>Fermat</em></strong> (accept answers like\
@@ -26,12 +28,12 @@
     \ n\u201D plus \u201Cb to the n\u201D equals \u201Cc to the n\u201D for n greater\
     \ than two. For 10 points, name this French mathematician with namesake \u201C\
     Little\u201D and \u201CLast\u201D theorems."
-- answer: !!python/unicode 'Adult Swim (prompt on Cartoon Network; accept [adult swim];
-    anti-prompt [ask for less specific] on Toonami before read)'
+- answer: Adult Swim (prompt on Cartoon Network; accept [adult swim]; anti-prompt
+    [ask for less specific] on Toonami before read)
   category: ''
-  formatted_answer: !!python/unicode '<strong><em>Adult Swim</em></strong> (prompt
-    on <em>Cartoon Network</em>; accept <strong><em>[adult swim]</em></strong>; anti-prompt
-    [ask for less specific] on <em>Toonami</em> before read)'
+  formatted_answer: <strong><em>Adult Swim</em></strong> (prompt on <em>Cartoon Network</em>;
+    accept <strong><em>[adult swim]</em></strong>; anti-prompt [ask for less specific]
+    on <em>Toonami</em> before read)
   formatted_text: "<strong>Mike Lazzo oversees this channel at its \u201CWilliams\
     \ Street\u201D headquarters, and many of this channel\u2019s first shows were\
     \ created using recycled Hanna-Barbera material. This channel stylized words in\
@@ -53,10 +55,10 @@
     \ channel\u2019s current shows include Robot Chicken and Rick and Morty. For 10\
     \ points, name this more mature channel that runs on Cartoon Network after eight\
     \ o\u2019clock PM."
-- answer: !!python/unicode 'Ovid (or Publius Ovidius Naso)'
+- answer: Ovid (or Publius Ovidius Naso)
   category: ''
-  formatted_answer: !!python/unicode '<strong><em>Ovid</em></strong> (or Publius <strong><em>Ovid</em></strong>ius
-    Naso)'
+  formatted_answer: <strong><em>Ovid</em></strong> (or Publius <strong><em>Ovid</em></strong>ius
+    Naso)
   formatted_text: "<strong>This writer complained about the theft of a poetic foot\
     \ preventing his writing a heroic epic, instead writing about his affair with\
     \ Corinna. A collection of letters titled <em>Tristia</em> or \u201CLamentations\u201D\
@@ -77,10 +79,10 @@
     \ and another contains several mythological tales centering on transformations.\
     \ For 10 points, name this Roman writer, the author of The Art of Love and The\
     \ Metamorphoses."
-- answer: !!python/unicode 'Las Meninas (or The Maids of Honor)'
+- answer: Las Meninas (or The Maids of Honor)
   category: ''
-  formatted_answer: !!python/unicode '<em>Las <strong><em>Meninas</em></strong></em>
-    (or <em>The <strong><em>Maids of Honor</em></strong></em>)'
+  formatted_answer: <em>Las <strong><em>Meninas</em></strong></em> (or <em>The <strong><em>Maids
+    of Honor</em></strong></em>)
   formatted_text: "<strong>The background of this painting depicts <em>Minerva Punishing\
     \ Arachne</em> and <em>Apollo\u2019s Victory over Marsyas</em> hanging from the\
     \ wall, both by Peter Paul Rubens. The vanishing point of this painting is the\
@@ -179,10 +181,9 @@
     \ country in the Texas Territory after losing the Election of 1808 and becoming\
     \ Jefferson\u2019s Vice-President. For 10 points, name this man who shot Alexander\
     \ Hamilton."
-- answer: !!python/unicode 'Dublin, Ireland (accept Dubliners)'
+- answer: Dublin, Ireland (accept Dubliners)
   category: ''
-  formatted_answer: !!python/unicode '<strong><em>Dublin</em></strong>, Ireland (accept
-    <em><strong><em>Dubliners</em></strong></em>)'
+  formatted_answer: <strong><em>Dublin</em></strong>, Ireland (accept <em><strong><em>Dubliners</em></strong></em>)
   formatted_text: "<strong>At a Halloween party set in this city, a character plays\
     \ a blindfolded game and selects the title object, which symbolizes death. A boy\
     \ living in this city fails to buy a gift at the title (*)</strong> bazaar, and\
@@ -203,12 +204,12 @@
     \ is home to the residents Blazes Boylan, Stephen Dedalus, and Molly and Leopold\
     \ Bloom. For 10 points, name this city, the setting of the novel Ulysses by James\
     \ Joyce."
-- answer: !!python/unicode 'baptism (accept word forms like Baptists or Southern Baptist
-    Convention; prompt on ablution or washing)'
+- answer: baptism (accept word forms like Baptists or Southern Baptist Convention;
+    prompt on ablution or washing)
   category: ''
-  formatted_answer: !!python/unicode '<strong><em>baptism</em></strong> (accept word
-    forms like <strong><em>Baptist</em></strong>s or Southern <strong><em>Baptist</em></strong>
-    Convention; prompt on <em>ablut</em>ion or <em>wash</em>ing)'
+  formatted_answer: <strong><em>baptism</em></strong> (accept word forms like <strong><em>Baptist</em></strong>s
+    or Southern <strong><em>Baptist</em></strong> Convention; prompt on <em>ablut</em>ion
+    or <em>wash</em>ing)
   formatted_text: "<strong>An action Naaman took to heal his leprosy is typologically\
     \ used as evidence for this action. In Catholicism, a catuchemen is preparing\
     \ to do this action, and it can be done \u201Cof desire\u201D if not done before\
@@ -317,30 +318,30 @@
   category: ''
   formatted_answer: "<strong><em>spinal cord</em></strong> (do not accept or prompt\
     \ on \u201Cspine\u201D; those are the bones)"
-  formatted_text: !!python/unicode '<strong>The radicular arteries supply blood to
-    this structure, and it develops under influence of the Sonic hedgehog gene on
-    the basal plate. This structure is the lower of the two protected by three membranes
-    called the meninges, and its top begins at the (*)</strong> medulla oblongata.
-    This structure has 31 individual segments, and like the structure surrounding
-    it, it has cervical and lumbar regions. This structure oversees the knee jerk
-    reflex, and together with the brain, it makes up the central nervous system. For
-    10 points, name this collection of nerves running down the back of the body and
-    enclosed by a similarly named vertebral column of bones.'
-  number: 13
-  subcategory: ''
-  text: !!python/unicode 'The radicular arteries supply blood to this structure, and
+  formatted_text: <strong>The radicular arteries supply blood to this structure, and
     it develops under influence of the Sonic hedgehog gene on the basal plate. This
     structure is the lower of the two protected by three membranes called the meninges,
-    and its top begins at the (*) medulla oblongata. This structure has 31 individual
-    segments, and like the structure surrounding it, it has cervical and lumbar regions.
-    This structure oversees the knee jerk reflex, and together with the brain, it
-    makes up the central nervous system. For 10 points, name this collection of nerves
-    running down the back of the body and enclosed by a similarly named vertebral
-    column of bones.'
-- answer: !!python/unicode 'sun (accept solar and word forms)'
+    and its top begins at the (*)</strong> medulla oblongata. This structure has 31
+    individual segments, and like the structure surrounding it, it has cervical and
+    lumbar regions. This structure oversees the knee jerk reflex, and together with
+    the brain, it makes up the central nervous system. For 10 points, name this collection
+    of nerves running down the back of the body and enclosed by a similarly named
+    vertebral column of bones.
+  number: 13
+  subcategory: ''
+  text: The radicular arteries supply blood to this structure, and it develops under
+    influence of the Sonic hedgehog gene on the basal plate. This structure is the
+    lower of the two protected by three membranes called the meninges, and its top
+    begins at the (*) medulla oblongata. This structure has 31 individual segments,
+    and like the structure surrounding it, it has cervical and lumbar regions. This
+    structure oversees the knee jerk reflex, and together with the brain, it makes
+    up the central nervous system. For 10 points, name this collection of nerves running
+    down the back of the body and enclosed by a similarly named vertebral column of
+    bones.
+- answer: sun (accept solar and word forms)
   category: ''
-  formatted_answer: !!python/unicode '<strong><em>sun</em></strong> (accept <strong><em>solar</em></strong>
-    and word forms)'
+  formatted_answer: <strong><em>sun</em></strong> (accept <strong><em>solar</em></strong>
+    and word forms)
   formatted_text: "<strong>A specific early aspect of this entity was represented\
     \ by the god Khepri. The uraeus was an image that combined the snake-like Wadjet\
     \ and another item representing this entity, and the Khufu ship symbolized a mythical\
@@ -361,9 +362,9 @@
     \ entity, and the city of Heliopolis is literally named after this astronomical\
     \ object. For 10 points, name this cosmic entity represented by the Egyptian god\
     \ Ra."
-- answer: !!python/unicode 'Labour Party'
+- answer: Labour Party
   category: ''
-  formatted_answer: !!python/unicode '<strong><em>Labour</em></strong> Party'
+  formatted_answer: <strong><em>Labour</em></strong> Party
   formatted_text: "<strong>This party\u2019s principles are outlined in a section\
     \ of its constitution called Clause Four, and it lost power after the release\
     \ of a probably forged letter attributed to Grigory Zinoviev. One of this party\u2019\
@@ -413,10 +414,9 @@
     \ \u201CAbandon all hope, ye who enter here,\u201D and usurers, heretics, and\
     \ frauds are among those imprisoned in the nine circles that make up this location.\
     \ For 10 points, give this setting of the first work in Dante\u2019s Divine Comedy."
-- answer: !!python/unicode 'one (accept equivalents like first)'
+- answer: one (accept equivalents like first)
   category: ''
-  formatted_answer: !!python/unicode '<strong><em>one</em></strong> (accept equivalents
-    like <strong><em>first</em></strong>)'
+  formatted_answer: <strong><em>one</em></strong> (accept equivalents like <strong><em>first</em></strong>)
   formatted_text: "<strong>Maurice Ravel wrote this many string quartets, and Zoltan\
     \ Kold\xE1y\u2019s [\u201Cko-DIE-ee\u201D] Opus 8 is a B-minor sonata for this\
     \ many performers. This is the number of independent voices in Gregorian chant.\
@@ -465,9 +465,9 @@
     \ Party and Boris Johnson of the Conservatives led its winning side. For 10 points,\
     \ \u201CRemain\u201D and \u201CLeave\u201D were the two sides of what campaign\
     \ for Britain to leave the European Union?"
-- answer: !!python/unicode 'Citizen Kane'
+- answer: Citizen Kane
   category: ''
-  formatted_answer: !!python/unicode '<em><strong><em>Citizen Kane</em></strong></em>'
+  formatted_answer: <em><strong><em>Citizen Kane</em></strong></em>
   formatted_text: "<strong>In this film, a shot of a group portrait of one company\u2019\
     s staff zooms in until changing to the same staff sitting for a portrait at another\
     \ company they\u2019ve all defected to. The trailer for this film was a mockumentary\
@@ -488,10 +488,10 @@
     \ being dropped and the title character\u2019s lips as he says \u201CRosebud\u201D\
     \ before dying. For 10 points, name this movie directed by Orson Welles, which\
     \ documents the rise and fall of the title newspaper mogul."
-- answer: !!python/unicode 'Tokyo (accept Edo before mention)'
+- answer: Tokyo (accept Edo before mention)
   category: ''
-  formatted_answer: !!python/unicode '<strong><em>Tokyo</em></strong> (accept <strong><em>Edo</em></strong>
-    before mention)'
+  formatted_answer: <strong><em>Tokyo</em></strong> (accept <strong><em>Edo</em></strong>
+    before mention)
   formatted_text: "<strong>A massive 1657 fire in this city was legendarily begun\
     \ by a priest attempting to burn a cursed robe. The Ak\u014D incident in a namesake\
     \ castle in this city began a legend involving forty-seven warriors, and the Boshin\
@@ -512,9 +512,9 @@
     \ the beginning of the Meiji Restoration, the capital was moved from Kyoto to\
     \ this city. For 10 points, name this city that was known as Edo before taking\
     \ its modern name as Japan\u2019s capital."
-- answer: !!python/unicode 'Hermann Hesse Bonuses'
+- answer: Hermann Hesse Bonuses
   category: ''
-  formatted_answer: !!python/unicode 'Hermann <strong><em>Hesse</em></strong> Bonuses'
+  formatted_answer: Hermann <strong><em>Hesse</em></strong> Bonuses
   formatted_text: "<strong>This author\u2019s last book contains poems about \u201C\
     Stages\u201D and \u201CSoap Bubbles\u201D and ends with a story about Dasa killing\
     \ his half-brother as one of a collected \u201CThree Lives.\u201D In one of this\
@@ -534,56 +534,55 @@
     \ In another of his books, Pablo brings Harry Haller to the Magic Theatre after\
     \ Harry reads the title treatise about an animalistic man. For 10 points, name\
     \ this German author of the books The Glass Bead Game, Siddhartha, and Steppenwolf."
+# BONUSES
+# 21 bonuses total
 - answers:
-  - !!python/unicode 'Sebastian Cabot (or Sebastiano Caboto; prompt on Cabot)'
-  - !!python/unicode 'circumnavigating the world (accept word forms; accept synonyms
-    for sailing around the world)'
-  - !!python/unicode 'Henry Hudson (accept Hudson Bay)'
+  - Sebastian Cabot (or Sebastiano Caboto; prompt on Cabot)
+  - circumnavigating the world (accept word forms; accept synonyms for sailing around
+    the world)
+  - Henry Hudson (accept Hudson Bay)
   category: ''
   formatted_answers:
-  - !!python/unicode '<strong><em>S</em></strong>ebastian <strong><em>Cabot</em></strong>
-    (or <strong><em>S</em></strong>ebastiano <strong><em>Caboto</em></strong>; prompt
-    on <em>Cabot</em>)'
-  - !!python/unicode '<strong><em>circumnavigating</em></strong> the world (accept
-    word forms; accept synonyms for <strong><em>sail</em></strong>ing <strong><em>around</em></strong>
-    the world)'
-  - !!python/unicode 'Henry <strong><em>Hudson</em></strong> (accept <strong><em>Hudson</em></strong>
-    Bay)'
+  - <strong><em>S</em></strong>ebastian <strong><em>Cabot</em></strong> (or <strong><em>S</em></strong>ebastiano
+    <strong><em>Caboto</em></strong>; prompt on <em>Cabot</em>)
+  - <strong><em>circumnavigating</em></strong> the world (accept word forms; accept
+    synonyms for <strong><em>sail</em></strong>ing <strong><em>around</em></strong>
+    the world)
+  - Henry <strong><em>Hudson</em></strong> (accept <strong><em>Hudson</em></strong>
+    Bay)
   formatted_texts:
-  - !!python/unicode 'Name this Italian-born explorer. He led several English attempts
-    to find the Northwest Passage after accompanying an expedition led by his father
-    John which discovered the North American mainland.'
-  - !!python/unicode 'Sebastian Cabot may have been the second explorer to accomplish
-    this feat. The first instance of this travelling feat is usually credited to Ferdinand
-    Magellan.'
-  - !!python/unicode 'Sebastian Cabot may also have discovered the entrance to a body
-    of water named for this captain of the <em>Half-Moon</em>. A mutiny against this
-    man led him to be cast adrift in that body of water, where he probably died.'
+  - Name this Italian-born explorer. He led several English attempts to find the Northwest
+    Passage after accompanying an expedition led by his father John which discovered
+    the North American mainland.
+  - Sebastian Cabot may have been the second explorer to accomplish this feat. The
+    first instance of this travelling feat is usually credited to Ferdinand Magellan.
+  - Sebastian Cabot may also have discovered the entrance to a body of water named
+    for this captain of the <em>Half-Moon</em>. A mutiny against this man led him
+    to be cast adrift in that body of water, where he probably died.
   leadin: "While leading an expedition up the R\xEDo de la Plata, this man faced a\
     \ mutiny from his subordinates Martin M\xE9ndez and Miguel de Rodas, so he left\
     \ them to die on an island. For 10 points each:"
   number: 1
   subcategory: ''
   texts:
-  - !!python/unicode 'Name this Italian-born explorer. He led several English attempts
-    to find the Northwest Passage after accompanying an expedition led by his father
-    John which discovered the North American mainland.'
-  - !!python/unicode 'Sebastian Cabot may have been the second explorer to accomplish
-    this feat. The first instance of this travelling feat is usually credited to Ferdinand
-    Magellan.'
-  - !!python/unicode 'Sebastian Cabot may also have discovered the entrance to a body
-    of water named for this captain of the Half-Moon. A mutiny against this man led
-    him to be cast adrift in that body of water, where he probably died.'
+  - Name this Italian-born explorer. He led several English attempts to find the Northwest
+    Passage after accompanying an expedition led by his father John which discovered
+    the North American mainland.
+  - Sebastian Cabot may have been the second explorer to accomplish this feat. The
+    first instance of this travelling feat is usually credited to Ferdinand Magellan.
+  - Sebastian Cabot may also have discovered the entrance to a body of water named
+    for this captain of the Half-Moon. A mutiny against this man led him to be cast
+    adrift in that body of water, where he probably died.
 - answers:
   - "Honor\xE9 de Balzac"
   - "\u201CThe Stranger\u201D (or L'\xC9trang\xE8re; accept L\u2019\xC9tranger)"
-  - !!python/unicode 'Sarrasine'
+  - Sarrasine
   category: ''
   formatted_answers:
   - "Honor\xE9 de <strong><em>Balzac</em></strong>"
   - "\u201CThe <strong><em>Stranger</em></strong>\u201D (or L'<strong><em>\xC9trang\xE8\
     re</em></strong>; accept <em>L\u2019<strong><em>\xC9tranger</em></strong></em>)"
-  - !!python/unicode '<em><strong><em>Sarrasine</em></strong></em>'
+  - <em><strong><em>Sarrasine</em></strong></em>
   formatted_texts:
   - "Name this French author who included <em>The Wild Ass\u2019s Skin</em>, as well\
     \ as <em>Old Goriot</em> and <em>Cousin Bette</em> in his extremely ambitious\
@@ -610,14 +609,14 @@
     \ Balzac in this novella. The title character of this novella falls in love with\
     \ Zambinella before discovering she\u2019s actually a male castrato."
 - answers:
-  - !!python/unicode 'logic'
-  - !!python/unicode 'Gottlob Frege'
-  - !!python/unicode 'Bertrand Russell'
+  - logic
+  - Gottlob Frege
+  - Bertrand Russell
   category: ''
   formatted_answers:
-  - !!python/unicode '<strong><em>logic</em></strong>'
-  - !!python/unicode 'Gottlob <strong><em>Frege</em></strong>'
-  - !!python/unicode 'Bertrand <strong><em>Russell</em></strong>'
+  - <strong><em>logic</em></strong>
+  - Gottlob <strong><em>Frege</em></strong>
+  - Bertrand <strong><em>Russell</em></strong>
   formatted_texts:
   - "Name this subfield of philosophy, the systematic study of arguments and their\
     \ structures. Syllogisms are examples of arguments studied in this subject, as\
@@ -629,8 +628,8 @@
   - "This British logician continued Frege\u2019s project with his <em>Principia Mathematica</em>,\
     \ in which he and Alfred North Whitehead proved that \u201C1 + 1 = 2.\u201D He\
     \ also names a paradox in set theory."
-  leadin: !!python/unicode 'The study of this subject is paired with rhetoric and
-    grammar in the trivium of the liberal arts education. For 10 points each:'
+  leadin: 'The study of this subject is paired with rhetoric and grammar in the trivium
+    of the liberal arts education. For 10 points each:'
   number: 3
   subcategory: ''
   texts:
@@ -645,76 +644,74 @@
     \ in which he and Alfred North Whitehead proved that \u201C1 + 1 = 2.\u201D He\
     \ also names a paradox in set theory."
 - answers:
-  - !!python/unicode 'taiga (or boreal forest)'
-  - !!python/unicode 'desert'
+  - taiga (or boreal forest)
+  - desert
   - "K\xF6ppen climate classification"
   category: ''
   formatted_answers:
-  - !!python/unicode '<strong><em>taiga</em></strong> (or <strong><em>boreal forest</em></strong>)'
-  - !!python/unicode '<strong><em>desert</em></strong>'
+  - <strong><em>taiga</em></strong> (or <strong><em>boreal forest</em></strong>)
+  - <strong><em>desert</em></strong>
   - "<strong><em>K\xF6ppen</em></strong> climate classification"
   formatted_texts:
-  - !!python/unicode 'Name this largest land biome on Earth. It is dominated by coniferous
-    forests, and the acidic and nutrient-poor soils of this biome are called spodosols.'
-  - !!python/unicode 'A better known biome is this extremely dry kind. The typical
-    imagery of them is the hot and dry kind, though there are also coastal and cold
-    varieties.'
-  - !!python/unicode 'The climate of taigas is classified as Dfc, Dwc, and Dsc according
-    to this climate classification system. Within this system, tropical climates fall
-    under Group A, while dry climates fall under Group B.'
-  leadin: !!python/unicode 'The largest ecoregion of this biome in the world is located
-    in Siberia. For 10 points each:'
+  - Name this largest land biome on Earth. It is dominated by coniferous forests,
+    and the acidic and nutrient-poor soils of this biome are called spodosols.
+  - A better known biome is this extremely dry kind. The typical imagery of them is
+    the hot and dry kind, though there are also coastal and cold varieties.
+  - The climate of taigas is classified as Dfc, Dwc, and Dsc according to this climate
+    classification system. Within this system, tropical climates fall under Group
+    A, while dry climates fall under Group B.
+  leadin: 'The largest ecoregion of this biome in the world is located in Siberia.
+    For 10 points each:'
   number: 4
   subcategory: ''
   texts:
-  - !!python/unicode 'Name this largest land biome on Earth. It is dominated by coniferous
-    forests, and the acidic and nutrient-poor soils of this biome are called spodosols.'
-  - !!python/unicode 'A better known biome is this extremely dry kind. The typical
-    imagery of them is the hot and dry kind, though there are also coastal and cold
-    varieties.'
-  - !!python/unicode 'The climate of taigas is classified as Dfc, Dwc, and Dsc according
-    to this climate classification system. Within this system, tropical climates fall
-    under Group A, while dry climates fall under Group B.'
+  - Name this largest land biome on Earth. It is dominated by coniferous forests,
+    and the acidic and nutrient-poor soils of this biome are called spodosols.
+  - A better known biome is this extremely dry kind. The typical imagery of them is
+    the hot and dry kind, though there are also coastal and cold varieties.
+  - The climate of taigas is classified as Dfc, Dwc, and Dsc according to this climate
+    classification system. Within this system, tropical climates fall under Group
+    A, while dry climates fall under Group B.
 - answers:
-  - !!python/unicode 'Amazons'
-  - !!python/unicode 'Bellerophon'
+  - Amazons
+  - Bellerophon
   - "Antiope [\u201Can-TIE-uh-pee\u201D]"
   category: ''
   formatted_answers:
-  - !!python/unicode '<strong><em>Amazon</em></strong>s'
-  - !!python/unicode '<strong><em>Bellerophon</em></strong>'
+  - <strong><em>Amazon</em></strong>s
+  - <strong><em>Bellerophon</em></strong>
   - "<strong><em>Antiope</em></strong> [\u201Can-TIE-uh-pee\u201D]"
   formatted_texts:
-  - !!python/unicode 'Name these mythical Greek warrior women. In some accounts, they
-    cut off their left breast to improve their skill with the bow and arrow.'
-  - !!python/unicode 'This man briefly fought the Amazons when they tried to invade
-    Lycia. In a far more notable tale, this man used Pegasus and a lead block on a
-    spear to kill the Chimera.'
+  - Name these mythical Greek warrior women. In some accounts, they cut off their
+    left breast to improve their skill with the bow and arrow.
+  - This man briefly fought the Amazons when they tried to invade Lycia. In a far
+    more notable tale, this man used Pegasus and a lead block on a spear to kill the
+    Chimera.
   - "Theseus once abducted this Amazon while Heracles tried to obtain the girdle of\
     \ her sister. Theseus then had the child Hippolytus [\u201Chip-POL-uh-tus\u201D\
     ] with this woman, who later died during the Attic war."
-  leadin: !!python/unicode 'To avoid dying out, these people visited the all-male
-    Gargareans. For 10 points each:'
+  leadin: 'To avoid dying out, these people visited the all-male Gargareans. For 10
+    points each:'
   number: 5
   subcategory: ''
   texts:
-  - !!python/unicode 'Name these mythical Greek warrior women. In some accounts, they
-    cut off their left breast to improve their skill with the bow and arrow.'
-  - !!python/unicode 'This man briefly fought the Amazons when they tried to invade
-    Lycia. In a far more notable tale, this man used Pegasus and a lead block on a
-    spear to kill the Chimera.'
+  - Name these mythical Greek warrior women. In some accounts, they cut off their
+    left breast to improve their skill with the bow and arrow.
+  - This man briefly fought the Amazons when they tried to invade Lycia. In a far
+    more notable tale, this man used Pegasus and a lead block on a spear to kill the
+    Chimera.
   - "Theseus once abducted this Amazon while Heracles tried to obtain the girdle of\
     \ her sister. Theseus then had the child Hippolytus [\u201Chip-POL-uh-tus\u201D\
     ] with this woman, who later died during the Attic war."
 - answers:
-  - !!python/unicode 'Cabbages and Kings'
+  - Cabbages and Kings
   - "\u201CThe Gift of the Magi\u201D"
-  - !!python/unicode 'O. Henry (or William Sydney Porter)'
+  - O. Henry (or William Sydney Porter)
   category: ''
   formatted_answers:
-  - !!python/unicode '<em><strong><em>Cabbages and Kings</em></strong></em>'
+  - <em><strong><em>Cabbages and Kings</em></strong></em>
   - "\u201C<strong><em>The Gift of the Magi</em></strong>\u201D"
-  - !!python/unicode 'O. <strong><em>Henry</em></strong> (or William Sydney <strong><em>Porter</em></strong>)'
+  - O. <strong><em>Henry</em></strong> (or William Sydney <strong><em>Porter</em></strong>)
   formatted_texts:
   - "Name this collection of stories. It is set in the Republic of Anchuria, which\
     \ served as the basis for the modern term \u201Cbanana republic.\u201D"
@@ -723,9 +720,8 @@
     \ a new watch chain."
   - "<em>Cabbages and Kings</em> and \u201CThe Gift of the Magi\u201D are both works\
     \ by this pseudonymous American writer fond of twist endings."
-  leadin: !!python/unicode 'This novel was written while its author was in Honduras
-    on the run from Texas authorities trying to arrest him for embezzlement. For 10
-    points each:'
+  leadin: 'This novel was written while its author was in Honduras on the run from
+    Texas authorities trying to arrest him for embezzlement. For 10 points each:'
   number: 6
   subcategory: ''
   texts:
@@ -739,131 +735,127 @@
 - answers:
   - "mosquitoes (accept Culicidae; accept specific species; Writer\u2019s note: prompt\
     \ on those annoying little @#$% that bit me non-stop during my summer in New York)"
-  - !!python/unicode 'malaria'
-  - !!python/unicode 'artemisinin'
+  - malaria
+  - artemisinin
   category: ''
   formatted_answers:
   - "<strong><em>mosquito</em></strong>es (accept <em><strong><em>Culicidae</em></strong></em>;\
     \ accept specific species; <em>Writer\u2019s note:</em> <em>prompt on</em> <em><em>those\
     \ annoying little @#$% that bit me non-stop during my summer in New York</em></em>)"
-  - !!python/unicode '<strong><em>malaria</em></strong>'
-  - !!python/unicode '<strong><em>artemisinin</em></strong>'
+  - <strong><em>malaria</em></strong>
+  - <strong><em>artemisinin</em></strong>
   formatted_texts:
-  - !!python/unicode 'First, name this animal whose bites result in the death of more
-    than a million people every year. These blood-sucking pests carry diseases such
-    as yellow fever, West Nile fever, and dengue.'
-  - !!python/unicode 'Mosquitoes of the genus <em>Anopheles</em> transmit this protozoan
-    disease caused by various <em>Plasmodium</em> species. Patients lacking the Duffy
-    antigen on red blood cells are genetically resistant to this disease.'
+  - First, name this animal whose bites result in the death of more than a million
+    people every year. These blood-sucking pests carry diseases such as yellow fever,
+    West Nile fever, and dengue.
+  - Mosquitoes of the genus <em>Anopheles</em> transmit this protozoan disease caused
+    by various <em>Plasmodium</em> species. Patients lacking the Duffy antigen on
+    red blood cells are genetically resistant to this disease.
   - "Tu Youyou received the 2015 Nobel Prize in Physiology or Medicine for discovering\
     \ this antimalarial drug that isn\u2019t quinine. This drug contains an endoperoxide\
     \ bridge that researchers believe is essential for its mechanism."
-  leadin: !!python/unicode 'For 10 points each, name the following things related
-    to the deadliest animal in the world:'
+  leadin: 'For 10 points each, name the following things related to the deadliest
+    animal in the world:'
   number: 7
   subcategory: ''
   texts:
-  - !!python/unicode 'First, name this animal whose bites result in the death of more
-    than a million people every year. These blood-sucking pests carry diseases such
-    as yellow fever, West Nile fever, and dengue.'
-  - !!python/unicode 'Mosquitoes of the genus Anopheles transmit this protozoan disease
-    caused by various Plasmodium species. Patients lacking the Duffy antigen on red
-    blood cells are genetically resistant to this disease.'
+  - First, name this animal whose bites result in the death of more than a million
+    people every year. These blood-sucking pests carry diseases such as yellow fever,
+    West Nile fever, and dengue.
+  - Mosquitoes of the genus Anopheles transmit this protozoan disease caused by various
+    Plasmodium species. Patients lacking the Duffy antigen on red blood cells are
+    genetically resistant to this disease.
   - "Tu Youyou received the 2015 Nobel Prize in Physiology or Medicine for discovering\
     \ this antimalarial drug that isn\u2019t quinine. This drug contains an endoperoxide\
     \ bridge that researchers believe is essential for its mechanism."
 - answers:
   - "Fluxus (prompt on \u201CNeo-Dada\u201D)"
-  - !!python/unicode 'United States of America (accept either underlined part; accept
-    USA)'
+  - United States of America (accept either underlined part; accept USA)
   - "Yoko Ono (do not accept or prompt on \u201CLennon\u201D)"
   category: ''
   formatted_answers:
   - "<strong><em>Fluxus</em></strong> (prompt on \u201CNeo-Dada\u201D)"
-  - !!python/unicode '<strong><em>United States</em></strong> of <strong><em>America</em></strong>
-    (accept either underlined part; accept <strong><em>US</em></strong>A)'
+  - <strong><em>United States</em></strong> of <strong><em>America</em></strong> (accept
+    either underlined part; accept <strong><em>US</em></strong>A)
   - "Yoko <strong><em>Ono</em></strong> (do not accept or prompt on \u201CLennon\u201D\
     )"
   formatted_texts:
   - "Name this avant-garde movement which created many \u201Chappenings,\u201D such\
     \ as Joseph Beuys\u2019 <em>How to Explain Pictures to a Dead Hare</em>. Its manifesto\
     \ was written by George Maciunas."
-  - !!python/unicode 'Beuys lived with a coyote for three days in a performance called
-    <em>I Like [this country] and [this country] Likes Me</em>. 20<sup>th</sup> century
-    artists from this nation included Robert Rauschenberg and Andy Warhol.'
-  - !!python/unicode 'This Fluxus artist had audience members snip off her clothing
-    in <em>Cut Piece</em>. An Annie Leibovitz photo shows her lying naked with her
-    husband and was taken the day he was shot by Mark David Chapman.'
-  leadin: !!python/unicode 'In one work from this movement, the performer walks around
-    an art gallery covered in honey and carrying the corpse of the title animal. For
-    10 points each:'
+  - Beuys lived with a coyote for three days in a performance called <em>I Like [this
+    country] and [this country] Likes Me</em>. 20<sup>th</sup> century artists from
+    this nation included Robert Rauschenberg and Andy Warhol.
+  - This Fluxus artist had audience members snip off her clothing in <em>Cut Piece</em>.
+    An Annie Leibovitz photo shows her lying naked with her husband and was taken
+    the day he was shot by Mark David Chapman.
+  leadin: 'In one work from this movement, the performer walks around an art gallery
+    covered in honey and carrying the corpse of the title animal. For 10 points each:'
   number: 8
   subcategory: ''
   texts:
   - "Name this avant-garde movement which created many \u201Chappenings,\u201D such\
     \ as Joseph Beuys\u2019 How to Explain Pictures to a Dead Hare. Its manifesto\
     \ was written by George Maciunas."
-  - !!python/unicode 'Beuys lived with a coyote for three days in a performance called
-    I Like [this country] and [this country] Likes Me. 20th century artists from this
-    nation included Robert Rauschenberg and Andy Warhol.'
-  - !!python/unicode 'This Fluxus artist had audience members snip off her clothing
-    in Cut Piece. An Annie Leibovitz photo shows her lying naked with her husband
-    and was taken the day he was shot by Mark David Chapman.'
+  - Beuys lived with a coyote for three days in a performance called I Like [this
+    country] and [this country] Likes Me. 20th century artists from this nation included
+    Robert Rauschenberg and Andy Warhol.
+  - This Fluxus artist had audience members snip off her clothing in Cut Piece. An
+    Annie Leibovitz photo shows her lying naked with her husband and was taken the
+    day he was shot by Mark David Chapman.
 - answers:
-  - !!python/unicode 'Lake Okeechobee (prompt on The Big O)'
-  - !!python/unicode 'sawgrass (or fen-sedge; or twin-sedge; prompt on sedge)'
-  - !!python/unicode 'Orlando'
+  - Lake Okeechobee (prompt on The Big O)
+  - sawgrass (or fen-sedge; or twin-sedge; prompt on sedge)
+  - Orlando
   category: ''
   formatted_answers:
-  - !!python/unicode 'Lake <strong><em>Okeechobee</em></strong> (prompt on The <em>Big
-    O</em>)'
-  - !!python/unicode '<strong><em>sawgrass</em></strong> (or <strong><em>fen-sedge</em></strong>;
-    or <strong><em>twin-sedge</em></strong>; prompt on <em>sedge</em>)'
-  - !!python/unicode '<strong><em>Orlando</em></strong>'
+  - Lake <strong><em>Okeechobee</em></strong> (prompt on The <em>Big O</em>)
+  - <strong><em>sawgrass</em></strong> (or <strong><em>fen-sedge</em></strong>; or
+    <strong><em>twin-sedge</em></strong>; prompt on <em>sedge</em>)
+  - <strong><em>Orlando</em></strong>
   formatted_texts:
-  - !!python/unicode 'Name this expansive inland body of water situated near the Everglades,
-    the largest freshwater lake in the state of Florida.'
+  - Name this expansive inland body of water situated near the Everglades, the largest
+    freshwater lake in the state of Florida.
   - "The flora of Lake Okeechobee and the Everglades are dominated by this type of\
     \ plant in the genus <em>Cladium</em>. They are the eponymous \u201Cgrasses\u201D\
     \ in the Everglades\u2019 nickname, the \u201CRiver of Grass.\u201D"
-  - !!python/unicode 'Roughly 100 miles north of Lake Okeechobee lies this seat of
-    Orange County. Attractions accessible in this city via International Drive include
-    Universal Studios and SeaWorld.'
-  leadin: !!python/unicode 'The agency that manages this lake came under fire in July
-    2016 for allowing algae-polluted discharges from it to flow into the St. Lucie
-    River. For 10 points each:'
+  - Roughly 100 miles north of Lake Okeechobee lies this seat of Orange County. Attractions
+    accessible in this city via International Drive include Universal Studios and
+    SeaWorld.
+  leadin: 'The agency that manages this lake came under fire in July 2016 for allowing
+    algae-polluted discharges from it to flow into the St. Lucie River. For 10 points
+    each:'
   number: 9
   subcategory: ''
   texts:
-  - !!python/unicode 'Name this expansive inland body of water situated near the Everglades,
-    the largest freshwater lake in the state of Florida.'
+  - Name this expansive inland body of water situated near the Everglades, the largest
+    freshwater lake in the state of Florida.
   - "The flora of Lake Okeechobee and the Everglades are dominated by this type of\
     \ plant in the genus Cladium. They are the eponymous \u201Cgrasses\u201D in the\
     \ Everglades\u2019 nickname, the \u201CRiver of Grass.\u201D"
-  - !!python/unicode 'Roughly 100 miles north of Lake Okeechobee lies this seat of
-    Orange County. Attractions accessible in this city via International Drive include
-    Universal Studios and SeaWorld.'
+  - Roughly 100 miles north of Lake Okeechobee lies this seat of Orange County. Attractions
+    accessible in this city via International Drive include Universal Studios and
+    SeaWorld.
 - answers:
-  - !!python/unicode 'Mohandas (Karamchand) Gandhi (or Mahatma Gandhi)'
-  - !!python/unicode 'Migrant Mother'
-  - !!python/unicode 'Cindy Sherman'
+  - Mohandas (Karamchand) Gandhi (or Mahatma Gandhi)
+  - Migrant Mother
+  - Cindy Sherman
   category: ''
   formatted_answers:
-  - !!python/unicode 'Mohandas (Karamchand) <strong><em>Gandhi</em></strong> (or Mahatma
-    <strong><em>Gandhi</em></strong>)'
-  - !!python/unicode '<em><strong><em>Migrant Mother</em></strong></em>'
-  - !!python/unicode 'Cindy <strong><em>Sherman</em></strong>'
+  - Mohandas (Karamchand) <strong><em>Gandhi</em></strong> (or Mahatma <strong><em>Gandhi</em></strong>)
+  - <em><strong><em>Migrant Mother</em></strong></em>
+  - Cindy <strong><em>Sherman</em></strong>
   formatted_texts:
   - "One of Margaret Bourke-White\u2019s most iconic photographs depicts this Indian\
     \ independence leader reading next to his spinning wheel."
   - "Dorothea Lange took this photograph of Florence Owens Thompson during the Great\
     \ Depression. Lange incorrectly recalled that the subject of this photograph had\
     \ sold her family\u2019s tires for food."
-  - !!python/unicode 'This photographer used prosthetics and mannequins to make her
-    <em>Sex Pictures</em>, and she depicted herself in sixty-nine stereotypical film
-    roles in the series <em>Untitled Film Stills</em>.'
-  leadin: !!python/unicode 'Name the following related to American female photographers,
-    for 10 points each:'
+  - This photographer used prosthetics and mannequins to make her <em>Sex Pictures</em>,
+    and she depicted herself in sixty-nine stereotypical film roles in the series
+    <em>Untitled Film Stills</em>.
+  leadin: 'Name the following related to American female photographers, for 10 points
+    each:'
   number: 10
   subcategory: ''
   texts:
@@ -872,30 +864,29 @@
   - "Dorothea Lange took this photograph of Florence Owens Thompson during the Great\
     \ Depression. Lange incorrectly recalled that the subject of this photograph had\
     \ sold her family\u2019s tires for food."
-  - !!python/unicode 'This photographer used prosthetics and mannequins to make her
-    Sex Pictures, and she depicted herself in sixty-nine stereotypical film roles
-    in the series Untitled Film Stills.'
+  - This photographer used prosthetics and mannequins to make her Sex Pictures, and
+    she depicted herself in sixty-nine stereotypical film roles in the series Untitled
+    Film Stills.
 - answers:
-  - !!python/unicode 'Tupac Shakur (accept either underlined portion; or Lesane Parish
-    Crooks; or Makaveli; or 2Pac, if you can somehow tell the difference)'
+  - Tupac Shakur (accept either underlined portion; or Lesane Parish Crooks; or Makaveli;
+    or 2Pac, if you can somehow tell the difference)
   - "Straight Outta Compton (Ed\u2019s note: good for you if you know the song\u2019\
     s real title, but regrettably this was written for high school)"
-  - !!python/unicode 'Grandmaster Flash and the Furious Five (prompt on partial answer)'
+  - Grandmaster Flash and the Furious Five (prompt on partial answer)
   category: ''
   formatted_answers:
-  - !!python/unicode '<strong><em>Tupac</em></strong> <strong><em>Shakur</em></strong>
-    (accept either underlined portion; or Lesane Parish <strong><em>Crooks</em></strong>;
-    or <strong><em>Makaveli</em></strong>; or <strong><em>2Pac</em></strong>, if you
-    can somehow tell the difference)'
+  - <strong><em>Tupac</em></strong> <strong><em>Shakur</em></strong> (accept either
+    underlined portion; or Lesane Parish <strong><em>Crooks</em></strong>; or <strong><em>Makaveli</em></strong>;
+    or <strong><em>2Pac</em></strong>, if you can somehow tell the difference)
   - "<em><strong><em>Straight Outta Compton</em></strong></em> (<em>Ed\u2019s note:\
     \ good for you if you know the song\u2019s real title, but regrettably this was\
     \ written for high school</em>)"
-  - !!python/unicode '<strong><em>Grandmaster Flash and the Furious Five</em></strong>
-    (prompt on partial answer)'
+  - <strong><em>Grandmaster Flash and the Furious Five</em></strong> (prompt on partial
+    answer)
   formatted_texts:
-  - !!python/unicode 'This West Coast artist of the album <em>All Eyez on Me</em>
-    was killed in an unsolved 1996 drive-by shooting in Las Vegas, which some claim
-    was orchestrated by his rival Notorious B.I.G.'
+  - This West Coast artist of the album <em>All Eyez on Me</em> was killed in an unsolved
+    1996 drive-by shooting in Las Vegas, which some claim was orchestrated by his
+    rival Notorious B.I.G.
   - "This 1988 N.W.A. album kickstarted gangster rap with songs like \u201CF--- the\
     \ Police.\u201D It was produced by Dr. Dre, and is named for a suburb of Los Angeles."
   - "The term \u201Chip-hop\u201D was coined by Keith Cowboy, a member of this group\
@@ -906,58 +897,57 @@
   number: 11
   subcategory: ''
   texts:
-  - !!python/unicode 'This West Coast artist of the album All Eyez on Me was killed
-    in an unsolved 1996 drive-by shooting in Las Vegas, which some claim was orchestrated
-    by his rival Notorious B.I.G.'
+  - This West Coast artist of the album All Eyez on Me was killed in an unsolved 1996
+    drive-by shooting in Las Vegas, which some claim was orchestrated by his rival
+    Notorious B.I.G.
   - "This 1988 N.W.A. album kickstarted gangster rap with songs like \u201CF--- the\
     \ Police.\u201D It was produced by Dr. Dre, and is named for a suburb of Los Angeles."
   - "The term \u201Chip-hop\u201D was coined by Keith Cowboy, a member of this group\
     \ that also included Melle Mel and The Kidd Creole. They pioneered socially-conscious\
     \ hip-hop with songs like \u201CThe Message.\u201D"
 - answers:
-  - !!python/unicode 'Rastafarianism (or Rasta)'
-  - !!python/unicode 'Jamaica'
-  - !!python/unicode 'Mansions of Rastafari'
+  - Rastafarianism (or Rasta)
+  - Jamaica
+  - Mansions of Rastafari
   category: ''
   formatted_answers:
-  - !!python/unicode '<strong><em>Rastafari</em></strong>anism (or <strong><em>Rasta</em></strong>)'
-  - !!python/unicode '<strong><em>Jamaica</em></strong>'
-  - !!python/unicode '<strong><em>Mansion</em></strong>s of Rastafari'
+  - <strong><em>Rastafari</em></strong>anism (or <strong><em>Rasta</em></strong>)
+  - <strong><em>Jamaica</em></strong>
+  - <strong><em>Mansion</em></strong>s of Rastafari
   formatted_texts:
   - "Name this religion. Its followers adhere to a natural diet meant to enhance their\
     \ \u201Clivity\u201D called <em>I-tal</em>, and they believe that Jesus Christ\
     \ was reincarnated as Haile Selassie I."
-  - !!python/unicode 'Rastafarianism is particularly popular on this Caribbean island
-    nation. Its neighborhood of Trench Town was home to Rastafari elder Mortimer Planno,
-    who mentored a young Bob Marley.'
-  - !!python/unicode 'Some Rastafarians belong to these smaller sects whose name derives
-    from John 14:2. Examples of these groups include the Niyabinghi, Bobo Ashanti,
-    and one named for the Twelve Tribes of Israel.'
-  leadin: !!python/unicode 'This religion celebrates April 21st as Grounation Day.
-    For 10 points each:'
+  - Rastafarianism is particularly popular on this Caribbean island nation. Its neighborhood
+    of Trench Town was home to Rastafari elder Mortimer Planno, who mentored a young
+    Bob Marley.
+  - Some Rastafarians belong to these smaller sects whose name derives from John 14:2.
+    Examples of these groups include the Niyabinghi, Bobo Ashanti, and one named for
+    the Twelve Tribes of Israel.
+  leadin: 'This religion celebrates April 21st as Grounation Day. For 10 points each:'
   number: 12
   subcategory: ''
   texts:
   - "Name this religion. Its followers adhere to a natural diet meant to enhance their\
     \ \u201Clivity\u201D called I-tal, and they believe that Jesus Christ was reincarnated\
     \ as Haile Selassie I."
-  - !!python/unicode 'Rastafarianism is particularly popular on this Caribbean island
-    nation. Its neighborhood of Trench Town was home to Rastafari elder Mortimer Planno,
-    who mentored a young Bob Marley.'
-  - !!python/unicode 'Some Rastafarians belong to these smaller sects whose name derives
-    from John 14:2. Examples of these groups include the Niyabinghi, Bobo Ashanti,
-    and one named for the Twelve Tribes of Israel.'
+  - Rastafarianism is particularly popular on this Caribbean island nation. Its neighborhood
+    of Trench Town was home to Rastafari elder Mortimer Planno, who mentored a young
+    Bob Marley.
+  - Some Rastafarians belong to these smaller sects whose name derives from John 14:2.
+    Examples of these groups include the Niyabinghi, Bobo Ashanti, and one named for
+    the Twelve Tribes of Israel.
 - answers:
   - "Simo H\xE4yh\xE4 (or Simuna H\xE4yh\xE4)"
-  - !!python/unicode 'Republic of Finland (or Suomi or Suomen tasavalta)'
-  - !!python/unicode 'League of Nations'
+  - Republic of Finland (or Suomi or Suomen tasavalta)
+  - League of Nations
   category: ''
   formatted_answers:
   - "Simo <strong><em>H\xE4yh\xE4</em></strong> (or Simuna <strong><em>H\xE4yh\xE4\
     </em></strong>)"
-  - !!python/unicode 'Republic of <strong><em>Finland</em></strong> (or <strong><em>Suomi</em></strong>
-    or <strong><em>Suomen</em></strong> tasavalta)'
-  - !!python/unicode '<strong><em>League of Nations</em></strong>'
+  - Republic of <strong><em>Finland</em></strong> (or <strong><em>Suomi</em></strong>
+    or <strong><em>Suomen</em></strong> tasavalta)
+  - <strong><em>League of Nations</em></strong>
   formatted_texts:
   - "Name this marksman nicknamed \u201CWhite Death\u201D for his 505 confirmed sniper\
     \ kills, the most in history."
@@ -967,9 +957,8 @@
   - "The Soviet Union was expelled from this organization for instigating the Winter\
     \ War. It really didn\u2019t matter, since this ineffectual organization would\
     \ be replaced by the United Nations less than a decade later."
-  leadin: !!python/unicode 'According to Wikipedia, this man recovered to become a
-    successful moose hunter after having half of his face blown off by a bullet. For
-    10 points each:'
+  leadin: 'According to Wikipedia, this man recovered to become a successful moose
+    hunter after having half of his face blown off by a bullet. For 10 points each:'
   number: 13
   subcategory: ''
   texts:
@@ -984,17 +973,16 @@
 - answers:
   - "memory (accept \u201CRandom Access Memory\u201D or \u201CRead-Only Memory\u201D\
     )"
-  - !!python/unicode 'motherboard (accept mainboard or system board or logic board
-    or mobo)'
+  - motherboard (accept mainboard or system board or logic board or mobo)
   - "buses (accept different kinds of buses; accept Universal Serial Bus, but not\
     \ just, like \u201CSerial\u201D)"
   category: ''
   formatted_answers:
   - "<strong><em>memory</em></strong> (accept \u201CRandom Access <strong><em>Memory</em></strong>\u201D\
     \ or \u201CRead-Only <strong><em>Memory</em></strong>\u201D)"
-  - !!python/unicode '<strong><em>motherboard</em></strong> (accept <strong><em>mainboard</em></strong>
+  - <strong><em>motherboard</em></strong> (accept <strong><em>mainboard</em></strong>
     or <strong><em>system board</em></strong> or <strong><em>logic board</em></strong>
-    or <strong><em>m</em></strong>o<strong><em>b</em></strong>o)'
+    or <strong><em>m</em></strong>o<strong><em>b</em></strong>o)
   - "<strong><em>bus</em></strong>es (accept different kinds of <strong><em>bus</em></strong>es;\
     \ accept Universal Serial <strong><em>Bus</em></strong>, but not just, like \u201C\
     Serial\u201D)"
@@ -1003,12 +991,12 @@
     \ clerk informs you that RAM is actually a physical component that holds the \u201C\
     Random Access [this].\u201D There\u2019s also a Read-Only component for this data\
     \ storage medium."
-  - !!python/unicode 'Knowing a little more now, you learn you need one of these main
-    components. These circuit boards are the foundation of the computer, and are connected
-    to memory and the CPU.'
-  - !!python/unicode 'The motherboard is also attached to these components that allow
-    the various PC components to talk to each other. In a computer, there are internal
-    and expansion kinds, and USB is just an industry standard for these components.'
+  - Knowing a little more now, you learn you need one of these main components. These
+    circuit boards are the foundation of the computer, and are connected to memory
+    and the CPU.
+  - The motherboard is also attached to these components that allow the various PC
+    components to talk to each other. In a computer, there are internal and expansion
+    kinds, and USB is just an industry standard for these components.
   leadin: "Apple just released another new Mac, and naturally you\u2019re too poor\
     \ to buy one, so instead you decide to build your own PC. For 10 points each:"
   number: 14
@@ -1018,16 +1006,16 @@
     \ clerk informs you that RAM is actually a physical component that holds the \u201C\
     Random Access [this].\u201D There\u2019s also a Read-Only component for this data\
     \ storage medium."
-  - !!python/unicode 'Knowing a little more now, you learn you need one of these main
-    components. These circuit boards are the foundation of the computer, and are connected
-    to memory and the CPU.'
-  - !!python/unicode 'The motherboard is also attached to these components that allow
-    the various PC components to talk to each other. In a computer, there are internal
-    and expansion kinds, and USB is just an industry standard for these components.'
+  - Knowing a little more now, you learn you need one of these main components. These
+    circuit boards are the foundation of the computer, and are connected to memory
+    and the CPU.
+  - The motherboard is also attached to these components that allow the various PC
+    components to talk to each other. In a computer, there are internal and expansion
+    kinds, and USB is just an industry standard for these components.
 - answers:
   - "4\u201933\u201D [\u201Cfour minutes thirty-three seconds\u201D or \u201Cfour\
     \ thirty-three\u201D]"
-  - !!python/unicode 'John (Milton) Cage(, Jr.)'
+  - John (Milton) Cage(, Jr.)
   - "Imaginary Landscape (accept the plural since it\u2019s a set of multiple works,\
     \ but note that each individual one is called Imaginary Landscape No. whatever,\
     \ with no plural)"
@@ -1035,7 +1023,7 @@
   formatted_answers:
   - "<em><strong><em>4\u201933\u201D</em></strong></em> [\u201Cfour minutes thirty-three\
     \ seconds\u201D or \u201Cfour thirty-three\u201D]"
-  - !!python/unicode 'John (Milton) <strong><em>Cage</em></strong>(, Jr.)'
+  - John (Milton) <strong><em>Cage</em></strong>(, Jr.)
   - "<em><strong><em>Imaginary Landscape</em></strong></em> (accept the plural since\
     \ it\u2019s a set of multiple works, but note that each individual one is called\
     \ <em>Imaginary Landscape No. whatever</em>, with no plural)"
@@ -1045,10 +1033,10 @@
     \ the lid of a piano, and it\u2019s marked \u201CTacet.\u201D"
   - "The totally silent <em>4\u201933\u201D</em> is the most famous work by this modern\
     \ American composer, who used the <em>I Ching</em> to write his <em>Music of Changes</em>."
-  - !!python/unicode 'Cage also wrote five pieces with this two-word name. The fourth
-    of these pieces calls for 24 performers to adjust the dials on 12 radios.'
-  leadin: !!python/unicode 'This piece was inspired by the composer hearing the sounds
-    of his heartbeat and nervous system in an anechoic chamber. For 10 points each:'
+  - Cage also wrote five pieces with this two-word name. The fourth of these pieces
+    calls for 24 performers to adjust the dials on 12 radios.
+  leadin: 'This piece was inspired by the composer hearing the sounds of his heartbeat
+    and nervous system in an anechoic chamber. For 10 points each:'
   number: 15
   subcategory: ''
   texts:
@@ -1057,27 +1045,27 @@
     \ the lid of a piano, and it\u2019s marked \u201CTacet.\u201D"
   - "The totally silent 4\u201933\u201D is the most famous work by this modern American\
     \ composer, who used the I Ching to write his Music of Changes."
-  - !!python/unicode 'Cage also wrote five pieces with this two-word name. The fourth
-    of these pieces calls for 24 performers to adjust the dials on 12 radios.'
+  - Cage also wrote five pieces with this two-word name. The fourth of these pieces
+    calls for 24 performers to adjust the dials on 12 radios.
 - answers:
   - "Lyndon B(aines) Johnson (or LBJ; prompt on \u201CJohnson\u201D)"
-  - !!python/unicode 'Herbert (Clark) Hoover (accept Hoovervilles)'
-  - !!python/unicode 'Acadians'
+  - Herbert (Clark) Hoover (accept Hoovervilles)
+  - Acadians
   category: ''
   formatted_answers:
   - "<strong><em>L</em></strong>yndon B(aines) <strong><em>Johnson</em></strong> (or\
     \ <strong><em>LBJ</em></strong>; prompt on \u201CJohnson\u201D)"
-  - !!python/unicode 'Herbert (Clark) <strong><em>Hoover</em></strong> (accept <strong><em>Hoover</em></strong>villes)'
-  - !!python/unicode '<strong><em>Acadian</em></strong>s'
+  - Herbert (Clark) <strong><em>Hoover</em></strong> (accept <strong><em>Hoover</em></strong>villes)
+  - <strong><em>Acadian</em></strong>s
   formatted_texts:
   - "This president\u2019s \u201CGreat Society\u201D included initiatives such as\
     \ Medicare and Medicaid, as well as a \u201CWar on Poverty.\u201D"
-  - !!python/unicode 'The 1929 stock market crash and subsequent Great Depression
-    led to the creation of shantytowns named after this president, who would be defeated
-    by Franklin Roosevelt in the 1932 election.'
-  - !!python/unicode 'After the fall of Louisbourg during the French and Indian War,
-    the Great Expulsion displaced more than 10,000 of these French-speaking people
-    from Canada. Some moved to Louisiana, where they became known as Cajuns.'
+  - The 1929 stock market crash and subsequent Great Depression led to the creation
+    of shantytowns named after this president, who would be defeated by Franklin Roosevelt
+    in the 1932 election.
+  - After the fall of Louisbourg during the French and Indian War, the Great Expulsion
+    displaced more than 10,000 of these French-speaking people from Canada. Some moved
+    to Louisiana, where they became known as Cajuns.
   leadin: "Answer the following about so-called \u201Cgreat\u201D things in American\
     \ history, for 10 points each:"
   number: 16
@@ -1085,27 +1073,27 @@
   texts:
   - "This president\u2019s \u201CGreat Society\u201D included initiatives such as\
     \ Medicare and Medicaid, as well as a \u201CWar on Poverty.\u201D"
-  - !!python/unicode 'The 1929 stock market crash and subsequent Great Depression
-    led to the creation of shantytowns named after this president, who would be defeated
-    by Franklin Roosevelt in the 1932 election.'
-  - !!python/unicode 'After the fall of Louisbourg during the French and Indian War,
-    the Great Expulsion displaced more than 10,000 of these French-speaking people
-    from Canada. Some moved to Louisiana, where they became known as Cajuns.'
+  - The 1929 stock market crash and subsequent Great Depression led to the creation
+    of shantytowns named after this president, who would be defeated by Franklin Roosevelt
+    in the 1932 election.
+  - After the fall of Louisbourg during the French and Indian War, the Great Expulsion
+    displaced more than 10,000 of these French-speaking people from Canada. Some moved
+    to Louisiana, where they became known as Cajuns.
 - answers:
-  - !!python/unicode 'Nadine Gordimer'
-  - !!python/unicode 'Republic of South Africa'
-  - !!python/unicode 'Sestigers'
+  - Nadine Gordimer
+  - Republic of South Africa
+  - Sestigers
   category: ''
   formatted_answers:
-  - !!python/unicode 'Nadine <strong><em>Gordimer</em></strong>'
-  - !!python/unicode 'Republic of <strong><em>South Africa</em></strong>'
-  - !!python/unicode '<strong><em>Sestig</em></strong>ers'
+  - Nadine <strong><em>Gordimer</em></strong>
+  - Republic of <strong><em>South Africa</em></strong>
+  - <strong><em>Sestig</em></strong>ers
   formatted_texts:
   - "Name this author who wrote about Rosa and her Communist parents in <em>Burger\u2019\
     s Daughter</em>. The Smales are forced to take shelter in their servant\u2019\
     s village in her book <em>July\u2019s People</em>."
-  - !!python/unicode 'Gordimer wrote extensively about the effects of apartheid in
-    this native country of hers.'
+  - Gordimer wrote extensively about the effects of apartheid in this native country
+    of hers.
   - "Andr\xE9 Brink and Breyten Breytenbach led this group of Afrikaans-speaking anti-apartheid\
     \ writers. Their name comes from the Afrikaans for \u201CSixties,\u201D the decade\
     \ in which they were most active."
@@ -1118,90 +1106,88 @@
   - "Name this author who wrote about Rosa and her Communist parents in Burger\u2019\
     s Daughter. The Smales are forced to take shelter in their servant\u2019s village\
     \ in her book July\u2019s People."
-  - !!python/unicode 'Gordimer wrote extensively about the effects of apartheid in
-    this native country of hers.'
+  - Gordimer wrote extensively about the effects of apartheid in this native country
+    of hers.
   - "Andr\xE9 Brink and Breyten Breytenbach led this group of Afrikaans-speaking anti-apartheid\
     \ writers. Their name comes from the Afrikaans for \u201CSixties,\u201D the decade\
     \ in which they were most active."
 - answers:
-  - !!python/unicode 'calorimeters (accept word forms)'
-  - !!python/unicode 'stoichiometry (accept word forms)'
-  - !!python/unicode 'differential scanning calorimetry (prompt on DSC)'
+  - calorimeters (accept word forms)
+  - stoichiometry (accept word forms)
+  - differential scanning calorimetry (prompt on DSC)
   category: ''
   formatted_answers:
-  - !!python/unicode '<strong><em>calorimeter</em></strong>s (accept word forms)'
-  - !!python/unicode '<strong><em>stoichiometry</em></strong> (accept word forms)'
-  - !!python/unicode '<strong><em>differential scanning</em></strong> calorimetry
-    (prompt on <em>DSC</em>)'
+  - <strong><em>calorimeter</em></strong>s (accept word forms)
+  - <strong><em>stoichiometry</em></strong> (accept word forms)
+  - <strong><em>differential scanning</em></strong> calorimetry (prompt on <em>DSC</em>)
   formatted_texts:
-  - !!python/unicode 'Name these devices that measure the heat produced by chemical
-    reactions. When using these devices, you typically take the temperature change
-    and multiply by the specific heat and mass.'
-  - !!python/unicode 'Isothermal titration calorimetry can be used in this branch
-    of chemistry to determine the needed amounts of starting reagent to reach the
-    midpoint. In general, this branch of chemistry uses chemical equations to find
-    the proper ratios of start reactants to achieve desired product.'
-  - !!python/unicode 'In this variant of calorimetry, the heat capacity of a sample
-    is measured as a function of temperature. The thermal transitions of a polymer
-    can be determined using this technique.'
+  - Name these devices that measure the heat produced by chemical reactions. When
+    using these devices, you typically take the temperature change and multiply by
+    the specific heat and mass.
+  - Isothermal titration calorimetry can be used in this branch of chemistry to determine
+    the needed amounts of starting reagent to reach the midpoint. In general, this
+    branch of chemistry uses chemical equations to find the proper ratios of start
+    reactants to achieve desired product.
+  - In this variant of calorimetry, the heat capacity of a sample is measured as a
+    function of temperature. The thermal transitions of a polymer can be determined
+    using this technique.
   leadin: "The constant-volume type of this device is also known as the \u201Cbomb\u201D\
     \ type. For 10 points each:"
   number: 18
   subcategory: ''
   texts:
-  - !!python/unicode 'Name these devices that measure the heat produced by chemical
-    reactions. When using these devices, you typically take the temperature change
-    and multiply by the specific heat and mass.'
-  - !!python/unicode 'Isothermal titration calorimetry can be used in this branch
-    of chemistry to determine the needed amounts of starting reagent to reach the
-    midpoint. In general, this branch of chemistry uses chemical equations to find
-    the proper ratios of start reactants to achieve desired product.'
-  - !!python/unicode 'In this variant of calorimetry, the heat capacity of a sample
-    is measured as a function of temperature. The thermal transitions of a polymer
-    can be determined using this technique.'
+  - Name these devices that measure the heat produced by chemical reactions. When
+    using these devices, you typically take the temperature change and multiply by
+    the specific heat and mass.
+  - Isothermal titration calorimetry can be used in this branch of chemistry to determine
+    the needed amounts of starting reagent to reach the midpoint. In general, this
+    branch of chemistry uses chemical equations to find the proper ratios of start
+    reactants to achieve desired product.
+  - In this variant of calorimetry, the heat capacity of a sample is measured as a
+    function of temperature. The thermal transitions of a polymer can be determined
+    using this technique.
 - answers:
-  - !!python/unicode 'walls (or vallum)'
-  - !!python/unicode 'five'
-  - !!python/unicode 'Offa of Mercia'
+  - walls (or vallum)
+  - five
+  - Offa of Mercia
   category: ''
   formatted_answers:
-  - !!python/unicode '<strong><em>wall</em></strong>s (or <strong><em>vallum</em></strong>)'
-  - !!python/unicode '<strong><em>five</em></strong>'
-  - !!python/unicode '<strong><em>Offa</em></strong> of Mercia'
+  - <strong><em>wall</em></strong>s (or <strong><em>vallum</em></strong>)
+  - <strong><em>five</em></strong>
+  - <strong><em>Offa</em></strong> of Mercia
   formatted_texts:
-  - !!python/unicode 'Name these common fortifications. One of these was built in
-    Britain to keep out barbarians such as the Picts and was named for Hadrian.'
+  - Name these common fortifications. One of these was built in Britain to keep out
+    barbarians such as the Picts and was named for Hadrian.
   - "The Antonine Wall is sometimes misattributed to Septimius Severus, who won a\
     \ power struggle in 193 called the \u201CYear of [this many] Emperors.\u201D Marcus\
     \ Aurelius was the last of this many \u201CGood\u201D Roman emperors."
-  - !!python/unicode 'Several centuries after Hadrian, this powerful Mercian king
-    continued the fine tradition of English wall-building by constructing his namesake
-    dyke near the present English-Welsh border.'
+  - Several centuries after Hadrian, this powerful Mercian king continued the fine
+    tradition of English wall-building by constructing his namesake dyke near the
+    present English-Welsh border.
   leadin: "A famous example of these infrastructure projects was swiftly replaced\
     \ after its creator\u2019s death by Antoninus Pius, who built a more northerly\
     \ version. For 10 points each:"
   number: 19
   subcategory: ''
   texts:
-  - !!python/unicode 'Name these common fortifications. One of these was built in
-    Britain to keep out barbarians such as the Picts and was named for Hadrian.'
+  - Name these common fortifications. One of these was built in Britain to keep out
+    barbarians such as the Picts and was named for Hadrian.
   - "The Antonine Wall is sometimes misattributed to Septimius Severus, who won a\
     \ power struggle in 193 called the \u201CYear of [this many] Emperors.\u201D Marcus\
     \ Aurelius was the last of this many \u201CGood\u201D Roman emperors."
-  - !!python/unicode 'Several centuries after Hadrian, this powerful Mercian king
-    continued the fine tradition of English wall-building by constructing his namesake
-    dyke near the present English-Welsh border.'
+  - Several centuries after Hadrian, this powerful Mercian king continued the fine
+    tradition of English wall-building by constructing his namesake dyke near the
+    present English-Welsh border.
 - answers:
-  - !!python/unicode 'Mrs. Dalloway'
-  - !!python/unicode '(Adeline) Virginia Woolf'
-  - !!python/unicode 'Vita Sackville-West (or Victoria Mary Sackville-West; or the
-    Lady Nicholson)'
+  - Mrs. Dalloway
+  - (Adeline) Virginia Woolf
+  - Vita Sackville-West (or Victoria Mary Sackville-West; or the Lady Nicholson)
   category: ''
   formatted_answers:
-  - !!python/unicode '<em><strong><em>Mrs. Dalloway</em></strong></em>'
-  - !!python/unicode '(Adeline) Virginia <strong><em>Woolf</em></strong>'
-  - !!python/unicode 'Vita <strong><em>Sackville-West</em></strong> (or Victoria Mary
-    <strong><em>Sackville-West</em></strong>; or the Lady <strong><em>Nicholson</em></strong>)'
+  - <em><strong><em>Mrs. Dalloway</em></strong></em>
+  - (Adeline) Virginia <strong><em>Woolf</em></strong>
+  - Vita <strong><em>Sackville-West</em></strong> (or Victoria Mary <strong><em>Sackville-West</em></strong>;
+    or the Lady <strong><em>Nicholson</em></strong>)
   formatted_texts:
   - "Name this novel, whose protagonist hosts a party at which she learns of the suicide\
     \ of Septimus Smith. The first name of this book\u2019s title character is Clarissa."
@@ -1211,9 +1197,9 @@
   - "The gender-shifting protagonist of Woolf\u2019s novel <em>Orlando</em> was inspired\
     \ by this friend and sometimes lover of hers, whose own literary feats include\
     \ <em>The Edwardians</em> and <em>All Passion Spent</em>."
-  leadin: !!python/unicode 'The title character of this novel is amazed by a skywriting
-    plane before entering a flower shop, where she gets the bejeezus scared out of
-    her by the sound of a backfiring car. For 10 points each:'
+  leadin: 'The title character of this novel is amazed by a skywriting plane before
+    entering a flower shop, where she gets the bejeezus scared out of her by the sound
+    of a backfiring car. For 10 points each:'
   number: 20
   subcategory: ''
   texts:
@@ -1227,33 +1213,33 @@
     \ Edwardians and All Passion Spent."
 - answers:
   - "Assassins (prompt on Nizaris; prompt on Isma\u2019ilis)"
-  - !!python/unicode 'Baghdad'
-  - !!python/unicode 'Battle of Ain Jalut'
+  - Baghdad
+  - Battle of Ain Jalut
   category: ''
   formatted_answers:
   - "<strong><em>Assassin</em></strong>s (prompt on <em>Nizari</em>s; prompt on <em>Isma\u2019\
     ili</em>s)"
-  - !!python/unicode '<strong><em>Baghdad</em></strong>'
-  - !!python/unicode 'Battle of <strong><em>Ain Jalut</em></strong>'
+  - <strong><em>Baghdad</em></strong>
+  - Battle of <strong><em>Ain Jalut</em></strong>
   formatted_texts:
-  - !!python/unicode 'In 1256, you conquer Alamut, a stronghold of this sect of hashish-using
-    warriors who give their name to the modern word for politically motivated murders.'
-  - !!python/unicode 'You then go on to sack this city in 1258, an important center
-    of Abbasid learning. Your destruction of the House of Wisdom in this city is said
-    to have caused rivers to run black with ink.'
-  - !!python/unicode 'Unfortunately, you miss this 1260 battle because the death of
-    your brother Mongke forces you to return to Mongolia. Your general Kitbuga gets
-    crushed by Mamluks under Baibars here, halting Mongol expansion into Palestine.'
-  leadin: !!python/unicode 'All your wildest dreams have come true--you are now Hulagu
-    Khan. Answer some questions about your exploits for 10 points each:'
+  - In 1256, you conquer Alamut, a stronghold of this sect of hashish-using warriors
+    who give their name to the modern word for politically motivated murders.
+  - You then go on to sack this city in 1258, an important center of Abbasid learning.
+    Your destruction of the House of Wisdom in this city is said to have caused rivers
+    to run black with ink.
+  - Unfortunately, you miss this 1260 battle because the death of your brother Mongke
+    forces you to return to Mongolia. Your general Kitbuga gets crushed by Mamluks
+    under Baibars here, halting Mongol expansion into Palestine.
+  leadin: 'All your wildest dreams have come true--you are now Hulagu Khan. Answer
+    some questions about your exploits for 10 points each:'
   number: 21
   subcategory: ''
   texts:
-  - !!python/unicode 'In 1256, you conquer Alamut, a stronghold of this sect of hashish-using
-    warriors who give their name to the modern word for politically motivated murders.'
-  - !!python/unicode 'You then go on to sack this city in 1258, an important center
-    of Abbasid learning. Your destruction of the House of Wisdom in this city is said
-    to have caused rivers to run black with ink.'
-  - !!python/unicode 'Unfortunately, you miss this 1260 battle because the death of
-    your brother Mongke forces you to return to Mongolia. Your general Kitbuga gets
-    crushed by Mamluks under Baibars here, halting Mongol expansion into Palestine.'
+  - In 1256, you conquer Alamut, a stronghold of this sect of hashish-using warriors
+    who give their name to the modern word for politically motivated murders.
+  - You then go on to sack this city in 1258, an important center of Abbasid learning.
+    Your destruction of the House of Wisdom in this city is said to have caused rivers
+    to run black with ink.
+  - Unfortunately, you miss this 1260 battle because the death of your brother Mongke
+    forces you to return to Mongolia. Your general Kitbuga gets crushed by Mamluks
+    under Baibars here, halting Mongol expansion into Palestine.

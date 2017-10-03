@@ -72,7 +72,7 @@ This is the end of Round 2!
 
 ### Output
 
-TODO: talk about file output name.
+By default, Augur will produce
 
 Currently, Augur only produces YAML output. It's pretty easy to produces JSON as well, but since YAML is fairly universally readable, my current motivation is low to code in other methods. Bother me if it's something you'd really like to see.
 
@@ -84,10 +84,7 @@ Augur can be tweaked by passing it options from the command line.
 
 ## TODOs
 
-- convert all unicode to string
-  - (so no python/unicode!! output in yaml)
 - add comments in yaml output
-  - tossup/bonus separators
-  - num tossups/bonuses
   - settings used to generate file
+- handle tournament & round
 - classifier

@@ -1,9 +1,10 @@
 from Loader import Loader
 from Packet import Packet
+import argparse
 
 
 def main():
-    assert(True)
+    parser = argparse.ArgumentParser(description='Parse quizbowl packets.')
 
 
 if __name__ == "__main__":

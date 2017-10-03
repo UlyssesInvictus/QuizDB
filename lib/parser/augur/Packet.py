@@ -55,8 +55,16 @@ class Packet:
         if filename is None:
             filename = self.filename + ".yml"
         with open(filename, 'w') as f:
-            yaml.dump(map(lambda x: x.to_dict(), self.tossups), f, default_flow_style=False)
-            yaml.dump(map(lambda x: x.to_dict(), self.bonuses), f, default_flow_style=False)
+            f.write("# TOSSUPS\n")
+            f.write("# %d tossups total\n" % len(self.tossups))
+            yaml.safe_dump(map(lambda x: x.to_dict(), self.tossups), f,
+                           default_flow_style=False,
+                           encoding=None)
+            f.write("# BONUSES\n")
+            f.write("# %d bonuses total\n" % len(self.bonuses))
+            yaml.safe_dump(map(lambda x: x.to_dict(), self.bonuses), f,
+                           default_flow_style=False,
+                           encoding=None)
 
     def parse_packet(self):
         lines = self.load_html()
