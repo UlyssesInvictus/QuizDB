@@ -43,7 +43,7 @@
     "react-ga": "^2.2.0",
     "react-markdown": "^2.5.0",
     "react-notification-system": "^0.2.15",
-    "react-notification-system-redux": "~1.1.4",
+    "react-notification-system-redux": "1.1.4",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "react-tooltip": "^3.3.0",
