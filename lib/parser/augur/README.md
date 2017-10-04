@@ -68,13 +68,13 @@ This is the end of Round 2!
 - Preface tossup questions with the format `1. This author...` (or `2.`, `3.`, etc.) and tossup answers with the format `ANSWER: [...]`. See **All Options** to teach Augur how to recognize other formats.
 - Preface bonus leadins with the format `1. This author...` (or `2.`, `3.`, etc.), bonus texts with the format `[10] This war...`, and bonus answers with the format `ANSWER: [...]`. See **All Options** to teach Augur how to recognize other formats.
 
-
+tl;dr You should reformat your parsed files to match the Augur-standard format. If you won't, or it's too laborious to do so, specify your own regices. If you're curious about the default regices, look inside the `Packet` class.
 
 ### Output
 
-By default, Augur will produce
+By default, Augur appends `.yml` to the input file for use as the output file. You can override this by setting the output file option.
 
-Currently, Augur only produces YAML output. It's pretty easy to produces JSON as well, but since YAML is fairly universally readable, my current motivation is low to code in other methods. Bother me if it's something you'd really like to see.
+Currently, Augur only produces YAML structured output. It's pretty easy to produces JSON as well, but since YAML is fairly universally readable, my current motivation is low to code in other methods. Bother me if it's something you'd really like to see.
 
 ### All Options
 
