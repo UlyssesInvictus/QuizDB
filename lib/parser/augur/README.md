@@ -99,7 +99,6 @@ Argument  |  Description
 
 ## TODOs
 
-- add comments in yaml output
-  - settings used to generate file
-- handle tournament & round
-- classifier
+Augur can always be improved. Add a Github issue or get in touch if you'd like to see new features!
+
+- category/subcategory classifier
