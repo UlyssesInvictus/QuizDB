@@ -80,7 +80,20 @@ Currently, Augur only produces YAML structured output. It's pretty easy to produ
 
 ### All Options
 
-Augur can be tweaked by passing it options from the command line.
+Augur can be tweaked by passing it options from the command line. You can see these options by running `python augur.py --help`.
+
+Argument  |  Description
+--|--
+`input_file [output_file]`    |  First and second arguments to Augur. Input file and output file, respectively; output defaults to `[input_file].yml` if not given.
+`--help`, `-h`    |  Display Augur help.
+`--round`, `-r`   |  Round of parsed questions.
+`--tournament`, `-t`    |  Tournament of parsed questions.
+`--num-tossups`    |  Number of tossups in packet. Helps Augur figure out tossup/bonus boundary if "Bonuses" header not used; defaults to looking for "Bonuses" header otherwise.
+`--tossup-text-re`   |  Regex describing the format of tossup question text.
+`--tossup-answer-re`    |  Regex describing the format of tossup question answer.
+`--bonus-leadin-re`    |  Regex describing the format of bonus leadin.
+`--bonuspart-text-re`   |  Regex describing the format of a bonus part text.
+`--bonuspart-answer-re`   |  Regex describing the format of a bonus part answer.
 
 
 
