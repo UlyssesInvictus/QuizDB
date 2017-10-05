@@ -5,9 +5,9 @@ from utils import sanitize, is_valid_content
 from Tossup import Tossup
 from Bonus import Bonus
 
-TOSSUP_TEXT_REGEX = re.compile(r'^\s*(\(\d+\)|\d+\.?|question)\s*', re.I)
+TOSSUP_TEXT_REGEX = re.compile(r'^\s*(\(\d+\)|\d+\.?|question:?|t(ie)?b(reak(er)?)?:?)\s*', re.I)
 TOSSUP_ANSWER_REGEX = re.compile(r'^\s*a(ns(wer)?)?:?\s*', re.I)
-BONUS_LEADIN_REGEX = re.compile(r'^\s*(\(\d+\)|\d+\.?|question)\s*', re.I)
+BONUS_LEADIN_REGEX = re.compile(r'^\s*(\(\d+\)|\d+\.?|question:?|t(ie)?b(reak(er)?)?:?)\s*', re.I)
 BONUSPART_TEXT_REGEX = re.compile(r'^\s*(\(\d+\)|\[\d+\])\s*', re.I)
 BONUSPART_ANSWER_REGEX = re.compile(r'^\s*a(ns(wer)?)?:?\s*', re.I)
 
@@ -18,7 +18,7 @@ class Packet:
                  tossup_text_re=TOSSUP_TEXT_REGEX, tossup_answer_re=TOSSUP_ANSWER_REGEX,
                  bonus_leadin_re=BONUS_LEADIN_REGEX, bonuspart_text_re=BONUSPART_TEXT_REGEX,
                  bonuspart_answer_re=BONUSPART_ANSWER_REGEX,
-                 num_tossups=-1):
+                 num_tossups=-1, strippable_lines_res=[]):
         self.filename = filename
         self.tournament = tournament
         self.round = round
@@ -28,6 +28,7 @@ class Packet:
         self.bonus_leadin_re = bonus_leadin_re
         self.bonuspart_text_re = bonuspart_text_re
         self.bonuspart_answer_re = bonuspart_answer_re
+        self.strippable_lines_res = strippable_lines_res
 
         self.num_tossups = num_tossups
 
@@ -42,13 +43,21 @@ class Packet:
             split_lines = re.split('<br\s*/?>', l)
             for split_line in split_lines:
                 sanitized_line = sanitize(split_line).strip()
-                if is_valid_content(sanitized_line):
+                if is_valid_content(sanitized_line, strippable_lines_res=self.strippable_lines_res):
                     prepared_lines.append(sanitized_line)
         return prepared_lines
 
     def is_valid(self):
-        return (all(tossup.is_valid() for tossup in self.tossups) and
-                all(bonus.is_valid() for bonus in self.bonuses))
+        valid = True
+        for tossup in self.tossups:
+            if not tossup.is_valid():
+                valid = False
+                print "Tossup %d invalid" % tossup.number
+        for bonus in self.bonuses:
+            if not bonus.is_valid():
+                valid = False
+                print "Bonus %d invalid" % bonus.number
+        return valid
 
     def dump_yaml(self, filename=None):
         if filename is None:

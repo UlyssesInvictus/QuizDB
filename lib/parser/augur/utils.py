@@ -15,7 +15,7 @@ def sanitize(html, valid_tags=DEFAULT_VALID_TAGS):
     return soup.renderContents().decode('utf8')
 
 
-def is_valid_content(s):
+def is_valid_content(s, strippable_lines_res=[]):
 
     # using this weird code structure b/c it's easier to add new conditions this way
 
@@ -31,5 +31,9 @@ def is_valid_content(s):
     # disabled b/c it's returning false positives on html
     if re.search('^(<.*>|&lt;.*&gt;)', s):
         return False
+
+    for r in strippable_lines_res:
+        if re.search(r, s):
+            return False
 
     return True

@@ -80,7 +80,7 @@ Currently, Augur only produces YAML structured output. It's pretty easy to produ
 
 ### All Options
 
-Augur can be tweaked by passing it options from the command line. You can see these options by running `python augur.py --help`.
+Augur can be tweaked by passing it options from the command line. You can see these options by running `python augur.py --help`. This README can potentially go out of date, so consider the help description given by running this command the most authoritative example.
 
 Argument  |  Description
 --|--
@@ -94,6 +94,7 @@ Argument  |  Description
 `--bonus-leadin-re`    |  Regex describing the format of bonus leadin.
 `--bonuspart-text-re`   |  Regex describing the format of a bonus part text.
 `--bonuspart-answer-re`   |  Regex describing the format of a bonus part answer.
+`--strippable-lines-res`  |  Regices describing any lines within the packet that can be safely ignored. (So as to avoid accidentally including in a question.)
 
 
 

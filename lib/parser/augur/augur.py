@@ -14,7 +14,8 @@ def packet_parser(args):
 
     special_args = {}
     special_arg_names = ["num_tossups", "tossup_text_re", "tossup_answer_re",
-                         "bonus_leadin_re", "bonuspart_text_re", "bonuspart_answer_re"]
+                         "bonus_leadin_re", "bonuspart_text_re", "bonuspart_answer_re",
+                         "strippable_lines_res"]
     for arg_name in special_arg_names:
         if getattr(args, arg_name):
             arg = getattr(args, arg_name)
@@ -66,6 +67,10 @@ def main():
                         type=str)
     parser.add_argument("--bonuspart-answer-re",
                         help="Regex describing the format of a bonus part answer.",
+                        type=str)
+    parser.add_argument("--strippable-lines-res",
+                        nargs="*",
+                        help="Regices describing lines that can be stripped from input file.",
                         type=str)
 
     args = parser.parse_args()
