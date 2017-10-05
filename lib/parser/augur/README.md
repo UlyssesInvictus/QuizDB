@@ -27,6 +27,8 @@ Make sure you have all the dependencies installed. You can use Augur by cloning 
 
 Augur currently accepts only doc, docx, text, or HTML files. This excludes PDF by design, as PDF parsing is naturally difficult, and you are encouraged to either find the original source, or convert the PDF yourself so as to review any conversion errors yourself before feeding the packet into Augur. If you'd like to see other input formats, please contact me or file a Github issue.
 
+Augur currently accepts only single files (as opposed to directories). If you want to parse a directory at once, you're encouraged to write your own bash script. This is also intentional, to encourage passing accurate round names. Basically, Augur is going to purposefully restrictive in a lot of cases to make sure produce good data.
+
 Augur works best with the following packet formats, which decrease the chance that it'll mistakenly parse anything. It'll probably do okay anyways, but these are your best practices:
 
 - Place a single line reading "Tossups" before the tossups and a single line reading "Bonuses" before the "Bonuses" e.g.

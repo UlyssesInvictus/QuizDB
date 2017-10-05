@@ -40,7 +40,7 @@ module Question
         end
 
         # the one case that doesn't depend on question type...
-        question_hash[:round] = round || q[:round]
+        question_hash[:round] = q[:round] || round
 
         # handle adding answers
         if q[:answer].blank? && q[:answers].blank?

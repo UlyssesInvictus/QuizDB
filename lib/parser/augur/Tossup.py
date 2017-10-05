@@ -4,12 +4,15 @@ from utils import sanitize
 class Tossup:
 
     def __init__(self, number, text="", answer="",
-                 category="", subcategory=""):
+                 category="", subcategory="",
+                 tournament="", round=""):
         self.number = number
         self.text = text
         self.answer = answer
         self.category = category
         self.subcategory = subcategory
+        self.tournament = tournament
+        self.round = round
 
     def has_content(self):
         return self.text.strip() != "" or self.answer.strip() != ""
@@ -22,7 +25,9 @@ class Tossup:
             "text": sanitize(self.text, valid_tags=[]),
             "answer": sanitize(self.answer, valid_tags=[]),
             "category": self.category,
-            "subcategory": self.subcategory
+            "subcategory": self.subcategory,
+            "tournament": self.tournament,
+            "round": self.round
         }
 
     def __str__(self):

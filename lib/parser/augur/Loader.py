@@ -18,10 +18,18 @@ class Loader:
     def __init__(self, filename):
         self.filename = filename
 
+    def load(self):
+        if (re.search('docx$', self.filename) or re.search('doc$', self.filename)):
+            return self.load_doc()
+        elif (re.search('txt$', self.filename) or re.search('html$', self.filename)):
+            return self.filename
+        else:
+            raise LoaderInvalidFormatError(self.filename)
+
     def load_doc(self):
-        if re.search('docx', self.filename):
+        if re.search('docx$', self.filename):
             html_file = self.filename.replace('.docx', '.html')
-        elif re.search('doc', self.filename):
+        elif re.search('doc$', self.filename):
             html_file = self.filename.replace('.docx', '.html')
         else:
             raise LoaderInvalidFormatError(self.filename)

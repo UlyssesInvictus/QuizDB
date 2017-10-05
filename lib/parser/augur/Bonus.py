@@ -4,13 +4,16 @@ from utils import sanitize
 class Bonus:
 
     def __init__(self, number, leadin="", texts=None, answers=None,
-                 category="", subcategory=""):
+                 category="", subcategory="",
+                 tournament="", round=""):
         self.number = number
         self.leadin = leadin
         self.texts = texts
         self.answers = answers
         self.category = category
         self.subcategory = subcategory
+        self.tournament = tournament
+        self.round = round
 
         if texts is None:
             self.texts = []
@@ -32,7 +35,9 @@ class Bonus:
             "texts": map(lambda x: sanitize(x, valid_tags=[]), self.texts),
             "answers": map(lambda x: sanitize(x, valid_tags=[]), self.answers),
             "category": self.category,
-            "subcategory": self.subcategory
+            "subcategory": self.subcategory,
+            "tournament": self.tournament,
+            "round": self.round
         }
 
     def __str__(self):

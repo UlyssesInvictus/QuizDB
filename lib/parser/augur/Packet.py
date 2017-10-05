@@ -10,7 +10,6 @@ TOSSUP_ANSWER_REGEX = re.compile(r'^\s*a(ns(wer)?)?:?\s*', re.I)
 BONUS_LEADIN_REGEX = re.compile(r'^\s*(\(\d+\)|\d+\.?|question)\s*', re.I)
 BONUSPART_TEXT_REGEX = re.compile(r'^\s*(\(\d+\)|\[\d+\])\s*', re.I)
 BONUSPART_ANSWER_REGEX = re.compile(r'^\s*a(ns(wer)?)?:?\s*', re.I)
-NUM_TOSSUPS = 21
 
 
 class Packet:
@@ -19,7 +18,7 @@ class Packet:
                  tossup_text_re=TOSSUP_TEXT_REGEX, tossup_answer_re=TOSSUP_ANSWER_REGEX,
                  bonus_leadin_re=BONUS_LEADIN_REGEX, bonuspart_text_re=BONUSPART_TEXT_REGEX,
                  bonuspart_answer_re=BONUSPART_ANSWER_REGEX,
-                 num_tossups=NUM_TOSSUPS):
+                 num_tossups=-1):
         self.filename = filename
         self.tournament = tournament
         self.round = round
@@ -55,6 +54,18 @@ class Packet:
         if filename is None:
             filename = self.filename + ".yml"
         with open(filename, 'w') as f:
+            f.write("# generated using these settings:\n")
+            settings = {
+                "tournament": self.tournament,
+                "round": self.round,
+                "tossup_text_re": self.tossup_text_re.pattern,
+                "tossup_answer_re": self.tossup_answer_re.pattern,
+                "bonus_leadin_re": self.bonus_leadin_re.pattern,
+                "bonuspart_text_re": self.bonuspart_text_re.pattern,
+                "bonuspart_answer_re": self.bonuspart_answer_re.pattern,
+                "num_tossups": self.num_tossups
+            }
+            f.write("# %s \n" % (settings))
             f.write("# TOSSUPS\n")
             f.write("# %d tossups total\n" % len(self.tossups))
             yaml.safe_dump(map(lambda x: x.to_dict(), self.tossups), f,
@@ -80,7 +91,9 @@ class Packet:
 
         for l in lines:
             # edge case for switching from tossups to bonuses
-            if (len(tossups) + 1 >= self.num_tossups and
+            # we use -1 as a short circuit to say "use the Bonuses marker instead"
+            if (self.num_tossups != -1 and
+                    len(tossups) + 1 >= self.num_tossups and
                     self.bonus_leadin_re.search(l) and
                     current_tossup.has_content()):
                 parsing_tossups = False
@@ -135,6 +148,13 @@ class Packet:
             tossups.append(current_tossup)
         if current_bonus.has_content():
             bonuses.append(current_bonus)
+
+        for i in xrange(len(tossups)):
+            tossups[i].tournament = self.tournament
+            tossups[i].round = self.round
+        for i in xrange(len(bonuses)):
+            bonuses[i].tournament = self.tournament
+            bonuses[i].round = self.round
 
         self.tossups = tossups
         self.bonuses = bonuses

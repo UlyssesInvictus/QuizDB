@@ -1,6 +1,34 @@
-from Loader import Loader
+from Loader import Loader, LoaderInvalidFormatError
 from Packet import Packet
 import argparse
+import re
+
+
+def packet_parser(args):
+    loader = Loader(args.input_file)
+    try:
+        load_file = loader.load()
+    except LoaderInvalidFormatError as e:
+        print e
+        return
+
+    special_args = {}
+    special_arg_names = ["num_tossups", "tossup_text_re", "tossup_answer_re",
+                         "bonus_leadin_re", "bonuspart_text_re", "bonuspart_answer_re"]
+    for arg_name in special_arg_names:
+        if getattr(args, arg_name):
+            arg = getattr(args, arg_name)
+            if re.search("_re$", arg_name):
+                arg = re.compile(arg, re.I)
+            special_args[arg_name] = arg
+
+    packet = Packet(load_file, args.tournament, args.round, **special_args)
+    packet.parse_packet()
+    if packet.is_valid():
+        output_file = args.output_file if args.output_file else args.input_file + ".yml"
+        packet.dump_yaml(output_file)
+    else:
+        print "Invalid packet. Please reformat and try again."
 
 
 def main():
@@ -41,8 +69,7 @@ def main():
                         type=str)
 
     args = parser.parse_args()
-
-    print args.tournament
+    packet_parser(args)
 
 
 if __name__ == "__main__":
