@@ -29,8 +29,8 @@ def is_valid_content(s, strippable_lines_res=[]):
 
     # handle common <Author> formatting
     # disabled b/c it's returning false positives on html
-    if re.search('^(<.*>|&lt;.*&gt;)', s):
-        return False
+    # if re.search('^(<.*>|&lt;.*&gt;)', s):
+    #     return False
 
     for r in strippable_lines_res:
         if re.search(r, s):

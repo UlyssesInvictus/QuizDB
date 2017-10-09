@@ -6,9 +6,9 @@ from Tossup import Tossup
 from Bonus import Bonus
 from Classifier import Classifier
 
-TOSSUP_TEXT_REGEX = re.compile(r'^\s*(\(\d+\)|\d+\.?|question:?|t(ie)?b(reak(er)?)?:?)\s*', re.I)
+TOSSUP_TEXT_REGEX = re.compile(r'^\s*(\(\d+\)|\d+\.?|t(ie)?b(reak(er)?)?:?)\s*', re.I)
 TOSSUP_ANSWER_REGEX = re.compile(r'^\s*a(ns(wer)?)?:?\s*', re.I)
-BONUS_LEADIN_REGEX = re.compile(r'^\s*(\(\d+\)|\d+\.?|question:?|t(ie)?b(reak(er)?)?:?)\s*', re.I)
+BONUS_LEADIN_REGEX = re.compile(r'^\s*(\(\d+\)|\d+\.?|t(ie)?b(reak(er)?)?:?)\s*', re.I)
 BONUSPART_TEXT_REGEX = re.compile(r'^\s*(\(\d+\)|\[\d+\])\s*', re.I)
 BONUSPART_ANSWER_REGEX = re.compile(r'^\s*a(ns(wer)?)?:?\s*', re.I)
 
@@ -123,23 +123,25 @@ class Packet:
         current_bonus = Bonus(1)
 
         for l in lines:
+            sanitized_l = sanitize(l, valid_tags=[])
+
             # edge case for switching from tossups to bonuses
             # we use -1 as a short circuit to say "use the Bonuses marker instead"
             if (self.num_tossups != -1 and
                     len(tossups) + 1 >= self.num_tossups and
-                    self.bonus_leadin_re.search(l) and
+                    self.bonus_leadin_re.search(sanitized_l) and
                     current_tossup.has_content()):
                 parsing_tossups = False
 
             if parsing_tossups:
-                if self.tossup_text_re.search(l):
+                if self.tossup_text_re.search(sanitized_l):
                     # assume finding a new tossup means we're done with the old one
                     if current_tossup.has_content():
                         tossups.append(current_tossup)
                     current_tossup = Tossup(len(tossups) + 1)
                     current_tossup.text = self.tossup_text_re.sub("", l, count=1)
                     current_tossup.answer = ""
-                elif self.tossup_answer_re.search(l):
+                elif self.tossup_answer_re.search(sanitized_l):
                     current_tossup.answer = self.tossup_answer_re.sub("", l, count=1)
                 else:
                     if re.search(r'^bonus(es)?$', l, re.I):
@@ -157,7 +159,7 @@ class Packet:
                             current_tossup.text += (" " + l)
 
             else:
-                if self.bonus_leadin_re.search(l):
+                if self.bonus_leadin_re.search(sanitized_l):
                     if len(bonuses) == 0 and current_tossup.has_content():
                         tossups.append(current_tossup)
                         current_tossup = Tossup(len(tossups) + 1)
@@ -165,9 +167,9 @@ class Packet:
                         bonuses.append(current_bonus)
                     current_bonus = Bonus(len(bonuses) + 1,
                                           leadin=self.bonus_leadin_re.sub("", l, count=1))
-                elif self.bonuspart_text_re.search(l):
+                elif self.bonuspart_text_re.search(sanitized_l):
                     current_bonus.texts += [self.bonuspart_text_re.sub("", l, count=1)]
-                elif self.bonuspart_answer_re.search(l):
+                elif self.bonuspart_answer_re.search(sanitized_l):
                     current_bonus.answers += [self.bonuspart_answer_re.sub("", l, count=1)]
                 else:
                     if current_bonus.texts == [] and current_bonus.answers == []:
