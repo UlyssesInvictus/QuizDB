@@ -4,6 +4,7 @@ import re
 from utils import sanitize, is_valid_content
 from Tossup import Tossup
 from Bonus import Bonus
+from Classifier import Classifier
 
 TOSSUP_TEXT_REGEX = re.compile(r'^\s*(\(\d+\)|\d+\.?|question:?|t(ie)?b(reak(er)?)?:?)\s*', re.I)
 TOSSUP_ANSWER_REGEX = re.compile(r'^\s*a(ns(wer)?)?:?\s*', re.I)
@@ -18,7 +19,8 @@ class Packet:
                  tossup_text_re=TOSSUP_TEXT_REGEX, tossup_answer_re=TOSSUP_ANSWER_REGEX,
                  bonus_leadin_re=BONUS_LEADIN_REGEX, bonuspart_text_re=BONUSPART_TEXT_REGEX,
                  bonuspart_answer_re=BONUSPART_ANSWER_REGEX,
-                 num_tossups=-1, strippable_lines_res=[]):
+                 num_tossups=-1, strippable_lines_res=[],
+                 classifier_data_filename="quizb_classifier_training_data.json"):
         self.filename = filename
         self.tournament = tournament
         self.round = round
@@ -34,6 +36,8 @@ class Packet:
 
         self.tossups = []
         self.bonuses = []
+
+        self.classifier_data_filename = classifier_data_filename
 
     def load_html(self):
         with codecs.open(self.filename, 'r', encoding='utf-8') as f:
@@ -58,6 +62,26 @@ class Packet:
                 valid = False
                 print "Bonus %d invalid" % bonus.number
         return valid
+
+    def classify(self):
+        classifier = Classifier(self.classifier_data_filename)
+        tossup_category_Y = classifier.predict_categories(self.tossups)
+        tossup_subcategory_Y = classifier.predict_subcategories(self.tossups)
+        for i in xrange(len(self.tossups)):
+            self.tossups[i].category = str(tossup_category_Y[i])
+            if re.search("^" + str(tossup_category_Y[i]), str(tossup_subcategory_Y[i])):
+                self.tossups[i].subcategory = str(tossup_subcategory_Y[i])
+            else:
+                self.tossups[i].subcategory = "None"
+        bonus_X = [t.content() for t in self.bonuses]
+        bonus_category_Y = classifier.predict_categories(self.bonuses)
+        bonus_subcategory_Y = classifier.predict_subcategories(self.bonuses)
+        for i in xrange(len(self.bonuses)):
+            self.bonuses[i].category = str(bonus_category_Y[i])
+            if re.search("^" + str(bonus_category_Y[i]), str(bonus_subcategory_Y[i])):
+                self.bonuses[i].subcategory = str(bonus_subcategory_Y[i])
+            else:
+                self.bonuses[i].subcategory = "None"
 
     def dump_yaml(self, filename=None):
         if filename is None:

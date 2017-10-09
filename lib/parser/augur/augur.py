@@ -1,21 +1,25 @@
 from Loader import Loader, LoaderInvalidFormatError
 from Packet import Packet
+
 import argparse
 import re
 
 
 def packet_parser(args):
+    print "Loading packet into machine readable format....",
     loader = Loader(args.input_file)
     try:
         load_file = loader.load()
     except LoaderInvalidFormatError as e:
         print e
         return
+    print "Done!"
 
+    print "Parsing packet....",
     special_args = {}
     special_arg_names = ["num_tossups", "tossup_text_re", "tossup_answer_re",
                          "bonus_leadin_re", "bonuspart_text_re", "bonuspart_answer_re",
-                         "strippable_lines_res"]
+                         "strippable_lines_res", "classifier_data_filename"]
     for arg_name in special_arg_names:
         if getattr(args, arg_name):
             arg = getattr(args, arg_name)
@@ -25,9 +29,18 @@ def packet_parser(args):
 
     packet = Packet(load_file, args.tournament, args.round, **special_args)
     packet.parse_packet()
+    print "Done!"
+
     if packet.is_valid():
+        print "Categorizing questions..."
+        # packet.classify()
+        print "Done!"
+
+        print "Outputting questions..."
         output_file = args.output_file if args.output_file else args.input_file + ".yml"
+
         packet.dump_yaml(output_file)
+        print "Done!"
     else:
         print "Invalid packet. Please reformat and try again."
 
@@ -71,6 +84,9 @@ def main():
     parser.add_argument("--strippable-lines-res",
                         nargs="*",
                         help="Regices describing lines that can be stripped from input file.",
+                        type=str)
+    parser.add_argument("--classifier-data-filename",
+                        help="Filename of the training data for the classifier.",
                         type=str)
 
     args = parser.parse_args()

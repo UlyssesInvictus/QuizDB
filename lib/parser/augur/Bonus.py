@@ -49,3 +49,10 @@ class Bonus:
                 len(self.answers) == 3 and
                 all(text.strip() != "" for text in self.texts) and
                 all(answer.strip() != "" for answer in self.answers))
+
+    def content(self):
+        text = self.leadin
+        for i in xrange(3):
+            if len(self.texts) > i:
+                text += " " + self.texts[i] + " ANSWER: " + self.answers[i]
+        return text

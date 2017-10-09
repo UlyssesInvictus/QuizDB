@@ -36,3 +36,6 @@ class Tossup:
     def is_valid(self):
         return (self.text.strip() != "" and
                 self.answer.strip() != "")
+
+    def content(self):
+        return self.text + " ANSWER: " + self.answer

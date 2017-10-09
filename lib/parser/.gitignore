@@ -1,5 +1,6 @@
 quinterest_open.json
 quinterest.json
+quizdb_*.json
 *.pyc
 augur/.ipynb_checkpoints/*
 augur/test/*
