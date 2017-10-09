@@ -34,7 +34,7 @@ class Loader:
         else:
             raise LoaderInvalidFormatError(self.filename)
 
-        cmd = 'pandoc -f docx -t html -o "{0}" "{1}"'.format(html_file, self.filename)
+        cmd = 'pandoc -f docx -t html5 -o "{0}" "{1}"'.format(html_file, self.filename)
         cmd = shlex.split(cmd)
 
         p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)

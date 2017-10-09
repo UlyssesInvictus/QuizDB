@@ -1,5 +1,8 @@
 module Question
   module Import
+    # a massive mess
+    # do not treat this as good code
+    # scripting: not even once
     def parse_yaml(questions:, round: nil,
                    tournament_id: nil,
                    category_id: nil,
@@ -22,13 +25,12 @@ module Question
         ["tournament", "category", "subcategory"].each do |a|
           if eval("#{a}_id").present?
             question_hash["#{a}_id"] = eval("#{a}_id").to_i
-            next
           end
           a_class = a.classify.constantize
           a_id = q["#{a}_id"].blank? ? nil : a_class.find_by_id(q["#{a}_id"].to_i)&.id
-          a_id ||= q[a].blank? ? nil : a_class.find_by_name(q[a])&.id
+          a_id ||= (q[a].blank? || q[a] == "None") ? nil : a_class.find_by_name(q[a])&.id
           if a_id.blank?
-            errors.push("Provided #{a} could not be found.") if (q["#{a}_id"].present? || q[a].present?)
+            errors.push("Provided #{a} could not be found.") if (q["#{a}_id"].present? || (q[a].present? && q[a] != "None"))
           else
             question_hash["#{a}_id"] = a_id
           end
