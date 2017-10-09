@@ -43,6 +43,21 @@ class Loader:
         print output
         print errors
 
+        # hack to fix the issue where pandoc has no native underline element
+        # we have to make an educate guess that the only case where there would
+        # be a bold AND an italic is when it's actually supposed to be underline
+        # in the answerline -- this produces some false positives, but is generall
+        # a good approach since bolds almost always only appear in answerlines
+        with open(html_file, 'r+') as f:
+            text = f.read()
+            text = re.sub("<strong><em>", "<strong><u>", text)
+            text = re.sub("</em></strong>", "</u></strong>", text)
+            # less accurate, but still catches some cases
+            text = re.sub("prompt on <em>(.*?)</em>", "prompt on <u>\\1</u>", text)
+            f.seek(0)
+            f.write(text)
+            f.truncate()
+
         return html_file
 
     # intentionally not supported (for now), because PDF files are very finicky

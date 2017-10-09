@@ -52,6 +52,7 @@ module Question
               q[:answers].length == 1
           question_hash[:type] = "Tossup"
           question_hash[:text] = q[:text]
+          question_hash[:formatted_text] = q[:formatted_text] || question_hash[:text]
           question_hash[:answer] = q[:answer] || q[:answers][0]
           question_hash[:formatted_answer] = q[:formatted_answer] || question_hash[:answer]
           if q[:number].present?

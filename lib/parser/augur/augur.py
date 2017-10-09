@@ -33,7 +33,7 @@ def packet_parser(args):
 
     if packet.is_valid():
         print "Categorizing questions..."
-        # packet.classify()
+        packet.classify()
         print "Done!"
 
         print "Outputting questions..."
