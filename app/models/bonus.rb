@@ -1,7 +1,7 @@
 class Bonus < ApplicationRecord
-  belongs_to :category, optional: true
+  belongs_to :category
   belongs_to :subcategory, optional: true
-  belongs_to :tournament, optional: true
+  belongs_to :tournament
 
   has_many :bonus_parts, dependent: :destroy, inverse_of: :bonus
   accepts_nested_attributes_for :bonus_parts, allow_destroy: true

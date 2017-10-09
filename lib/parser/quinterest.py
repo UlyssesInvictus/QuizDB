@@ -46,12 +46,14 @@ class Bonus:
             question_dict['texts'][i] = text.replace('\n', ' ')
         return question_dict
 
+
 def try_access_string(split_string):
     try:
         s = split_string[1]
     except Exception as e:
         s = ""
     return s
+
 
 def tossup_from_row(row):
     question_sections = row.find_all('p')
