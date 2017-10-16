@@ -22,6 +22,7 @@ export function cleanSpecial(str) {
   newStr = newStr.replace(/Ã±/g, "ñ");
   newStr = newStr.replace(/㻈/g, "f");
   newStr = newStr.replace(/Ã¨/g, "è");
+  newStr = newStr.replace(/Ã¸/g, "ü");
   return newStr;
 }
 
