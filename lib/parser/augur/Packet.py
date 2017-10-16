@@ -7,10 +7,10 @@ from Bonus import Bonus
 from Classifier import Classifier
 
 TOSSUP_TEXT_REGEX = re.compile(r'^\s*(\(\d+\)|\d+\.?|t(ie)?b(reak(er)?)?:?)\s*', re.I)
-TOSSUP_ANSWER_REGEX = re.compile(r'^\s*a(ns(wer)?)?:?\s*', re.I)
+TOSSUP_ANSWER_REGEX = re.compile(r'^\s*answer:?\s*', re.I)
 BONUS_LEADIN_REGEX = re.compile(r'^\s*(\(\d+\)|\d+\.?|t(ie)?b(reak(er)?)?:?)\s*', re.I)
 BONUSPART_TEXT_REGEX = re.compile(r'^\s*(\(\d+\)|\[\d+\])\s*', re.I)
-BONUSPART_ANSWER_REGEX = re.compile(r'^\s*a(ns(wer)?)?:?\s*', re.I)
+BONUSPART_ANSWER_REGEX = re.compile(r'^\s*answer:?\s*', re.I)
 
 
 class Packet:
@@ -57,10 +57,15 @@ class Packet:
             if not tossup.is_valid():
                 valid = False
                 print "Tossup %d invalid" % tossup.number
+                print "Its text: %s" % tossup.text
+                print "Its answer: %s" % tossup.answer
         for bonus in self.bonuses:
             if not bonus.is_valid():
                 valid = False
                 print "Bonus %d invalid" % bonus.number
+                print "Its leadin: %s" % (bonus.leadin)
+                print "Its texts: %s (length: %d)" % (bonus.texts, len(bonus.texts))
+                print "Its answers: %s (length: %d)" % (bonus.answers, len(bonus.answers))
         return valid
 
     def classify(self):
@@ -144,7 +149,7 @@ class Packet:
                 elif self.tossup_answer_re.search(sanitized_l):
                     current_tossup.answer = self.tossup_answer_re.sub("", l, count=1)
                 else:
-                    if re.search(r'^bonus(es)?$', l, re.I):
+                    if re.search(r'^bonus(es)?$', sanitized_l, re.I):
                         parsing_tossups = False
                         next
                     # this assumes everything between the current answer and the beginning of the

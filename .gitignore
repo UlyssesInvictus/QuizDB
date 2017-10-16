@@ -20,3 +20,5 @@
 db/dump/*
 
 config/application.y*ml
+
+*.DS_Store

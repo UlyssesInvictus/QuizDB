@@ -12,7 +12,13 @@ def sanitize(html, valid_tags=DEFAULT_VALID_TAGS):
         if tag.name not in valid_tags:
             tag.hidden = True
 
-    return soup.renderContents().decode('utf8')
+    sanitized = soup.renderContents().decode('utf8')
+
+    # remove any left over tags that bs can't catch
+    sanitized = re.sub("<p>", "", sanitized)
+    sanitized = re.sub("</p>", "", sanitized)
+    sanitized = re.sub("<br />", "", sanitized)
+    return sanitized
 
 
 def is_valid_content(s, strippable_lines_res=[]):

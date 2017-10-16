@@ -24,6 +24,10 @@ class Bonus:
         if len(self.texts) == 0 and len(self.answers) == 0:
             return False
 
+        if len(self.texts) == 0 or len(self.answers) == 0:
+            print "Discrepancy in Bonus %d" % self.number
+            return
+
         return self.texts[0].strip() != "" or self.answers[0].strip() != ""
 
     def to_dict(self):
