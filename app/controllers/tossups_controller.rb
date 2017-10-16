@@ -2,7 +2,7 @@ class TossupsController < ApplicationController
   before_action :set_tossup, only: [:show, :update, :destroy]
 
   QUESTION_SEARCH_LIMIT = 15
-  QUESTION_RANDOM_LIMIT = 300
+  QUESTION_RANDOM_LIMIT = 750
 
   def random
     # pretty much identical to search
