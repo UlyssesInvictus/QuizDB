@@ -1,4 +1,5 @@
 json.num_bonuses_found num_bonuses_found
+json.num_bonuses_shown bonuses.size
 json.bonuses bonuses.includes(:tournament, :category, :subcategory, :bonus_parts) do |bonus|
   json.extract! bonus, :id, :number, :round, :category_id, :subcategory_id,
                        :quinterest_id, :tournament_id, :leadin,

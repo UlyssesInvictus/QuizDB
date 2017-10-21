@@ -1,4 +1,5 @@
 json.num_tossups_found num_tossups_found
+json.num_tossups_shown tossups.size
 json.tossups tossups.includes(:tournament, :category, :subcategory) do |tossup|
   json.extract! tossup, :id, :text, :answer, :number,
     :tournament_id, :category_id, :subcategory_id,
