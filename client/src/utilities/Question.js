@@ -7,7 +7,6 @@ import { isPresent } from './String';
 export function cleanSpecial(str) {
   let newStr = str.replace(/Â/g, "");
   newStr = newStr.replace(/&quot;/g, "");
-  // assuming these specific chinese characters are never actually intentional...
   newStr = newStr.replace(/猴/g, "f");
   newStr = newStr.replace(/睌/g, "f");
   newStr = newStr.replace(/猼/g, "f");
@@ -23,6 +22,7 @@ export function cleanSpecial(str) {
   newStr = newStr.replace(/㻈/g, "f");
   newStr = newStr.replace(/Ã¨/g, "è");
   newStr = newStr.replace(/Ã¸/g, "ü");
+  newStr = newStr.replace(/ぺ/g, "ft");
   return newStr;
 }
 
