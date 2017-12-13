@@ -70,17 +70,19 @@ class Packet:
 
     def classify(self):
         classifier = Classifier(self.classifier_data_filename)
-        tossup_category_Y = classifier.predict_categories(self.tossups)
-        tossup_subcategory_Y = classifier.predict_subcategories(self.tossups)
+        if len(self.tossups) > 0:
+            tossup_category_Y = classifier.predict_categories(self.tossups)
+            tossup_subcategory_Y = classifier.predict_subcategories(self.tossups)
         for i in xrange(len(self.tossups)):
             self.tossups[i].category = str(tossup_category_Y[i])
             if re.search("^" + str(tossup_category_Y[i]), str(tossup_subcategory_Y[i])):
                 self.tossups[i].subcategory = str(tossup_subcategory_Y[i])
             else:
                 self.tossups[i].subcategory = "None"
-        bonus_X = [t.content() for t in self.bonuses]
-        bonus_category_Y = classifier.predict_categories(self.bonuses)
-        bonus_subcategory_Y = classifier.predict_subcategories(self.bonuses)
+        if len(self.bonuses) > 0:
+            bonus_X = [t.content() for t in self.bonuses]
+            bonus_category_Y = classifier.predict_categories(self.bonuses)
+            bonus_subcategory_Y = classifier.predict_subcategories(self.bonuses)
         for i in xrange(len(self.bonuses)):
             self.bonuses[i].category = str(bonus_category_Y[i])
             if re.search("^" + str(bonus_category_Y[i]), str(bonus_subcategory_Y[i])):
@@ -128,7 +130,8 @@ class Packet:
         current_bonus = Bonus(1)
 
         for l in lines:
-            sanitized_l = sanitize(l, valid_tags=[])
+            sanitized_l = sanitize(l)
+            # import pdb; pdb.set_trace()
 
             # edge case for switching from tossups to bonuses
             # we use -1 as a short circuit to say "use the Bonuses marker instead"

@@ -15,7 +15,7 @@ def packet_parser(args):
         return
     print "Done!"
 
-    print "Parsing packet....",
+    print "Parsing packet %s...." % (args.tournament + " " + args.round),
     special_args = {}
     special_arg_names = ["num_tossups", "tossup_text_re", "tossup_answer_re",
                          "bonus_leadin_re", "bonuspart_text_re", "bonuspart_answer_re",

@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup, Comment
 import re
 
-DEFAULT_VALID_TAGS = ['em', 'strong', 'b', 'u', 'i', 'sup', 'sub']
+DEFAULT_VALID_TAGS = ['em', 'strong', 'b', 'u', 'i', 'sup', 'sub', 'ol', 'li', 'p']
 
 
 def sanitize(html, valid_tags=DEFAULT_VALID_TAGS):
@@ -14,10 +14,19 @@ def sanitize(html, valid_tags=DEFAULT_VALID_TAGS):
 
     sanitized = soup.renderContents().decode('utf8')
 
-    # remove any left over tags that bs can't catch
+    # remove any left over tags that we contain valid content, but we want to remove
     sanitized = re.sub("<p>", "", sanitized)
     sanitized = re.sub("</p>", "", sanitized)
     sanitized = re.sub("<br />", "", sanitized)
+    sanitized = re.sub("</li>", "", sanitized)
+    sanitized = re.sub("</ol>", "", sanitized)
+    # sometimes these tags are used for numbering, so comment/uncomment as needed
+    sanitized = re.sub("<ol.*?>", "", sanitized)
+    # sanitized = re.sub("<li>", "", sanitized)
+
+    # and some stupid "white space" that's not really white space
+    sanitized = re.sub(u"\u200b", "", sanitized)
+
     return sanitized
 
 
