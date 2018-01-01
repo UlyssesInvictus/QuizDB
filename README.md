@@ -12,7 +12,13 @@ The backend runs on Rails, and the client runs on React. Deployment uses Heroku 
 
 The modern web interface for QuizDB lives at [https://www.quizdb.org](https://www.quizdb.org) and the admin portal lives at [https://www.quizdb.org/admin](https://www.quizdb.org/admin).
 
-After installing both the backend and frontend, you can run both simultaneously by running `rake start`, which launches the backend at `localhost:3000` and the frontend at `localhost:808`.
+After installing both the backend and frontend, you can run both simultaneously by running `rake start`, which launches the backend at `localhost:3000` and the frontend at `localhost:8080`.
+
+## Installation
+
+To install the backend of **Ruby 2.4** and **Rails 5.0**, use the [following guide](https://gorails.com/setup/ubuntu/16.04) and select your OS. Run `bundle install` to install all the missing gems.
+
+Afterwards, install **Node 8** [following this guide](https://nodejs.org/en/download/package-manager/#nvm) according to your system. To install all the dependencies, run `npm install`.
 
 ## Backend
 
