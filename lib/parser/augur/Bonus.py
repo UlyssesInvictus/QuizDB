@@ -26,7 +26,7 @@ class Bonus:
 
         if len(self.texts) == 0 or len(self.answers) == 0:
             print "Discrepancy in Bonus %d" % self.number
-            return
+            return False
 
         return self.texts[0].strip() != "" or self.answers[0].strip() != ""
 

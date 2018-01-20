@@ -14,6 +14,7 @@ To use Augur, you must have the following installed:
   - Python 2.7 (so not Python 3!)
   - the following python packages (use pip):
     - beautifulsoup (for parsing HTML)
+      - lxml, the parser used with beautifulsoup
     - PyYAML (for dumping data to yaml)
   - the following system tools:
     - pandoc (for background loading of doc/docx files)
