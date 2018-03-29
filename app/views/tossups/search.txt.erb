@@ -16,12 +16,12 @@ ANSWER: <%= t.answer %>
 
 <% bonuses.includes(:tournament, :category, :subcategory, :bonus_parts).each_with_index do |b, i| %>
 <%= i + 1 %>.
-ID: <% b.id %>  | Difficulty: <% b.tournament&.difficulty&.titleize %> | Category: <% b.category&.name || "None" %> | Subcategory: <% b.subcategory&.name || "None" %>
-Tournament: <% b.tournament&.name || "Unknown" %> | Round: <% b.round %> | Number: <% b.number %>
-BONUS: <% b.leadin %>
+ID: <%= b.id %>  | Difficulty: <%= b.tournament&.difficulty&.titleize %> | Category: <%= b.category&.name || "None" %> | Subcategory: <%= b.subcategory&.name || "None" %>
+Tournament: <%= b.tournament&.name || "Unknown" %> | Round: <%= b.round %> | Number: <%= b.number %>
+BONUS: <%= b.leadin %>
 <% b.bonus_parts.each do |part| %>
 [10] <%= part.text %>
-ANSWER <%= part.answer %>
+ANSWER: <%= part.answer %>
 <% end %>
 
 <% end %>
