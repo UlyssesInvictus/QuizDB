@@ -6,9 +6,9 @@ import {
 } from '../actions/actions';
 
 // Components
-import QuestionsContainer from '../components/QuestionsContainer';
-import SearchForm from '../components/SearchForm';
-import RootCredits from '../components/RootCredits';
+import QuestionsContainer from 'src/components/QuestionsContainer';
+import SearchForm from 'src/components/search/SearchForm';
+import RootCredits from 'src/components/RootCredits';
 
 import {
   // Divider

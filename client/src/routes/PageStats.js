@@ -6,9 +6,9 @@ import {
 } from '../actions/StatsActions';
 
 // Components
-import SearchForm from '../components/SearchForm';
-import RootCredits from '../components/RootCredits';
-import StatsContainer from '../components/stats/StatsContainer';
+import SearchForm from 'src/components/search/SearchForm';
+import RootCredits from 'src/components/RootCredits';
+import StatsContainer from 'src/components/stats/StatsContainer';
 
 import {
   // Divider

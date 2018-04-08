@@ -179,8 +179,12 @@ class Root extends React.Component {
         <Menu.Item name='home' as={Link} to='/' onClick={() => dispatch(toggleSidebar())}>
             <span><Icon name='home' />Home</span>
         </Menu.Item>
+        {/* Admin links outside the SPA, so it needs a regular, non React Router link */}
         <Menu.Item name='admin' as={'a'} href='/admin' onClick={() => dispatch(toggleSidebar())}>
             <span><Icon name='dashboard'/>Admin</span>
+        </Menu.Item>
+        <Menu.Item name='moxon' as={Link} to='/moxon' onClick={() => dispatch(toggleSidebar())}>
+            <span><Icon name='game'/>Moxon</span>
         </Menu.Item>
         <Menu.Item name='stats' as={Link} to='/stats' onClick={() => dispatch(toggleSidebar())}>
             <span><Icon name='bar chart'/>Stats</span>
@@ -207,9 +211,10 @@ class Root extends React.Component {
               <Route exact path="/admin" component={PageRefresh}/>
               <Route exact path="/" component={PageSearch}/>
               <Route exact path="/about" component={PageAbout}/>
-              <Route exact path="/help" component={PageHelp}/>
-              <Route exact path="/resources" component={PageResources}/>
               <Route exact path="/future" component={PageFuture}/>
+              <Route exact path="/help" component={PageHelp}/>
+              <Route exact path="/moxon" component={PageStats}/>
+              <Route exact path="/resources" component={PageResources}/>
               <Route exact path="/stats" component={PageStats}/>
               <Route exact path="/settings" component={PageSettings}/>
               <Route component={Page404}/>
