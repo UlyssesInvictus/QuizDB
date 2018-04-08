@@ -68,57 +68,96 @@ function buildTourneyOptions(difficulties, tournaments) {
   return tourneyOptions;
 }
 
-export function SearchFilters(props) {
-  const {
-    filterOptions,
-    selectedFilters,
-  } = props;
+class SearchFilters extends React.Component {
 
-  let selectedDiffs = filterOptions.difficulty;
-  if (selectedFilters.difficulty && selectedFilters.difficulty.length > 0) {
-    selectedDiffs = selectedDiffs.filter((d) => {
-      return selectedFilters.difficulty.includes(d.name);
-    });
+  componentWillMount() {
+    this.state = {
+      showFilters: this.props.defaultShow,
+    };
+
+    this.buildDropDowns = this.buildDropDowns.bind(this);
   }
-  const selectedCats = (selectedFilters.category && selectedFilters.category.length > 0) ?
-    filterOptions.category.filter(c => selectedFilters.category.includes(c.id)) :
-    filterOptions.category;
 
-  const tourneyOptions = buildTourneyOptions(selectedDiffs, filterOptions.tournament);
-  const subcatOptions = buildSubcategoryOptions(selectedCats, filterOptions.subcategory);
+  buildDropDowns(){
+    const {
+      filterOptions,
+      selectedFilters,
+    } = this.props;
 
-  // actually render our filter dropdowns
-  return (
-    <Grid columns='equal' textAlign='center'>
-      <SearchDropDown name='Category'
-                      filter='category'
-                      options={filterOptions.category.map(c => ({
-                        text: c.name, value: c.id
-                      }))}/>
-      <SearchDropDown name='Search Type'
-                      filter='search_type'
-                      options={filterOptions.search_type.map(c => ({
-                        text: c, value: c
-                      }))}/>
-      <SearchDropDown name='Difficulty'
-                      filter='difficulty'
-                      options={filterOptions.difficulty.map(c => ({
-                        text: `${c.number} (${c.title})`, value: c.name
-                      }))}/>
-      <SearchDropDown name='Subcategory'
-                      filter='subcategory'
-                      options={subcatOptions}/>
-      <SearchDropDown name='Question Type'
-                      filter='question_type'
-                      options={filterOptions.question_type.map(c => ({
-                        text: c, value: c
-                      }))}/>
-      <SearchDropDown name='Tournament'
-                      filter='tournament'
-                      options={tourneyOptions}/>
+    let selectedDiffs = filterOptions.difficulty;
+    if (selectedFilters.difficulty && selectedFilters.difficulty.length > 0) {
+      selectedDiffs = selectedDiffs.filter((d) => {
+        return selectedFilters.difficulty.includes(d.name);
+      });
+    }
+    const selectedCats = (selectedFilters.category && selectedFilters.category.length > 0) ?
+      filterOptions.category.filter(c => selectedFilters.category.includes(c.id)) :
+      filterOptions.category;
 
-    </Grid>
-  );
+    const tourneyOptions = buildTourneyOptions(selectedDiffs, filterOptions.tournament);
+    const subcatOptions = buildSubcategoryOptions(selectedCats, filterOptions.subcategory);
+
+    return (
+      <Grid.Row>
+        <SearchDropDown
+          name='Category'
+          filter='category'
+          options={
+            filterOptions.category.map(c => ({
+              text: c.name, value: c.id
+            }))
+          }
+        />
+        <SearchDropDown
+          name='Search Type'
+          filter='search_type'
+          options={
+            filterOptions.search_type.map(c => ({
+              text: c, value: c
+            }))
+          }
+        />
+        <SearchDropDown
+          name='Difficulty'
+          filter='difficulty'
+          options={
+            filterOptions.difficulty.map(c => ({
+              text: `${c.number} (${c.title})`, value: c.name
+            }))
+          }
+        />
+        <SearchDropDown
+          name='Subcategory'
+          filter='subcategory'
+          options={subcatOptions}
+        />
+        <SearchDropDown
+          name='Question Type'
+          filter='question_type'
+          options={
+            filterOptions.question_type.map(c => ({
+              text: c, value: c
+            }))
+          }
+        />
+        <SearchDropDown
+          name='Tournament'
+          filter='tournament'
+          options={tourneyOptions}
+        />
+      </Grid.Row>
+    );
+  }
+
+  render() {
+    return (
+      <div className="SearchFilters">
+        <Grid columns='equal' textAlign='center'>
+          {this.buildDropDowns()}
+        </Grid>
+      </div>
+    );
+  }
 }
 
 SearchFilters.propTypes = {
@@ -130,6 +169,11 @@ SearchFilters.propTypes = {
     tournament: PropTypes.array.isRequired,
   }).isRequired,
   selectedFilters: PropTypes.object,
-}
+  defaultShow: PropTypes.bool,
+};
+
+SearchFilters.defaultProps = {
+  defaultShow: true,
+};
 
 export default SearchFilters;
