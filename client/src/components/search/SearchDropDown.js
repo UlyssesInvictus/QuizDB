@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import {
   updateSearchFilter,
-} from '../actions/actions';
+} from 'src/actions/actions';
 
 import {
   Grid,
