@@ -72,22 +72,30 @@ class SearchForm extends React.Component {
             placeholder={"Search for questions here!"}
             onChange={(e, data) => this.props.dispatch(updateSearch(data.value))}
             onKeyPress={(e) => this.handleInputKeyPress(e)}
+            action={
+              <Button
+                icon='search' content='Search'
+                onClick={this.triggerSearch}
+                onSubmit={this.triggerSearch}
+                size='big'
+                color='blue'
+              />
+            }
           />
         </Grid.Column>
-        {/* Search buttons */}
-        <Grid.Column width={6} floated='right'>
-          <Button className='search-search_button'
-                  attached='left' icon='search' content='Search'
-                  onClick={this.triggerSearch}
-                  onSubmit={this.triggerSearch}
-                  size='huge'
-          />
-          <Dropdown className='search-random_button'
-                    options={randomOptions}
-                    text='Random'
-                    selection
-                    closeOnChange={false}
-          />
+        <Grid.Column width={6} floated="right">
+          <Input action>
+            <input type="hidden" />
+            <Dropdown
+              className='SearchForm--random-button'
+              options={randomOptions}
+              text='Random'
+              selection
+              closeOnChange={false}
+              button
+            />
+            <Button content="Advanced" size='big' />
+          </Input>
         </Grid.Column>
       </Grid>
 
