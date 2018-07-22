@@ -53,7 +53,7 @@ tl;dr: You get out of quizbowl what you put into it.
 ### Question DBs
 
 - **[QuizDB](http://quizdb.org)**: Again, _of course_ I'm going to pub my own website...
-- **[Quinterest](http://quinterest.org)**: The website that inspired QuizDB. In the interest of a public market, worth checking out. Comes with **QuizBug**, a question reader.
+- **[Quinterest](http://quinterest.org)**: The website that inspired QuizDB. In the interest of a public market, worth checking out. Comes with **QuizBug**, a question reader. The Quinterest maintainers have mainly ceded work to QuizDB, but until Moxon is developed (see our About page), still holds use.
 - **[QBDB](https://qbdb.grapesmoker.net/#browse)**: Jerry Vinokurov's Quizbowl (QB) Database (DB). Can be slightly easier to parse than QuizDB or Quinterest, but has far fewer questions available. Also comes with its question reader.
 - **[aseemDB](http://aseemsdb.me/)**: Works by indexing Google cached packets rather than storing questions in its own DB, consequently giving it the effective largest search index of all. Has advanced search, though the requirement to actually download the packets you find to view the questions can be a dealbreaker.
 - **[Google](https://google.com)**: Not to be facetious, but nothing beats deep research on Google and Wikipedia. More helpfully, a useful trick is to search using `site:quizbowlpackets.com [your search goes here]`, searching Google's cache of all the Packet Archives at once. This is effectively aseemDB's strategy, but more direct.
@@ -77,6 +77,7 @@ tl;dr: You get out of quizbowl what you put into it.
 - **[Round Robin Templates](https://docs.google.com/spreadsheets/d/1sYlX0fZqEJVZluxEI3m_strFsDCcm6EtWJUyTSD6ymU/edit)** (with Forum post [here](http://hsquizbowl.org/forums/viewtopic.php?f=123&t=16556&p=307146)): Round Robin templates. What it says on the tin. More by the tournament wizard Cody Voight.
 - **[LaTeX Schedule Templates](https://github.com/jonahgreenthal/qbschedule)**: If you'd like pretty schedules, you can play academic for a day and use [LaTeX](https://www.latex-project.org/) templates.
 - **[Tournament Search by Team](http://hdwhite.org/qb/stats/)** (with Forum post [here](http://hsquizbowl.org/forums/viewtopic.php?f=123&t=14306)): Useful for a variety of reasons, but mainly when you want to seed teams for a potential round robin while scheduling your tournament. Also useful to brush up on how well your competition's doing.
+- **[Power Matching](http://hsquizbowl.org/forums/viewtopic.php?f=117&t=21371)**: A useful thread about _power matching_, a card-based seeding system for tournaments.
 
 <div id='statsscoring' class='anchor'></div>
 
