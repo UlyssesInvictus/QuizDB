@@ -115,7 +115,7 @@ class StatsBar extends React.Component {
   }
 }
 
-StatsBar.PropTypes = {
+StatsBar.propTypes = {
   years: PropTypes.object.isRequired,
   yearsKey: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,

@@ -92,7 +92,7 @@ class StatsText extends React.Component {
   }
 }
 
-StatsText.PropTypes = {
+StatsText.propTypes = {
   tossups: PropTypes.object.isRequired,
   bonuses: PropTypes.object.isRequired,
   numTossupsFound: PropTypes.number.isRequired,

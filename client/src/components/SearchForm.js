@@ -214,7 +214,7 @@ class SearchForm extends React.Component {
   }
 }
 
-SearchForm.PropTypes = {
+SearchForm.propTypes = {
   onSearch: PropTypes.func.isRequired,
 }
 
