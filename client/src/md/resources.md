@@ -72,8 +72,9 @@ tl;dr: You get out of quizbowl what you put into it.
 
 ## Tournament Direction
 
+- **[TD Advice](https://socalquizbowl.org/tournament-hosting-guide/)**: A massive 10,000 word+ guide to TDing. May be a little overkill, but if it's your first time TDing, this lists a lot of the common pitfalls that only experience would otherwise teach you of.
 - **[Schedule Templates](https://docs.google.com/spreadsheets/d/1Tx84Hv85smes1gx16pHW6iWr_LirpQ52JOvEKJyAFEY/edit#gid=0
-)** (with ACF's suggestions [here](https://acf-quizbowl.com/documents/474-2/)): It can be surprisingly difficult to plan schedules for different tournament sizes: Cody Voight's spreadsheet quickly lists the best options. Much the same exists at the ACF website, but in perhaps a more readable form.
+)** (with ACF's suggestions [here](https://acf-quizbowl.com/documents/474-2/) and NAQT's version [here](https://www.naqt.com/sct/approved-formats.jsp)): It can be surprisingly difficult to plan schedules for different tournament sizes: Cody Voight's spreadsheet quickly lists the best options. Much the same exists at the ACF and NAQT websites, but perhaps in more readable version.
 - **[Round Robin Templates](https://docs.google.com/spreadsheets/d/1sYlX0fZqEJVZluxEI3m_strFsDCcm6EtWJUyTSD6ymU/edit)** (with Forum post [here](http://hsquizbowl.org/forums/viewtopic.php?f=123&t=16556&p=307146)): Round Robin templates. What it says on the tin. More by the tournament wizard Cody Voight.
 - **[LaTeX Schedule Templates](https://github.com/jonahgreenthal/qbschedule)**: If you'd like pretty schedules, you can play academic for a day and use [LaTeX](https://www.latex-project.org/) templates.
 - **[Tournament Search by Team](http://hdwhite.org/qb/stats/)** (with Forum post [here](http://hsquizbowl.org/forums/viewtopic.php?f=123&t=14306)): Useful for a variety of reasons, but mainly when you want to seed teams for a potential round robin while scheduling your tournament. Also useful to brush up on how well your competition's doing.
