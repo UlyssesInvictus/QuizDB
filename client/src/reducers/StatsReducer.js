@@ -24,7 +24,7 @@ function stats(state = initialStatsState, action) {
         tossups: action.data.tossups,
         numTossupsFound: action.data.num_tossups_found,
         bonuses: action.data.bonuses,
-        numBonusesFound: action.data.numBonusesFound,
+        numBonusesFound: action.data.num_bonuses_found,
         years: action.data.years,
         lastUpdated: action.receivedAt,
       };
