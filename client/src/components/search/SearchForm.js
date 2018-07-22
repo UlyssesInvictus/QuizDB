@@ -21,6 +21,11 @@ class SearchForm extends React.Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      showFilters: false,
+    };
+
     this.triggerSearch = this.triggerSearch.bind(this);
     this.handleInputKeyPress = this.handleInputKeyPress.bind(this);
     this.handleRandomDropdownChange = this.handleRandomDropdownChange.bind(this);
@@ -94,18 +99,31 @@ class SearchForm extends React.Component {
               closeOnChange={false}
               button
             />
-            <Button content="Advanced" size='big' />
+            <Button
+              content="Advanced"
+              size='big'
+              icon={`caret ${this.state.showFilters ? "up" : "down" }`}
+              labelPosition="right"
+              onClick={() => {
+                this.setState(state => (
+                  { showFilters: !state.showFilters }
+                ));
+              }}
+            />
           </Input>
         </Grid.Column>
       </Grid>
 
-      {this.props.search.filterOptions ?
-        <SearchFilters
-          filterOptions={this.props.search.filterOptions}
-          selectedFilters={this.props.search.filters}
-        /> :
-        <Loader active inline='centered' size='huge'
-          content='Loading Search Options'/>
+      {
+        this.state.showFilters && (
+          this.props.search.filterOptions ?
+            <SearchFilters
+              filterOptions={this.props.search.filterOptions}
+              selectedFilters={this.props.search.filters}
+            /> :
+            <Loader active inline='centered' size='huge'
+              content='Loading Search Options'/>
+        )
       }
 
     </Container></div>
