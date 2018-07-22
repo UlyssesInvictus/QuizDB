@@ -105,7 +105,7 @@ class ThirdPartyIcons extends React.Component {
               onClick={() => handleIconClick(googlePrefix, query)}/>
         <Icon corner name='image' className='icon-clickable'
               onClick={() => handleIconClick(googleImagesPrefix, query)}/>
-        <Icon name='wikipedia' className='icon-clickable'
+        <Icon name='wikipedia w' className='icon-clickable'
               onClick={() => handleWikiIconClick(question, index)}/>
         <a href={`/admin/${typePlural}/${question.id}`} target="_blank" ref="nofollow">
           <Icon name='database' className='icon-clickable' link/>
