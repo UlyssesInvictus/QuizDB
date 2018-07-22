@@ -99,7 +99,7 @@ class ErrorModal extends React.Component {
   render() {
     const p = this.props;
     return <Modal className="error-modal"
-      dimmer={false}
+      dimmer='inverted'
       open={p.open}
       closeIcon='close'
       onClose={() => p.dispatch(toggleErrorModal(p.errorableId))}>
