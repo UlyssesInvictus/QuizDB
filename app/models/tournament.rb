@@ -1,7 +1,7 @@
 class Tournament < ApplicationRecord
 
   has_many :tossups
-  has_many :bonuses, class_name: Bonus
+  has_many :bonuses, class_name: "Bonus"
   has_many :bonus_parts, through: :bonuses
 
   enum difficulty: {
