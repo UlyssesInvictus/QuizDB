@@ -85,8 +85,6 @@ GEM
     ffi (1.9.25)
     figaro (1.1.1)
       thor (~> 0.14)
-    foreman (0.84.0)
-      thor (~> 0.19.1)
     formtastic (3.1.5)
       actionpack (>= 3.2.13)
     formtastic_i18n (0.6.0)
@@ -266,7 +264,6 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise (> 4.x)
   figaro
-  foreman (~> 0.84.0)
   jbuilder (~> 2.5)
   jbuilder_cache_multi
   jquery-rails
