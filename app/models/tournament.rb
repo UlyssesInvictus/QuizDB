@@ -77,8 +77,8 @@ class Tournament < ApplicationRecord
   end
 
   def rounds
-    tossups_rounds = tossups.distinct.pluck(:round)
-    bonuses_rounds = bonuses.distinct.pluck(:round)
+    tossups_rounds = tossups.pluck(:round).uniq
+    bonuses_rounds = bonuses.pluck(:round).uniq
     tossups_rounds | bonuses_rounds
   end
 
