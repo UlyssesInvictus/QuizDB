@@ -34,10 +34,15 @@ export function cleanString(str) {
   return newStr;
 }
 
+function escapeRegexSpecial(str) {
+  // eslint-disable-next-line
+  return str.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+}
+
 export function formatQuestionString(str, query=null) {
   let newStr = cleanString(str);
   if (query) {
-    newStr = newStr.replace(new RegExp(query, 'gi'), `<mark class='question-highlight'>$&</mark>`);
+    newStr = newStr.replace(new RegExp(escapeRegexSpecial(query), 'gi'), `<mark class='question-highlight'>$&</mark>`);
   }
   newStr = <span dangerouslySetInnerHTML={{__html: newStr}}/>;
   return newStr;
