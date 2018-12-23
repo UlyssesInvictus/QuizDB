@@ -119,9 +119,9 @@ def bonus_from_row(row):
 def parseQuinterest():
     f = open('/Users/raynorkuang/Desktop/quizDB_small.htm')
 
-    print "file opened"
+    print("file opened")
     soup = bs(f, "lxml")
-    print "soup loaded"
+    print("soup loaded")
     f.close()
 
     questions = {
@@ -130,27 +130,27 @@ def parseQuinterest():
     }
 
     rows = soup.find_all('div', class_='row')
-    print len(rows)
+    print(len(rows))
     f = open('parse_log.txt', 'w')
     counter = 0
     for r in rows:
         counter += 1
         if (counter % 50 == 0):
-            print "Processed " + str(counter) + " questions"
+            print("Processed " + str(counter) + " questions")
         question_sections = r.find_all('p')
         try:
             if len(question_sections) > 3:
                 if len(question_sections) >= 10:
-                    print counter
-                    print question_sections[0]
-                    print len(question_sections)
+                    print(counter)
+                    print(question_sections[0])
+                    print(len(question_sections))
                     assert(False)
                 assert(len(question_sections) < 10)
                 questions['bonuses'].append(bonus_from_row(r))
             else:
                 questions['tossups'].append(tossup_from_row(r))
         except Exception as e:
-            print counter, e
+            print(counter, e)
             f.write("Error parsing: ")
             f.write(r.text)
             f.write("\n")

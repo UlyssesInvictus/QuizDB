@@ -29,6 +29,34 @@ def sanitize(html, valid_tags=DEFAULT_VALID_TAGS):
 
     return sanitized
 
+# series of common reformatting tricks needed
+def reformat_line(s):
+    # handle common case of bold font being wrapped around the answer number as well
+    formatted_s = re.sub("<strong>(\d+\.?\s*)", r"\1<strong>", s)
+
+    # NOTE: this is all JS because it's all done client side currently
+    # I'm hesitant to replace any actual parsed content in case the replacement is wrong
+    # But may decide it's better to just do this all backend side eventually
+    # let newStr = str.replace(/Â/g, "");
+    # newStr = newStr.replace(/&quot;/g, "");
+    # newStr = newStr.replace(/猴/g, "f");
+    # newStr = newStr.replace(/睌/g, "f");
+    # newStr = newStr.replace(/猼/g, "f");
+    # newStr = newStr.replace(/✴/g, "fi");
+    # newStr = newStr.replace(/⢄/g, "ft");
+    # newStr = newStr.replace(/Ã¶/g, "ö");
+    # newStr = newStr.replace(/Ã©/g, "é");
+    # newStr = newStr.replace(/送/g, "fi");
+    # newStr = newStr.replace(/畔/g, "f");
+    # newStr = newStr.replace(/㱀/g, "f");
+    # newStr = newStr.replace(/Ã¼/g, "ü");
+    # newStr = newStr.replace(/Ã±/g, "ñ");
+    # newStr = newStr.replace(/㻈/g, "f");
+    # newStr = newStr.replace(/Ã¨/g, "è");
+    # newStr = newStr.replace(/Ã¸/g, "ü");
+    # newStr = newStr.replace(/ぺ/g, "ft");
+
+    return formatted_s
 
 def is_valid_content(s, strippable_lines_res=[]):
 

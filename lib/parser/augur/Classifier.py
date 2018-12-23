@@ -21,7 +21,7 @@ class Classifier:
         categories = []
         subcategories = []
 
-        for i in xrange(len(data["texts"])):
+        for i in range(len(data["texts"])):
             if data["categories"][i] != "None":
                 texts_with_category.append(data["texts"][i])
                 categories.append(data["categories"][i])

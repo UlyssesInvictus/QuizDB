@@ -40,8 +40,10 @@ class Loader:
         p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         output, errors = p.communicate()
 
-        print output
-        print errors
+        if (output):
+            print('Output:', output)
+        if (errors):
+            print('Errors:', errors)
 
         # hack to fix the issue where pandoc has no native underline element
         # we have to make an educate guess that the only case where there would

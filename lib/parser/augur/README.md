@@ -15,6 +15,7 @@ To use Augur, you must have the following installed:
   - the following python packages (use pip):
     - beautifulsoup (for parsing HTML)
       - lxml, the parser used with beautifulsoup
+      - scipy, numpy, and scikitlearn (for question subject classification purposes)
     - PyYAML (for dumping data to yaml)
   - the following system tools:
     - pandoc (for background loading of doc/docx files)
@@ -96,6 +97,7 @@ Argument  |  Description
 `--bonuspart-text-re`   |  Regex describing the format of a bonus part text.
 `--bonuspart-answer-re`   |  Regex describing the format of a bonus part answer.
 `--strippable-lines-res`  |  Regices describing any lines within the packet that can be safely ignored. (So as to avoid accidentally including in a question.)
+`--classifier_data_filename`  |  Filepath of the classifier data to use
 
 
 

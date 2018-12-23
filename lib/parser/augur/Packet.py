@@ -1,17 +1,16 @@
 import codecs
 import yaml
 import re
-from utils import sanitize, is_valid_content
+from utils import sanitize, is_valid_content, reformat_line
 from Tossup import Tossup
 from Bonus import Bonus
 from Classifier import Classifier
 
-TOSSUP_TEXT_REGEX = re.compile(r'^\s*(\(\d+\)|\d+\.?|t(ie)?b(reak(er)?)?:?)\s*', re.I)
+TOSSUP_TEXT_REGEX = re.compile(r'^\s*(\(\d+\)|\d+\.?|extra|t(ie)?b(reak(er)?)?:?)\s*', re.I)
 TOSSUP_ANSWER_REGEX = re.compile(r'^\s*answer:?\s*', re.I)
-BONUS_LEADIN_REGEX = re.compile(r'^\s*(\(\d+\)|\d+\.?|t(ie)?b(reak(er)?)?:?)\s*', re.I)
+BONUS_LEADIN_REGEX = re.compile(r'^\s*(\(\d+\)|\d+\.?|extra|t(ie)?b(reak(er)?)?:?)\s*', re.I)
 BONUSPART_TEXT_REGEX = re.compile(r'^\s*(\(\d+\)|\[\d+\])\s*', re.I)
 BONUSPART_ANSWER_REGEX = re.compile(r'^\s*answer:?\s*', re.I)
-
 
 class Packet:
 
@@ -20,7 +19,7 @@ class Packet:
                  bonus_leadin_re=BONUS_LEADIN_REGEX, bonuspart_text_re=BONUSPART_TEXT_REGEX,
                  bonuspart_answer_re=BONUSPART_ANSWER_REGEX,
                  num_tossups=-1, strippable_lines_res=[],
-                 classifier_data_filename="quizb_classifier_training_data.json"):
+                 classifier_data_filename="quizdb_classifier_training_data.json"):
         self.filename = filename
         self.tournament = tournament
         self.round = round
@@ -56,16 +55,16 @@ class Packet:
         for tossup in self.tossups:
             if not tossup.is_valid():
                 valid = False
-                print "Tossup %d invalid" % tossup.number
-                print "Its text: %s" % tossup.text
-                print "Its answer: %s" % tossup.answer
+                print("Tossup %d invalid" % tossup.number)
+                print("Its text: %s" % tossup.text)
+                print("Its answer: %s" % tossup.answer)
         for bonus in self.bonuses:
             if not bonus.is_valid():
                 valid = False
-                print "Bonus %d invalid" % bonus.number
-                print "Its leadin: %s" % (bonus.leadin)
-                print "Its texts: %s (length: %d)" % (bonus.texts, len(bonus.texts))
-                print "Its answers: %s (length: %d)" % (bonus.answers, len(bonus.answers))
+                print("Bonus %d invalid" % bonus.number)
+                print("Its leadin: %s" % (bonus.leadin))
+                print("Its texts: %s (length: %d)" % (bonus.texts, len(bonus.texts)))
+                print("Its answers: %s (length: %d)" % (bonus.answers, len(bonus.answers)))
         return valid
 
     def classify(self):
@@ -73,7 +72,7 @@ class Packet:
         if len(self.tossups) > 0:
             tossup_category_Y = classifier.predict_categories(self.tossups)
             tossup_subcategory_Y = classifier.predict_subcategories(self.tossups)
-        for i in xrange(len(self.tossups)):
+        for i in range(len(self.tossups)):
             self.tossups[i].category = str(tossup_category_Y[i])
             if re.search("^" + str(tossup_category_Y[i]), str(tossup_subcategory_Y[i])):
                 self.tossups[i].subcategory = str(tossup_subcategory_Y[i])
@@ -83,7 +82,7 @@ class Packet:
             bonus_X = [t.content() for t in self.bonuses]
             bonus_category_Y = classifier.predict_categories(self.bonuses)
             bonus_subcategory_Y = classifier.predict_subcategories(self.bonuses)
-        for i in xrange(len(self.bonuses)):
+        for i in range(len(self.bonuses)):
             self.bonuses[i].category = str(bonus_category_Y[i])
             if re.search("^" + str(bonus_category_Y[i]), str(bonus_subcategory_Y[i])):
                 self.bonuses[i].subcategory = str(bonus_subcategory_Y[i])
@@ -108,14 +107,13 @@ class Packet:
             f.write("# %s \n" % (settings))
             f.write("# TOSSUPS\n")
             f.write("# %d tossups total\n" % len(self.tossups))
-            yaml.safe_dump(map(lambda x: x.to_dict(), self.tossups), f,
-                           default_flow_style=False,
-                           encoding=None)
+            # import pudb; pudb.set_trace()
+            yaml.safe_dump([tu.to_dict() for tu in self.tossups], f,
+                           default_flow_style=False)
             f.write("# BONUSES\n")
             f.write("# %d bonuses total\n" % len(self.bonuses))
-            yaml.safe_dump(map(lambda x: x.to_dict(), self.bonuses), f,
-                           default_flow_style=False,
-                           encoding=None)
+            yaml.safe_dump([b.to_dict() for b in self.bonuses], f,
+                           default_flow_style=False)
 
     def parse_packet(self):
         lines = self.load_html()
@@ -130,7 +128,7 @@ class Packet:
         current_bonus = Bonus(1)
 
         for l in lines:
-            sanitized_l = sanitize(l)
+            sanitized_l = sanitize(reformat_line(l))
             # import pdb; pdb.set_trace()
 
             # edge case for switching from tossups to bonuses
@@ -149,6 +147,7 @@ class Packet:
                     current_tossup = Tossup(len(tossups) + 1)
                     current_tossup.text = self.tossup_text_re.sub("", l, count=1)
                     current_tossup.answer = ""
+                # TODO: handle case where the next answer line isn't actually on the next line *sigh*
                 elif self.tossup_answer_re.search(sanitized_l):
                     current_tossup.answer = self.tossup_answer_re.sub("", l, count=1)
                 else:
@@ -192,10 +191,10 @@ class Packet:
         if current_bonus.has_content():
             bonuses.append(current_bonus)
 
-        for i in xrange(len(tossups)):
+        for i in range(len(tossups)):
             tossups[i].tournament = self.tournament
             tossups[i].round = self.round
-        for i in xrange(len(bonuses)):
+        for i in range(len(bonuses)):
             bonuses[i].tournament = self.tournament
             bonuses[i].round = self.round
 

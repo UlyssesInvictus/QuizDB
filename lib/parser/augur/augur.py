@@ -6,16 +6,16 @@ import re
 
 
 def packet_parser(args):
-    print "Loading packet into machine readable format....",
+    print("Loading packet into machine readable format....",)
     loader = Loader(args.input_file)
     try:
         load_file = loader.load()
     except LoaderInvalidFormatError as e:
-        print e
+        print('Invalid loader format:', e)
         return
-    print "Done!"
+    print("Done!")
 
-    print "Parsing packet %s...." % (args.tournament + " " + args.round),
+    print("Parsing packet %s...." % (args.tournament + " " + args.round),)
     special_args = {}
     special_arg_names = ["num_tossups", "tossup_text_re", "tossup_answer_re",
                          "bonus_leadin_re", "bonuspart_text_re", "bonuspart_answer_re",
@@ -29,20 +29,20 @@ def packet_parser(args):
 
     packet = Packet(load_file, args.tournament, args.round, **special_args)
     packet.parse_packet()
-    print "Done!"
+    print("Done!")
 
     if packet.is_valid():
-        print "Categorizing questions..."
+        print("Categorizing questions...")
         packet.classify()
-        print "Done!"
+        print("Done!")
 
-        print "Outputting questions..."
+        print("Outputting questions...")
         output_file = args.output_file if args.output_file else args.input_file + ".yml"
 
         packet.dump_yaml(output_file)
-        print "Done!"
+        print("Done!")
     else:
-        print "Invalid packet. Please reformat and try again."
+        print("Invalid packet. Please reformat and try again.")
 
 
 def main():

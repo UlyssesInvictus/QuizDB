@@ -25,7 +25,7 @@ class Bonus:
             return False
 
         if len(self.texts) == 0 or len(self.answers) == 0:
-            print "Discrepancy in Bonus %d" % self.number
+            print("Discrepancy in Bonus %d" % self.number)
             return False
 
         return self.texts[0].strip() != "" or self.answers[0].strip() != ""
@@ -36,8 +36,8 @@ class Bonus:
             "leadin": self.leadin,
             "formatted_texts": self.texts,
             "formatted_answers": self.answers,
-            "texts": map(lambda x: sanitize(x, valid_tags=[]), self.texts),
-            "answers": map(lambda x: sanitize(x, valid_tags=[]), self.answers),
+            "texts": [sanitize(t, valid_tags=[]) for t in self.texts],
+            "answers": [sanitize(a, valid_tags=[]) for a in self.answers],
             "category": self.category,
             "subcategory": self.subcategory,
             "tournament": self.tournament,
@@ -56,7 +56,7 @@ class Bonus:
 
     def content(self):
         text = self.leadin
-        for i in xrange(3):
+        for i in range(3):
             if len(self.texts) > i:
                 text += " " + self.texts[i] + " ANSWER: " + self.answers[i]
         return text
