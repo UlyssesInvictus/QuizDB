@@ -43,7 +43,11 @@ class Packet:
             lines = f.readlines()
         prepared_lines = []
         for l in lines:
-            split_lines = re.split('<br\s*/?>', l)
+            # HACK to fix a common case of an answer/text not being on a new line
+            # by using how we split up line breaks ourselves
+            hacked_l = re.sub('(ANSWER|\[10\])', r'<br>\1', l, re.I)
+
+            split_lines = re.split('<br\s*/?>', hacked_l)
             for split_line in split_lines:
                 sanitized_line = sanitize(split_line).strip()
                 if is_valid_content(sanitized_line, strippable_lines_res=self.strippable_lines_res):

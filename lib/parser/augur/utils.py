@@ -63,8 +63,9 @@ def is_valid_content(s, strippable_lines_res=[]):
     # using this weird code structure b/c it's easier to add new conditions this way
 
     # sanity check, since most valid content is longer than this
-    if len(s) <= 5:
-        return False
+    # (Disabled for now, since this seems to not actually harm things if we include short lines)
+    # if len(s) <= 5:
+    #     return False
 
     # get rid of pointless section headers
     if s in ['Extra, Extras']:
