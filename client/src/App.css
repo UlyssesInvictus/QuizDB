@@ -99,9 +99,9 @@
     .navbar.shrink .navbar-links i.icon {
       font-size: 1em; }
   .navbar ~ * .quizdb-page {
-    padding-top: 8.5rem; }
+    padding-top: 12rem; }
   .navbar.mobile ~ * .quizdb-page {
-    padding-top: 5.5rem; }
+    padding-top: 9rem; }
 
 .ui.inverted.menu.quizdb-sidebar-close:hover {
   cursor: pointer;
