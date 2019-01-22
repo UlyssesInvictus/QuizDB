@@ -84,7 +84,7 @@ class Navbar extends React.Component {
         </div>
       </Container>
       {!this.shown_banner &&
-      <div>
+      <div id="header-hider">
       <br />
       <center>
         <h1>Download the new <a href="https://itunes.apple.com/app/id1439712679">QuizDB</a> app for iOS!</h1>
