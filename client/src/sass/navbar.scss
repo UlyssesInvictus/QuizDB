@@ -133,11 +133,11 @@
   }
 
   & ~ * .quizdb-page {
-    padding-top: 8.5rem;
+    padding-top: 12rem;
   }
 
   &.mobile ~ * .quizdb-page {
-    padding-top: 5.5rem;
+    padding-top: 9rem;
   }
 
 }
@@ -164,4 +164,31 @@
       color: $secondary-text-color;
     }
   }
+}
+
+#header-hider {
+    -moz-animation: cssAnimation 0s ease-in 15s forwards;
+    /* Firefox */
+    -webkit-animation: cssAnimation 0s ease-in 15s forwards;
+    /* Safari and Chrome */
+    -o-animation: cssAnimation 0s ease-in 15s forwards;
+    /* Opera */
+    animation: cssAnimation 0s ease-in 15s forwards;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+}
+
+@keyframes cssAnimation {
+    to {
+        width:0;
+        height:0;
+        overflow:hidden;
+    }
+}
+@-webkit-keyframes cssAnimation {
+    to {
+        width:0;
+        height:0;
+        visibility:hidden;
+    }
 }
