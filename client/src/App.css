@@ -99,9 +99,9 @@
     .navbar.shrink .navbar-links i.icon {
       font-size: 1em; }
   .navbar ~ * .quizdb-page {
-    padding-top: 8.5rem; }
+    padding-top: 12rem; }
   .navbar.mobile ~ * .quizdb-page {
-    padding-top: 5.5rem; }
+    padding-top: 9rem; }
 
 .ui.inverted.menu.quizdb-sidebar-close:hover {
   cursor: pointer;
@@ -113,6 +113,29 @@
 
 .ui.inverted.menu.quizdb-sidebar > a.item:hover {
   color: #2185d0; }
+
+#header-hider {
+  -moz-animation: cssAnimation 0s ease-in 15s forwards;
+  /* Firefox */
+  -webkit-animation: cssAnimation 0s ease-in 15s forwards;
+  /* Safari and Chrome */
+  -o-animation: cssAnimation 0s ease-in 15s forwards;
+  /* Opera */
+  animation: cssAnimation 0s ease-in 15s forwards;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards; }
+
+@keyframes cssAnimation {
+  to {
+    width: 0;
+    height: 0;
+    overflow: hidden; } }
+
+@-webkit-keyframes cssAnimation {
+  to {
+    width: 0;
+    height: 0;
+    visibility: hidden; } }
 
 .root-credits {
   padding: 2rem 0;

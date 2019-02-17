@@ -23,6 +23,11 @@ class Navbar extends React.Component {
     this.handleScroll = this.handleScroll.bind(this);
     this.handleBrandClick = this.handleBrandClick.bind(this);
     this.handleBurgerClick = this.handleBurgerClick.bind(this);
+    this.shown_banner = true;
+    if (!localStorage.getItem('shown-banner') || localStorage.getItem('shown-banner') === "false") {
+      this.shown_banner = false;
+    }
+    localStorage.setItem('shown-banner', true);
   }
 
   componentDidMount() {
@@ -78,6 +83,14 @@ class Navbar extends React.Component {
           </div>
         </div>
       </Container>
+      {!this.shown_banner &&
+      <div id="header-hider">
+      <br />
+      <center>
+        <h1>Download the new <a href="https://itunes.apple.com/app/id1439712679">QuizDB</a> app for iOS!</h1>
+      </center>
+      </div>
+      }
     </nav>
   }
 }
