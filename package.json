@@ -9,6 +9,5 @@
     "deploy": "cp -a client/build/. public/",
     "postinstall": "npm run build && npm run deploy && echo 'Client built!'",
     "heroku-postbuild": "echo Skip builds on Heroku"
-  },
-  "heroku-run-build-script": true
+  }
 }
