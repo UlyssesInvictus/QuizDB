@@ -6,15 +6,16 @@ tl;dr: You get out of quizbowl what you put into it.
 
 <!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:0 orderedList:0 -->
 
-**Table of Contents:**
-- [Essential](#essential)
-- [Communication](#communication)
-- [Study](#study)
-	- [Question DBs](#question-dbs)
-- [Question Writing](#question-writing)
-- [Tournament Direction](#tournament-direction)
-	- [Stats/Scoring](#statsscoring)
-- [Misc](#misc)
+- [QB Resources](#qb-resources)
+	- [Essential](#essential)
+	- [Communication](#communication)
+	- [Study](#study)
+		- [Question DBs](#question-dbs)
+		- [QuizDB-Based 3rd-Party Resources](#3rd-party)
+	- [Question Writing](#question-writing)
+	- [Tournament Direction](#tournament-direction)
+		- [Stats/Scoring](#statsscoring)
+	- [Misc](#misc)
 
 <!-- /TOC -->
 
@@ -58,6 +59,13 @@ tl;dr: You get out of quizbowl what you put into it.
 - **[aseemDB](http://aseemsdb.me/)**: Works by indexing Google cached packets rather than storing questions in its own DB, consequently giving it the effective largest search index of all. Has advanced search, though the requirement to actually download the packets you find to view the questions can be a dealbreaker.
 - **[Google](https://google.com)**: Not to be facetious, but nothing beats deep research on Google and Wikipedia. More helpfully, a useful trick is to search using `site:quizbowlpackets.com [your search goes here]`, searching Google's cache of all the Packet Archives at once. This is effectively aseemDB's strategy, but more direct.
 - **NAQT & HSAPQ**: These aren't free or open-source, but NAQT and HSAPQ both sell their own questions and study material. This isn't a viable option for small teams or individual players, but if you can convince your activities treasury to shell out, these can be a great tool.
+
+<div id='3rd-party' class='anchor'></div>
+
+### QuizDB-Based 3rd-Party Resources
+
+Some 3rd parties have made resources using the QuizDB API (see the [About](/about) page if you'd like to make your own!) _Except unless noted, none of these resources are officially licensed by QuizDB._ They are listed here:
+- A QuizDB mobile app: [https://itunes.apple.com/app/id1439712679](https://itunes.apple.com/app/id1439712679). Officially _recommended_ by QuizDB.
 
 <div id='question-writing' class='anchor'></div>
 

@@ -80,6 +80,23 @@ Both the frontend and backend live in the following repository: [https://github.
 
 The repo is open source. If you'd like to contribute, please fork the repo and make a pull request. You can find full tech specs and contribution guidelines in the README at the base of the repo.
 
+<div id='api' class='anchor'></div>
+
+### Accessing the QuizDB API
+
+The QuizDB API, and the body of question data it gives access to, is more-or-less free to use. I haven't added an official license, but it generally boils down to:
+1. If you will be making money off the questions in any way (e.g., by creating a question reader app using QuizDB questions, that includes ads), please contact me so we can discuss how to make sure that your app is not construed by the public as an officially licensed QuizDB product.
+2. Otherwise, you are free to use the questions for research projects, hobby projects, personal study tools, etc.
+
+If you create a tool using the QuizDB API, and you feel it would be helpful to the quizbowl community, please contact me and I can add it to the [Resources](/resources) page.
+
+There are three main ways to access the API:
+1. [HIGHLY RECOMMENDED] By far the most recommended solution is to download a copy of the QuizDB database. Copies are stored in a public Amazon S3 bucket [here](https://s3.console.aws.amazon.com/s3/buckets/quizdb-public/?region=us-east-1&tab=overview), and are manually uploaded every few months. An example copy (uploaded 1/22/19) is [here](https://s3.amazonaws.com/quizdb-public/quizdb-01222019.sql.zip). These files are very large (~50MB zipped). **This is the MOST recommended solution**, because it introduces no extra load to the QuizDB servers. If you use the other solutions, you may unintentionally DDOS the servers as it tries to load questions for your request.
+2. [RECOMMENDED WITH CAUTION] There is an admin interface at [https://quizdb.org/admin](/admin). If you make an account, you will gain access to an interface with the same filters as the main client, but with additional TXT/JSON links that you can either use in the browser or directly copy into any web request-making program (i.e. these are the API "endpoints"). This will introduce load to the API, but if you take caution and spread out your API requests over time, the server should be OK.
+3. [NOT RECOMMENDED EXCEPT FOR THE NON-TECHNICAL] You can also use the main client at the QuizDB homepage. By default, all requests are limited to 150 questions returned because of the extreme extra load of requests made through this format. If you're very non-technical and do not want to make an admin account, then you can just request "all" questions by searching without any input. To retrieve more than the 150 questions you're limited to, you can segment your searches by smaller groups such as difficulty, year, or tournament.
+
+Please contact me if you need any extra help interfacing with the API.
+
 <div id='contact' class='anchor'></div>
 
 ## Contact
