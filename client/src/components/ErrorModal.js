@@ -112,7 +112,9 @@ class ErrorModal extends React.Component {
               <Grid.Row><Header size='small'>
                 Submit an error, correction, fix, or update. You
                 must submit a type AND description. Please be as specific as possible so
-                we can incorporate your feedback!
+                we can incorporate your feedback! (Do NOT report "factual errors" in the
+                original question, ONLY "presentation errors." The question may be wrong,
+                but QuizDB isn't here to amend for past mistakes!)
               </Header></Grid.Row>
               {p.errors.errorTypes.map(e =>
                 this.renderRadioField(e.error_type, e.error_description)
