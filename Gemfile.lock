@@ -254,7 +254,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activeadmin
+  activeadmin (= 1.4.3)
   bootsnap (>= 1.1.0)
   cancancan (~> 2.0)
   coffee-rails (~> 4.2)

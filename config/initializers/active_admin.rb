@@ -293,9 +293,11 @@ ActiveAdmin.setup do |config|
 
   # HACK: override default view factories
   # so that we can add our extra javascript
+  # TODO: this works, but ability to add directly into head is getting added soon:
+  # https://github.com/activeadmin/activeadmin/pull/5590
   ActiveAdmin::Views::Pages::Base.class_eval do
     def build_active_admin_head
-      within @head do
+      within head do
         insert_tag Arbre::HTML::Title, [title, render_or_call_method_or_proc_on(self, active_admin_namespace.site_title)].compact.join(" | ")
         active_admin_application.stylesheets.each do |style, options|
           text_node stylesheet_link_tag(style, options).html_safe
@@ -330,5 +332,4 @@ ActiveAdmin.setup do |config|
       end
     end
   end
-
 end
