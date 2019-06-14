@@ -30,35 +30,6 @@ You must have Ruby 2.4 and Rails 5.0 installed to run the application. Consult t
 
 As mentioned above, you can run the backend by running `rake start`, but you can also run the backend individually with `rails s -p 3000`.
 
-## Postgres Database
-
-Prior to running your backend, you must set up a local Postgres server.
-
-### Install Postgres
-
-Find the installation instructions on [Postgres' site](https://www.postgresql.org/download/). Altneratively, simply Google _"installing postgres for [your OS]"_ as there are normally simpler instructions than the ones provided on their websites. This is especially recommended for Ubuntu (use [Digital Ocean's guide.](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-18-04) It's much simpler).
-
-### Start Postgres
-
-- On Ubuntu/Linux, run `sudo service postgresql start`
-- On MacOS, run `brew services start postgresql`
-- On Windows, run `pg_ctl -D "C:\Program Files\PostgreSQL\9.6\data" start`
-
-### Create a new role
-
-Run `sudo -u postgres createuser --interactive`. This will prompt you to create a new user. The user should match your operating system username. Press `y` when asked if the new role should be a superuser.
-
-### Create a new database
-
-Run `sudo -u postgres createdb quizdb_development`.
-This will create the `quizdb_development` database.
-
-### Add a user and grant all privileges
-
-Enter psql by running `sudo -u postgres psql`.
-In the psql prompt, run `alter user [username] with encrypted password 'password';` to create a password for your user.
-Then, run `grant all privileges on database quizdb_development to [username] ;`
-
 ## Frontend
 
 The frontend consists of the modern web client that pings the API to display questions. It also includes Moxon, an online question reader in active development. The frontend lives entirely in a subfolder in `/client`, so if you're not interested in backend work, you can entirely work in that folder.
