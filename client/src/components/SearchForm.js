@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { createBrowserHistory } from 'history';
 
 import {
   fetchFilterOptions,
@@ -25,6 +26,8 @@ class SearchForm extends React.Component {
     this.renderSearchOptions = this.renderSearchOptions.bind(this);
     this.handleInputKeyPress = this.handleInputKeyPress.bind(this);
     this.handleRandomDropdownChange = this.handleRandomDropdownChange.bind(this);
+
+    this.history = createBrowserHistory();
   }
 
   componentWillMount() {
@@ -52,6 +55,14 @@ class SearchForm extends React.Component {
   triggerSearch() {
     const p = this.props;
     p.onSearch();
+
+    const query = this.props.search.query;
+    const queryFilters = this.buildQuery(this.props.search.filters, true)
+
+    this.history.push({
+      pathname: '/',
+      search: `?query=${query}${queryFilters.length > 0 ? '&' : ''}${queryFilters}`
+    })
   }
 
   buildTourneyOptions(difficulties, tournaments) {
@@ -116,6 +127,26 @@ class SearchForm extends React.Component {
       // don't bother showing header if it's not a header for anything
       return opts.length > 1 ? opts : [];
     }));
+  }
+
+  buildQuery(data, filterEmpty = true) {
+    // If the data is already a string, return it as-is
+	  if (typeof (data) === 'string') return data;
+
+    // Create a query array to hold the key/value pairs
+    const query = [];
+
+    // Loop through the data object
+    for (let key in data) {
+      if (data.hasOwnProperty(key) && (!filterEmpty || (Array.isArray(data[key]) && data[key].length > 0))) {
+
+        // Encode each key and value, concatenate them into a string, and push them to the array
+        query.push(encodeURIComponent(key) + '=' + encodeURIComponent(data[key]));
+      }
+    }
+
+    // Join each item in the array with a `&` and return the resulting string
+    return query.join('&');
   }
 
   renderSearchOptions() {
