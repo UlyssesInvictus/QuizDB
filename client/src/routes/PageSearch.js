@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import {
-  fetchQuestions,
+  fetchQuestions, updateSearchFilter, updateSearch
 } from '../actions/actions';
 
 // Components
@@ -18,6 +18,23 @@ import SearchEasterEggs from '../utilities/SearchEasterEggs';
 
 
 class PageSearch extends React.Component {
+  componentDidMount() {
+    const p = this.props;
+    const urlParams = new URLSearchParams(window.location.search);
+
+    for(const [key, value] of urlParams.entries()) {
+      if(key !== 'query') {
+        if(key === "category") {
+          p.dispatch(updateSearchFilter(key, value.split(',').map(e => parseInt(e, 10))))
+        } else {
+          p.dispatch(updateSearchFilter(key, value.split(',')))
+        }
+      } else {
+        p.dispatch(updateSearch(value))
+      }
+    }
+  }
+
   render() {
     const p = this.props;
     return  <div className="quizdb-search">
