@@ -24,7 +24,7 @@ class PageSearch extends React.Component {
 
     for(const [key, value] of urlParams.entries()) {
       if(key !== 'query') {
-        if(key === "category") {
+        if(key === "category" || key === "subcategory" || key === "tournament") {
           p.dispatch(updateSearchFilter(key, value.split(',').map(e => parseInt(e, 10))))
         } else {
           p.dispatch(updateSearchFilter(key, value.split(',')))
