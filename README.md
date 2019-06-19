@@ -18,6 +18,8 @@ After installing both the backend and frontend, you can run both simultaneously 
 
 To install the backend of **Ruby 2.4** and **Rails 5.0**, use the [following guide](https://gorails.com/setup/ubuntu/16.04) and select your OS. Run `bundle install` to install all the missing gems.
 
+Then, install the Heroku CLI to run the backend server locally. Do so by using the [download instructions on the following link](https://devcenter.heroku.com/articles/heroku-cli) and reading your OS specific instructions.
+
 Afterwards, install **Node 8** [following this guide](https://nodejs.org/en/download/package-manager/#nvm) according to your system. To install all the dependencies, run `npm install`.
 
 ## Backend
