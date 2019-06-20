@@ -1,0 +1,31 @@
+// TODO: create your general Page css...
+.PageReader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+
+  h2 {
+    font-size: 64px;
+  }
+
+  h3 {
+    font-size: 48px;
+  }
+
+  &--time {
+    margin-top: 32px;
+
+    &--counter {
+      margin-top: 16px;
+      font-size: 32px;
+      line-height: 32px;
+      text-align: left;
+    }
+  }
+
+  &--embarassed {
+    margin-top: 64px;
+  }
+}

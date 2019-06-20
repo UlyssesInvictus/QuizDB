@@ -22,6 +22,7 @@ import PageResources from './PageResources';
 import PageFuture from './PageFuture';
 import PageSettings from './PageSettings';
 import PageHelp from './PageHelp';
+import PageReader from './PageReader';
 
 import Page404 from './Page404';
 import PageRefresh from './PageRefresh';
@@ -159,8 +160,38 @@ class Root extends React.Component {
     }
   }
 
+  renderMenuItems = () => {
+    const items = [
+      { name: 'home', icon: 'home', href: '/', text: 'Home' },
+      { name: 'admin', icon: 'dashboard', href: '/admin', text: 'Admin' },
+      { name: 'stats', icon: 'bar chart', href: '/stats', text: 'Stats' },
+      { name: 'resources', icon: 'bookmark', href: '/resources', text: 'Resources' },
+      { name: 'reader', icon: 'book', href: '/reader', text: 'Reader' },
+      { name: 'settings', icon: 'settings', href: '/settings', text: 'Settings' },
+      { name: 'about', icon: 'info circle', href: '/about', text: 'About' },
+      { name: 'help', icon: 'question circle', href: '/help', text: 'Help' },
+    ];
+
+    return (
+      items.map((item, index) => (
+        <Menu.Item
+          key={index}
+          name={item.name}
+          as={item.name === 'admin' ? 'a' : Link}
+          to={item.name === 'admin' ? undefined : item.href}
+          href={item.name === 'admin' ? item.href : undefined}
+          onClick={() => this.props.dispatch(toggleSidebar())}
+        >
+          <span>
+            <Icon name={item.icon}/>
+            {item.text}
+          </span>
+        </Menu.Item>
+      ))
+    );
+  }
+
   render() {
-    const dispatch = this.props.dispatch;
     const sidebarWidth = this.props.browser.lessThan.medium ? 'thin' : 'wide';
 
     return <div className="quizdb">
@@ -176,7 +207,8 @@ class Root extends React.Component {
                   onClick={() => this.props.dispatch(toggleSidebar())}>
           <Icon name='remove' className='quizdb-sidebar-close'/>
         </Menu.Item>
-        <Menu.Item name='home' as={Link} to='/' onClick={() => dispatch(toggleSidebar())}>
+        {this.renderMenuItems()}
+        {/* <Menu.Item name='home' as={Link} to='/' onClick={() => dispatch(toggleSidebar())}>
             <span><Icon name='home' />Home</span>
         </Menu.Item>
         <Menu.Item name='admin' as={'a'} href='/admin' onClick={() => dispatch(toggleSidebar())}>
@@ -188,6 +220,9 @@ class Root extends React.Component {
         <Menu.Item name='resources' as={Link} to='/resources' onClick={() => dispatch(toggleSidebar())}>
             <span><Icon name='bookmark'/>Resources</span>
         </Menu.Item>
+        <Menu.Item name='reader' as={Link} to='/reader' onClick={() => dispatch(toggleSidebar())}>
+            <span><Icon name='book'/>Resources</span>
+        </Menu.Item>
         <Menu.Item name='settings' as={Link} to='/settings' onClick={() => dispatch(toggleSidebar())}>
             <span><Icon name='settings'/>Settings</span>
         </Menu.Item>
@@ -196,7 +231,7 @@ class Root extends React.Component {
         </Menu.Item>
         <Menu.Item name='help' as={Link} to='/help' onClick={() => dispatch(toggleSidebar())}>
             <span><Icon name='question circle'/>Help</span>
-        </Menu.Item>
+        </Menu.Item> */}
 
       </Sidebar>
       <Navbar/>
@@ -208,10 +243,11 @@ class Root extends React.Component {
               <Route exact path="/" component={PageSearch}/>
               <Route exact path="/about" component={PageAbout}/>
               <Route exact path="/help" component={PageHelp}/>
+              <Route exact path='/reader' component={PageReader}/>
               <Route exact path="/resources" component={PageResources}/>
-              <Route exact path="/future" component={PageFuture}/>
               <Route exact path="/stats" component={PageStats}/>
               <Route exact path="/settings" component={PageSettings}/>
+              <Route exact path="/future" component={PageFuture}/>
               <Route component={Page404}/>
             </Switch>
           </main>
