@@ -18,6 +18,22 @@ import SearchEasterEggs from '../utilities/SearchEasterEggs';
 
 
 class PageSearch extends React.Component {
+  constructor(props) {
+    super(props);
+    
+    this.search = this.search.bind(this);
+  }
+
+  search() {
+    const p = this.props;
+
+    SearchEasterEggs(this.props.dispatch, this.props.search.query);
+    p.dispatch(fetchQuestions({
+      searchQuery: this.props.search.query,
+      searchFilters: this.props.search.filters
+    }));
+  }
+  
   async componentDidMount() {
     const p = this.props;
 
@@ -40,25 +56,14 @@ class PageSearch extends React.Component {
         }
       }
 
-      SearchEasterEggs(this.props.dispatch, this.props.search.query);
-      p.dispatch(fetchQuestions({
-        searchQuery: this.props.search.query,
-        searchFilters: this.props.search.filters
-      }));
+      this.search();
     }
   }
 
   render() {
-    const p = this.props;
     return  <div className="quizdb-search">
       <SearchForm
-        onSearch={() => {
-          SearchEasterEggs(this.props.dispatch, p.search.query);
-          p.dispatch(fetchQuestions({
-            searchQuery: p.search.query,
-            searchFilters: p.search.filters
-          }));
-        }}
+        onSearch={this.search}
       />
       <RootCredits/>
       <QuestionsContainer/>
