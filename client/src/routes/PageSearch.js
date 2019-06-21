@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import {
-  fetchQuestions, updateSearchFilter, updateSearch, fetchFilterOptions
+  fetchQuestions, updateSearchFilter, updateSearch
 } from '../actions/actions';
 
 // Components
@@ -20,8 +20,9 @@ import SearchEasterEggs from '../utilities/SearchEasterEggs';
 class PageSearch extends React.Component {
   constructor(props) {
     super(props);
-    
+
     this.search = this.search.bind(this);
+    this.getQueryFromUrl = this.getQueryFromUrl.bind(this);
   }
 
   search() {
@@ -35,14 +36,15 @@ class PageSearch extends React.Component {
   }
   
   async componentDidMount() {
+    if (this.props.search.filterOptions)
+      this.getQueryFromUrl();
+  }
+
+  getQueryFromUrl() {
     const p = this.props;
 
     if(window.location.search.length !== 0) {
       const urlParams = new URLSearchParams(window.location.search);
-
-      if (!p.search.filterOptions) {
-        await p.dispatch(fetchFilterOptions())
-      }
 
       for(const [key, value] of urlParams.entries()) {
         if(key !== 'query') {
@@ -58,6 +60,11 @@ class PageSearch extends React.Component {
 
       this.search();
     }
+  }
+
+  componentDidUpdate(prevProps) {
+    if(prevProps.search.isFetchingFilterOptions === true)
+      this.getQueryFromUrl();
   }
 
   render() {
