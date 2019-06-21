@@ -1,7 +1,7 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { createBrowserHistory } from 'history';
 
 import {
   fetchFilterOptions,
@@ -26,8 +26,6 @@ class SearchForm extends React.Component {
     this.renderSearchOptions = this.renderSearchOptions.bind(this);
     this.handleInputKeyPress = this.handleInputKeyPress.bind(this);
     this.handleRandomDropdownChange = this.handleRandomDropdownChange.bind(this);
-
-    this.history = createBrowserHistory();
   }
 
   componentWillMount() {
@@ -59,7 +57,7 @@ class SearchForm extends React.Component {
     const query = this.props.search.query;
     const queryFilters = this.buildQuery(this.props.search.filters, true)
 
-    this.history.push({
+    this.props.history.push({
       pathname: '/',
       search: `?query=${query}${queryFilters.length > 0 ? '&' : ''}${queryFilters}`
     })
@@ -259,4 +257,4 @@ SearchForm = connect(
   mapStateToProps
 )(SearchForm)
 
-export default SearchForm;
+export default withRouter(SearchForm);
