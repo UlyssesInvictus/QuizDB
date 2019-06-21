@@ -35,7 +35,7 @@ class PageSearch extends React.Component {
     }));
   }
   
-  async componentDidMount() {
+  componentDidMount() {
     if (this.props.search.filterOptions)
       this.getQueryFromUrl();
   }
