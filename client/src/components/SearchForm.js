@@ -18,6 +18,8 @@ import { Grid, Input,
 
 import SearchDropDown from './SearchDropDown';
 
+import qs from 'qs';
+
 class SearchForm extends React.Component {
 
   constructor(props) {
@@ -28,7 +30,7 @@ class SearchForm extends React.Component {
     this.handleRandomDropdownChange = this.handleRandomDropdownChange.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const p = this.props;
     if (!p.search.filterOptions) {
       p.dispatch(fetchFilterOptions());
@@ -54,13 +56,13 @@ class SearchForm extends React.Component {
     const p = this.props;
     p.onSearch();
 
-    const query = this.props.search.query;
-    const queryFilters = this.buildQuery(this.props.search.filters, true)
-
     this.props.history.push({
       pathname: '/',
-      search: `?query=${query}${queryFilters.length > 0 ? '&' : ''}${queryFilters}`
-    })
+      search: `?${qs.stringify({
+        query: this.props.search.query,
+        ...this.props.search.filters,
+      })}`
+    });
   }
 
   buildTourneyOptions(difficulties, tournaments) {
@@ -125,21 +127,6 @@ class SearchForm extends React.Component {
       // don't bother showing header if it's not a header for anything
       return opts.length > 1 ? opts : [];
     }));
-  }
-
-  buildQuery(data, filterEmpty = true) {
-	  if (typeof (data) === 'string') return data;
-
-    const query = [];
-
-    for (let key in data) {
-      if (data.hasOwnProperty(key) && (!filterEmpty || (Array.isArray(data[key]) && data[key].length > 0))) {
-
-        query.push(encodeURIComponent(key) + '=' + encodeURIComponent(data[key]));
-      }
-    }
-
-    return query.join('&');
   }
 
   renderSearchOptions() {
