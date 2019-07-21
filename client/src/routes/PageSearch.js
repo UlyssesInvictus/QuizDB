@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 import {
-  fetchQuestions, updateSearchFilter, updateSearch
+  fetchQuestions, updateSearchFilter, updateSearch, setSearchFilters
 } from '../actions/actions';
 
 // Components
@@ -20,6 +20,17 @@ import SearchEasterEggs from '../utilities/SearchEasterEggs';
 import qs from 'qs';
 
 class PageSearch extends React.Component {
+
+  componentWillMount() {
+    this.routeChangeUnlisten = this.props.history.listen((location, action) => {
+      if(action === "POP")
+        this.setQueryFromUrl();
+    })
+  }
+
+  componentWillUnMount() {
+    this.routeChangeUnlisten();
+  }
 
   componentDidMount() {
     if (this.props.search.filterOptions)
@@ -50,9 +61,13 @@ class PageSearch extends React.Component {
   setQueryFromUrl = () => {
     const p = this.props;
 
+    // Search filters need to be cleared before being built
+    p.dispatch(setSearchFilters({}))
+
     // see todo above
     let filters = {};
     let search = null;
+
     if (this.props.location.search.length !== 0) {
       const currentUrlQuery = qs.parse(this.props.location.search, { ignoreQueryPrefix: true });
       Object.keys(currentUrlQuery).forEach(key => {
