@@ -132,3 +132,33 @@
     color: #2185d0;
   }
 }
+
+.answer {
+
+  &__hidden {
+    cursor: pointer;
+
+    &:hover {
+      background: $primary-background;
+    }
+  }
+
+  &--label {
+    cursor: pointer;
+    position: relative;
+
+    &:hover {
+      background: $primary-background;
+      color: $primary-background;
+
+      &:after {
+        content: '(hide)';
+        color: $primary-text-color;
+        position: absolute;
+        font-weight: 600;
+        left: 20px;
+      }
+    }
+
+  }
+}

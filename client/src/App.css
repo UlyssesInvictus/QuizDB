@@ -273,6 +273,24 @@ footer.quizdb-footer {
   .icon-clickable:hover {
     color: #2185d0; }
 
+.answer__hidden {
+  cursor: pointer; }
+  .answer__hidden:hover {
+    background: aliceblue; }
+
+.answer--label {
+  cursor: pointer;
+  position: relative; }
+  .answer--label:hover {
+    background: aliceblue;
+    color: aliceblue; }
+    .answer--label:hover:after {
+      content: '(hide)';
+      color: rgba(0, 0, 0, 0.87);
+      position: absolute;
+      font-weight: 600;
+      left: 20px; }
+
 .ui.grid.search-input {
   padding: 1.2rem 0 1.2rem 0; }
 
@@ -379,3 +397,5 @@ footer.quizdb-footer {
 
 .quizdb-settings {
   padding: 1.5rem 0rem 15rem 0rem; }
+  .quizdb-settings--section {
+    margin-bottom: 1.5rem; }

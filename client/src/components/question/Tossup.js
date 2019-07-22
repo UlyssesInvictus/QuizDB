@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 import {
   Segment,
-  Grid,
 } from 'semantic-ui-react';
-import ThirdPartyIcons from "./ThirdPartyIcons";
+
+import AnswerLine from './AnswerLine';
 
 import {
   formatQuestionString,
@@ -21,15 +21,11 @@ const Tossup = ({ question, query }) => {
         <strong>Question: </strong>{formattedText}
       </Segment>
       <Segment className="question-tossup-answer">
-        <Grid columns='16'>
-          <Grid.Column largeScreen='13' computer='14' tablet='16' mobile='16'>
-            <strong>ANSWER: </strong>{formattedAnswer}
-            <input id={'question-hidden-answer-'+question.id}
-                   className='question-hidden-answer'
-                   value={question.answer} readOnly/>
-          </Grid.Column>
-          <ThirdPartyIcons question={question} />
-        </Grid>
+        <AnswerLine
+          question={question}
+          answer={formattedAnswer}
+          id={question.id}
+        />
       </Segment>
     </div>
   )
