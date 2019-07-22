@@ -5,6 +5,7 @@ import {
   Segment,
 } from 'semantic-ui-react';
 
+import SearchSettings from "../components/settings/SearchSettings";
 import AppearanceSettings from "../components/settings/AppearanceSettings";
 
 class PageSettings extends React.Component {
@@ -18,6 +19,7 @@ class PageSettings extends React.Component {
           These features are experimental. Use them carefully!
         </p>
       </Segment>
+      <SearchSettings />
       <AppearanceSettings/>
     </div>
   }

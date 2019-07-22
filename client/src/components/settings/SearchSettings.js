@@ -9,7 +9,7 @@ import {
   Checkbox
 } from 'semantic-ui-react';
 
-class AppearanceSettings extends React.Component {
+class SearchSettings extends React.Component {
 
   constructor(props) {
     super(props);
@@ -36,10 +36,7 @@ class AppearanceSettings extends React.Component {
         <Label attached='top'><h3>Appearance</h3></Label>
         <Grid columns={3} stackable>
           <Grid.Column>
-            {this.renderCheckbox("Highlight matching results in search", "highlightSearch")}
-          </Grid.Column>
-          <Grid.Column>
-            {this.renderCheckbox("Show daily QuizDB usage tips", "usageTips")}
+            {this.renderCheckbox("Auto-hide answers during search", "hideSearchAnswers")}
           </Grid.Column>
         </Grid>
       </Segment>
@@ -52,8 +49,8 @@ const mapStateToProps = state => {
     storage: state.storage,
   }
 }
-AppearanceSettings = connect(
+SearchSettings = connect(
   mapStateToProps
-)(AppearanceSettings)
+)(SearchSettings)
 
-export default AppearanceSettings;
+export default SearchSettings;
