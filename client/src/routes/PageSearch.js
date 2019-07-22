@@ -21,6 +21,7 @@ import qs from 'qs';
 
 class PageSearch extends React.Component {
 
+  // TODO: fix to use prop changes instead of history listener
   componentWillMount() {
     this.routeChangeUnlisten = this.props.history.listen((location, action) => {
       if(action === "POP")
