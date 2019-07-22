@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -17,6 +18,8 @@ import { Grid, Input,
 
 import SearchDropDown from './SearchDropDown';
 
+import qs from 'qs';
+
 class SearchForm extends React.Component {
 
   constructor(props) {
@@ -27,7 +30,7 @@ class SearchForm extends React.Component {
     this.handleRandomDropdownChange = this.handleRandomDropdownChange.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const p = this.props;
     if (!p.search.filterOptions) {
       p.dispatch(fetchFilterOptions());
@@ -52,6 +55,14 @@ class SearchForm extends React.Component {
   triggerSearch() {
     const p = this.props;
     p.onSearch();
+
+    this.props.history.push({
+      pathname: '/',
+      search: `?${qs.stringify({
+        query: this.props.search.query,
+        ...this.props.search.filters,
+      })}`
+    });
   }
 
   buildTourneyOptions(difficulties, tournaments) {
@@ -228,4 +239,4 @@ SearchForm = connect(
   mapStateToProps
 )(SearchForm)
 
-export default SearchForm;
+export default withRouter(SearchForm);
