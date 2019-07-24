@@ -10,8 +10,7 @@ import ThirdPartyIcons from "./ThirdPartyIcons";
 const AnswerLine = ({ answer, id, question, index }) => {
   const hideAnswersDefault = localStorage.getItem('hideSearchAnswers');
 
-  const [show, setShow] = useState((hideAnswersDefault === undefined || hideAnswersDefault === null) ?
-    true : hideAnswersDefault);
+  const [show, setShow] = useState(!hideAnswersDefault || hideAnswersDefault === 'false');
 
   if (!show) {
     return (
