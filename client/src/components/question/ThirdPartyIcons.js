@@ -38,12 +38,15 @@ class ThirdPartyIcons extends React.Component {
         if (index !== null) {
           hiddenId += '-' + index;
         }
-        let answer = document.querySelector(hiddenId);
+		//answer is a span with innerHTML set to the value we're interested in
+        let answer = document.querySelector(hiddenId).innerHTML;
         answer.select();
         document.execCommand('copy');
         this.props.dispatch(Notifications.success({
           title: "Answer copied to clipboard!",
-          message: `Copied "${query}."`,
+		  //replace ' and "
+		  //taken from https://stackoverflow.com/questions/2351576/replacing-quotation-marks-in-javascript
+          message: `Copied "${query.replace(/'/g, "&apos;").replace(/"/g, "&quot;")}."`,
         }));
         return;
       }
@@ -80,11 +83,13 @@ class ThirdPartyIcons extends React.Component {
 
     let query;
     if (question.type === "tossup") {
-      query = isPresent(question.formatted_answer) ?
-        question.formatted_answer : question.answer;
-    } else {
-      query = isPresent(question.formatted_answers[index]) ?
-        question.formatted_answers[index] : question.answers[index];
+      query = isPresent(question.formatted_answer)
+		? question.formatted_answer
+		: question.answer;
+    } else { //bonus
+      query = isPresent(question.formatted_answers[index])
+		? question.formatted_answers[index]
+		: question.answers[index];
     }
     query = sanitizeHtml(query, {
       allowedTags: [],
@@ -95,36 +100,44 @@ class ThirdPartyIcons extends React.Component {
     const googleImagesPrefix = 'https://google.com/search?tbm=isch&q=';
     const typePlural = question.type === "tossup" ? "tossups" : "bonuses";
 
+	//wrapper function that produces an icon with an associated ReactTooltip
+	//goes without saying but don't put any spaces in your name variable
+	const withTooltip = (name, onClick, tooltip) => <>
+      <Icon name={name} className='icon-clickable'
+            onClick={onClick}/>
+      <ReactTooltip effect='solid' type='info' id={`${question.id}-${name}`}>
+	    {tooltip}
+      </ReactTooltip>
+	</>;
+	
+	//too lazy to code special case for admin button - just split list into before and after admin button
+	const iconsBeforeAdmin = [
+	  {name: 'google', onClick: () => handleIconClick(googlePrefix, query), tooltip: 'Google this answerline'},
+	  {name: 'image', onClick: () => handleIconClick(googleImagesPrefix, query), tooltip: 'Google Image search this answerline'},
+	  {name: 'wikipedia', onClick: () => handleWikiIconClick(question, index), tooltip: 'Search for this answerline on Wikipedia'}
+	];
+	
+	const iconsAfterAdmin = [
+	  {name: 'clone', onClick: () => handleIconClick("copy", query), tooltip: 'Copy this answerline'},
+	  {name: 'repeat', onClick: () => handleSearchIconClick(query), tooltip: 'Search for this answerline, with no filters'},
+	  {name: 'refresh', onClick: () => handleSearchIconClick(query, false), tooltip: 'Search for this answerline, with the same filters'}
+	];
+
     return (
       <Grid.Column largeScreen='3' computer='2' tablet='16' mobile='16'
         verticalAlign='middle'
         textAlign='center'
         className='question-icons'
       >
-        <Icon name='google' className='icon-clickable'
-              onClick={() => handleIconClick(googlePrefix, query)}/>
-        <Icon corner name='image' className='icon-clickable'
-              onClick={() => handleIconClick(googleImagesPrefix, query)}/>
-        <Icon name='wikipedia w' className='icon-clickable'
-              onClick={() => handleWikiIconClick(question, index)}/>
+		{iconsBeforeAdmin.map((icon) => withTooltip(...icon))} //I don't know if spread works here - if not, just get all the params manually
         <a href={`/admin/${typePlural}/${question.id}`} target="_blank" ref="nofollow">
-          <Icon name='database' className='icon-clickable' link/>
+          <Icon name='database' className='icon-clickable' link
+				data-tip data-for={`${question.id}-admin`}/>
+		  <ReactTooltip effect='solid' type='info' id={`${question.id}-admin`}>
+			
+		  </ReactTooltip>
         </a>
-        <Icon name='clone' className='icon-clickable'
-              onClick={() => handleIconClick("copy", query, index)}/>
-
-        <Icon name='repeat' corner className='icon-clickable'
-              data-tip data-for={`${question.id}-repeat`}
-              onClick={() => handleSearchIconClick(query)}/>
-        <Icon name='refresh' className='icon-clickable'
-              data-tip data-for={`${question.id}-refresh`}
-              onClick={() => handleSearchIconClick(query, false)}/>
-        <ReactTooltip effect='solid' type='info' id={`${question.id}-repeat`}>
-          Search for this answerline, with no filters
-        </ReactTooltip>
-        <ReactTooltip effect='solid' type='info' id={`${question.id}-refresh`}>
-          Search for this answerline, with the same filters
-        </ReactTooltip>
+		{iconsAfterAdmin.map((icon) => withTooltip(...icon))} //same comment as above
       </Grid.Column>
     );
   }
