@@ -65,7 +65,9 @@ export function extractBonusText(bonus) {
 }
 
 export function extractActualAnswer(answer) {
-  const regMatch = answer.match(/<b>.*<\/b>/) || answer.match(/<strong>.*<\/strong>/);
+  //naively match the beginning of a question up to (but not including) the first left square brace
+  //if more powerful solution is needed, use lookahead like (?:(?!\[).)* and replace \[ as needed
+  const regMatch = answer.match(/^[^\[]*/);
   return regMatch ? regMatch[0] : null;
 }
 
