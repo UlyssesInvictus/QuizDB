@@ -18,6 +18,13 @@ class Root extends React.Component {
           {" Sponsored by "}
           <a href="https://www.pace-nsc.org/" target="_blank" rel="noopener noreferrer">PACE</a>
         </p>
+        <p>
+            <a
+              href={"https://hsquizbowl.org/forums/viewtopic.php?p=392505"}
+              target="_blank" rel="noopener noreferrer">
+                On November 28th, 2022, QuizDB will cease operation
+            </a>
+        </p>
       </Header>
       <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
         <input type="hidden" name="cmd" value="_s-xclick"/>
